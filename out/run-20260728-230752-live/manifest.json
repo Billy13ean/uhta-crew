@@ -1,0 +1,411 @@
+{
+  "run_id": "run-20260728-230752-live",
+  "status": "COMPLETE_PENDING_DIRECTOR",
+  "mode": "live",
+  "created": "2026-07-28T23:18:27",
+  "model": "claude-sonnet-4-5",
+  "llm_backend": "live",
+  "llm_calls": 5,
+  "llm_tokens": {
+    "input": 104385,
+    "output": 24159
+  },
+  "python": "3.11.15",
+  "director_goal": "Front feel (GDD \u00a76, CANON v17 open questions). metrics-v3.9.1 \u00a7E records that the Grief Front's straggler wear now saturates the +/-1 step cap: an unheld convert at v=5 fully greys in 5 ticks, ~2.4x the pre-salvage rate, while the in-sphere stall is exact at 0.000/tick. Propose 2-3 rules variants that soften unshepherded straggler wear WITHOUT weakening the in-sphere stall and WITHOUT touching locked canon, so the render can sell one antagonist rather than two.",
+  "question_set": "1. Can straggler wear be brought below the step-cap saturation point while\n   `front_strength 4.0` keeps inside-front decay exactly equal to zealot pull\n   (2.0/tick)? Which dial does it \u2014 front_strength, cooldown, duration, radius, or\n   the trigger threshold \u2014 and what does each cost?\n2. What is the late-game front duty cycle at cooldown 2 (3-on/2-off, measured\n   ~0.65 uptime, metrics-v3.9.1 \u00a7F), and does a longer cooldown buy legibility\n   without making the antagonist a rumour?\n3. Does any proposed change re-open a closure the Run-23b salvage bought \u2014 the\n   GF6 siege engine (spawn anchor), the GF5 hover-sprint shadow (trailing window),\n   or the cleanup-assist (affects_dominant_pole_only)?\n4. Locked and out of scope: the grief canon itself (CANON ruling 6 \u2014 grief wears\n   the dominant pole and never recruits for the opposite), zealot immunity,\n   `win_loss` in all its parts, the scale and bands, and `hope_trade` (stays\n   disabled).",
+  "seed_list": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "baseline_ruleset": "rules-v3.9.1-C.json",
+  "gdd": "uhta-gdd-v0.9.7-abridged.md",
+  "validation_gate": {
+    "kind": "deterministic",
+    "required_key_paths_derived_from": "rules-v3.9.1-C.json",
+    "required_key_path_count": 203,
+    "repair_round_trips_allowed": 1
+  },
+  "prompt_versions": {
+    "keeper": "keeper v2 (crew port)",
+    "mechanic-designer": "mechanic-designer v3 (crew port)",
+    "red-teamer": "red-teamer v4 (crew port)",
+    "playtester": "playtester v3 (crew port)",
+    "orchestrator": "orchestrator v1 (crew port, no LLM)"
+  },
+  "selection": {
+    "selected_variant": "rules-v3.9.2-A.json",
+    "by": "orchestrator-standin",
+    "rule": "first variant to clear the deterministic validation gate, in the order the Designer emitted them",
+    "note": "In the real pipeline the human Director selects (GDD \u00a73.3). This is a placeholder so an unattended run has a Red-Team target; it expresses no preference between variants.",
+    "director_gate": "PENDING",
+    "candidates": [
+      "rules-v3.9.2-A.json",
+      "rules-v3.9.2-B.json",
+      "rules-v3.9.2-C.json"
+    ]
+  },
+  "director_gate": "PENDING",
+  "stages": [
+    {
+      "n": 1,
+      "stage": "keeper_b1",
+      "agent": "keeper-b1",
+      "status": "OK",
+      "seconds": 150.11,
+      "artifacts": [
+        "packet-mechanic-designer-v3.9.2.md"
+      ]
+    },
+    {
+      "n": 2,
+      "stage": "mechanic_designer",
+      "agent": "mechanic-designer",
+      "status": "OK",
+      "seconds": 124.02,
+      "artifacts": [
+        "designer-rationale.md",
+        "validation.json"
+      ]
+    },
+    {
+      "n": 3,
+      "stage": "validation_gate",
+      "agent": "(deterministic)",
+      "status": "OK",
+      "seconds": 0.0,
+      "artifacts": [
+        "validation.json",
+        "rules-v3.9.2-A.json",
+        "rules-v3.9.2-B.json",
+        "rules-v3.9.2-C.json"
+      ],
+      "detail": {
+        "required_key_paths": 203,
+        "attempts": 1,
+        "accepted": [
+          "rules-v3.9.2-A.json",
+          "rules-v3.9.2-B.json",
+          "rules-v3.9.2-C.json"
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "n": 4,
+      "stage": "red_teamer",
+      "agent": "red-teamer",
+      "status": "OK",
+      "seconds": 224.78,
+      "artifacts": [
+        "attacks-v3.9.2.md",
+        "attacks.json"
+      ]
+    },
+    {
+      "n": 5,
+      "stage": "playtester",
+      "agent": "playtester",
+      "status": "OK",
+      "seconds": 100.4,
+      "artifacts": [
+        "metrics-v3.9.2.md",
+        "execution-log.json"
+      ]
+    },
+    {
+      "n": 6,
+      "stage": "keeper_b2",
+      "agent": "keeper-b2",
+      "status": "OK",
+      "seconds": 35.32,
+      "artifacts": [
+        "contradictions-run-20260728-230752-live.md"
+      ]
+    },
+    {
+      "n": 7,
+      "stage": "director_gate",
+      "agent": "Director (human)",
+      "status": "PENDING",
+      "seconds": 0.0,
+      "artifacts": [
+        "contradictions-run-20260728-230752-live.md"
+      ],
+      "detail": "Outside this crew. The Director fills the `## Ruling` block in the contradiction report with UPHOLD / AMEND / DEFER, and selects the variant to ratify."
+    }
+  ],
+  "artifact_sha256": {
+    "RUN-LOG.md": "89c5f0fce8e2e239862a7da7f188b5f6635432ee15bb47ebe447c9fbfe7ae382",
+    "attacks-v3.9.2.md": "6a7f35137e8ca5e3171176dd0413a00f23f6b0a63dba6c2dbff0ac279ec49e0c",
+    "attacks.json": "0a8e65837ef5330c24ac59c5f89821e1cd40ff9c61411fe974168941e3fe5c41",
+    "contradictions-run-20260728-230752-live.md": "e9b7f8da1aad40cc14d8812d72b70daf8d89a05a481d36d5c056f6fc31a93eb3",
+    "designer-rationale.md": "a09b9d338fd11776c95353e1f23317d153728c1717274050a9d5e4ec5e0f09c5",
+    "execution-log.json": "30cabe02fea8a08afbfb2a23083af52a6ccfb3e5f8b1c2f8254bbb63b0f09d4e",
+    "metrics-v3.9.2.md": "beb9d3e0be12570b94b02594241a72a1764ae6c220da32304032012656b5b610",
+    "packet-mechanic-designer-v3.9.2.md": "bcb359b98e8fd52629aed265371f06c872ad74e76ad793a233ecdd3d42bb93c6",
+    "probe-specs/spec-P1-rules-v3.9.1-C.json": "3b94b305936bf2581fb6b3f506e61adb9f1ef297ce1f5e3ddc937e6772d02d5b",
+    "probe-specs/spec-P1-rules-v3.9.2-A.json": "3b94b305936bf2581fb6b3f506e61adb9f1ef297ce1f5e3ddc937e6772d02d5b",
+    "probe-specs/spec-P1-rules-v3.9.2-B.json": "3b94b305936bf2581fb6b3f506e61adb9f1ef297ce1f5e3ddc937e6772d02d5b",
+    "probe-specs/spec-P1-rules-v3.9.2-C.json": "3b94b305936bf2581fb6b3f506e61adb9f1ef297ce1f5e3ddc937e6772d02d5b",
+    "probe-specs/spec-P2-rules-v3.9.1-C.json": "4c3daa6e8e3d8051dcbeca2f52b45b05f7b263c3e4a28488aa3b3f418a664657",
+    "probe-specs/spec-P2-rules-v3.9.2-A.json": "4c3daa6e8e3d8051dcbeca2f52b45b05f7b263c3e4a28488aa3b3f418a664657",
+    "probe-specs/spec-P2-rules-v3.9.2-B.json": "4c3daa6e8e3d8051dcbeca2f52b45b05f7b263c3e4a28488aa3b3f418a664657",
+    "probe-specs/spec-P2-rules-v3.9.2-C.json": "4c3daa6e8e3d8051dcbeca2f52b45b05f7b263c3e4a28488aa3b3f418a664657",
+    "probe-specs/spec-P3-rules-v3.9.1-C.json": "914bccc54b85ad12bc3e86a865276200c1a0b00cb490f092f62bbb9d6dca6e4d",
+    "probe-specs/spec-P3-rules-v3.9.2-A.json": "914bccc54b85ad12bc3e86a865276200c1a0b00cb490f092f62bbb9d6dca6e4d",
+    "probe-specs/spec-P3-rules-v3.9.2-B.json": "914bccc54b85ad12bc3e86a865276200c1a0b00cb490f092f62bbb9d6dca6e4d",
+    "probe-specs/spec-P3-rules-v3.9.2-C.json": "914bccc54b85ad12bc3e86a865276200c1a0b00cb490f092f62bbb9d6dca6e4d",
+    "probe-specs/spec-P4-rules-v3.9.1-C.json": "c0ed4de6ccbb219c1665008b09b8f9efa92708e1b150e8e062c846f14788ef91",
+    "probe-specs/spec-P4-rules-v3.9.2-A.json": "c0ed4de6ccbb219c1665008b09b8f9efa92708e1b150e8e062c846f14788ef91",
+    "probe-specs/spec-P4-rules-v3.9.2-B.json": "c0ed4de6ccbb219c1665008b09b8f9efa92708e1b150e8e062c846f14788ef91",
+    "probe-specs/spec-P4-rules-v3.9.2-C.json": "c0ed4de6ccbb219c1665008b09b8f9efa92708e1b150e8e062c846f14788ef91",
+    "rules-v3.9.2-A.json": "fd9e96d0cc3dd84dd88eac8bef8aad98dc5814c12eddaf3e0950068049dff552",
+    "rules-v3.9.2-B.json": "c29887953cdfa3418b950274d1fa9cc330c5fc46fb0241df4aa495fbec8dfd3d",
+    "rules-v3.9.2-C.json": "1abf6c0f5a03c543eb818fbd159f441dcd5cb4ded16b08733723b1045324e952",
+    "validation.json": "555fabbecfd1841c66f27b1d9e19f68a446f575910a9c73765fac6395fdd41af"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "keeper-b1",
+      "bytes": 6811,
+      "sha256": "389d41b0f3f72dad"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "keeper-b1",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-abridged.md",
+      "agent": "keeper-b1",
+      "bytes": 49030,
+      "sha256": "89839b3f72785a56"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/rules/rules-v3.9.1-C.json",
+      "agent": "keeper-b1",
+      "bytes": 16362,
+      "sha256": "a6656af817cce7fe"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/packet-mechanic-designer-v3.9.2.md",
+      "agent": "keeper-b1",
+      "bytes": 15785,
+      "sha256": "bcb359b98e8fd526"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/packet-mechanic-designer-v3.9.2.md",
+      "agent": "mechanic-designer",
+      "bytes": 15785,
+      "sha256": "bcb359b98e8fd526"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/rules/rules-v3.9.1-C.json",
+      "agent": "mechanic-designer",
+      "bytes": 16362,
+      "sha256": "a6656af817cce7fe"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/rules-v3.9.2-A.json",
+      "agent": "mechanic-designer",
+      "bytes": 16648,
+      "sha256": "fd9e96d0cc3dd84d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/rules-v3.9.2-B.json",
+      "agent": "mechanic-designer",
+      "bytes": 16647,
+      "sha256": "c29887953cdfa341"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/rules-v3.9.2-C.json",
+      "agent": "mechanic-designer",
+      "bytes": 16680,
+      "sha256": "1abf6c0f5a03c543"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/designer-rationale.md",
+      "agent": "mechanic-designer",
+      "bytes": 11777,
+      "sha256": "a09b9d338fd11776"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/validation.json",
+      "agent": "validation-gate",
+      "bytes": 1978,
+      "sha256": "555fabbecfd1841c"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/packet-mechanic-designer-v3.9.2.md",
+      "agent": "red-teamer",
+      "bytes": 15785,
+      "sha256": "bcb359b98e8fd526"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/rules-v3.9.2-A.json",
+      "agent": "red-teamer",
+      "bytes": 16648,
+      "sha256": "fd9e96d0cc3dd84d"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/designer-rationale.md",
+      "agent": "red-teamer",
+      "bytes": 11777,
+      "sha256": "a09b9d338fd11776"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/attacks-v3.9.2.md",
+      "agent": "red-teamer",
+      "bytes": 29812,
+      "sha256": "6a7f35137e8ca5e3"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/attacks.json",
+      "agent": "red-teamer",
+      "bytes": 2318,
+      "sha256": "0a8e65837ef5330c"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/attacks.json",
+      "agent": "playtester",
+      "bytes": 2318,
+      "sha256": "0a8e65837ef5330c"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/attacks-v3.9.2.md",
+      "agent": "playtester",
+      "bytes": 29812,
+      "sha256": "6a7f35137e8ca5e3"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/packet-mechanic-designer-v3.9.2.md",
+      "agent": "playtester",
+      "bytes": 15785,
+      "sha256": "bcb359b98e8fd526"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/execution-log.json",
+      "agent": "playtester",
+      "bytes": 30024,
+      "sha256": "30cabe02fea8a08a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/metrics-v3.9.2.md",
+      "agent": "playtester",
+      "bytes": 26022,
+      "sha256": "beb9d3e0be12570b"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "keeper-b2",
+      "bytes": 6811,
+      "sha256": "389d41b0f3f72dad"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "keeper-b2",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/rules-v3.9.2-A.json",
+      "agent": "keeper-b2",
+      "bytes": 16648,
+      "sha256": "fd9e96d0cc3dd84d"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/metrics-v3.9.2.md",
+      "agent": "keeper-b2",
+      "bytes": 26022,
+      "sha256": "beb9d3e0be12570b"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/attacks-v3.9.2.md",
+      "agent": "keeper-b2",
+      "bytes": 29812,
+      "sha256": "6a7f35137e8ca5e3"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-230752-live/contradictions-run-20260728-230752-live.md",
+      "agent": "keeper-b2",
+      "bytes": 4298,
+      "sha256": "e9b7f8da1aad40cc"
+    }
+  ]
+}

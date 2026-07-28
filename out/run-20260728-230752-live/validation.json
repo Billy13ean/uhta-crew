@@ -1,0 +1,83 @@
+{
+  "gate": "deterministic",
+  "baseline": "rules-v3.9.1-C.json",
+  "required_key_paths": 203,
+  "attempts": [
+    {
+      "attempt": 1,
+      "variants": [
+        {
+          "variant": "A",
+          "path": "rules-v3.9.2-A.json",
+          "ok": true,
+          "checks": {
+            "parse": "PASS",
+            "schema": "PASS",
+            "harness": "PASS"
+          },
+          "error": "",
+          "smoke": {
+            "stamina_total": 0.0,
+            "terminal": null,
+            "sleeps": 3,
+            "final_wf": 0.1044776119402985,
+            "final_lf": 0.7611940298507462,
+            "selfburns": 0,
+            "pop": 67,
+            "fronts_spawned": 0,
+            "front_exposure": 0.0
+          }
+        },
+        {
+          "variant": "B",
+          "path": "rules-v3.9.2-B.json",
+          "ok": true,
+          "checks": {
+            "parse": "PASS",
+            "schema": "PASS",
+            "harness": "PASS"
+          },
+          "error": "",
+          "smoke": {
+            "stamina_total": 0.0,
+            "terminal": null,
+            "sleeps": 3,
+            "final_wf": 0.1044776119402985,
+            "final_lf": 0.7611940298507462,
+            "selfburns": 0,
+            "pop": 67,
+            "fronts_spawned": 0,
+            "front_exposure": 0.0
+          }
+        },
+        {
+          "variant": "C",
+          "path": "rules-v3.9.2-C.json",
+          "ok": true,
+          "checks": {
+            "parse": "PASS",
+            "schema": "PASS",
+            "harness": "PASS"
+          },
+          "error": "",
+          "smoke": {
+            "stamina_total": 0.0,
+            "terminal": null,
+            "sleeps": 3,
+            "final_wf": 0.1044776119402985,
+            "final_lf": 0.7611940298507462,
+            "selfburns": 0,
+            "pop": 67,
+            "fronts_spawned": 0,
+            "front_exposure": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "accepted": [
+    "A",
+    "B",
+    "C"
+  ]
+}

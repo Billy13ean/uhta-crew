@@ -1,0 +1,11 @@
+.env
+out/*
+!out/.gitkeep
+__pycache__/
+*.pyc
+.venv/
+venv/
+diagrams/pp.json
+diagrams/*.png
+.DS_Store
+.env

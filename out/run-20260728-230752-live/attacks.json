@@ -1,0 +1,105 @@
+{
+  "target": "rules-v3.9.2-A.json",
+  "probes": [
+    {
+      "id": "P1",
+      "attack_id": "A1",
+      "name": "Rumour antagonist (low spawn count)",
+      "bot": "bot_throughput",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "median_fronts_spawned >= 3 (antagonist is a recurring pressure, not a rare event)",
+      "falsification_metric": "median_fronts_spawned",
+      "severity_if_confirmed": "TUNING"
+    },
+    {
+      "id": "P2",
+      "attack_id": "A2",
+      "name": "Audit: cumulative exposure reduction",
+      "bot": "bot_throughput",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "median_front_exposure is ~30-40% lower than baseline (duty cycle 0.50 vs 0.65), confirming cumulative exposure reduction but not per-tick rate reduction",
+      "falsification_metric": "median_front_exposure",
+      "severity_if_confirmed": "HOLDS"
+    },
+    {
+      "id": "P3",
+      "attack_id": "A3",
+      "name": "Do-nothing softlock regression",
+      "bot": "bot_do_nothing",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "losses = 8 (100% loss rate via apathy) AND median_fronts_spawned = 0 (no fronts in zero-dominance run)",
+      "falsification_metric": "losses",
+      "severity_if_confirmed": "HOLDS"
+    },
+    {
+      "id": "P4",
+      "attack_id": "A4",
+      "name": "Self-burn regression",
+      "bot": "run_selfburn",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "median_selfburns = 0 (overlap immunity holds, front affects dominant pole only)",
+      "falsification_metric": "median_selfburns",
+      "severity_if_confirmed": "HOLDS"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# The only third-party dependency. No CrewAI, no LangChain — the orchestration
+# in crew/ is raw Python (see ARCHITECTURE.md, "Why no framework").
+#
+# Neither --selftest nor --mock-llm needs this package: both run on the standard
+# library alone. It is required only for the live mode's API calls.
+anthropic>=0.40,<1.0

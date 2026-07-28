@@ -1,0 +1,45 @@
+flowchart TD
+    D([Director — human · sole gate and canon writer])
+    O["<b>Orchestrator</b> — crew/orchestrator.py<br/>dispatch only · deterministic · no LLM<br/>manifest.json · RUN-LOG.md · artifact verification"]
+
+    K1["<b>Keeper — Mode B1</b><br/><i>in</i> CANON + CANON-process + GDD + question set<br/><i>out</i> packet-mechanic-designer-vN.md"]
+    MD["<b>Mechanic Designer</b><br/><i>in</i> the packet + baseline rules JSON<br/><i>out</i> rules-vN-A/B/C.json + designer-rationale.md"]
+    VG{{"<b>VALIDATION GATE</b> — deterministic, no LLM<br/>a · parses as JSON<br/>b · carries every key path derived from the baseline<br/>c · loads into the harness and ticks"}}
+    RT["<b>Red-Teamer</b><br/><i>in</i> packet + selected variant + rationale<br/><i>out</i> attacks-vN.md + <b>attacks.json</b>"]
+    PT["<b>Playtester</b><br/><i>in</i> variants + attacks.json<br/><i>out</i> metrics-vN.md + execution-log.json"]
+    HAR[["<b>REAL EXECUTION</b> — one subprocess per arm × ruleset<br/>RULES=variant.json · blackboard/sim/harness.py<br/>the model never authors a number"]]
+    K2["<b>Keeper — Mode B2</b><br/><i>in</i> selected variant + metrics + attacks<br/><i>out</i> contradictions-runN.md + blank ## Ruling"]
+    OUT([rules-vN.json — the file the browser build loads at boot])
+
+    D ==>|goal + question set| O
+    O ==>|1| K1
+    O ==>|2| MD
+    O ==>|4| RT
+    O ==>|5| PT
+    O ==>|6| K2
+
+    K1 -->|packet| MD
+    MD -->|3 variants| VG
+    VG -->|"INVALID — one repair round-trip, carrying the validator's error text"| MD
+    VG -->|"VALID — stand-in selection: first passing variant"| RT
+    RT -->|"attacks.json IS the Playtester's arm list"| PT
+    PT <--> HAR
+    PT -->|metrics| K2
+
+    MD -.->|proposal| D
+    PT -.->|evidence| D
+    K2 ==>|"the diff, stapled above the proposal"| D
+    D ==>|"7 · GATE — UPHOLD / AMEND / DEFER, then ratify a variant"| OUT
+
+    FAIL["<b>Any stage fails, or any required upstream artifact is missing</b><br/>→ pipeline HALTS · FAILED.md names the agent, the stage and the error<br/>· manifest status FAILED · exit 1 · never a traceback"]
+
+    O -.-> FAIL
+
+    classDef human fill:#2d1b2e,stroke:#c9a227,stroke-width:3px,color:#f4ecd8
+    classDef det fill:#12232e,stroke:#4f8a8b,stroke-width:2px,color:#dbe9ee
+    classDef agent fill:#1b2838,stroke:#6b9ac4,stroke-width:2px,color:#e8eef4
+    classDef bad fill:#3a1414,stroke:#b23a3a,stroke-width:2px,color:#f6dede
+    class D,OUT human
+    class O,VG,HAR det
+    class K1,MD,RT,PT,K2 agent
+    class FAIL bad

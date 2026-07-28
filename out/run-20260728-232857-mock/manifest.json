@@ -1,0 +1,230 @@
+{
+  "run_id": "run-20260728-232857-mock",
+  "status": "FAILED",
+  "mode": "mock",
+  "created": "2026-07-28T23:28:59",
+  "model": "mock-llm (tests/fixtures)",
+  "llm_backend": "mock",
+  "llm_calls": 2,
+  "llm_tokens": {
+    "input": 0,
+    "output": 0
+  },
+  "python": "3.11.15",
+  "director_goal": "Front feel (GDD \u00a76, CANON v17 open questions). metrics-v3.9.1 \u00a7E records that the Grief Front's straggler wear now saturates the +/-1 step cap: an unheld convert at v=5 fully greys in 5 ticks, ~2.4x the pre-salvage rate, while the in-sphere stall is exact at 0.000/tick. Propose 2-3 rules variants that soften unshepherded straggler wear WITHOUT weakening the in-sphere stall and WITHOUT touching locked canon, so the render can sell one antagonist rather than two.",
+  "question_set": "1. Can straggler wear be brought below the step-cap saturation point while\n   `front_strength 4.0` keeps inside-front decay exactly equal to zealot pull\n   (2.0/tick)? Which dial does it \u2014 front_strength, cooldown, duration, radius, or\n   the trigger threshold \u2014 and what does each cost?\n2. What is the late-game front duty cycle at cooldown 2 (3-on/2-off, measured\n   ~0.65 uptime, metrics-v3.9.1 \u00a7F), and does a longer cooldown buy legibility\n   without making the antagonist a rumour?\n3. Does any proposed change re-open a closure the Run-23b salvage bought \u2014 the\n   GF6 siege engine (spawn anchor), the GF5 hover-sprint shadow (trailing window),\n   or the cleanup-assist (affects_dominant_pole_only)?\n4. Locked and out of scope: the grief canon itself (CANON ruling 6 \u2014 grief wears\n   the dominant pole and never recruits for the opposite), zealot immunity,\n   `win_loss` in all its parts, the scale and bands, and `hope_trade` (stays\n   disabled).",
+  "seed_list": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "baseline_ruleset": "rules-v3.9.1-C.json",
+  "gdd": "uhta-gdd-v0.9.7-abridged.md",
+  "validation_gate": {
+    "kind": "deterministic",
+    "required_key_paths_derived_from": "rules-v3.9.1-C.json",
+    "required_key_path_count": 203,
+    "repair_round_trips_allowed": 1
+  },
+  "prompt_versions": {
+    "keeper": "keeper v2 (crew port)",
+    "mechanic-designer": "mechanic-designer v3 (crew port)",
+    "red-teamer": "red-teamer v4 (crew port)",
+    "playtester": "playtester v3 (crew port)",
+    "orchestrator": "orchestrator v1 (crew port, no LLM)"
+  },
+  "selection": {
+    "selected_variant": "rules-v3.9.2-A.json",
+    "by": "orchestrator-standin",
+    "rule": "first variant to clear the deterministic validation gate, in the order the Designer emitted them",
+    "note": "In the real pipeline the human Director selects (GDD \u00a73.3). This is a placeholder so an unattended run has a Red-Team target; it expresses no preference between variants.",
+    "director_gate": "PENDING",
+    "candidates": [
+      "rules-v3.9.2-A.json",
+      "rules-v3.9.2-B.json",
+      "rules-v3.9.2-C.json"
+    ]
+  },
+  "director_gate": "PENDING",
+  "stages": [
+    {
+      "n": 1,
+      "stage": "keeper_b1",
+      "agent": "keeper-b1",
+      "status": "OK",
+      "seconds": 0.15,
+      "artifacts": [
+        "packet-mechanic-designer-v3.9.2.md"
+      ]
+    },
+    {
+      "n": 2,
+      "stage": "mechanic_designer",
+      "agent": "mechanic-designer",
+      "status": "OK",
+      "seconds": 0.77,
+      "artifacts": [
+        "designer-rationale.md",
+        "validation.json"
+      ]
+    },
+    {
+      "n": 3,
+      "stage": "validation_gate",
+      "agent": "(deterministic)",
+      "status": "OK",
+      "seconds": 0.0,
+      "artifacts": [
+        "validation.json",
+        "rules-v3.9.2-A.json",
+        "rules-v3.9.2-B.json",
+        "rules-v3.9.2-C.json"
+      ],
+      "detail": {
+        "required_key_paths": 203,
+        "attempts": 1,
+        "accepted": [
+          "rules-v3.9.2-A.json",
+          "rules-v3.9.2-B.json",
+          "rules-v3.9.2-C.json"
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "n": 4,
+      "stage": "red_teamer",
+      "agent": "red-teamer",
+      "status": "SKIPPED (--drop-agent)",
+      "seconds": 0.0,
+      "artifacts": [
+        "attacks-v3.9.2.md",
+        "attacks.json"
+      ]
+    },
+    {
+      "n": 5,
+      "stage": "playtester",
+      "agent": "playtester",
+      "status": "FAILED",
+      "seconds": 0.01,
+      "artifacts": [
+        "metrics-v3.9.2.md",
+        "execution-log.json"
+      ]
+    }
+  ],
+  "artifact_sha256": {
+    "FAILED.md": "44576a2e5c4a9928caa3e45397b0bea6b6187f1437744635d81ef67e5aacab97",
+    "RUN-LOG.md": "8e9115f6c5d355317eeff7e63ddbcf04631a0ba928f345b0b5aed699ded34da3",
+    "designer-rationale.md": "1efc9a8abafcddaa8a2c624b43cd61185f101dc34cdc0c3a9cd03de0685556d0",
+    "packet-mechanic-designer-v3.9.2.md": "bb3311b0049ee9956c14ec2023f618b690c8ec259332ecc13b9a753f82ad28b3",
+    "rules-v3.9.2-A.json": "8e8f2c8da70431d87faa2ea108072ad04ca73142a4c0bc39f452ab5eb3424093",
+    "rules-v3.9.2-B.json": "c2ac3dc749a578f7b4e8030a7b980cded2935749e7b3a389a471d2568cee4a80",
+    "rules-v3.9.2-C.json": "ac8f0bdf19113158c5d8ef8e6e7b773a0a838c6469e4c6c90b09fa26858e262c",
+    "validation.json": "555fabbecfd1841c66f27b1d9e19f68a446f575910a9c73765fac6395fdd41af"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "keeper-b1",
+      "bytes": 6811,
+      "sha256": "389d41b0f3f72dad"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "keeper-b1",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-abridged.md",
+      "agent": "keeper-b1",
+      "bytes": 49030,
+      "sha256": "89839b3f72785a56"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/rules/rules-v3.9.1-C.json",
+      "agent": "keeper-b1",
+      "bytes": 16362,
+      "sha256": "a6656af817cce7fe"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-232857-mock/packet-mechanic-designer-v3.9.2.md",
+      "agent": "keeper-b1",
+      "bytes": 8071,
+      "sha256": "bb3311b0049ee995"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/run-20260728-232857-mock/packet-mechanic-designer-v3.9.2.md",
+      "agent": "mechanic-designer",
+      "bytes": 8071,
+      "sha256": "bb3311b0049ee995"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/rules/rules-v3.9.1-C.json",
+      "agent": "mechanic-designer",
+      "bytes": 16362,
+      "sha256": "a6656af817cce7fe"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-232857-mock/rules-v3.9.2-A.json",
+      "agent": "mechanic-designer",
+      "bytes": 16462,
+      "sha256": "8e8f2c8da70431d8"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-232857-mock/rules-v3.9.2-B.json",
+      "agent": "mechanic-designer",
+      "bytes": 16421,
+      "sha256": "c2ac3dc749a578f7"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-232857-mock/rules-v3.9.2-C.json",
+      "agent": "mechanic-designer",
+      "bytes": 16439,
+      "sha256": "ac8f0bdf19113158"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-232857-mock/designer-rationale.md",
+      "agent": "mechanic-designer",
+      "bytes": 6677,
+      "sha256": "1efc9a8abafcddaa"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/run-20260728-232857-mock/validation.json",
+      "agent": "validation-gate",
+      "bytes": 1978,
+      "sha256": "555fabbecfd1841c"
+    }
+  ]
+}

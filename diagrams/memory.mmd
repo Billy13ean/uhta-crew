@@ -1,0 +1,63 @@
+flowchart LR
+    subgraph SEED["<b>blackboard/</b> — seeded, read-mostly · the RAG corpus (GDD §4.2)"]
+        direction TB
+        CANON["CANON.md<br/>locked-decision digest · 900-word cap"]
+        CPROC["CANON-process.md<br/>process canon"]
+        GDDF["gdd/uhta-gdd-v0.9.7-abridged.md<br/>chunk = one ### subsection"]
+        BASE["rules/rules-v3.9.1-C.json<br/><b>the ratified baseline AND the schema</b>"]
+        SIM["sim/harness.py + sim/bots.py<br/>the executable spec"]
+    end
+
+    subgraph RUN["<b>out/&lt;run-id&gt;/</b> — per-run · written by agents · the only channel between them"]
+        direction TB
+        PK["packet-mechanic-designer-vN.md<br/><i>keeper-b1</i>"]
+        VAR["rules-vN-A/B/C.json<br/><i>mechanic-designer</i>"]
+        RAT["designer-rationale.md<br/><i>mechanic-designer</i>"]
+        VAL["validation.json<br/><i>validation gate</i>"]
+        AMD["attacks-vN.md<br/><i>red-teamer</i>"]
+        AJS["attacks.json<br/><i>red-teamer</i>"]
+        EXE["execution-log.json<br/><i>playtester — real runs</i>"]
+        MET["metrics-vN.md<br/><i>playtester</i>"]
+        CON["contradictions-runN.md<br/><i>keeper-b2</i>"]
+    end
+
+    CANON --> PK
+    CPROC --> PK
+    GDDF --> PK
+    BASE --> PK
+
+    PK --> VAR
+    BASE --> VAR
+    BASE -->|"required key set derived at runtime"| VAL
+    VAR --> VAL
+
+    PK --> AMD
+    VAR --> AMD
+    RAT --> AMD
+    AMD --> AJS
+
+    AJS -->|"names the arms"| EXE
+    VAR -->|"RULES= per arm"| EXE
+    BASE -->|"control arm"| EXE
+    SIM -->|"subprocess execution"| EXE
+    EXE -->|"board + appendix, machine-generated"| MET
+    AMD --> MET
+
+    VAR --> CON
+    MET --> CON
+    CANON --> CON
+    CON --> GATE([Director gate — the blank ## Ruling block])
+
+    MAN["<b>manifest.json + RUN-LOG.md</b><br/><i>orchestrator</i> — model, prompt versions, seed list,<br/>per-stage status, sha256 of every artifact,<br/>and the complete blackboard read/write ledger"]
+    RUN -.-> MAN
+
+    classDef seed fill:#12232e,stroke:#4f8a8b,stroke-width:2px,color:#dbe9ee
+    classDef run fill:#1b2838,stroke:#6b9ac4,stroke-width:2px,color:#e8eef4
+    classDef human fill:#2d1b2e,stroke:#c9a227,stroke-width:3px,color:#f4ecd8
+    classDef det fill:#0f1c24,stroke:#4f8a8b,stroke-width:2px,color:#dbe9ee
+    class CANON,CPROC,GDDF,BASE,SIM seed
+    class PK,VAR,RAT,AMD,AJS,MET,CON run
+    class VAL,EXE,MAN det
+    class GATE human
+    style SEED fill:#f7f3e8,stroke:#8a7a4f
+    style RUN fill:#eef2f7,stroke:#5b7fa6

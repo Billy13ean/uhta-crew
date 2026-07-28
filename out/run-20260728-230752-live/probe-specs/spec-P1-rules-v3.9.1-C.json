@@ -1,0 +1,1 @@
+{"id": "P1", "attack_id": "A1", "name": "Rumour antagonist (low spawn count)", "bot": "bot_throughput", "seeds": [0, 1, 2, 3, 4, 5, 6, 7], "max_sleeps": 32, "poles": [1], "player_pole": 1, "args": {}, "invariant": "median_fronts_spawned >= 3 (antagonist is a recurring pressure, not a rare event)", "falsification_metric": "median_fronts_spawned", "severity_if_confirmed": "TUNING"}

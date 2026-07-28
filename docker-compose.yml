@@ -1,0 +1,17 @@
+services:
+  crew:
+    build: .
+    image: uhta-crew:latest
+    # out/ is bind-mounted so run artifacts survive the container: the whole
+    # point of the blackboard pattern is that the files outlive the process.
+    volumes:
+      - ./out:/app/out
+    environment:
+      # Read from .env (see .env.example). Empty is fine for --selftest and
+      # --mock-llm, which make no API calls.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CREW_MODEL: ${CREW_MODEL:-claude-sonnet-4-5}
+    # Default is the no-key selftest. Override at the CLI:
+    #   docker compose run --rm crew --mock-llm
+    #   docker compose run --rm crew --seeds 20
+    command: ["--selftest"]
