@@ -1,0 +1,27 @@
+{
+  "beat": "s2",
+  "tag": "s2",
+  "label": "Loss — the grey closes in",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.4",
+      "heading": "2.4 Win state / lose state",
+      "bm25": 37.71
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 32.19
+    }
+  ],
+  "candidates": [
+    "The burned count toward the grey.",
+    "Your excess fed the sky.",
+    "What you burned became his.",
+    "The grey you made closed in.",
+    "Apathy claimed what you left behind.",
+    "The burned were counted against you.",
+    "You fed Uhtcearu his victory.",
+    "Where you overdosed, the grey retook the map."
+  ]
+}

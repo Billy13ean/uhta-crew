@@ -1,0 +1,78 @@
+{
+  "beat": "e3",
+  "tag": "e3",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "The dirt paths you walked are paver stone now. The huddles you met have settled and built. A generation has passed, and the world has moved on its own.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "Captures the per-tile aging mechanic (dirt→stone after one generation) and the specific 'ground remembering you' phrasing from the visual canon.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Where people stopped wandering, they built. Roads have hardened into stone. The settlements that rooted here carry what you did, and what the world did without you.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Where tribes crossed the threshold of feeling, they stopped moving and raised walls.",
+      "reason": "Loses the asymmetric settlement identity (Hope settlements vs Fear walled camps) that is core to uhta's pole mechanics.",
+      "correction": "Roads have hardened into stone. Where tribes crossed the threshold of feeling, they stopped wandering — Hope rooted into settlements, Fear dug into walled camps."
+    },
+    {
+      "index": 3,
+      "line": "The ground remembers everywhere you walked — stone roads now, carrying travelers in your color. Where tribes crossed the threshold of feeling, they stopped moving and raised walls.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "The ground remembers everywhere you walked — stone roads now, carrying travelers in your color.",
+      "reason": "Preserves both the 'ground remembering' phrase and the allegiance-colored roads carrying same-pole travelers from the road-following mechanic.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Trails have become stone. The nomads you met have children now, and some have built where they stopped believing motion mattered more than what they felt.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "The 'stopped believing motion mattered more than what they felt' is a concrete restatement of the settling threshold (devotion → permanence) without abstraction.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "The paths are stone. The wanderers have settled. What was temporary when you last woke has rooted — villages stand where devotion held, and the roads you walked carry the next generation.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Each tribe adds ~2 regular NPCs per sleep (after the world forms; genesis suppresses births during formation, and schism's pop-cap bounds it thereafter). Newborns start at 0 — apathy.",
+      "reason": "The phrase 'have children now' invokes the newborn mechanic but loses the critical detail that newborns are born grey/apathetic, not inheriting belief.",
+      "correction": "The paths are stone. The wanderers have settled. What was temporary when you last woke has rooted — villages stand where devotion held, and the roads you walked carry the next generation born grey into a colored world."
+    },
+    {
+      "index": 6,
+      "line": "Stone roads connect what were dirt paths. Tribes that reached conviction have built and stopped wandering. The landscape answers what happened while you slept — settlements, walls, and the hardened ground you made by walking.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles as what it feels — Hope roots into an open settlement, Fear digs into a walled camp.",
+      "reason": "Captures the settling rule (conviction → building) and the asymmetric architecture (settlements vs walls) without numbers.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "Your footprints are stone roads now. Tribes have stopped drifting and raised what they believe — walled camps, settlements, the bones of permanence. The world has aged a generation since you last opened your eyes.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Your footprints are stone roads now.",
+      "reason": "The 'footprints are stone roads' is a concrete physical translation of the per-tile aging mechanic, and 'raised what they believe' captures the settling-as-what-it-feels rule.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "The trails are stone. Where feeling took root, people built and stayed. The world you wake to is no longer scattered and grey — it has hardened into roads, walls, and the choices that outlived you.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles as what it feels — Hope roots into an open settlement, Fear digs into a walled camp.",
+      "reason": "The phrase 'no longer scattered and grey' is generic; it loses the specific genesis state (grey nomad loners) and the asymmetric settlement forms.",
+      "correction": "The trails are stone. Where feeling took root, people built and stayed — Hope settlements, Fear walled camps. The world you wake to has hardened into roads, walls, and the choices that outlived you."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "beat": "s1",
+  "tag": "s1",
+  "label": "Win — the sky turns your color",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.4",
+      "heading": "2.4 Win state / lose state",
+      "bm25": 28.79
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 32.19
+    }
+  ],
+  "candidates": [
+    "You walked, and the ground remembered you. You roared, and they heard. You slept where your light could work. The sky is yours.",
+    "They cowered. They straightened. They built in your color. The world moved on its own, and it moved toward you.",
+    "The huddle you met is gone. What you find instead is the answer. The sky turns.",
+    "You lit the basin. You spent your last action. You slept, and your light kept working. They are yours now.",
+    "Every settlement that formed, every road that hardened, every tribe that stopped wandering — the landscape is the score. You won it.",
+    "The grey closed in, then turned. The zealot you never met now burns for you. The sky answers: it is your color.",
+    "You raised the flame and the fog cleared. You walked and they followed. You slept and the world became you. The sky has turned.",
+    "Where you chose to lie down mattered. The sleeping body glowed. The generations passed. What they built, they built in your color."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "beat": "n4",
+  "tag": "ab-A-naive-top1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You roar — and everyone who witnesses it is frightened, whatever you intend.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Omits the mechanical consequence (earth shattering) that distinguishes roar from generic fear-causing.",
+      "correction": "You roar — the earth shatters ahead, and all who witness are frightened, whatever you intend."
+    },
+    {
+      "index": 2,
+      "line": "Roar. The earth shatters ahead, and all who hear are frightened — no matter what you feel.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Names both mechanical consequences (earth shatters, witnesses frightened) and honors the 'whatever you intend' phrasing from the chunk.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "This is the roar. It frightens everyone who witnesses it, whatever color you hold.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Omits the earth-shattering consequence entirely, reducing roar to generic fear-causing.",
+      "correction": "This is the roar. The earth shatters ahead, and all who witness are frightened — whatever color you hold."
+    },
+    {
+      "index": 4,
+      "line": "Roar, and the ground breaks — but know that all who see it will fear you, even if you carry hope.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "The 'but know that' construction moralizes instead of instrumenting; it's advisory mythology, not declarative consequence.",
+      "correction": "You roar and the ground breaks ahead. All who witness are frightened, even if you carry hope."
+    },
+    {
+      "index": 5,
+      "line": "You roar and the earth shatters. Everyone who witnesses it becomes frightened — your intention does not matter.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Names both consequences (earth shatters, witnesses frightened) and the 'intention does not matter' directly echoes the chunk's 'whatever you intend.'",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "The roar: it splits the earth, and frightens all who witness — regardless of the flame you carry.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Economically names both mechanical consequences and the alignment-independence via 'regardless of the flame you carry.'",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "Roar. The land cracks open ahead, and every witness is made afraid — your feeling cannot change this.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Names both consequences (land cracks, witnesses afraid) and the alignment-independence via 'your feeling cannot change this.'",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "This is roar — earth shatters where you face, and all who see are frightened, whatever you intend them to feel.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "The 'whatever you intend them to feel' construction is explanatory/psychological rather than declarative instrumentation.",
+      "correction": "This is roar — earth shatters where you face, and all who see are frightened, whatever you intend."
+    }
+  ]
+}

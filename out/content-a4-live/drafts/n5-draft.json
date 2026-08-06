@@ -1,0 +1,27 @@
+{
+  "beat": "n5",
+  "tag": "n5",
+  "label": "First Wait — inaction is an action",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 38.57
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You wait. Those who watch learn you do not matter.",
+    "When you withhold, the watchers drift toward apathy.",
+    "You do nothing. Nearby, indifference takes root.",
+    "Wait, and you teach the people watching that you are not worth their feeling.",
+    "Inaction is witnessed. It pushes them toward grey.",
+    "To wait is to be forgotten. The nearby lose their color.",
+    "You hold back. Those who see it move toward apathy.",
+    "Waiting is a choice. It makes you matter less to those who witness it."
+  ]
+}

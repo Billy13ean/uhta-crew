@@ -1,0 +1,27 @@
+{
+  "beat": "n7",
+  "tag": "n7",
+  "label": "First Sleep — where you lie down matters",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 29.01
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You sleep. A generation passes — and your body keeps radiating, every tick, over everyone near where you lie down.",
+    "Sleep ends the cycle. The world moves without you, but where you sleep, the flame keeps working.",
+    "You sleep here. Generations pass. The ground around your body glows with what you feel, until you wake.",
+    "Sleep. One generation. Your sleeping body radiates over the ground you chose — the flame never stops.",
+    "You sleep — and a generation turns. Where you lie down matters: your light keeps spreading while you dream.",
+    "Sleep advances time. Your body stays, glowing, touching everyone near where you chose to rest.",
+    "You sleep. The world ages. The sleeping body radiates your color across the ground, every tick, until dawn.",
+    "Sleep here and the cycle ends. A generation passes over your glowing body — location is the last choice you make."
+  ]
+}

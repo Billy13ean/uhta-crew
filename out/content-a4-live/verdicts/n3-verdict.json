@@ -1,0 +1,78 @@
+{
+  "beat": "n3",
+  "tag": "n3",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "Raise the flame. It applies what you feel right now.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "The chunk says 'what you feel' not 'what you feel right now' — the temporal qualifier adds emphasis the source doesn't support and implies a volatility the mechanic doesn't have.",
+      "correction": "Raise the flame. It applies what you feel."
+    },
+    {
+      "index": 2,
+      "line": "Wave the flame — it spreads whatever color you're holding.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "applies the flame's current alignment to NPCs in radius",
+      "reason": "Could describe any alignment-spreading mechanic in any game — loses the emotional framing ('what you feel') that makes it uhta-specific.",
+      "correction": "Wave the flame — it applies what you feel to everyone nearby."
+    },
+    {
+      "index": 3,
+      "line": "Raise the flame. Everyone who sees it takes on your current feeling.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the flame applies what you feel; applies the flame's current alignment to NPCs in radius",
+      "reason": "Combines the emotional framing ('your current feeling') with the mechanical consequence (application to witnesses) in instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "The flame clears fog and applies your alignment to those nearby.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "Reads like a feature list — 'clears fog and applies alignment' — with no emotional consequence surviving; could be any fog-of-war mechanic.",
+      "correction": "The flame applies what you feel to those who see it."
+    },
+    {
+      "index": 5,
+      "line": "Raise the flame — it pushes your present emotion outward.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "'Your present emotion' preserves the emotional framing while 'pushes outward' captures the radiating application mechanic.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "Wave the flame. It isn't healing. It's whatever you are.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "The negation ('isn't healing') and the identity claim ('whatever you are') both honor the moral-neutrality spine — no action is inherently good.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "Raise the flame. It spreads the feeling you carry, not the one they need.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "The contrast ('you carry, not the one they need') makes the player-emotion-as-tool mechanic explicit and preserves uhta's moral ambiguity.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "The flame applies its current color to everyone in reach.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "Completely mechanistic ('current color', 'everyone in reach') — the emotional source ('what you feel') that distinguishes uhta is absent.",
+      "correction": "The flame applies what you feel to everyone in reach."
+    }
+  ]
+}

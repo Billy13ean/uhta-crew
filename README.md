@@ -508,3 +508,11 @@ exists. Whether B2 caught it is visible in
 
 ```
 
+
+- `out/content-a4-live/` — a real live **content** run (Assignment 4),
+  `--candidates 8`, all four stages, 36 dispatches. `manifest.json` records
+  `"llm_backend": "live"`. Start at `README-A4.md`; `RAG-TRACE.md` is the
+  query → chunk → output evidence, `CRITIC-LOG.md` every verdict with its
+  correction, `VOICE-JUDGMENT.md` the measured A/B on the retrieval rule.
+  `drafts/` and `verdicts/` are the per-beat blackboard artifacts the Writer
+  wrote and the Critic read back — the handoff is a file, not a variable.

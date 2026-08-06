@@ -1,0 +1,78 @@
+{
+  "beat": "s1",
+  "tag": "s1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You walked, and the ground remembered you. You roared, and they heard. You slept where your light could work. The sky is yours.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you walk and the ground remembers you; you roar and the earth shatters ahead... where you sleep, your light keeps working... the player replaces Uhtcearu as the sky",
+      "reason": "Recites the specific verbs taught in Genesis (walk/roar/sleep) and their mechanical consequences, ending with the win-state's literal outcome.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "They cowered. They straightened. They built in your color. The world moved on its own, and it moved toward you.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the player replaces Uhtcearu as the sky",
+      "reason": "\"The world moved on its own\" is the emotional centerpiece of waking, not the win state; this reads like any god-game's victory without citing the mechanical unification or sky-replacement.",
+      "correction": "They cowered. They straightened. They built in your color. The unification held. The sky is yours."
+    },
+    {
+      "index": 3,
+      "line": "The huddle you met is gone. What you find instead is the answer. The sky turns.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "The huddle you met is gone. What you find instead is the answer",
+      "reason": "Quotes the waking moment but strips all mechanical consequence — \"the answer\" and \"the sky turns\" are empty without the unification threshold or color-replacement.",
+      "correction": "The huddle you met is gone. What you find instead is the answer: the whole map in your color, and the sky turns."
+    },
+    {
+      "index": 4,
+      "line": "You lit the basin. You spent your last action. You slept, and your light kept working. They are yours now.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "you light a ruined basin and it gives you strength... where you sleep, your light keeps working",
+      "reason": "\"They are yours now\" implies possession of NPCs, but the win condition is unification-dominance and sky-replacement, not ownership — wrong framing for the thesis.",
+      "correction": "You lit the basin. You spent your last action. You slept, and your light kept working. The sky has turned your color."
+    },
+    {
+      "index": 5,
+      "line": "Every settlement that formed, every road that hardened, every tribe that stopped wandering — the landscape is the score. You won it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "The landscape is the score",
+      "reason": "Correctly quotes that landscape-is-score but \"you won it\" is generic victory language; the win state is sky-replacement after unification, not territorial conquest.",
+      "correction": "Every settlement that formed, every road that hardened, every tribe that stopped wandering — the landscape became the score, and the sky turned your color."
+    },
+    {
+      "index": 6,
+      "line": "The grey closed in, then turned. The zealot you never met now burns for you. The sky answers: it is your color.",
+      "verdict": "FAIL",
+      "flag_class": "CONTRADICTS-CHUNK",
+      "quoted_chunk": "no living opposing zealot",
+      "reason": "\"The zealot you never met now burns for you\" describes a captured champion (mid-game forensics), but the win condition explicitly requires \"no living opposing zealot.\"",
+      "correction": "The grey closed in, then turned. The last opposing zealot fell. The sky answers: it is your color."
+    },
+    {
+      "index": 7,
+      "line": "You raised the flame and the fog cleared. You walked and they followed. You slept and the world became you. The sky has turned.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "You raise the flame and a flash clears the fog; you walk and the ground remembers you... the player replaces Uhtcearu as the sky",
+      "reason": "Chains Genesis verbs (raise/walk/sleep) to their mechanical outcomes (fog clears/ground remembers/world becomes) and ends with the literal sky-turn.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Where you chose to lie down mattered. The sleeping body glowed. The generations passed. What they built, they built in your color.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "where you choose to lie down matters — your sleeping body glows like a beacon across the generations... what you did *and* what the world did without you... what they built",
+      "reason": "Cites the mechanical weight of sleep-location, the generational glow, and the waking discovery of what-they-built — all specific to uhta's systems.",
+      "correction": null
+    }
+  ]
+}

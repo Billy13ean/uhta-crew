@@ -1,0 +1,27 @@
+{
+  "beat": "e2",
+  "tag": "e2",
+  "label": "Transition — Nomad into Village",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 19.71
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 28.43
+    }
+  ],
+  "candidates": [
+    "The paths you walked last season have hardened into stone.",
+    "Where grey wanderers drifted, a settlement now stands.",
+    "The huddle you met is gone. In its place, walls.",
+    "Dirt trails you pressed with your feet now carry travelers in your color.",
+    "The people you left behind have stopped wandering and built.",
+    "The ground you walked remembers you — your trails are now paved.",
+    "A generation has passed. The nomads have chosen where to root.",
+    "What was loose earth beneath your feet is now worked stone."
+  ]
+}

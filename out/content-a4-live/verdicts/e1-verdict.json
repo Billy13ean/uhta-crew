@@ -1,0 +1,78 @@
+{
+  "beat": "e1",
+  "tag": "e1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "Gathered figures in rough hoods, hands empty, standing where they stopped wandering — tents of hide and cloth, no walls, fires in open pits.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "Describes generic nomad aesthetics without anchoring to uhta's era-progression system where hoods are the locked Nomad/Tribal costume that will age into coifs then top hats.",
+      "correction": "Gathered figures in hoods — the Nomad dress, locked to this era — standing where they stopped wandering, tents of hide and cloth with no walls, fires in open pits."
+    },
+    {
+      "index": 2,
+      "line": "The nomads wear simple hoods that cover their heads, shoulders bare or wrapped in undyed cloth, carrying nothing but what they can walk with.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "Generic description of nomad clothing with no mechanical or systemic anchor to uhta's era art or settling behavior.",
+      "correction": "The nomads wear hoods — the first-era dress — shoulders bare or wrapped in undyed cloth, and they carry nothing because unsettled tribes drift as a cohesive body within a home box."
+    },
+    {
+      "index": 3,
+      "line": "Compacted earth paths between hide shelters — no stone, no permanence — the people dressed in hoods and wraps, their camps circles of bent poles and stretched skins.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you",
+      "reason": "Mentions compacted earth paths but divorces them from the player-walked road mechanic that creates them and their allegiance coloring.",
+      "correction": "Compacted earth paths between hide shelters — player-walked trails, the ground remembering you — no stone yet, no permanence, the people in hoods and wraps, their camps circles of bent poles and stretched skins."
+    },
+    {
+      "index": 4,
+      "line": "Rough hoods and loose garments, all of it meant to be carried, and the settlements are just where they set it down — rings of low tents around communal fires.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles as what it feels",
+      "reason": "Describes generic temporary camps without connecting to the settling rule — that these are unsettled tribes still drifting, not yet devout enough to root.",
+      "correction": "Rough hoods and loose garments, all of it meant to be carried — unsettled tribes drifting within their home box — and the camps are just where they set it down, rings of low tents around communal fires, not yet rooted."
+    },
+    {
+      "index": 5,
+      "line": "The wanderers wear hoods that shadow their faces, garments loose enough to walk in, and when they settle they build only what can be made from what the land gives — bent wood, stretched hide, stacked stone.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "Anchors hoods to the era-locked Nomad costume and connects settling to the land-given materials, honoring the visual language division of labor.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "Hoods pulled forward, cloth wrapping the body in layers that can be shed or added, and the camps are temporary even when they root — circles of hide tents, fire-rings, and beaten earth.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles",
+      "reason": "Describes camps as 'temporary even when they root' which contradicts the settling rule that rooting is permanent and irreversible.",
+      "correction": "Hoods pulled forward, cloth wrapping the body in layers that can be shed or added, and the camps are still temporary — circles of hide tents, fire-rings, and beaten earth — because these tribes have not yet held devout conviction long enough to settle permanently."
+    },
+    {
+      "index": 7,
+      "line": "They dress in hooded wraps and carry their belongings on their backs, and where they settle the structures are low and open — bent frames covered in skins, smoke rising from uncovered fires.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Unsettled tribes drift as a cohesive body within a home box (~9 tiles)",
+      "reason": "Generic nomad imagery with no mechanical anchor to uhta's wander system, settling threshold, or the distinction between drifting and rooted tribes.",
+      "correction": "They dress in hooded wraps and carry their belongings on their backs — unsettled, drifting within their home box — and where they stop the structures are low and open, bent frames covered in skins, smoke rising from uncovered fires, not yet permanent."
+    },
+    {
+      "index": 8,
+      "line": "Simple hoods and layered cloth, no decoration, no metal, and the settlements are clusters of rounded shelters made from what grows or can be dragged — timber frames, hides, woven grass, and the ground they've trampled flat.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "Lists generic materials without connecting hoods to era-locked costume or trampled ground to the player-walked road system that creates compacted earth.",
+      "correction": "Hoods — the Nomad-era dress — and layered cloth with no decoration, no metal, and the settlements are clusters of rounded shelters made from what grows or can be dragged, timber frames and hides, standing on ground trampled flat by wandering or compacted where the player walked."
+    }
+  ]
+}

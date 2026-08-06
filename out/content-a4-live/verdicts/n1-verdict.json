@@ -1,0 +1,78 @@
+{
+  "beat": "n1",
+  "tag": "n1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You hold a white flame that lights only the stone around you.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "You wake in a dark cave holding a white flame that lights only the stone around you.",
+      "reason": "Direct instrumentation from the tutorial sequence — names the flame's current mechanical state (white, limited radius) without mythology.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "The flame in your hand is white and undetermined.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "The white flame is genuinely undetermined",
+      "reason": "Uses 'undetermined' as abstract descriptor rather than stating the mechanical consequence that makes it undetermined in uhta's system.",
+      "correction": "The white flame becomes whatever you do with it."
+    },
+    {
+      "index": 3,
+      "line": "A white flame — what it becomes is not yet decided.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "The white flame is genuinely undetermined",
+      "reason": "Speaks about future possibility ('not yet decided') rather than naming the verb-consequence relationship the tutorial demands.",
+      "correction": "The white flame takes the color of what you do."
+    },
+    {
+      "index": 4,
+      "line": "You carry a flame that has no color of its own.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "The flame in your hand is your alignment",
+      "reason": "Describes what the flame lacks rather than the mechanical consequence — no verb, no stated outcome.",
+      "correction": "The flame in your hand is white — your actions will color it."
+    },
+    {
+      "index": 5,
+      "line": "The white flame waits — it will become whatever you do with it.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "a white flame that becomes whatever you do with it",
+      "reason": "States the verb-consequence relationship directly — action determines alignment, the core mechanic of the flame system.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "In your hand: a flame, white, holding no feeling yet.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "The colon construction and 'holding no feeling yet' is descriptive mood rather than declarative instrumentation.",
+      "correction": "The white flame holds no feeling — it will take yours."
+    },
+    {
+      "index": 7,
+      "line": "The flame is yours, white and empty of intent.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "'Empty of intent' is abstract characterization; no verb named, no consequence stated.",
+      "correction": "The flame is white — where you walk, what you do, it remembers."
+    },
+    {
+      "index": 8,
+      "line": "You wake holding white fire — neither path is written into it.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Before you are two paths — and like the prisoners in Plato's cave, you first encounter Hope and Fear only as shadows. One is lit red — its walls show shadows fighting, killing, screaming. The other is lit green",
+      "reason": "Names the mechanical state (white fire, neither path written in) and ties directly to the two-path choice that tints the flame.",
+      "correction": null
+    }
+  ]
+}

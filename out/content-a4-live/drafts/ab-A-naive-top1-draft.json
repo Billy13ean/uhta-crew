@@ -1,0 +1,22 @@
+{
+  "beat": "n4",
+  "tag": "ab-A-naive-top1",
+  "label": "First Roar — whatever you intend",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You roar — and everyone who witnesses it is frightened, whatever you intend.",
+    "Roar. The earth shatters ahead, and all who hear are frightened — no matter what you feel.",
+    "This is the roar. It frightens everyone who witnesses it, whatever color you hold.",
+    "Roar, and the ground breaks — but know that all who see it will fear you, even if you carry hope.",
+    "You roar and the earth shatters. Everyone who witnesses it becomes frightened — your intention does not matter.",
+    "The roar: it splits the earth, and frightens all who witness — regardless of the flame you carry.",
+    "Roar. The land cracks open ahead, and every witness is made afraid — your feeling cannot change this.",
+    "This is roar — earth shatters where you face, and all who see are frightened, whatever you intend them to feel."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "beat": "n6",
+  "tag": "n6",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You light the basin. It reveals the land around you and gives you strength that lasts.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "The chunk specifies 'ruined basin' but the candidate says only 'basin,' losing the specific environmental detail that distinguishes uhta's world-building.",
+      "correction": "You light the ruined basin. It reveals the land around you and gives you strength that lasts."
+    },
+    {
+      "index": 2,
+      "line": "Light a beacon. It clears the fog and the strength it gives you persists.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "The chunk calls it a 'ruined basin' not a 'beacon' — beacon is the verb name but the object in the tutorial moment is specifically a ruined basin.",
+      "correction": "Light the ruined basin. It clears the fog and the strength it gives you persists."
+    },
+    {
+      "index": 3,
+      "line": "You light the ruined basin. The land reveals itself, and you are made stronger.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "Preserves 'ruined basin,' ties fog-clearing to land-revealing, and captures the persistent strength effect from the beacon table.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Light a beacon. The world around it becomes visible, and its strength becomes yours.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "Calls it 'a beacon' when the tutorial moment specifies 'a ruined basin' — the object type matters to the environmental storytelling.",
+      "correction": "Light the ruined basin. The world around it becomes visible, and its strength becomes yours."
+    },
+    {
+      "index": 5,
+      "line": "The basin lights. Fog lifts where it burns, and the strength you gain does not fade.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "Opens with 'The basin lights' (passive, mythological tone) instead of the required second-person imperative that names the verb.",
+      "correction": "You light the ruined basin. Fog lifts where it burns, and the strength you gain does not fade."
+    },
+    {
+      "index": 6,
+      "line": "You light a beacon. It shows you the hidden land and its power stays with you.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "Says 'a beacon' instead of 'a ruined basin' — loses the specific environmental object from the tutorial sequence.",
+      "correction": "You light the ruined basin. It shows you the hidden land and its power stays with you."
+    },
+    {
+      "index": 7,
+      "line": "Light the basin. It reveals what was hidden and makes you stronger, even after you leave.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "Omits 'ruined' from 'ruined basin,' stripping the environmental specificity that makes this uhta's world rather than any god-game.",
+      "correction": "Light the ruined basin. It reveals what was hidden and makes you stronger, even after you leave."
+    },
+    {
+      "index": 8,
+      "line": "You light a beacon. The fog around it clears, and you carry its strength forward.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "Calls it 'a beacon' when the chunk specifies the tutorial object is 'a ruined basin' — the distinction is load-bearing for the world's archaeology.",
+      "correction": "You light the ruined basin. The fog around it clears, and you carry its strength forward."
+    }
+  ]
+}

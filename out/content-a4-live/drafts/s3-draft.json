@@ -1,0 +1,27 @@
+{
+  "beat": "s3",
+  "tag": "s3",
+  "label": "The teacher returns — one last line",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#1",
+      "heading": "1. Executive Summary",
+      "bm25": 38.28
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 32.19
+    }
+  ],
+  "candidates": [
+    "You walked. The ground remembered you.",
+    "You raised the flame, and they answered.",
+    "You slept where light could reach them.",
+    "The world moved. You moved with it.",
+    "You spent everything. They built the rest.",
+    "What you felt, they carried forward.",
+    "You chose, and the land turned.",
+    "They stopped wandering. You showed them why."
+  ]
+}

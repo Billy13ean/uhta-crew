@@ -1,0 +1,27 @@
+{
+  "beat": "n8",
+  "tag": "n8",
+  "label": "First waking — and the last words",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 18.47
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 28.43
+    }
+  ],
+  "candidates": [
+    "A generation has passed, and the world moved without you.",
+    "The world has changed while you slept.",
+    "They built what you left behind.",
+    "A generation passed. The ground remembers.",
+    "While you slept, the world answered.",
+    "What you did outlasted you — or it didn't.",
+    "The world moved on its own.",
+    "You wake. A generation has passed, and they chose."
+  ]
+}

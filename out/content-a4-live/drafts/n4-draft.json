@@ -1,0 +1,27 @@
+{
+  "beat": "n4",
+  "tag": "n4",
+  "label": "First Roar — whatever you intend",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 36.17
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You can roar — and everyone who witnesses it will fear you, whatever you intend.",
+    "Roar. The earth shatters ahead of you, and everyone who sees it is frightened — even if your flame burns hope.",
+    "This is the roar. It frightens all who witness it, no matter what your flame carries.",
+    "You roar to shatter the ground — but know this: everyone within sight will fear you, regardless of your light.",
+    "The roar clears distance fast, but whoever witnesses the line takes fear — your flame's color cannot protect them.",
+    "Roar, and the stone breaks open — yet every soul who sees you do it learns fear, whether you mean them to or not.",
+    "You can roar a path through the earth. Everyone who watches will be pushed toward fear. Your intention does not matter.",
+    "This is roar: it splits the ground and makes witnesses afraid, even when your flame is green."
+  ]
+}

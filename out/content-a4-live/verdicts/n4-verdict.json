@@ -1,0 +1,78 @@
+{
+  "beat": "n4",
+  "tag": "n4",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You can roar — and everyone who witnesses it will fear you, whatever you intend.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Direct instrumentation that names the verb, states the unconditional Fear consequence, and preserves the 'whatever you intend' paradox central to uhta's design.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Roar. The earth shatters ahead of you, and everyone who sees it is frightened — even if your flame burns hope.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Names the verb imperatively, states terrain effect and witness consequence, and preserves the hope-flame exception paradox with 'even if your flame burns hope'.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "This is the roar. It frightens all who witness it, no matter what your flame carries.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Loses the terrain-shattering effect entirely and 'what your flame carries' is vague where the chunk specifies 'whatever you intend' as the paradox.",
+      "correction": "This is the roar. It shatters the ground ahead, and frightens all who witness it — whatever you intend."
+    },
+    {
+      "index": 4,
+      "line": "You roar to shatter the ground — but know this: everyone within sight will fear you, regardless of your light.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Shatters a line of tiles — fast traversal / path creation",
+      "reason": "'Clears distance fast' is missing from the chunk vocabulary; 'within sight' dilutes the witness-radius mechanic to generic visibility.",
+      "correction": "You roar to shatter a line through the ground — but everyone who witnesses it will fear you, whatever you intend."
+    },
+    {
+      "index": 5,
+      "line": "The roar clears distance fast, but whoever witnesses the line takes fear — your flame's color cannot protect them.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Shatters a line of tiles — fast traversal / path creation. NPCs within witness radius R (~6 tiles) of the line take an unconditional Fear push",
+      "reason": "Names fast traversal, states the unconditional Fear mechanic, and preserves the flame-color-cannot-override paradox with instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "Roar, and the stone breaks open — yet every soul who sees you do it learns fear, whether you mean them to or not.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "'Every soul who sees you do it learns fear' mythologizes where the tutorial demands instrumentation; 'learns fear' is pedagogical metaphor, not mechanical consequence.",
+      "correction": "Roar, and the stone breaks open — but everyone who witnesses it takes fear, whatever you intend."
+    },
+    {
+      "index": 7,
+      "line": "You can roar a path through the earth. Everyone who watches will be pushed toward fear. Your intention does not matter.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Names the verb, states terrain effect and witness consequence as push toward Fear, and closes with the intention-paradox in plain instrumentation.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "This is roar: it splits the ground and makes witnesses afraid, even when your flame is green.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Tutorial naming ('This is roar'), states both terrain and Fear effects, and preserves the flame-color exception with concrete 'even when your flame is green'.",
+      "correction": null
+    }
+  ]
+}

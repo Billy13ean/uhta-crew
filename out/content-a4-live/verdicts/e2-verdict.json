@@ -1,0 +1,78 @@
+{
+  "beat": "e2",
+  "tag": "e2",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "The paths you walked last season have hardened into stone.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "Captures the per-tile aging mechanic where trails become stone after one generation, using the canonical 'ground remembering you' phrase.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Where grey wanderers drifted, a settlement now stands.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "a fledgling settlement that formed around a zealot you never met",
+      "reason": "Directly reflects the waking experience where wanderers have settled during sleep, showing the world moved on its own.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "The huddle you met is gone. In its place, walls.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "The huddle you met is gone; what you find instead is the answer to what you did and what the world did without you: a fledgling settlement that formed around a zealot you never met, a walled camp where the cowering one's children dug in",
+      "reason": "Exact scenario from the waking centerpiece — the huddle replaced by walls, showing Fear settlement.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Dirt trails you pressed with your feet now carry travelers in your color.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Dirt paths you walked now carry travelers in your color",
+      "reason": "Direct quote from the waking experience, showing roads carry allegiance and tribes follow their color's roads.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "The people you left behind have stopped wandering and built.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "tribes that crossed the threshold of feeling have stopped wandering and built",
+      "reason": "Captures the settling rule where devout tribes stop wandering and settle as what they feel.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "The ground you walked remembers you — your trails are now paved.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "Uses the canonical 'ground remembers you' phrase and the trail-to-pavement aging mechanic.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "A generation has passed. The nomads have chosen where to root.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles as what it feels",
+      "reason": "Says 'chosen where to root' when uhta's settling rule is mechanical (devout threshold held for a generation), not volitional choice.",
+      "correction": "A generation has passed. The nomads who crossed the threshold have settled as what they feel."
+    },
+    {
+      "index": 8,
+      "line": "What was loose earth beneath your feet is now worked stone.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "Captures the per-tile road aging from loose earth to worked stone after one generation.",
+      "correction": null
+    }
+  ]
+}

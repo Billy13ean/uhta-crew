@@ -1,0 +1,78 @@
+{
+  "beat": "e4",
+  "tag": "e4",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "The wanderers have built clocktowers. The chimneys are smoking now.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Settlement structures age with it — nomad camps → villages → towns with **clocktowers and smoking factories**.",
+      "reason": "Directly names the specific Victorian-era structures (clocktowers, smoking chimneys) that uhta's era progression produces at the second threshold.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Top hats and canes. The settlements have grown factories, and time has written itself in brick.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPC dress ages with it: **hood → coif → top hat**, gaining **staffs, satchels and canes**, garment folds and face shading. Settlement structures age with it — nomad camps → villages → towns with **clocktowers and smoking factories**.",
+      "reason": "Combines the specific dress progression (top hats, canes) with the specific structures (factories) that mark uhta's Victorian era transition.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "The coifs are gone — everyone is wearing top hats now, and the villages have become towns with smoking stacks.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPC dress ages with it: **hood → coif → top hat**, gaining **staffs, satchels and canes**. Settlement structures age with it — nomad camps → villages → towns with **clocktowers and smoking factories**.",
+      "reason": "Names the exact dress transition (coifs to top hats) and structure evolution (villages to towns with smoking stacks) specified in uhta's era art canon.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Clocktowers stand where the villages were. The people wear top hats and carry canes, and the factories are already smoking.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPC dress ages with it: **hood → coif → top hat**, gaining **staffs, satchels and canes**. Settlement structures age with it — nomad camps → villages → towns with **clocktowers and smoking factories**.",
+      "reason": "Enumerates the specific Victorian markers (clocktowers, top hats, canes, smoking factories) that uhta's era system produces at the second threshold.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "The second age: factories rise where settlements stood, their smoke climbing into the grey. Everyone who built them is wearing a top hat.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "Settlement structures age with it — nomad camps → villages → towns with **clocktowers and smoking factories**.",
+      "reason": "\"Everyone who built them\" implies NPCs constructed the factories, but the chunks specify only that structures age with era thresholds derived from sleep count — no builder agency is supported.",
+      "correction": "Factories rise where settlements stood, their smoke climbing into the grey, and everyone is wearing a top hat now."
+    },
+    {
+      "index": 6,
+      "line": "The settlements have aged into towns. Clocktowers mark the hours now, and smoke rises from every roof.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Settlement structures age with it — nomad camps → villages → towns with **clocktowers and smoking factories**.",
+      "reason": "\"mark the hours\" is generic clock symbolism; the chunk names clocktowers as a specific Victorian structure marker, not a functional timepiece.",
+      "correction": "The settlements have aged into towns. Clocktowers stand above them now, and smoke rises from the factories."
+    },
+    {
+      "index": 7,
+      "line": "Top hats and factory smoke. The villages have become industrial, and the people dress like they remember when they weren't.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "NPC dress ages with it: **hood → coif → top hat**, gaining **staffs, satchels and canes**, garment folds and face shading.",
+      "reason": "\"dress like they remember when they weren't\" is generic nostalgia; the chunk specifies dress ages with era thresholds, not that NPCs have memory or self-awareness about it.",
+      "correction": "Top hats and factory smoke. The villages have become industrial towns, and the people wear Victorian dress now."
+    },
+    {
+      "index": 8,
+      "line": "The world has built its second skin: clocktowers, smoking chimneys, top hats on everyone who used to wear a coif.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPC dress ages with it: **hood → coif → top hat**, gaining **staffs, satchels and canes**. Settlement structures age with it — nomad camps → villages → towns with **clocktowers and smoking factories**.",
+      "reason": "\"Second skin\" is metaphorical but the line grounds it in uhta's specific era markers (clocktowers, chimneys, the coif-to-top-hat transition) in concrete visual terms.",
+      "correction": null
+    }
+  ]
+}

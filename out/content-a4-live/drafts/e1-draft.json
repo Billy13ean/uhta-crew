@@ -1,0 +1,27 @@
+{
+  "beat": "e1",
+  "tag": "e1",
+  "label": "Era 1 — Nomad / Tribal",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 20.95
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 39.96
+    }
+  ],
+  "candidates": [
+    "Gathered figures in rough hoods, hands empty, standing where they stopped wandering — tents of hide and cloth, no walls, fires in open pits.",
+    "The nomads wear simple hoods that cover their heads, shoulders bare or wrapped in undyed cloth, carrying nothing but what they can walk with.",
+    "Compacted earth paths between hide shelters — no stone, no permanence — the people dressed in hoods and wraps, their camps circles of bent poles and stretched skins.",
+    "Rough hoods and loose garments, all of it meant to be carried, and the settlements are just where they set it down — rings of low tents around communal fires.",
+    "The wanderers wear hoods that shadow their faces, garments loose enough to walk in, and when they settle they build only what can be made from what the land gives — bent wood, stretched hide, stacked stone.",
+    "Hoods pulled forward, cloth wrapping the body in layers that can be shed or added, and the camps are temporary even when they root — circles of hide tents, fire-rings, and beaten earth.",
+    "They dress in hooded wraps and carry their belongings on their backs, and where they settle the structures are low and open — bent frames covered in skins, smoke rising from uncovered fires.",
+    "Simple hoods and layered cloth, no decoration, no metal, and the settlements are clusters of rounded shelters made from what grows or can be dragged — timber frames, hides, woven grass, and the ground they've trampled flat."
+  ]
+}

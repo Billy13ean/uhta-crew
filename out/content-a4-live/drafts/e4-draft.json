@@ -1,0 +1,27 @@
+{
+  "beat": "e4",
+  "tag": "e4",
+  "label": "Transition — Village into Victorian",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 19.63
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 28.43
+    }
+  ],
+  "candidates": [
+    "The wanderers have built clocktowers. The chimneys are smoking now.",
+    "Top hats and canes. The settlements have grown factories, and time has written itself in brick.",
+    "The coifs are gone — everyone is wearing top hats now, and the villages have become towns with smoking stacks.",
+    "Clocktowers stand where the villages were. The people wear top hats and carry canes, and the factories are already smoking.",
+    "The second age: factories rise where settlements stood, their smoke climbing into the grey. Everyone who built them is wearing a top hat.",
+    "The settlements have aged into towns. Clocktowers mark the hours now, and smoke rises from every roof.",
+    "Top hats and factory smoke. The villages have become industrial, and the people dress like they remember when they weren't.",
+    "The world has built its second skin: clocktowers, smoking chimneys, top hats on everyone who used to wear a coif."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "beat": "e5",
+  "tag": "e5",
+  "label": "Ruins — what a burned-out settlement leaves",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 19.25
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 39.96
+    }
+  ],
+  "candidates": [
+    "Grey people standing still in the place they built when they believed.",
+    "They stand motionless where their settlement once rooted, grey now, the color they wore before the burnout drained from their bodies.",
+    "The structures remain where devotion settled them, but the people inside are grey and still, wearing faint rings of what they used to feel.",
+    "What's left when a settled tribe burns out: grey figures that no longer wander, standing in the architecture their conviction built.",
+    "A settlement emptied of belief but not of people — they stand where they rooted, grey, the burnout flag still faintly visible as rings around them.",
+    "The buildings mark where they stopped wandering and dug in; the grey motionless figures inside mark where their feeling broke.",
+    "Ruins are not empty — grey people stand in them, still settled, no longer able to leave, wearing the faint trace of the pole that burned them out.",
+    "Where a tribe settled and then shattered: the walls or camps remain, and inside them the burned stand grey and motionless, exiled from movement but rooted by the settling rule."
+  ]
+}

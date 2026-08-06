@@ -1,0 +1,78 @@
+{
+  "beat": "n7",
+  "tag": "n7",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You sleep. A generation passes — and your body keeps radiating, every tick, over everyone near where you lie down.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "The phrase 'every tick' exposes system implementation language that the player never sees in the register demanded.",
+      "correction": "You sleep. A generation passes — and your body keeps radiating over everyone near where you lie down."
+    },
+    {
+      "index": 2,
+      "line": "Sleep ends the cycle. The world moves without you, but where you sleep, the flame keeps working.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "where you sleep, your light keeps working",
+      "reason": "Direct quote from the tutorial narration specification, names the verb and consequence in plain instrumentation.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "You sleep here. Generations pass. The ground around your body glows with what you feel, until you wake.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "Loses the mechanical specificity that the radiation happens 'every tick' and affects NPCs, reducing it to vague glowing ground.",
+      "correction": "You sleep here. Generations pass. Your body radiates over everyone nearby, every moment, until you wake."
+    },
+    {
+      "index": 4,
+      "line": "Sleep. One generation. Your sleeping body radiates over the ground you chose — the flame never stops.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "The phrase 'One generation' as a sentence fragment breaks the declarative register and reads like stage direction.",
+      "correction": "Sleep. A generation passes. Your sleeping body radiates over the ground you chose — the flame never stops."
+    },
+    {
+      "index": 5,
+      "line": "You sleep — and a generation turns. Where you lie down matters: your light keeps spreading while you dream.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "The phrase 'light keeps spreading' loses the mechanical truth that it radiates to NPCs, not just spreads aesthetically.",
+      "correction": "You sleep — and a generation turns. Where you lie down matters: your flame keeps radiating while you dream."
+    },
+    {
+      "index": 6,
+      "line": "Sleep advances time. Your body stays, glowing, touching everyone near where you chose to rest.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "The phrase 'touching everyone' is metaphorical where the chunks specify mechanical radiation of emotion to NPCs.",
+      "correction": "Sleep advances time. Your body stays, radiating the flame's emotion to everyone near where you chose to rest."
+    },
+    {
+      "index": 7,
+      "line": "You sleep. The world ages. The sleeping body radiates your color across the ground, every tick, until dawn.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "The phrase 'every tick, until dawn' exposes system timing language inappropriate for the tutorial register.",
+      "correction": "You sleep. The world ages. Your sleeping body radiates your color across the ground until you wake."
+    },
+    {
+      "index": 8,
+      "line": "Sleep here and the cycle ends. A generation passes over your glowing body — location is the last choice you make.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "The phrase 'glowing body' aestheticizes what is mechanically a continuous emotional radiation to NPCs in radius.",
+      "correction": "Sleep here and the cycle ends. A generation passes, and your body radiates over everyone nearby — location is the last choice you make."
+    }
+  ]
+}

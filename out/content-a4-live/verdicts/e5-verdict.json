@@ -1,0 +1,78 @@
+{
+  "beat": "e5",
+  "tag": "e5",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "Grey people standing still in the place they built when they believed.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A burned-out settlement (grey people standing still in the place they built when they believed) is the game's signature forensic image.",
+      "reason": "Direct quote from the settling rule section, capturing the exact forensic image uhta uses to communicate burnout and settlement permanence.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "They stand motionless where their settlement once rooted, grey now, the color they wore before the burnout drained from their bodies.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "burnout = grey with a faint ring of the frozen color",
+      "reason": "Claims the burnout color 'drained from their bodies' — the chunks specify burnout shows as a faint ring, not that color drains or was previously visible on bodies.",
+      "correction": "They stand motionless where their settlement once rooted, grey now, wearing faint rings of the color that froze when they burned out."
+    },
+    {
+      "index": 3,
+      "line": "The structures remain where devotion settled them, but the people inside are grey and still, wearing faint rings of what they used to feel.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "burnout = grey with a faint ring of the frozen color",
+      "reason": "Accurately describes the visual presentation of burnout (grey with faint rings) and connects it to settled structures remaining after the tribe breaks.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "What's left when a settled tribe burns out: grey figures that no longer wander, standing in the architecture their conviction built.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Settling roots the tribe permanently: it can no longer be led anywhere. The *only* exit is **burnout**, which detaches the broken NPC as a **lone wanderer**",
+      "reason": "Correctly states that burned-out settled NPCs no longer wander but become detached loners, and ties it to the architecture their conviction built.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "A settlement emptied of belief but not of people — they stand where they rooted, grey, the burnout flag still faintly visible as rings around them.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "burnout flag",
+      "reason": "Uses 'burnout flag' — a system term from the implementation layer — where the register demands only what is visible.",
+      "correction": "A settlement emptied of belief but not of people — they stand where they rooted, grey, wearing faint rings of what they used to feel."
+    },
+    {
+      "index": 6,
+      "line": "The buildings mark where they stopped wandering and dug in; the grey motionless figures inside mark where their feeling broke.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A tribe whose average enters the **devout band (|value| ≥ 6)** and holds it for a generation stops wandering and **settles as what it feels**",
+      "reason": "Connects the visible architecture (buildings marking where they stopped wandering) to the mechanical consequence of burnout (grey motionless figures where feeling broke).",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "Ruins are not empty — grey people stand in them, still settled, no longer able to leave, wearing the faint trace of the pole that burned them out.",
+      "verdict": "FAIL",
+      "flag_class": "CONTRADICTS-CHUNK",
+      "quoted_chunk": "burnout**, which detaches the broken NPC as a **lone wanderer** (`loner_tribe_id −1`) that drifts (road-biased) and can be **re-adopted**",
+      "reason": "Claims burned NPCs are 'no longer able to leave' and 'exiled from movement' — chunks state burnout detaches them as wanderers who drift.",
+      "correction": "Ruins are not empty — grey people stand in them, detached as lone wanderers, wearing the faint trace of the pole that burned them out, drifting until re-adopted."
+    },
+    {
+      "index": 8,
+      "line": "Where a tribe settled and then shattered: the walls or camps remain, and inside them the burned stand grey and motionless, exiled from movement but rooted by the settling rule.",
+      "verdict": "FAIL",
+      "flag_class": "CONTRADICTS-CHUNK",
+      "quoted_chunk": "burnout**, which detaches the broken NPC as a **lone wanderer** (`loner_tribe_id −1`) that drifts (road-biased)",
+      "reason": "States burned NPCs are 'rooted by the settling rule' and cannot move — chunks specify burnout detaches them as drifting loners.",
+      "correction": "Where a tribe settled and then shattered: the walls or camps remain, and the burned detach as grey wanderers, wearing faint rings of the pole that broke them, drifting road-biased until re-adopted."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "beat": "n1",
+  "tag": "n1",
+  "label": "The cave — the undetermined flame",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 21.76
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#1",
+      "heading": "1. Executive Summary",
+      "bm25": 18.91
+    }
+  ],
+  "candidates": [
+    "You hold a white flame that lights only the stone around you.",
+    "The flame in your hand is white and undetermined.",
+    "A white flame — what it becomes is not yet decided.",
+    "You carry a flame that has no color of its own.",
+    "The white flame waits — it will become whatever you do with it.",
+    "In your hand: a flame, white, holding no feeling yet.",
+    "The flame is yours, white and empty of intent.",
+    "You wake holding white fire — neither path is written into it."
+  ]
+}

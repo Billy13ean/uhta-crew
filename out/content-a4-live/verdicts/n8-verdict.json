@@ -1,0 +1,78 @@
+{
+  "beat": "n8",
+  "tag": "n8",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "A generation has passed, and the world moved without you.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Waking is the emotional centerpiece. The landscape is the same, but different — a generation has passed, and the world has *moved on its own*.",
+      "reason": "Directly echoes the canonical phrasing of the generational sleep mechanic and the waking experience.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "The world has changed while you slept.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "a generation has passed, and the world has *moved on its own*",
+      "reason": "Loses the canonical 'moved on its own' phrasing that distinguishes uhta's generational agency from generic time-passage.",
+      "correction": "A generation has passed. The world moved on its own."
+    },
+    {
+      "index": 3,
+      "line": "They built what you left behind.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "tribes that crossed the threshold of feeling have stopped wandering and *built*",
+      "reason": "Captures the settling rule's consequence as visible architecture, the forensic signature of devotion.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "A generation passed. The ground remembers.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you walk and the ground remembers you",
+      "reason": "Quotes the exact tutorial narration for road-building, the mechanical verb and its consequence.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "While you slept, the world answered.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the world has *moved on its own*",
+      "reason": "Replaces the specific 'moved on its own' with vague 'answered' — loses the autonomous agency that defines generational sleep.",
+      "correction": "The world moved on its own while you slept."
+    },
+    {
+      "index": 6,
+      "line": "What you did outlasted you — or it didn't.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "ash where nothing you did outlived you",
+      "reason": "Directly references the waking-experience consequence of inaction and the forensic landscape reading.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "The world moved on its own.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the world has *moved on its own*",
+      "reason": "Exact canonical phrasing of the generational sleep mechanic's defining property.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "You wake. A generation has passed, and they chose.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "a generation has passed, and the world has *moved on its own*... what you find instead is the answer to what you did",
+      "reason": "Combines generational passage with NPC agency ('they chose') — the world acting independently while you slept.",
+      "correction": null
+    }
+  ]
+}

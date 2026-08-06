@@ -1,0 +1,78 @@
+{
+  "beat": "s2",
+  "tag": "s2",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "The burned count toward the grey.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned** — your own excess literally feeds Uhtcearu's victory",
+      "reason": "Directly states the mechanical consequence that burned NPCs count toward the loss threshold, using the register's factual tone.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Your excess fed the sky.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The teacher's voice returning once, after a whole game of silence. Short. States what the player did, not what it means.",
+      "reason": "The register demands stating what the player did, but this interprets meaning ('fed the sky') rather than stating the mechanical action.",
+      "correction": "You burned too many."
+    },
+    {
+      "index": 3,
+      "line": "What you burned became his.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "your own excess literally feeds Uhtcearu's victory",
+      "reason": "States the specific uhta mechanic that burned NPCs become Uhtcearu's, using possessive construction that names the antagonist.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "The grey you made closed in.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the grey retakes the map",
+      "reason": "Uses the exact spatial-visual language from the chunk describing loss as grey reclaiming territory.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Apathy claimed what you left behind.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Apathy (soft grey **plus burned** NPCs) passes the dominance threshold",
+      "reason": "Generic god-game language ('claimed what you left behind') loses the specific mechanic that apathy is a counted band including burned NPCs.",
+      "correction": "Apathy passed the threshold."
+    },
+    {
+      "index": 6,
+      "line": "The burned were counted against you.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned**",
+      "reason": "States the mechanical fact that burned NPCs are counted in the loss calculation, matching the instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "You fed Uhtcearu his victory.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "your own excess literally feeds Uhtcearu's victory",
+      "reason": "Nearly direct quote of the chunk's thesis, naming Uhtcearu and the causal relationship between player excess and antagonist victory.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Where you overdosed, the grey retook the map.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "through overdose, abandonment decay, Uhtcearu's damping, or self-exhaustion — and the grey retakes the map",
+      "reason": "Combines the specific overdose cause with the exact spatial consequence language from the loss-state description.",
+      "correction": null
+    }
+  ]
+}

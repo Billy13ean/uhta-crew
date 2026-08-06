@@ -1,0 +1,78 @@
+{
+  "beat": "n4",
+  "tag": "ab-B-two-chunk-rule",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You roar — and everyone who witnesses it is frightened, whatever you intend.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Direct lift from the tutorial narration example in §2.5, preserving the crucial 'whatever you intend' clause that makes this uhta-specific.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Roar. The earth shatters ahead of you. Everyone who sees it happen is afraid.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Combines the tutorial's 'you roar and the earth shatters ahead' with the witness-fear mechanic, maintaining instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "The roar frightens all who witness it, whatever you intend.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "Missing the verb-naming structure required by the tutorial format; reads as lore statement rather than action-consequence instruction.",
+      "correction": "You roar — the earth shatters, and all who witness it are frightened, whatever you intend."
+    },
+    {
+      "index": 4,
+      "line": "You roar and the ground breaks open. Those who watch are frightened — even by hope.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPCs within witness radius R (~6 tiles) of the line take an unconditional Fear push (~2.8) regardless of flame color",
+      "reason": "The 'even by hope' clause directly captures the 'regardless of flame color' mechanic that makes roar uniquely unconditional.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Roar — the line breaks, and everyone near enough to see is pushed toward fear.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "NPCs within witness radius R (~6 tiles) of the line take an unconditional Fear push",
+      "reason": "The phrase 'pushed toward fear' contradicts the chunks' consistent language of an 'unconditional Fear push' — this isn't gradual movement but immediate application.",
+      "correction": "Roar — the line breaks, and everyone near enough to see takes fear, whatever your flame."
+    },
+    {
+      "index": 6,
+      "line": "When you roar, the earth splits. Anyone who witnesses the break is frightened, regardless of your flame.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPCs within witness radius R (~6 tiles) of the line take an unconditional Fear push (~2.8) regardless of flame color",
+      "reason": "Accurately names the verb, states terrain and emotional consequence, and preserves the 'regardless of your flame' clause that defines roar's uniqueness.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "You roar. It clears a path — and frightens everyone close enough to see, no matter what color you carry.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Shatters a line of tiles — fast traversal / path creation. NPCs within witness radius R (~6 tiles) of the line take an unconditional Fear push (~2.8) regardless of flame color",
+      "reason": "Integrates fast-travel function with witness-fear mechanic and the critical 'no matter what color you carry' clause in tutorial register.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Roar: fast travel, and unconditional fear for those who watch it happen.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Colon-label format strips away the 'whatever you intend' clause that makes this uhta-specific; could describe any AOE fear ability in any game.",
+      "correction": "Roar: shatters a line of ground for fast travel, and frightens everyone who witnesses it — whatever you intend."
+    }
+  ]
+}

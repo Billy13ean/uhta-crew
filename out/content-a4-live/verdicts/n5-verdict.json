@@ -1,0 +1,78 @@
+{
+  "beat": "n5",
+  "tag": "n5",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You wait. Those who watch learn you do not matter.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "waiting teaches people you don't matter",
+      "reason": "Direct instrumentation of the Wait verb's mechanical consequence—apathy push via mattering-loss—in the exact register requested.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "When you withhold, the watchers drift toward apathy.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy (~0.5)",
+      "reason": "Names the verb (withhold/inaction), the witness condition, and the mechanical consequence (apathy drift) in declarative second-person.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "You do nothing. Nearby, indifference takes root.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "\"Indifference takes root\" is poetic metaphor where the chunks demand mechanical consequence—apathy is a push, not vegetation.",
+      "correction": "You do nothing. Nearby NPCs drift toward apathy."
+    },
+    {
+      "index": 4,
+      "line": "Wait, and you teach the people watching that you are not worth their feeling.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "waiting teaches people you don't matter",
+      "reason": "Expands the tutorial phrasing into full declarative form while preserving the mattering-loss mechanic and witness condition.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Inaction is witnessed. It pushes them toward grey.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "Terse instrumentation naming witness condition and the apathy push using uhta's grey-as-apathy color vocabulary.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "To wait is to be forgotten. The nearby lose their color.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "waiting teaches people you don't matter",
+      "reason": "\"To be forgotten\" romanticizes the mechanic into narrative consequence instead of stating the apathy push as instrumentation.",
+      "correction": "You wait. The nearby lose feeling and drift toward grey."
+    },
+    {
+      "index": 7,
+      "line": "You hold back. Those who see it move toward apathy.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "Clean second-person declarative naming the verb (hold back), witness condition (see it), and apathy as mechanical target state.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Waiting is a choice. It makes you matter less to those who witness it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy (~0.5)",
+      "reason": "\"Makes you matter less\" dilutes the mechanical apathy push into vague relational consequence any god-game could claim.",
+      "correction": "Waiting is a choice. It pushes witnesses toward apathy."
+    }
+  ]
+}

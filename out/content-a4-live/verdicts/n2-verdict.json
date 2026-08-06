@@ -1,0 +1,78 @@
+{
+  "beat": "n2",
+  "tag": "n2",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You walk, and the ground remembers you — every tile you cross becomes a road that carries your color.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you walk and the ground remembers you",
+      "reason": "Uses the exact poetic phrase from §2.5 while adding the mechanical consequence from §2.2 that roads carry your color.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Walk. The ground remembers you. Every tile becomes a road, and roads carry your color forward.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you walk and the ground remembers you",
+      "reason": "Short declarative instrumentation that names the verb, states the consequence (road formation), and includes the color-carrying mechanic from §2.2.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "Where you walk, the earth becomes road — and roads carry your color to those who travel them.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "roads now carry your color",
+      "reason": "Combines the road-formation mechanic with the color-carrying property and implies the transmission to travelers, all from §2.2.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Walk across the land. Each tile you cross becomes a road. Roads carry your color.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "roads now carry your color",
+      "reason": "Omits that roads carry your color, reducing it to generic path-making without uhta's specific allegiance mechanic.",
+      "correction": "Walk across the land. Each tile you cross becomes a road that carries your color."
+    },
+    {
+      "index": 5,
+      "line": "You walk. The ground you cross becomes road, and every road now carries your color.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you walk and the ground remembers you",
+      "reason": "Efficient instrumentation that captures both the poetic ground-memory phrase and the color-carrying road mechanic.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "Walk: the tiles you cross become roads. Roads carry your color, and people will travel them.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "roads now carry your color",
+      "reason": "Names the verb, states road formation, includes color-carrying, and adds the NPC traversal consequence from §2.2.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "Each step makes road. Roads carry your color — and people follow roads.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "roads now carry your color",
+      "reason": "Concise instrumentation linking road creation to color transmission and NPC behavior, all mechanical consequences from §2.2.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Walk. Every tile becomes a road that carries what you are, and people will walk it after you.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "\"carries what you are\" is mythological phrasing where the register demands mechanical instrumentation like \"carries your color.\"",
+      "correction": "Walk. Every tile becomes a road that carries your color, and people will walk it after you."
+    }
+  ]
+}

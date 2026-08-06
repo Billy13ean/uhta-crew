@@ -1,0 +1,78 @@
+{
+  "beat": "s3",
+  "tag": "s3",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You walked. The ground remembered you.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you walk and the ground remembers you",
+      "reason": "Direct echo of the tutorial narration's instrumentation register, stating the mechanical consequence (ground remembers) without interpretation.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "You raised the flame, and they answered.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "as each verb is first used, it is named and its consequence stated plainly",
+      "reason": "Says 'they answered' without stating what mechanical consequence the flame produces — could mean anything in any god-game.",
+      "correction": "You raised the flame. It applied what you felt."
+    },
+    {
+      "index": 3,
+      "line": "You slept where light could reach them.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "where you sleep, your light keeps working",
+      "reason": "States the mechanical consequence of the Sleep verb (light continues working at location) in plain instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "The world moved. You moved with it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Waking is the emotional centerpiece. The landscape is the same, but different — a generation has passed, and the world has moved on its own.",
+      "reason": "Describes the player moving with the world when the chunks establish the player wakes to find the world moved *without* them — inverts the core asymmetry.",
+      "correction": "The world moved without you. You woke to what it became."
+    },
+    {
+      "index": 5,
+      "line": "You spent everything. They built the rest.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "what you find instead is the answer to what you did and what the world did without you",
+      "reason": "States the mechanical split between player action budget and autonomous world growth that defines the Sleep consequence.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "What you felt, they carried forward.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "as each verb is first used, it is named and its consequence stated plainly",
+      "reason": "Uses 'what you felt' as metaphor when the chunks demand plain statement of mechanical consequence — no verb is named.",
+      "correction": "The flame applied what you felt. They became it."
+    },
+    {
+      "index": 7,
+      "line": "You chose, and the land turned.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the land itself has turned — green and growing where hope took root, sharp and industrial where fear did",
+      "reason": "States the mechanical consequence of alignment choice on landscape transformation without interpretation.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "They stopped wandering. You showed them why.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "waiting teaches people you don't matter",
+      "reason": "Inverts the waiting consequence — chunks say waiting teaches them you don't matter (they ignore you), not that you showed them why to stop wandering.",
+      "correction": "You acted. They stopped wandering."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "beat": "e3",
+  "tag": "e3",
+  "label": "Era 2 — Village",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 21.07
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 39.96
+    }
+  ],
+  "candidates": [
+    "The dirt paths you walked are paver stone now. The huddles you met have settled and built. A generation has passed, and the world has moved on its own.",
+    "Where people stopped wandering, they built. Roads have hardened into stone. The settlements that rooted here carry what you did, and what the world did without you.",
+    "The ground remembers everywhere you walked — stone roads now, carrying travelers in your color. Where tribes crossed the threshold of feeling, they stopped moving and raised walls.",
+    "Trails have become stone. The nomads you met have children now, and some have built where they stopped believing motion mattered more than what they felt.",
+    "The paths are stone. The wanderers have settled. What was temporary when you last woke has rooted — villages stand where devotion held, and the roads you walked carry the next generation.",
+    "Stone roads connect what were dirt paths. Tribes that reached conviction have built and stopped wandering. The landscape answers what happened while you slept — settlements, walls, and the hardened ground you made by walking.",
+    "Your footprints are stone roads now. Tribes have stopped drifting and raised what they believe — walled camps, settlements, the bones of permanence. The world has aged a generation since you last opened your eyes.",
+    "The trails are stone. Where feeling took root, people built and stayed. The world you wake to is no longer scattered and grey — it has hardened into roads, walls, and the choices that outlived you."
+  ]
+}
