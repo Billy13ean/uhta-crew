@@ -1,0 +1,6 @@
+{
+  "quoted_chunk": "MOCK FIXTURE — no chunk was actually read. In a live run this field holds the exact phrase the Critic quoted from a retrieved chunk.",
+  "pass_reason": "MOCK FIXTURE — no judgement was exercised. This verdict was assembled by content/fixtures.py, not by a model.",
+  "fail_reason": "MOCK FIXTURE — a deterministic rejection at a fixed candidate position, so that a mock run exercises the catch-and-correct path.",
+  "correction": "MOCK FIXTURE — not a real correction. In a live run this is the repaired line the Critic wrote."
+}

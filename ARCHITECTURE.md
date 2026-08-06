@@ -225,7 +225,66 @@ five actual halt messages.
   SHA-256 of every artifact in the run directory, and the complete blackboard
   read/write ledger.
 
-## 6. What this architecture does not do
+## 6. The second pipeline — `run_content.py` (Assignment 4)
+
+The repo carries a second, independent program that reuses this architecture's
+plumbing rather than re-implementing it: `crew/blackboard.py` (so every corpus
+read lands in the same `RUN-LOG.md` with a byte count and a hash), `crew/llm.py`
+(`LiveLLM` unchanged; the mock backend subclasses `MockLLM`), and
+`crew.agents.AgentError`. **`crew/` does not import `content/`** — the dependency
+runs one way, which is why adding the content pipeline could not change what a
+rules run does.
+
+```
+corpus (deterministic)     chunk 4 blackboard files by the GDD §4.5 rule, scope them
+                           by CORPUS_POLICY (game material only), RECORD every
+                           excluded section with its reason -> BM25 index
+retrieval (deterministic)  per beat: TWO queries — the mechanical consequence and
+                           the experience — each cut at top-1 and unioned; RECORD
+                           every exclusion with its reason
+generation                 Writer (temp 0.9, N candidates) -> Critic (temp 0.0,
+                           verdict + quoted chunk + correction). A FAIL with no
+                           correction is an AgentError.
+ab                         the same beat twice: naive single-query top-1 vs the GDD
+                           §4.5 two-chunk rule, both candidate sets judged by the
+                           same Critic against the same chunks
+assembly (deterministic)   three content files + RAG-TRACE / CRITIC-LOG /
+                           VOICE-JUDGMENT / README-A4, all generated from the run
+```
+
+Three structural choices are worth naming, because they are the same choices this
+document defends for the rules crew, applied to prose:
+
+1. **The scorer is inspectable, not just accurate.** BM25 is written out in
+   `content/retriever.py` (k1 1.5, b 0.75, non-negative IDF) rather than pulled
+   from a package, and selection emits an exclusion list with a reason per cut —
+   the Keeper's Mode-B1 contract enforced by code instead of by a prompt. The
+   same contract applies one level up, at corpus scope: `CORPUS_POLICY` keeps the
+   GDD's *game* material and drops its account of the pipeline (§3, §4, §7, the
+   changelogs, `CANON-process.md`), and the 28 dropped chunks are listed with
+   reasons rather than quietly absent. That is not tidiness — GDD §4.5 carries the
+   Director's own hand-written worked narration line, and indexing it would let
+   the Writer retrieve the answer instead of writing one.
+2. **The evidence documents are generated, never typed.** `README-A4.md`
+   interleaves static framing prose with blocks marked `[injected from this run]`,
+   so a reader can tell which sentences a human wrote and which numbers an
+   execution produced. Same reason the Playtester's board is generated from
+   `execution-log.json`: a hallucinated number must not be able to reach the
+   artifact.
+3. **It ends at a human.** The rules crew stops at a blank `## Ruling`; the
+   content pipeline stops at an unfilled `## Director selection`, and the
+   endscreen file is marked UNRULED throughout because GDD §6 records that
+   question as open.
+
+The failure model is the one in §4, unchanged: `AgentError` and
+`MissingArtifactError` both halt the run and both write a `FAILED.md` naming the
+agent and the stage. The content pipeline adds four guards of its own, all
+exercised by `--selftest`: a `FAIL` with no correction, a flag class outside the
+four allowed, a `FAIL` that quotes no chunk, and a verdict count that does not
+match the candidate count — because a silently dropped candidate is an unreviewed
+line that could reach the build.
+
+## 7. What this architecture does not do
 
 It does not gate — the Director does. It does not touch the render layer. It runs
 one question set per invocation, sequentially, with no parallelism and no

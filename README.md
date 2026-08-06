@@ -13,6 +13,13 @@ repo. This repo is not the game — it is the five-agent crew that produces the
 orchestration — no CrewAI, no LangChain. Sole third-party dependency:
 `anthropic`.*
 
+*The repo now holds a **second pipeline**: `run_content.py` (Assignment 4, the
+dynamic content pipeline) generates the game's **text** — the teacher's narration
+lines, era and settlement flavor, endscreen candidates — against the same
+blackboard, read as a RAG corpus. Same three run modes, same halt discipline, no
+new dependency. See [Content pipeline](#the-second-pipeline--rag-content-generation)
+below.*
+
 \---
 
 ## What this crew produces, and why uhta needs it
@@ -270,6 +277,101 @@ state what the run did *not* verify.
 
 \---
 
+## The second pipeline — RAG content generation
+
+`run_content.py` is the **Assignment-4** deliverable: a separate program that
+happens to share this repo's plumbing. `crew/blackboard.py`, `crew/llm.py` and
+`crew.agents.AgentError` are reused verbatim, and **nothing in `crew/` imports
+`content/`** — the dependency runs one way, which is why adding the content
+pipeline could not change what a rules run does.
+
+It answers a different question — not *what should the numbers be* but *what
+should the game say* — and uhta has an unusually sharp version of that question,
+because after the first dawn it says nothing at all.
+
+| | rules crew (`run_crew.py`) | content pipeline (`run_content.py`) |
+|---|---|---|
+| Produces | `rules-vN.json` — the file the build boots from | the game's text: 8 narration lines, 5 era/settlement flavor beats, 3 endscreen candidates |
+| Corpus | CANON + GDD sections, hand-cut by the Keeper | the same blackboard, **ranked by BM25** — scoped to game material: 24 chunks / 12,315 words in, 28 chunks / 13,311 words out with a reason each |
+| Agents | Keeper ×2, Mechanic Designer, Red-Teamer, Playtester | Retriever (deterministic), Writer, Critic |
+| Evidence | `metrics-vN.md` from real harness runs | `RAG-TRACE.md`, `CRITIC-LOG.md`, `VOICE-JUDGMENT.md`, `README-A4.md` — all generated from the run |
+| Ends at | a blank `## Ruling` block | an unfilled `## Director selection` block |
+
+```bash
+python3 run_content.py --selftest      # no key: chunking, corpus policy, BM25, halt guards
+python3 run_content.py --mock-llm      # no key: full pipeline on fixtures (NOT content)
+python3 run_content.py --candidates 8  # LIVE — needs ANTHROPIC_API_KEY
+```
+
+**Retrieval is BM25 in pure Python** (`content/retriever.py`, k1=1.5, b=0.75,
+non-negative IDF), because the assignment permits one third-party package and it
+is already spent on `anthropic`. A chunk is one `###` subsection — the rule GDD
+§4.5 had already fixed. Headings inside fenced code blocks are not headings: the
+GDD embeds a Keeper report skeleton whose lines start with `##`, and treating
+those as sections would shred §3.2 into nonsense. Selection then applies the
+Keeper's Mode-B1 discipline to the scorer: a score threshold, a token budget,
+duplicate-heading suppression, and **every cut recorded with its reason**.
+
+**The corpus is scoped to game material** by a declared policy (`CORPUS_POLICY`).
+The GDD is two documents in one binding — the design of uhta, and the design of
+the pipeline that builds uhta — and only the first is a knowledge base for
+writing the game's text. In: GDD §1, §2, §5, §6, Appendix A and `CANON.md`. Out:
+§3, §4, §7, the front-matter changelogs and `CANON-process.md`, each recorded as
+a corpus-level exclusion with a reason. The sharp case is **§4.5**, which
+contains the Director's own hand-written worked example of a narration line —
+indexed, it ranks near the top on a Roar query, and a Writer handed it is not
+generating a line, it is handing the Director's back.
+
+**Every beat retrieves twice.** GDD §4.5 records that the first hand-run
+retrieved only the experience section and produced lines that would sit unchanged
+in any god-game about hope and fear. So each beat carries two queries — the
+mechanical consequence and the experience — and their cuts are unioned. `--ab`
+runs one beat both ways and hands both candidate sets to the same Critic; that
+comparison is in `VOICE-JUDGMENT.md`, which is the difference between a retrieval
+tweak that is claimed and one that is measured.
+
+**The Critic must catch *and* correct.** A `FAIL` verdict with no `correction`
+raises `AgentError` and halts the run (`content/agents/critic.py`), as does a
+flag class outside the four allowed and a FAIL that quotes no chunk. So
+`CRITIC-LOG.md` cannot contain a rejection without a repair — the pipeline is
+incapable of producing one.
+
+**`--selftest` proves the retrieval half with no key.** 27 assertions, exit 0: a
+Roar query must rank the §2.2 verb table **first** (bm25 30.12 vs 16.45 for the
+runner-up); a burnout query must rank the §2.3 systems block first (12.80); two
+deliberately off-topic control queries must score everything below threshold and
+retrieve **nothing** (best 0.00 against a threshold of 8.0); the corpus policy
+must have actually removed §3, §4, §7 and `CANON-process.md`; all sixteen beats
+must retrieve two chunks; the A/B arms must genuinely differ; and every halt
+guard must fire.
+
+**What breaks if you remove the Writer or the Critic.** Same demonstration the
+rules crew ships, applied here. `--drop-agent <name>` removes a role from the
+dispatch sequence and the run is **expected to halt with exit 1**; a completed
+run there would be the failure.
+
+```bash
+python3 run_content.py --mock-llm --drop-agent critic   # halts, exit 1
+```
+
+| Remove | What breaks | Actual halt |
+|---|---|---|
+| **Writer** | The Critic has nothing to judge, and the halt proves the handoff is an artifact rather than a variable. | `PIPELINE HALT: critic-n1 requires the artifact 'out/<run>/drafts/n1-draft.json', which is produced by the writer-n1.` |
+| **Critic** | Assembly would build `CRITIC-LOG.md` around an unreviewed line set — a document that reads like evidence and is not. | `PIPELINE HALT: assemble requires the artifact 'out/<run>/verdicts/n1-verdict.json', which is produced by the critic-n1.` |
+
+This is why the Orchestrator row in GDD §3.1 is honest. Its stated justification
+is that *"the run manifest is what guarantees a generated line set reaches the
+Critic before it reaches the build"* — so `content/orchestrator.py` writes the
+Writer's candidates to `drafts/<beat>-draft.json` and the Critic **reads them
+back off disk**. There is no in-memory handoff between the two roles, which is
+what makes the halt above possible at all.
+
+> **A note on run ids.** Both pipelines write to `out/<run-id>/`. The defaults do
+> not collide (`run-…` vs `content-…`), but passing the same `--run-id` to both
+> would interleave two runs in one directory. Don't.
+
+---
+
 ## Repo layout
 
 ```
@@ -277,7 +379,8 @@ uhta-crew/
   README.md  ARCHITECTURE.md            # this file; roles + two rendered Mermaid diagrams
   FINDINGS.md                           # defects this crew surfaced in the game repo
   Dockerfile  docker-compose.yml  requirements.txt  .env.example  .gitignore
-  run\_crew.py                           # entry point: live | --selftest | --mock-llm | --drop-agent
+  run\_crew.py                           # rules pipeline: live | --selftest | --mock-llm | --drop-agent
+  run\_content.py                        # content pipeline: live | --selftest | --mock-llm
   crew/
     orchestrator.py                     # dispatch, artifact verification, manifest — no LLM
     blackboard.py                       # the filesystem as shared memory; read/write ledger
@@ -288,13 +391,23 @@ uhta-crew/
     agents/{keeper,mechanic\_designer,red\_teamer,playtester}.py
   prompts/                              # one per role, versioned headers, adapted from the game repo
     keeper.md  mechanic-designer.md  red-teamer.md  playtester.md  orchestrator.md
+    writer.md  critic.md                # the content pipeline's two roles
+  content/                              # ASSIGNMENT 4 — the content pipeline
+    retriever.py                        # chunking + CORPUS\_POLICY + BM25 + recorded exclusions
+    beats.py                            # the 16 beats, their two queries each, their named gaps
+    pipeline.py                         # stages, manifest, FAILED.md — no LLM
+    assemble.py                         # every evidence document, generated from the run
+    fixtures.py                         # --mock-llm backend (subclasses crew/llm.py MockLLM)
+    agents/{writer,critic}.py
   blackboard/                           # seeded, read-mostly
     CANON.md  CANON-process.md
     gdd/uhta-gdd-v0.9.7-abridged.md
+    gdd/uhta-gdd-v0.9.7-full.md         # added for the content pipeline's deeper corpus
     rules/rules-v3.9.1-C.json           # the ratified baseline AND the schema
     sim/harness.py  sim/bots.py         # vendored verbatim from the game repo
   diagrams/                             # flow.mmd, memory.mmd + rendered SVGs
-  tests/fixtures/                       # canned artifacts for --mock-llm
+  tests/fixtures/                       # canned artifacts for --mock-llm (rules crew)
+  tests/fixtures/content/               # canned artifacts for --mock-llm (content pipeline)
   out/                                  # per-run artifacts (gitignored except .gitkeep)
 
 
