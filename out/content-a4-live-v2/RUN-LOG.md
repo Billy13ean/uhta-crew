@@ -1,6 +1,10 @@
-==========================================================================
-uhta content pipeline — LIVE run
-==========================================================================
+# RUN-LOG — content-a4-live-v2
+
+Every blackboard read and write, in order. The blackboard IS the
+shared memory (GDD §3.3): no agent receives another agent's live
+context, so this log is the complete record of inter-agent
+communication for this run.
+
 
 ## Stage 1 — corpus
 
@@ -137,14 +141,3 @@ Every evidence document generated from this run's data. Deterministic; no LLM. N
 - `assemble` **WRITE** `out/content-a4-live-v2/README-A4.md` (7340 B, sha256:8fe9afd9cbb33529)
 
 **Run complete.** Ends at an unfilled `## Director selection` block — the pipeline proposes; the Director picks.
-
-Run directory: out/content-a4-live-v2/
-  CRITIC-LOG.md  (57680 B)
-  RAG-TRACE.md  (51429 B)
-  README-A4.md  (7340 B)
-  RUN-LOG.md  (13375 B)
-  VOICE-JUDGMENT.md  (5780 B)
-  endscreen-candidates.md  (5824 B)
-  era-flavor.md  (11806 B)
-  manifest.json  (47101 B)
-  narration-lines.md  (15673 B)

@@ -1,0 +1,27 @@
+{
+  "beat": "e3",
+  "tag": "e3",
+  "label": "Era 2 — Village",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 21.07
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 39.96
+    }
+  ],
+  "candidates": [
+    "The places you walked are stone now. The people who believed have built what they felt.",
+    "Settlements stand where tribes stopped wandering. The roads you made have hardened into permanence.",
+    "What was dirt is paver stone. What was wandering is walls and rooftops.",
+    "The paths you walked have become roads. The devout have stopped moving and built where they stood.",
+    "Villages root where conviction reached the threshold. The ground you crossed a generation ago is stone beneath their feet.",
+    "Your trails are stone roads now. Settlements mark where belief crossed into devotion and people stopped wandering.",
+    "The paths harden. The faithful settle. What you walked as dirt, travelers now cross as stone.",
+    "Where tribes held deep feeling, they built. Where you walked, the earth remembers—compacted dirt aged into paver stone."
+  ]
+}

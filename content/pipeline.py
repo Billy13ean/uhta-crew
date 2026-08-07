@@ -200,15 +200,21 @@ class ContentPipeline:
         self.bb.stage(3, "A/B — the retrieval tweak, measured",
                       "Arm A reproduces the naive hand-run: a single experience-side "
                       "query, top-1. Arm B is the GDD §4.5 two-chunk rule. Same beat, "
-                      "same Writer settings, same Critic.")
+                      "same Writer settings, and the SAME judging context for both "
+                      "arms — only the Writer's view varies.")
         ct = CONTENT_TYPES[beat.type]
         arm_a = retriever.select(beat.query_experience, max_chunks=1)
         arm_b = retriever.select_multi(beat.queries)
 
         out = {}
         for name, sel in (("A-naive-top1", arm_a), ("B-two-chunk-rule", arm_b)):
-            cands, verds = self.orch.run_beat(beat, sel, ct, tag=f"ab-{name}")
-            out[name] = {"selection": sel, "candidates": cands, "verdicts": verds}
+            # The judge is held constant at arm B's (richer) cut for BOTH arms.
+            # Only the WRITER's view varies — otherwise the comparison measures
+            # two things at once and the result means nothing.
+            cands, verds = self.orch.run_beat(beat, sel, ct, tag=f"ab-{name}",
+                                              critic_selection=arm_b)
+            out[name] = {"selection": sel, "judged_against": arm_b,
+                         "candidates": cands, "verdicts": verds}
             self.bb.note(f"ab-{name}",
                          f"{sum(1 for v in verds if not v.failed)}/{len(verds)} PASS")
         self.ab = {"beat": beat, "arms": out}

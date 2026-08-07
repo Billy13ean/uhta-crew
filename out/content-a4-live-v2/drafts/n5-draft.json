@@ -1,0 +1,27 @@
+{
+  "beat": "n5",
+  "tag": "n5",
+  "label": "First Wait — inaction is an action",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 38.57
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "To wait is to teach them you do not matter.",
+    "Withhold, and they learn you are nothing.",
+    "Wait. They watch you choose irrelevance.",
+    "Do nothing. Whoever watches drifts toward apathy.",
+    "Wait, and those who see you fade toward grey.",
+    "Inaction is a lesson: you can be ignored.",
+    "To withhold is to push them toward not caring.",
+    "Wait. The witness learns indifference."
+  ]
+}

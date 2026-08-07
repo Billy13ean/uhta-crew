@@ -1,0 +1,78 @@
+{
+  "beat": "s1",
+  "tag": "s1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You replaced Uhtcearu as the sky.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The teacher, speaks only during this cycle... The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "Uses past tense ('replaced') when the register demands present-tense declarative instrumentation stating what the player did.",
+      "correction": "You replace Uhtcearu as the sky."
+    },
+    {
+      "index": 2,
+      "line": "The world moved on its own, and your color crossed the whole map.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the player's cultivated emotion becomes contagion-dominant past the unification threshold",
+      "reason": "Could be any god-game's victory narration; loses the specific mechanical consequence (contagion-dominant, unification threshold, opposing zealots) that only uhta has.",
+      "correction": "Your emotion passed the unification threshold, contagion-dominant. Opposing zealots expelled. The sky turns."
+    },
+    {
+      "index": 3,
+      "line": "Opposing zealots were expelled or converted. The sky turns.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "opposing zealots are expelled or converted... the player replaces Uhtcearu as the sky",
+      "reason": "States the mechanical win condition (opposing zealots expelled/converted) and the concrete consequence (sky turns) in declarative instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Your cultivated emotion became contagion-dominant, and the player replaces Uhtcearu as the sky.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "Switches from second-person action ('Your cultivated emotion') to third-person abstraction ('the player replaces') mid-sentence, breaking the teacher's direct address.",
+      "correction": "Your cultivated emotion became contagion-dominant, and you replace Uhtcearu as the sky."
+    },
+    {
+      "index": 5,
+      "line": "What you did outlived you, uncounterable, until the sky turned your color.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "it spreads uncounterable... the player replaces Uhtcearu as the sky",
+      "reason": "Honors the specific mechanical term 'uncounterable' and ties player action (what you did outlived you) to the concrete sky-turning consequence.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "You spread uncounterable past the threshold. The sky answers.",
+      "verdict": "FAIL",
+      "flag_class": "CONTRADICTS-CHUNK",
+      "quoted_chunk": "the sky answers back — Uhtcearu feeding hope to the terrorized or grief to the hopeful",
+      "reason": "'The sky answers' describes Uhtcearu's mid-game opposition, not the win-state where you replace him.",
+      "correction": "You spread uncounterable past the threshold. The sky turns your color."
+    },
+    {
+      "index": 7,
+      "line": "Your color crossed the whole map. Opposing zealots gone. You are the sky now.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "your color crossing the whole map until the sky turns... no living opposing zealot",
+      "reason": "States observable player achievement (color crossed map, opposing zealots gone) and the concrete win consequence (you are the sky) in direct declarative register.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "The region stabilized under your emotion, and you replaced Uhtcearu as the sky.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the player's cultivated emotion becomes contagion-dominant past the unification threshold... with no living opposing zealot",
+      "reason": "'The region stabilized under your emotion' is abstract strategy-game language that loses the specific uhta mechanics (contagion-dominant, threshold, opposing zealots).",
+      "correction": "Your emotion passed the unification threshold. No living opposing zealot remains. You replace Uhtcearu as the sky."
+    }
+  ]
+}

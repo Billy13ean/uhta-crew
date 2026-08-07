@@ -1,0 +1,78 @@
+{
+  "beat": "s2",
+  "tag": "s2",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "The burned were yours.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned** — your own excess literally feeds Uhtcearu's victory",
+      "reason": "Directly states the mechanical consequence that burned NPCs were the player's creation, honoring the specific uhta rule that excess feeds the opponent.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "You fed the grey with your own flame.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned** — your own excess literally feeds Uhtcearu's victory",
+      "reason": "The flame metaphor appears nowhere in the chunks and dilutes the specific mechanical truth that burned NPCs count toward grey.",
+      "correction": "You pushed too hard, and they burned."
+    },
+    {
+      "index": 3,
+      "line": "What you made too bright became ash, and the ash became his.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "your own excess literally feeds Uhtcearu's victory",
+      "reason": "Preserves the causal chain from chunk 1 (excess → ash/burned → Uhtcearu's count) with the possessive 'his' grounding it in the named antagonist.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "The burned count toward the grey now.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned**",
+      "reason": "States the exact mechanical rule from the win/loss calculation with no embellishment.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Your excess became apathy.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned**",
+      "reason": "Replaces the specific mechanical term 'burned' with the abstraction 'apathy' and loses the causal specificity of excess.",
+      "correction": "What you made too bright became ash."
+    },
+    {
+      "index": 6,
+      "line": "Those you burned fed the sky.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "your own excess literally feeds Uhtcearu's victory",
+      "reason": "Directly translates the chunk's 'feeds Uhtcearu' into 'fed the sky' (established as Uhtcearu's position) while preserving the burned-NPCs-as-fuel mechanic.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "Where you pushed too hard, the grey grew back.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned**",
+      "reason": "The spatial metaphor 'grew back' suggests territory reclamation rather than the specific counting mechanic where burned NPCs add to grey's unification count.",
+      "correction": "Where you burned them, the grey's count grew."
+    },
+    {
+      "index": 8,
+      "line": "The ones you burned are counted as grey.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the loss count is soft-grey-0 **plus burned**",
+      "reason": "Plainly states the mechanical rule that burned NPCs enter the grey's population count for loss-condition evaluation.",
+      "correction": null
+    }
+  ]
+}

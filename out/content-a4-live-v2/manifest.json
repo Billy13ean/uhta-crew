@@ -1,0 +1,1444 @@
+{
+  "run_id": "content-a4-live-v2",
+  "pipeline": "content (Assignment 4 \u2014 dynamic content pipeline)",
+  "status": "COMPLETE_PENDING_DIRECTOR",
+  "mode": "live",
+  "created": "2026-08-07T01:47:04",
+  "model": "claude-sonnet-4-5",
+  "llm_backend": "live",
+  "llm_calls": 36,
+  "llm_tokens": {
+    "input": 141933,
+    "output": 20243
+  },
+  "python": "3.11.15",
+  "candidates_per_beat": 8,
+  "beats": [
+    {
+      "id": "n1",
+      "type": "narration",
+      "label": "The cave \u2014 the undetermined flame"
+    },
+    {
+      "id": "n2",
+      "type": "narration",
+      "label": "First Walk \u2014 the ground remembers"
+    },
+    {
+      "id": "n3",
+      "type": "narration",
+      "label": "First Flame \u2014 it applies what you feel"
+    },
+    {
+      "id": "n4",
+      "type": "narration",
+      "label": "First Roar \u2014 whatever you intend"
+    },
+    {
+      "id": "n5",
+      "type": "narration",
+      "label": "First Wait \u2014 inaction is an action"
+    },
+    {
+      "id": "n6",
+      "type": "narration",
+      "label": "The found basin \u2014 the beacon that gives strength"
+    },
+    {
+      "id": "n7",
+      "type": "narration",
+      "label": "First Sleep \u2014 where you lie down matters"
+    },
+    {
+      "id": "n8",
+      "type": "narration",
+      "label": "First waking \u2014 and the last words"
+    },
+    {
+      "id": "e1",
+      "type": "era-flavor",
+      "label": "Era 1 \u2014 Nomad / Tribal"
+    },
+    {
+      "id": "e2",
+      "type": "era-flavor",
+      "label": "Transition \u2014 Nomad into Village"
+    },
+    {
+      "id": "e3",
+      "type": "era-flavor",
+      "label": "Era 2 \u2014 Village"
+    },
+    {
+      "id": "e4",
+      "type": "era-flavor",
+      "label": "Transition \u2014 Village into Victorian"
+    },
+    {
+      "id": "e5",
+      "type": "era-flavor",
+      "label": "Ruins \u2014 what a burned-out settlement leaves"
+    },
+    {
+      "id": "s1",
+      "type": "endscreen",
+      "label": "Win \u2014 the sky turns your color"
+    },
+    {
+      "id": "s2",
+      "type": "endscreen",
+      "label": "Loss \u2014 the grey closes in"
+    },
+    {
+      "id": "s3",
+      "type": "endscreen",
+      "label": "The teacher returns \u2014 one last line"
+    }
+  ],
+  "corpus": {
+    "files": [
+      "CANON.md",
+      "CANON-process.md",
+      "uhta-gdd-v0.9.7-full.md",
+      "uhta-gdd-v0.9.7-abridged.md"
+    ],
+    "policy": "game-material-only v1",
+    "policy_rationale": "The GDD is two documents in one binding \u2014 the design of uhta, and the design of the pipeline that builds uhta. Only the first is a knowledge base for writing the game's text. A Writer that can read \u00a74.5 is not generating a narration line; it is handing the Director's own worked example back.",
+    "chunks_total": 52,
+    "chunks_indexed": 24,
+    "chunks_excluded": 28,
+    "words_indexed": 12315,
+    "words_excluded": 13311,
+    "exclusions": [
+      {
+        "key": "CANON.md#front-matter",
+        "heading": "front matter",
+        "words": 96,
+        "reason": "Version preamble / changelog. Describes what changed between GDD revisions, not what is true in the world."
+      },
+      {
+        "key": "CANON-process.md#front-matter",
+        "heading": "front matter",
+        "words": 89,
+        "reason": "Process canon \u2014 Keeper escalation, build order, artifact counts. Governs how the project runs; contains no game material."
+      },
+      {
+        "key": "CANON-process.md#sec-1",
+        "heading": "Delta from v16 \u2014 process canon (Assignment-1 grader closeout, GDD v0.9.7)",
+        "words": 1143,
+        "reason": "Process canon \u2014 Keeper escalation, build order, artifact counts. Governs how the project runs; contains no game material."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#front-matter",
+        "heading": "front matter",
+        "words": 1369,
+        "reason": "Version preamble / changelog. Describes what changed between GDD revisions, not what is true in the world."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3",
+        "heading": "3. AI Architecture",
+        "words": 53,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.1",
+        "heading": "3.1 Agent roster \u2014 one agent, one wow",
+        "words": 931,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.2",
+        "heading": "3.2 The Keeper contract \u2014 what a contradiction actually does",
+        "words": 1551,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.3",
+        "heading": "3.3 Orchestration & human gates",
+        "words": 330,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.4",
+        "heading": "3.4 Shared memory \u2014 the blackboard pattern",
+        "words": 262,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.5",
+        "heading": "3.5 What agents output and what it changes in the game",
+        "words": 555,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.6",
+        "heading": "3.6 Verification layers",
+        "words": 156,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.1",
+        "heading": "4.1 Pillar 1 \u2014 AI dev pipeline map",
+        "words": 122,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.2",
+        "heading": "4.2 Pillar 2 \u2014 Technical requirements & constraints",
+        "words": 198,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.3",
+        "heading": "4.3 Pillar 3 \u2014 Token budgets & projections",
+        "words": 344,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.4",
+        "heading": "4.4 Prompt constraints & versioning",
+        "words": 112,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.5",
+        "heading": "4.5 The blackboard as a RAG corpus",
+        "words": 940,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#front-matter",
+        "heading": "front matter",
+        "words": 336,
+        "reason": "Version preamble / changelog. Describes what changed between GDD revisions, not what is true in the world."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#3",
+        "heading": "3. AI Architecture",
+        "words": 66,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#3.1",
+        "heading": "3.1 Roster",
+        "words": 469,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#3.2",
+        "heading": "3.2 The Keeper contract \u2014 what a contradiction actually does",
+        "words": 1397,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#3.3",
+        "heading": "3.3 Orchestration and shared memory",
+        "words": 475,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#3.4",
+        "heading": "3.4 What the player ever notices of any of this",
+        "words": 401,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#3.5",
+        "heading": "3.5 Verification layers",
+        "words": 155,
+        "reason": "\u00a73 is the AI-architecture / agent-roster section \u2014 how the game is built, not what is in it. A narration line grounded in the crew roster would be about the pipeline."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#4.1",
+        "heading": "4.1 Pipeline and routing",
+        "words": 56,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#4.2",
+        "heading": "4.2 The blackboard as a RAG corpus",
+        "words": 927,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#4.3",
+        "heading": "4.3 Budgets \u2014 projections vs. measured actuals",
+        "words": 131,
+        "reason": "\u00a74 is technical strategy, budgets, and the RAG design itself. \u00a74.5 in particular carries the Director's hand-written worked narration example; indexing it lets the Writer retrieve the answer instead of writing one."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#7.1",
+        "heading": "7.1 This revision (v0.9.6-abridged \u2192 v0.9.7), traced to the Assignment-1 feedback",
+        "words": 392,
+        "reason": "\u00a77 is revision provenance \u2014 a record of document history, not game material."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#7.2",
+        "heading": "7.2 The prior revision (v0.7-abridged \u2192 v0.9.6), traced to the adversarial review board",
+        "words": 255,
+        "reason": "\u00a77 is revision provenance \u2014 a record of document history, not game material."
+      }
+    ],
+    "indexed": [
+      {
+        "key": "CANON.md#sub-2",
+        "heading": "Runs 20\u201322 \u2014 the living world, now canon (was WIP at v15)",
+        "words": 198,
+        "est_tokens": 338
+      },
+      {
+        "key": "CANON.md#sub-3",
+        "heading": "Review-board closeout \u2014 Director rulings (GDD v0.9.1, v0.9.2)",
+        "words": 221,
+        "est_tokens": 372
+      },
+      {
+        "key": "CANON.md#sub-4",
+        "heading": "Run 23 \u2192 23b \u2014 Uhtcearu active events: the GRIEF FRONT (rules-v3.9.1-C, ratified)",
+        "words": 213,
+        "est_tokens": 392
+      },
+      {
+        "key": "CANON.md#sub-5",
+        "heading": "Pipeline status",
+        "words": 73,
+        "est_tokens": 133
+      },
+      {
+        "key": "CANON.md#sub-6",
+        "heading": "Remaining work \u2014 human-owned / post-gate",
+        "words": 50,
+        "est_tokens": 100
+      },
+      {
+        "key": "CANON.md#sec-7",
+        "heading": "Open questions (delta from v16)",
+        "words": 84,
+        "est_tokens": 167
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#1",
+        "heading": "1. Executive Summary",
+        "words": 573,
+        "est_tokens": 858
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.1",
+        "heading": "2.1 Core mechanic",
+        "words": 214,
+        "est_tokens": 333
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.2",
+        "heading": "2.2 Player verbs / actions",
+        "words": 429,
+        "est_tokens": 652
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.3",
+        "heading": "2.3 Systems",
+        "words": 2867,
+        "est_tokens": 4563
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.4",
+        "heading": "2.4 Win state / lose state",
+        "words": 314,
+        "est_tokens": 501
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.5",
+        "heading": "2.5 Player experience",
+        "words": 718,
+        "est_tokens": 1015
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.6",
+        "heading": "2.6 Scope",
+        "words": 422,
+        "est_tokens": 778
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.7",
+        "heading": "2.7 Build order \u2014 what is core, what is nice, and the stop rule",
+        "words": 649,
+        "est_tokens": 958
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#2.8",
+        "heading": "2.8 Definition of Playable \u2014 the acceptance test",
+        "words": 386,
+        "est_tokens": 548
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#5",
+        "heading": "5. Identified Logic Gaps & the Red-Team Arc",
+        "words": 1016,
+        "est_tokens": 1672
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#6",
+        "heading": "6. Open Questions (tuning \u2014 deferred to playtest, distinct from gaps)",
+        "words": 742,
+        "est_tokens": 1209
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#Appendix A",
+        "heading": "Appendix A \u2014 Changelog: v0.8.1 \u2192 v0.9.7 (mapped to runs & rules versions)",
+        "words": 410,
+        "est_tokens": 593
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#1",
+        "heading": "1. Summary",
+        "words": 323,
+        "est_tokens": 506
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#2",
+        "heading": "2. Game Mechanics",
+        "words": 801,
+        "est_tokens": 1231
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#2.7",
+        "heading": "2.7 Build order \u2014 what is core, what is nice, and the stop rule",
+        "words": 620,
+        "est_tokens": 908
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#2.8",
+        "heading": "2.8 Definition of Playable \u2014 the acceptance test",
+        "words": 480,
+        "est_tokens": 695
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#5",
+        "heading": "5. Identified Logic Gaps (resolution trail)",
+        "words": 447,
+        "est_tokens": 712
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-abridged.md#6",
+        "heading": "6. Open Questions (deferred to playtest \u2014 dials, not gaps)",
+        "words": 65,
+        "est_tokens": 112
+      }
+    ]
+  },
+  "retrieval": {
+    "scorer": "BM25 (pure python, content/retriever.py)",
+    "k1": 1.5,
+    "b": 0.75,
+    "idf": "non-negative: ln(1 + (N - df + 0.5)/(df + 0.5))",
+    "chunk_rule": "one ### subsection (GDD \u00a74.5); ## when it has no children",
+    "score_threshold": 8.0,
+    "token_budget": 6000,
+    "selection_rule": "GDD \u00a74.5 two-chunk rule \u2014 one cut per beat query (mechanical consequence, experience), unioned"
+  },
+  "prompt_versions": {
+    "writer": "writer v1 (content pipeline)",
+    "critic": "critic v1 (content pipeline)",
+    "orchestrator": "content-orchestrator v1 (dispatch only, no LLM)",
+    "pipeline": "content-pipeline v1 (no LLM)"
+  },
+  "orchestration": {
+    "contract": "dispatch only \u2014 never gates, never authors, never tunes (GDD \u00a73.1)",
+    "guarantee": "the Writer's candidates are written to the blackboard and the Critic reads them back from disk; there is no in-memory handoff between the two roles",
+    "drop_agent": null,
+    "dispatches": [
+      {
+        "beat": "n1",
+        "agent": "writer-n1",
+        "artifact": "drafts/n1-draft.json",
+        "seconds": 4.87,
+        "detail": "8 candidates | saw \u00a72.5, \u00a71"
+      },
+      {
+        "beat": "n1",
+        "agent": "critic-n1",
+        "artifact": "verdicts/n1-verdict.json",
+        "seconds": 15.19,
+        "detail": "2/8 PASS | judged against \u00a72.5, \u00a71"
+      },
+      {
+        "beat": "n2",
+        "agent": "writer-n2",
+        "artifact": "drafts/n2-draft.json",
+        "seconds": 8.26,
+        "detail": "8 candidates | saw \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n2",
+        "agent": "critic-n2",
+        "artifact": "verdicts/n2-verdict.json",
+        "seconds": 14.44,
+        "detail": "3/8 PASS | judged against \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n3",
+        "agent": "writer-n3",
+        "artifact": "drafts/n3-draft.json",
+        "seconds": 5.19,
+        "detail": "8 candidates | saw \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n3",
+        "agent": "critic-n3",
+        "artifact": "verdicts/n3-verdict.json",
+        "seconds": 14.84,
+        "detail": "1/8 PASS | judged against \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n4",
+        "agent": "writer-n4",
+        "artifact": "drafts/n4-draft.json",
+        "seconds": 7.32,
+        "detail": "8 candidates | saw \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n4",
+        "agent": "critic-n4",
+        "artifact": "verdicts/n4-verdict.json",
+        "seconds": 19.36,
+        "detail": "4/8 PASS | judged against \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n5",
+        "agent": "writer-n5",
+        "artifact": "drafts/n5-draft.json",
+        "seconds": 6.7,
+        "detail": "8 candidates | saw \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n5",
+        "agent": "critic-n5",
+        "artifact": "verdicts/n5-verdict.json",
+        "seconds": 15.03,
+        "detail": "1/8 PASS | judged against \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n6",
+        "agent": "writer-n6",
+        "artifact": "drafts/n6-draft.json",
+        "seconds": 5.99,
+        "detail": "8 candidates | saw \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n6",
+        "agent": "critic-n6",
+        "artifact": "verdicts/n6-verdict.json",
+        "seconds": 18.36,
+        "detail": "1/8 PASS | judged against \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n7",
+        "agent": "writer-n7",
+        "artifact": "drafts/n7-draft.json",
+        "seconds": 6.47,
+        "detail": "8 candidates | saw \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n7",
+        "agent": "critic-n7",
+        "artifact": "verdicts/n7-verdict.json",
+        "seconds": 16.37,
+        "detail": "3/8 PASS | judged against \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n8",
+        "agent": "writer-n8",
+        "artifact": "drafts/n8-draft.json",
+        "seconds": 4.67,
+        "detail": "8 candidates | saw \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "n8",
+        "agent": "critic-n8",
+        "artifact": "verdicts/n8-verdict.json",
+        "seconds": 17.57,
+        "detail": "4/8 PASS | judged against \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e1",
+        "agent": "writer-e1",
+        "artifact": "drafts/e1-draft.json",
+        "seconds": 12.42,
+        "detail": "8 candidates | saw \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e1",
+        "agent": "critic-e1",
+        "artifact": "verdicts/e1-verdict.json",
+        "seconds": 16.75,
+        "detail": "5/8 PASS | judged against \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e2",
+        "agent": "writer-e2",
+        "artifact": "drafts/e2-draft.json",
+        "seconds": 7.67,
+        "detail": "8 candidates | saw \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e2",
+        "agent": "critic-e2",
+        "artifact": "verdicts/e2-verdict.json",
+        "seconds": 22.83,
+        "detail": "5/8 PASS | judged against \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e3",
+        "agent": "writer-e3",
+        "artifact": "drafts/e3-draft.json",
+        "seconds": 7.49,
+        "detail": "8 candidates | saw \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e3",
+        "agent": "critic-e3",
+        "artifact": "verdicts/e3-verdict.json",
+        "seconds": 16.57,
+        "detail": "7/8 PASS | judged against \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e4",
+        "agent": "writer-e4",
+        "artifact": "drafts/e4-draft.json",
+        "seconds": 12.44,
+        "detail": "8 candidates | saw \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e4",
+        "agent": "critic-e4",
+        "artifact": "verdicts/e4-verdict.json",
+        "seconds": 19.56,
+        "detail": "4/8 PASS | judged against \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e5",
+        "agent": "writer-e5",
+        "artifact": "drafts/e5-draft.json",
+        "seconds": 8.59,
+        "detail": "8 candidates | saw \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "e5",
+        "agent": "critic-e5",
+        "artifact": "verdicts/e5-verdict.json",
+        "seconds": 23.69,
+        "detail": "3/8 PASS | judged against \u00a72.3, \u00a72.5"
+      },
+      {
+        "beat": "s1",
+        "agent": "writer-s1",
+        "artifact": "drafts/s1-draft.json",
+        "seconds": 5.53,
+        "detail": "8 candidates | saw \u00a72.4, \u00a72.5"
+      },
+      {
+        "beat": "s1",
+        "agent": "critic-s1",
+        "artifact": "verdicts/s1-verdict.json",
+        "seconds": 17.9,
+        "detail": "3/8 PASS | judged against \u00a72.4, \u00a72.5"
+      },
+      {
+        "beat": "s2",
+        "agent": "writer-s2",
+        "artifact": "drafts/s2-draft.json",
+        "seconds": 4.01,
+        "detail": "8 candidates | saw \u00a72.4, \u00a72.5"
+      },
+      {
+        "beat": "s2",
+        "agent": "critic-s2",
+        "artifact": "verdicts/s2-verdict.json",
+        "seconds": 15.3,
+        "detail": "5/8 PASS | judged against \u00a72.4, \u00a72.5"
+      },
+      {
+        "beat": "s3",
+        "agent": "writer-s3",
+        "artifact": "drafts/s3-draft.json",
+        "seconds": 6.24,
+        "detail": "8 candidates | saw \u00a71, \u00a72.5"
+      },
+      {
+        "beat": "s3",
+        "agent": "critic-s3",
+        "artifact": "verdicts/s3-verdict.json",
+        "seconds": 22.94,
+        "detail": "2/8 PASS | judged against \u00a71, \u00a72.5"
+      },
+      {
+        "beat": "n4",
+        "agent": "writer-ab-A-naive-top1",
+        "artifact": "drafts/ab-A-naive-top1-draft.json",
+        "seconds": 6.09,
+        "detail": "8 candidates | saw \u00a72.5"
+      },
+      {
+        "beat": "n4",
+        "agent": "critic-ab-A-naive-top1",
+        "artifact": "verdicts/ab-A-naive-top1-verdict.json",
+        "seconds": 16.46,
+        "detail": "5/8 PASS | judged against \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n4",
+        "agent": "writer-ab-B-two-chunk-rule",
+        "artifact": "drafts/ab-B-two-chunk-rule-draft.json",
+        "seconds": 7.76,
+        "detail": "8 candidates | saw \u00a72.2, \u00a72.5"
+      },
+      {
+        "beat": "n4",
+        "agent": "critic-ab-B-two-chunk-rule",
+        "artifact": "verdicts/ab-B-two-chunk-rule-verdict.json",
+        "seconds": 13.84,
+        "detail": "6/8 PASS | judged against \u00a72.2, \u00a72.5"
+      }
+    ]
+  },
+  "ab_beat": "n4",
+  "director_selection": "PENDING",
+  "stages": [
+    {
+      "stage": "corpus",
+      "status": "OK",
+      "seconds": 0.03,
+      "detail": "24 in / 28 out"
+    },
+    {
+      "stage": "generation",
+      "status": "OK",
+      "seconds": 400.57,
+      "detail": "128 candidates, 75 caught"
+    },
+    {
+      "stage": "ab",
+      "status": "OK",
+      "seconds": 44.15,
+      "detail": "beat n4, 2 arms"
+    },
+    {
+      "stage": "assembly",
+      "status": "OK",
+      "seconds": 0.01,
+      "detail": "content files + 4 evidence documents"
+    }
+  ],
+  "artifact_sha256": {
+    "CRITIC-LOG.md": "33a463366e0890afa0a33f3a1b606465dfab738bb3c660c362493335013486e3",
+    "RAG-TRACE.md": "6b5836a56d4b8f640906b2f6423948fa51fd8a85f888cdffc9bd4853315eb852",
+    "README-A4.md": "8fe9afd9cbb3352932d119850b3aeb440583841b465efffc637bf5307afdf837",
+    "RUN-LOG.md": "e2be359b16ee1b6aff2cd83a9a2b5910c8039e19105cb54a92f6e5c1a9796c57",
+    "VOICE-JUDGMENT.md": "d21496433dbcd3ca7be1d41184147a73320941660cc46a7212a90e69bd897b35",
+    "drafts/ab-A-naive-top1-draft.json": "200be589a6a816b151ad39b2ac2f0ba8ade6540947ddbf0e7b45779eaaaf1205",
+    "drafts/ab-B-two-chunk-rule-draft.json": "0dc0d0a1e3a493bb82db79079a783f8bf7117e3d351c79d0ee49c77f0ffe16a1",
+    "drafts/e1-draft.json": "90b3976e31af6475de549445fb8954ff1894a726006b7677ffe5f7e2cbbd77fa",
+    "drafts/e2-draft.json": "da09ae3ecdbd94ee1cd7ed8fef2dccf170658a19a4b22e58e9a567f4dd24cc08",
+    "drafts/e3-draft.json": "1200d66dacf75cada3cc4193ee67fa520e88dfb52d9c5ec7027a7405f67abe74",
+    "drafts/e4-draft.json": "c0099fdaa07a4fcbf54839594e96b69ba4b1333ad13983628b9b4e3aef0789dc",
+    "drafts/e5-draft.json": "a123d9758689d4cde52c0da8779a9b23b20b6ffe71799350aa09d8fa6395777e",
+    "drafts/n1-draft.json": "c3f80495c298a5eadc9bf504870c82eb45439f5df1d95f6d24180c171b407b10",
+    "drafts/n2-draft.json": "06d94fde35dbc7aced9f7f809e528bfd7afd4911f0acfa9fa287580e54a48c3f",
+    "drafts/n3-draft.json": "d3d345bfc173d0283d00f38e1fa258b57002ae8258d5a6529c6162f6211afb6b",
+    "drafts/n4-draft.json": "7f4fab901ce7237b4b76585effefda279cb5a099269e7ee952ce58a0fe1893c4",
+    "drafts/n5-draft.json": "cf691423c8655feaae9e1097f783918ccda77d297616a49e099a5bff5188c774",
+    "drafts/n6-draft.json": "751ce716926567ac02888843cdc2c1695f2141335327ebea1ad057b70cb36dcb",
+    "drafts/n7-draft.json": "6d4c72716afcfa875ee23d50acb73b9c31904bfa0580f281a0eac82f147d0346",
+    "drafts/n8-draft.json": "e9274efc5bb470f97e93f21d975740582d675329c1e9eb335aec2a31273d049c",
+    "drafts/s1-draft.json": "18cc0cc71fd73c07efbad8ee3ea757c18bd1951e2c459a52a7693cb1030a1805",
+    "drafts/s2-draft.json": "ad323740c8b50535734de113d62f307faf4bfbce55d42ef04db76bd5d29181ed",
+    "drafts/s3-draft.json": "e5c2dfddd736c8670d45fc174600bdcd6b7889b9633eaa15730049efbee45143",
+    "endscreen-candidates.md": "f1b750ab6d149ae7d43a837ada88283a8cccad435119b7f0710eb34fe46f84fd",
+    "era-flavor.md": "bb66aead2d278c41503f5c716a2673046962ce154152fc48e6046ca867698586",
+    "narration-lines.md": "23ac91da8c73b054b9eb61aae7c23b4c70bb189a05acc52c1051213ebd7cda6c",
+    "verdicts/ab-A-naive-top1-verdict.json": "07d40a05af988261aabb8e2de962b8a88c2e8c0729bcf5b09a2e0389ce6799e8",
+    "verdicts/ab-B-two-chunk-rule-verdict.json": "e33f6c57115fa78734fd591343d2f3b3cacc91e5071e6d417dc059898c58d5e4",
+    "verdicts/e1-verdict.json": "67122a506b707164b23a80e2f7c6fbd18d85619d9f9371455e1eceb353a2fed1",
+    "verdicts/e2-verdict.json": "21b61ab8f240c2e82738878063ddee5aa7ec698b3cd9916472ccf7ebe9fb0bf7",
+    "verdicts/e3-verdict.json": "fd56859c98f343a3dfaa9c0ca2f0a247fdb572ce344c7934f82f8badff3dda19",
+    "verdicts/e4-verdict.json": "00f1789eff0bdc9ef178801e9f33c84ee1c111b4ac3eb67548099ca4598ce622",
+    "verdicts/e5-verdict.json": "d8abd3d411e20d13738d78ab74056e3e024d6ee7f1ebb9cab5ad804297562f43",
+    "verdicts/n1-verdict.json": "1323b50a47c051a33d197c7be7bc7f183112e15edd012343039f4542a8f0c538",
+    "verdicts/n2-verdict.json": "eed84d5b04f9ceb034391abcdae116c397b36e3d6d590a9ad2c7f27d8680ba33",
+    "verdicts/n3-verdict.json": "0b803fda09198d5a28b178472f092eefff4a9d33e4e89d63f002888eac0079a0",
+    "verdicts/n4-verdict.json": "9fc1bc04c6239ff5aab3aaeba9ca3bdf7c1da57f2c3b23ad02733a61cb15f0a1",
+    "verdicts/n5-verdict.json": "e5a3493dc3713707189ca8171c15bbb221a931a788b905dc5aa56d9c8cfb60a9",
+    "verdicts/n6-verdict.json": "0c3bca86dc3c4730ca9d68efb5d5f272e0abd7cf6c55f5d4d3e638f8fce15c21",
+    "verdicts/n7-verdict.json": "48373fede1d0dd16468d5214d57b2d09ec46484ac602c30aa1a5a866caf911be",
+    "verdicts/n8-verdict.json": "596a8863a13771655d62463b03b0586d72142e18bd6202ff19deff41a218597f",
+    "verdicts/s1-verdict.json": "ac17702b00a66a126e7b314c9ea21a686aa7fc92ee91e1bdbf42a5be4a084ce3",
+    "verdicts/s2-verdict.json": "c2ff668c98b53b81204bc1760b370a5e2ead73742478b401766c5a1f42c20dec",
+    "verdicts/s3-verdict.json": "df77503dbfbe65d8d1a18a0b7e6b3e84b4b9e9db68643356a1e5e0c7fda33e4b"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "corpus",
+      "bytes": 6811,
+      "sha256": "389d41b0f3f72dad"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "corpus",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-full.md",
+      "agent": "corpus",
+      "bytes": 99631,
+      "sha256": "a2a6921c280eb233"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-abridged.md",
+      "agent": "corpus",
+      "bytes": 49030,
+      "sha256": "89839b3f72785a56"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n1-draft.json",
+      "agent": "writer-n1",
+      "bytes": 1070,
+      "sha256": "c3f80495c298a5ea"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n1-draft.json",
+      "agent": "critic-n1",
+      "bytes": 1070,
+      "sha256": "c3f80495c298a5ea"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n1-verdict.json",
+      "agent": "critic-n1",
+      "bytes": 4259,
+      "sha256": "1323b50a47c051a3"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n1-verdict.json",
+      "agent": "assemble",
+      "bytes": 4259,
+      "sha256": "1323b50a47c051a3"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n2-draft.json",
+      "agent": "writer-n2",
+      "bytes": 1294,
+      "sha256": "06d94fde35dbc7ac"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n2-draft.json",
+      "agent": "critic-n2",
+      "bytes": 1294,
+      "sha256": "06d94fde35dbc7ac"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n2-verdict.json",
+      "agent": "critic-n2",
+      "bytes": 4288,
+      "sha256": "eed84d5b04f9ceb0"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n2-verdict.json",
+      "agent": "assemble",
+      "bytes": 4288,
+      "sha256": "eed84d5b04f9ceb0"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n3-draft.json",
+      "agent": "writer-n3",
+      "bytes": 972,
+      "sha256": "d3d345bfc173d028"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n3-draft.json",
+      "agent": "critic-n3",
+      "bytes": 972,
+      "sha256": "d3d345bfc173d028"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n3-verdict.json",
+      "agent": "critic-n3",
+      "bytes": 3913,
+      "sha256": "0b803fda09198d5a"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n3-verdict.json",
+      "agent": "assemble",
+      "bytes": 3913,
+      "sha256": "0b803fda09198d5a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n4-draft.json",
+      "agent": "writer-n4",
+      "bytes": 1157,
+      "sha256": "7f4fab901ce7237b"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n4-draft.json",
+      "agent": "critic-n4",
+      "bytes": 1157,
+      "sha256": "7f4fab901ce7237b"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n4-verdict.json",
+      "agent": "critic-n4",
+      "bytes": 4338,
+      "sha256": "9fc1bc04c6239ff5"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n4-verdict.json",
+      "agent": "assemble",
+      "bytes": 4338,
+      "sha256": "9fc1bc04c6239ff5"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n5-draft.json",
+      "agent": "writer-n5",
+      "bytes": 778,
+      "sha256": "cf691423c8655fea"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n5-draft.json",
+      "agent": "critic-n5",
+      "bytes": 778,
+      "sha256": "cf691423c8655fea"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n5-verdict.json",
+      "agent": "critic-n5",
+      "bytes": 3514,
+      "sha256": "e5a3493dc3713707"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n5-verdict.json",
+      "agent": "assemble",
+      "bytes": 3514,
+      "sha256": "e5a3493dc3713707"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n6-draft.json",
+      "agent": "writer-n6",
+      "bytes": 994,
+      "sha256": "751ce716926567ac"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n6-draft.json",
+      "agent": "critic-n6",
+      "bytes": 994,
+      "sha256": "751ce716926567ac"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n6-verdict.json",
+      "agent": "critic-n6",
+      "bytes": 4722,
+      "sha256": "0c3bca86dc3c4730"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n6-verdict.json",
+      "agent": "assemble",
+      "bytes": 4722,
+      "sha256": "0c3bca86dc3c4730"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n7-draft.json",
+      "agent": "writer-n7",
+      "bytes": 1179,
+      "sha256": "6d4c72716afcfa87"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n7-draft.json",
+      "agent": "critic-n7",
+      "bytes": 1179,
+      "sha256": "6d4c72716afcfa87"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n7-verdict.json",
+      "agent": "critic-n7",
+      "bytes": 4316,
+      "sha256": "48373fede1d0dd16"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n7-verdict.json",
+      "agent": "assemble",
+      "bytes": 4316,
+      "sha256": "48373fede1d0dd16"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n8-draft.json",
+      "agent": "writer-n8",
+      "bytes": 787,
+      "sha256": "e9274efc5bb470f9"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/n8-draft.json",
+      "agent": "critic-n8",
+      "bytes": 787,
+      "sha256": "e9274efc5bb470f9"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n8-verdict.json",
+      "agent": "critic-n8",
+      "bytes": 4032,
+      "sha256": "596a8863a1377165"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/n8-verdict.json",
+      "agent": "assemble",
+      "bytes": 4032,
+      "sha256": "596a8863a1377165"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e1-draft.json",
+      "agent": "writer-e1",
+      "bytes": 1652,
+      "sha256": "90b3976e31af6475"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e1-draft.json",
+      "agent": "critic-e1",
+      "bytes": 1652,
+      "sha256": "90b3976e31af6475"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e1-verdict.json",
+      "agent": "critic-e1",
+      "bytes": 4713,
+      "sha256": "67122a506b707164"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e1-verdict.json",
+      "agent": "assemble",
+      "bytes": 4713,
+      "sha256": "67122a506b707164"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e2-draft.json",
+      "agent": "writer-e2",
+      "bytes": 1033,
+      "sha256": "da09ae3ecdbd94ee"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e2-draft.json",
+      "agent": "critic-e2",
+      "bytes": 1033,
+      "sha256": "da09ae3ecdbd94ee"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e2-verdict.json",
+      "agent": "critic-e2",
+      "bytes": 4695,
+      "sha256": "21b61ab8f240c2e8"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e2-verdict.json",
+      "agent": "assemble",
+      "bytes": 4695,
+      "sha256": "21b61ab8f240c2e8"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e3-draft.json",
+      "agent": "writer-e3",
+      "bytes": 1206,
+      "sha256": "1200d66dacf75cad"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e3-draft.json",
+      "agent": "critic-e3",
+      "bytes": 1206,
+      "sha256": "1200d66dacf75cad"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e3-verdict.json",
+      "agent": "critic-e3",
+      "bytes": 4413,
+      "sha256": "fd56859c98f343a3"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e3-verdict.json",
+      "agent": "assemble",
+      "bytes": 4413,
+      "sha256": "fd56859c98f343a3"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e4-draft.json",
+      "agent": "writer-e4",
+      "bytes": 1940,
+      "sha256": "c0099fdaa07a4fcb"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e4-draft.json",
+      "agent": "critic-e4",
+      "bytes": 1940,
+      "sha256": "c0099fdaa07a4fcb"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e4-verdict.json",
+      "agent": "critic-e4",
+      "bytes": 5454,
+      "sha256": "00f1789eff0bdc9e"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e4-verdict.json",
+      "agent": "assemble",
+      "bytes": 5454,
+      "sha256": "00f1789eff0bdc9e"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e5-draft.json",
+      "agent": "writer-e5",
+      "bytes": 1323,
+      "sha256": "a123d9758689d4cd"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/e5-draft.json",
+      "agent": "critic-e5",
+      "bytes": 1323,
+      "sha256": "a123d9758689d4cd"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e5-verdict.json",
+      "agent": "critic-e5",
+      "bytes": 5579,
+      "sha256": "d8abd3d411e20d13"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/e5-verdict.json",
+      "agent": "assemble",
+      "bytes": 5579,
+      "sha256": "d8abd3d411e20d13"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/s1-draft.json",
+      "agent": "writer-s1",
+      "bytes": 974,
+      "sha256": "18cc0cc71fd73c07"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/s1-draft.json",
+      "agent": "critic-s1",
+      "bytes": 974,
+      "sha256": "18cc0cc71fd73c07"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/s1-verdict.json",
+      "agent": "critic-s1",
+      "bytes": 4348,
+      "sha256": "ac17702b00a66a12"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/s1-verdict.json",
+      "agent": "assemble",
+      "bytes": 4348,
+      "sha256": "ac17702b00a66a12"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/s2-draft.json",
+      "agent": "writer-s2",
+      "bytes": 723,
+      "sha256": "ad323740c8b50535"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/s2-draft.json",
+      "agent": "critic-s2",
+      "bytes": 723,
+      "sha256": "ad323740c8b50535"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/s2-verdict.json",
+      "agent": "critic-s2",
+      "bytes": 3384,
+      "sha256": "c2ff668c98b53b81"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/s2-verdict.json",
+      "agent": "assemble",
+      "bytes": 3384,
+      "sha256": "c2ff668c98b53b81"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/s3-draft.json",
+      "agent": "writer-s3",
+      "bytes": 1021,
+      "sha256": "e5c2dfddd736c867"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/s3-draft.json",
+      "agent": "critic-s3",
+      "bytes": 1021,
+      "sha256": "e5c2dfddd736c867"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/s3-verdict.json",
+      "agent": "critic-s3",
+      "bytes": 5003,
+      "sha256": "df77503dbfbe65d8"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/s3-verdict.json",
+      "agent": "assemble",
+      "bytes": 5003,
+      "sha256": "df77503dbfbe65d8"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/ab-A-naive-top1-draft.json",
+      "agent": "writer-ab-A-naive-top1",
+      "bytes": 947,
+      "sha256": "200be589a6a816b1"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/ab-A-naive-top1-draft.json",
+      "agent": "critic-ab-A-naive-top1",
+      "bytes": 947,
+      "sha256": "200be589a6a816b1"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/ab-A-naive-top1-verdict.json",
+      "agent": "critic-ab-A-naive-top1",
+      "bytes": 3880,
+      "sha256": "07d40a05af988261"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/ab-A-naive-top1-verdict.json",
+      "agent": "assemble",
+      "bytes": 3880,
+      "sha256": "07d40a05af988261"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/ab-B-two-chunk-rule-draft.json",
+      "agent": "writer-ab-B-two-chunk-rule",
+      "bytes": 1265,
+      "sha256": "0dc0d0a1e3a493bb"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/drafts/ab-B-two-chunk-rule-draft.json",
+      "agent": "critic-ab-B-two-chunk-rule",
+      "bytes": 1265,
+      "sha256": "0dc0d0a1e3a493bb"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/ab-B-two-chunk-rule-verdict.json",
+      "agent": "critic-ab-B-two-chunk-rule",
+      "bytes": 3956,
+      "sha256": "e33f6c57115fa787"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/content-a4-live-v2/verdicts/ab-B-two-chunk-rule-verdict.json",
+      "agent": "assemble",
+      "bytes": 3956,
+      "sha256": "e33f6c57115fa787"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/narration-lines.md",
+      "agent": "assemble",
+      "bytes": 15673,
+      "sha256": "23ac91da8c73b054"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/era-flavor.md",
+      "agent": "assemble",
+      "bytes": 11806,
+      "sha256": "bb66aead2d278c41"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/endscreen-candidates.md",
+      "agent": "assemble",
+      "bytes": 5824,
+      "sha256": "f1b750ab6d149ae7"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/RAG-TRACE.md",
+      "agent": "assemble",
+      "bytes": 51429,
+      "sha256": "6b5836a56d4b8f64"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/CRITIC-LOG.md",
+      "agent": "assemble",
+      "bytes": 57680,
+      "sha256": "33a463366e0890af"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/VOICE-JUDGMENT.md",
+      "agent": "assemble",
+      "bytes": 5780,
+      "sha256": "d21496433dbcd3ca"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/content-a4-live-v2/README-A4.md",
+      "agent": "assemble",
+      "bytes": 7340,
+      "sha256": "8fe9afd9cbb33529"
+    }
+  ]
+}

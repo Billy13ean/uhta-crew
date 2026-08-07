@@ -516,3 +516,30 @@ exists. Whether B2 caught it is visible in
   correction, `VOICE-JUDGMENT.md` the measured A/B on the retrieval rule.
   `drafts/` and `verdicts/` are the per-beat blackboard artifacts the Writer
   wrote and the Critic read back — the handoff is a file, not a variable.
+
+- `out/content-a4-live-v2/` — **the current live content run.** `--candidates 8`,
+  all four stages, 36 dispatches, `"llm_backend": "live"`. Start at `README-A4.md`.
+  128 candidates judged, 75 caught and corrected, all four flag classes fired.
+- `out/content-a4-live/` — **superseded, kept deliberately.** The first live run.
+  Its `VOICE-JUDGMENT.md` claims both A/B arms were "judged against the same
+  chunks"; they were not. Wiring the Writer→Critic handoff through
+  `content/orchestrator.py` had made each arm's Critic judge against that arm's
+  own retrieval, so the comparison confounded the Writer's view with the judge's
+  — visible in that run as the identical line *"You roar — and everyone who
+  witnesses it is frightened, whatever you intend."* scoring FAIL in one arm and
+  PASS in the other. Two fixes: `run_beat` now takes an explicit
+  `critic_selection` so the judge can be held constant, and `assemble.py` no
+  longer *asserts* that it was — it prints the chunk set each role actually got,
+  read from the dispatch ledger, plus a match/mismatch line that voids the
+  comparison in writing if they ever diverge again. The old run stays in the
+  repo because a claim that was wrong and a claim that is checkable are more
+  useful side by side than either alone.
+
+**One defect this re-run surfaced in `crew/llm.py`.** The first attempt at the
+corrected run died at beat 16 of 16 on an unretried `overloaded_error`. In the
+streaming path the SDK raises a bare `APIStatusError` whose `status_code` is
+never set, so `_transient()`'s numeric 5xx check could not see a 529 and the
+whole run was discarded as non-transient. Now classified by exception type
+(`anthropic.OverloadedError`) *and* by payload string, which covers both shapes.
+This affects the rules crew identically — a 529 at the Playtester stage would
+have thrown away a 20-seed run the same way.

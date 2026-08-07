@@ -1,0 +1,78 @@
+{
+  "beat": "n5",
+  "tag": "n5",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "To wait is to teach them you do not matter.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "waiting teaches people you don't matter",
+      "reason": "Uses infinitive construction 'To wait is to teach' instead of the required second-person imperative verb-first structure.",
+      "correction": "Wait. They learn you do not matter."
+    },
+    {
+      "index": 2,
+      "line": "Withhold, and they learn you are nothing.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "waiting teaches people you don't matter",
+      "reason": "The chunk says 'you don't matter,' not 'you are nothing' — the latter is unsupported cosmological escalation.",
+      "correction": "Withhold, and they learn you don't matter."
+    },
+    {
+      "index": 3,
+      "line": "Wait. They watch you choose irrelevance.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "waiting teaches people you don't matter",
+      "reason": "The chunk says 'you don't matter,' not that the player 'chooses irrelevance' — agency framing is unsupported.",
+      "correction": "Wait. They learn you don't matter."
+    },
+    {
+      "index": 4,
+      "line": "Do nothing. Whoever watches drifts toward apathy.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Deliberate non-response; witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "Names the verb ('Do nothing'), identifies the witness requirement, and states the mechanical consequence ('apathy') exactly as the chunk does.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Wait, and those who see you fade toward grey.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "Says 'fade toward grey' instead of the mechanical term 'Apathy' — loses the specific emotional-state vocabulary uhta uses.",
+      "correction": "Wait, and those who see you drift toward apathy."
+    },
+    {
+      "index": 6,
+      "line": "Inaction is a lesson: you can be ignored.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "Could appear in any game where NPCs react to player choices — 'can be ignored' has no mechanical consequence and loses the specific term 'Apathy.'",
+      "correction": "Inaction is witnessed. They drift toward apathy."
+    },
+    {
+      "index": 7,
+      "line": "To withhold is to push them toward not caring.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "Uses infinitive construction 'To withhold is to push' instead of the required second-person imperative verb-first structure.",
+      "correction": "Withhold. Those who witness drift toward apathy."
+    },
+    {
+      "index": 8,
+      "line": "Wait. The witness learns indifference.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy",
+      "reason": "The chunk says 'Apathy,' not 'indifference' — substituting synonyms changes the mechanical term to unsupported vocabulary.",
+      "correction": "Wait. The witness drifts toward apathy."
+    }
+  ]
+}

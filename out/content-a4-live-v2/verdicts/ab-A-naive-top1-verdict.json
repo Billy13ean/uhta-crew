@@ -1,0 +1,78 @@
+{
+  "beat": "n4",
+  "tag": "ab-A-naive-top1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You roar, and everyone who witnesses it is frightened — whatever you intend.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Direct lift from §2.5 tutorial narration, preserving the exact mechanical consequence and the 'whatever you intend' paradox that defines the verb.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Roar. All who witness it are frightened, regardless of what you feel.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Imperative register matches tutorial style, 'regardless of what you feel' preserves the flame-independence mechanic from the chunk.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "The roar frightens everyone who hears it. Your intention does not matter.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "NPCs within witness radius R (~6 tiles) of the line take an unconditional Fear push",
+      "reason": "Chunks specify 'witness' not 'hears' — roar is witnessed along a line, not heard as sound.",
+      "correction": "The roar frightens everyone who witnesses it. Your intention does not matter."
+    },
+    {
+      "index": 4,
+      "line": "You roar. Everyone in its path becomes afraid — even if you burn with hope.",
+      "verdict": "FAIL",
+      "flag_class": "CONTRADICTS-CHUNK",
+      "quoted_chunk": "NPCs within witness radius R (~6 tiles) of the line",
+      "reason": "Roar affects witnesses 'of the line' not 'in its path' — NPCs near the line are affected, not NPCs struck by it.",
+      "correction": "You roar. Everyone who witnesses it becomes afraid — even if you burn with hope."
+    },
+    {
+      "index": 5,
+      "line": "Roar, and all who witness are made fearful. The flame's color changes nothing.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Preserves witness-based trigger and flame-independence; 'The flame's color changes nothing' is a valid restatement of 'unconditional Fear push regardless of flame color'.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "The roar is fear itself. Everyone who hears it cowers, whatever color you carry.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "'The roar is fear itself' is mythological metaphor where instrumentation is required; 'cowers' is flavor not mechanical consequence.",
+      "correction": "The roar frightens all who witness it. Whatever color you carry changes nothing."
+    },
+    {
+      "index": 7,
+      "line": "You roar. The earth shatters ahead, and everyone who sees it is frightened — no matter your flame.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Combines the tutorial's terrain effect with witness-based fear and flame-independence — all three mechanical consequences in one declarative line.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Roar: it frightens all witnesses. What you intend makes no difference.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Imperative form, witness trigger, and 'What you intend makes no difference' preserves the intentionality paradox from the chunk.",
+      "correction": null
+    }
+  ]
+}

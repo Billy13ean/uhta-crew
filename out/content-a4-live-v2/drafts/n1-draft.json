@@ -1,0 +1,27 @@
+{
+  "beat": "n1",
+  "tag": "n1",
+  "label": "The cave — the undetermined flame",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 21.76
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#1",
+      "heading": "1. Executive Summary",
+      "bm25": 18.91
+    }
+  ],
+  "candidates": [
+    "You hold a white flame that becomes whatever you do with it.",
+    "The flame in your hand is undetermined — it will become what you make people feel.",
+    "Your flame is white, and nothing about it is decided yet.",
+    "You carry a white flame that lights only the stone around you — it becomes whatever you do with it.",
+    "The flame is white — genuinely undetermined — and being born against the sky says nothing about what you will sing back at it.",
+    "You hold a flame that is neither Hope nor Fear — only what you will make it.",
+    "The white flame becomes whatever you do with it — nothing is locked.",
+    "Your flame is white and will take the shape of what you inspire."
+  ]
+}

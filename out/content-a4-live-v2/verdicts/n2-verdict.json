@@ -1,0 +1,78 @@
+{
+  "beat": "n2",
+  "tag": "n2",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You walk. The ground remembers you — the tile you cross becomes a road that carries your color, and people will travel it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "roads now **carry your color** (see Road Building & Allegiance)",
+      "reason": "Says 'people will travel it' but omits that roads make NPCs traverse faster, which is the mechanical consequence.",
+      "correction": "You walk. The ground remembers you — the tile you cross becomes a road NPCs traverse faster, and it carries your color."
+    },
+    {
+      "index": 2,
+      "line": "Walk. Every tile you cross becomes a road — compacted, faster to traverse, and it carries your color now.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "every tile walked becomes a compacted road NPCs traverse faster, and roads now **carry your color**",
+      "reason": "Names both mechanical consequences (compaction/speed and color-carrying) in instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "You walk, and the ground remembers: the path you make is a road, and roads carry your color forward.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "every tile walked becomes a compacted road NPCs traverse faster",
+      "reason": "Omits the traversal-speed consequence entirely; 'carry your color forward' is poetic but loses the mechanical fact.",
+      "correction": "You walk, and the ground remembers: the path you make becomes a road NPCs traverse faster, and it carries your color."
+    },
+    {
+      "index": 4,
+      "line": "Walk. The earth compacts where you step — a road forms, colored by what you feel, and others will follow it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "others will follow it",
+      "reason": "'Others will follow it' is vague motivation, not the mechanical fact that NPCs traverse roads faster.",
+      "correction": "Walk. The earth compacts where you step — a road forms, colored by what you feel, and NPCs traverse it faster."
+    },
+    {
+      "index": 5,
+      "line": "You walk. What you cross becomes road — people traverse it faster, and it carries the color you hold.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "every tile walked becomes a compacted road NPCs traverse faster, and roads now **carry your color**",
+      "reason": "States both mechanical consequences (faster traversal, color-carrying) in clean instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "Walk, and the ground answers: your path becomes a road that holds your color and beckons travelers.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "'The ground answers' and 'beckons travelers' is mythological language where instrumentation is required.",
+      "correction": "Walk. Your path becomes a road that carries your color — NPCs traverse it faster."
+    },
+    {
+      "index": 7,
+      "line": "You walk. The tile remembers — it becomes a road others will travel, painted in what you carry.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "every tile walked becomes a compacted road NPCs traverse faster",
+      "reason": "'Others will travel' omits the speed consequence; 'painted in what you carry' is decorative, not mechanical.",
+      "correction": "You walk. The tile remembers — it becomes a road NPCs traverse faster, carrying the color you hold."
+    },
+    {
+      "index": 8,
+      "line": "Walk. Where you step, the earth compacts into road — faster for those who follow, and stained with your flame's color.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "every tile walked becomes a compacted road NPCs traverse faster, and roads now **carry your color**",
+      "reason": "Names both mechanical consequences (compaction/speed for followers, color-staining) in instrumentation register.",
+      "correction": null
+    }
+  ]
+}

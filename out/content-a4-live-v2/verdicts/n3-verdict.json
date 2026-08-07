@@ -1,0 +1,78 @@
+{
+  "beat": "n3",
+  "tag": "n3",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "Raise the flame — it applies what you feel right now.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "The chunk never says 'right now' — that temporal specificity about the exact moment of raising is not supported.",
+      "correction": "Raise the flame — it applies what you feel."
+    },
+    {
+      "index": 2,
+      "line": "Wave the flame. It spreads whatever color you are.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Raise / wave the flame | ~2.5 | Clears fog locally; applies the flame's current alignment to NPCs in radius",
+      "reason": "Omits the fog-clearing effect entirely, making it read like any emotion-spreading mechanic in any game.",
+      "correction": "Wave the flame — it clears the fog and spreads whatever color you are."
+    },
+    {
+      "index": 3,
+      "line": "Raise the flame — it clears the fog and pushes your current feeling outward.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Clears fog locally; applies the flame's current alignment to NPCs in radius",
+      "reason": "Names both mechanical consequences (fog-clearing and alignment-pushing) in instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "The flame applies what you feel. Raise it to share that feeling with everyone who hears you.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "applies the flame's current alignment to NPCs in radius (~3 tiles, grows with Ascension)",
+      "reason": "The chunks specify 'NPCs in radius' not 'everyone who hears you' — hearing is not the mechanic.",
+      "correction": "The flame applies what you feel. Raise it to share that feeling with everyone in range."
+    },
+    {
+      "index": 5,
+      "line": "Raise the flame. Whatever you are, they become.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Clears fog locally; applies the flame's current alignment to NPCs in radius",
+      "reason": "Omits fog-clearing and reads like generic alignment-spreading; no uhta-specific mechanical consequence survives.",
+      "correction": "Raise the flame — it clears the fog and makes them whatever you are."
+    },
+    {
+      "index": 6,
+      "line": "Wave the flame — it isn't a cure, it's whatever you currently are.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "the flame applies what you feel",
+      "reason": "The 'cure' framing introduces a concept (illness/healing) the chunks never establish for the flame verb.",
+      "correction": "Wave the flame — it applies whatever you currently are, not what they need."
+    },
+    {
+      "index": 7,
+      "line": "Raise the flame. It applies your alignment, not theirs.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Clears fog locally; applies the flame's current alignment to NPCs in radius",
+      "reason": "Omits fog-clearing entirely; the alignment/theirs contrast is valid but incomplete without the other effect.",
+      "correction": "Raise the flame — it clears the fog and applies your alignment, not theirs."
+    },
+    {
+      "index": 8,
+      "line": "The flame spreads your feeling, not hope or fear — whatever you hold when you raise it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Clears fog locally; applies the flame's current alignment to NPCs in radius",
+      "reason": "Omits fog-clearing; the hope-or-fear clarification is valid but without the other mechanical effect it's generic.",
+      "correction": "Raise the flame — it clears the fog and spreads your feeling, whatever you hold."
+    }
+  ]
+}

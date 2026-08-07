@@ -1,0 +1,78 @@
+{
+  "beat": "n8",
+  "tag": "n8",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "A generation has passed, and the world moved without you.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Waking is the emotional centerpiece. The landscape is the same, but different — a generation has passed, and the world has *moved on its own*.",
+      "reason": "Directly echoes the chunk's exact phrasing 'a generation has passed' and 'moved on its own,' naming the generational sleep mechanic that is uhta's core temporal structure.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "The world moved while you slept.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "a generation has passed, and the world has *moved on its own*",
+      "reason": "Loses the generational specificity—'while you slept' could mean any rest mechanic in any game, not uhta's three-tick generational sleep.",
+      "correction": "A generation passed while you slept."
+    },
+    {
+      "index": 3,
+      "line": "They went on without you.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "a generation has passed, and the world has *moved on its own*",
+      "reason": "Pure narrative sentiment with no mechanical trace—'they went on' names no system, no generation, no consequence visible in the world.",
+      "correction": "A generation passed. They settled, or scattered, or burned."
+    },
+    {
+      "index": 4,
+      "line": "Time passed. The world answered.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Generational Sleep. Time only advances for the world while the player sleeps (**3 ticks per sleep**).",
+      "reason": "'Time passed' and 'answered' are vague universals—no generation count, no sleep mechanic, no trace of what 'answered' means in uhta's tile-state world.",
+      "correction": "A generation passed. The world answered."
+    },
+    {
+      "index": 5,
+      "line": "A generation turned. What you did has already become something else.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "a generation has passed, and the world has *moved on its own*. The huddle you met is gone; what you find instead is the answer to what you did *and* what the world did without you",
+      "reason": "Names the generation, and 'what you did has already become something else' captures the chunk's 'answer to what you did *and* what the world did without you'—the transformation is the mechanic.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "The world moved. What you find now is what everything became.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "what you find instead is the answer to what you did *and* what the world did without you",
+      "reason": "'What everything became' directly echoes the chunk's 'what you find instead is the answer'—the waking-as-discovery of resolved state is uhta-specific.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "While you slept, the world became what it would.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "a generation has passed, and the world has *moved on its own*",
+      "reason": "'Became what it would' is fatalistic poetry with no mechanical anchor—loses the generation count and the player-world interplay the chunk specifies.",
+      "correction": "A generation passed. The world became what you and it made together."
+    },
+    {
+      "index": 8,
+      "line": "You wake, and the world has already answered.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "what you find instead is the answer to what you did *and* what the world did without you",
+      "reason": "'The world has already answered' captures the chunk's framing of waking as discovering resolved consequences—'already' carries the generational gap.",
+      "correction": null
+    }
+  ]
+}

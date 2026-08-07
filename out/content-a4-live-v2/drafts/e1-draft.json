@@ -1,0 +1,27 @@
+{
+  "beat": "e1",
+  "tag": "e1",
+  "label": "Era 1 — Nomad / Tribal",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 20.95
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 39.96
+    }
+  ],
+  "candidates": [
+    "Hoods and loose wraps, the color of dirt. Gathered stones marking where they slept last. Trails of compacted earth leading nowhere yet.",
+    "They wear what keeps them warm — hides and rough cloth, grey as the fog. No walls. What they build, they build to leave: circles of stone, embers still glowing.",
+    "Nomads in worn hoods, carrying what they own. Their camps are rings of stone and ash — marks that say someone rested here, then moved on.",
+    "Hooded figures, feet wrapped, shoulders bent under the weight of wandering. Where they stop, stones arranged in circles. Where they walk, the ground remembers.",
+    "Coarse wraps and hoods pulled low. They gather in clearings marked only by stones and cold fire pits — places to sleep, not to stay.",
+    "They dress in layers of hide and rough-spun cloth, grey and brown. Their camps are temporary — stone circles, dying fires, trails of compacted earth where they walked together.",
+    "Hoods and simple wraps, no two exactly alike. When they settle for the night, they mark it with stones. When they leave, only the flattened ground remains.",
+    "Cloaked in whatever keeps the cold out — hides, rough fabric, hoods shadowing their faces. They build nothing that can't be abandoned: rings of stone, paths of packed dirt, embers."
+  ]
+}

@@ -94,9 +94,17 @@ class LiveLLM(BaseLLM):
                 getattr(a, "APITimeoutError", None),
                 getattr(a, "RateLimitError", None),
                 getattr(a, "InternalServerError", None),
+                # 529 overloaded. Added after a live content run died at beat 16
+                # of 16 on an unretried `overloaded_error`: in the STREAMING path
+                # the SDK raises a bare APIStatusError whose `status_code` is not
+                # set, so the numeric check below never saw it. Classifying by
+                # type and by payload string covers both shapes.
+                getattr(a, "OverloadedError", None),
             ) if t is not None
         )
         if transient_types and isinstance(exc, transient_types):
+            return True
+        if "overloaded_error" in str(exc) or "'type': 'overloaded'" in str(exc):
             return True
         status = getattr(exc, "status_code", None)
         return status is not None and (status == 429 or 500 <= status < 600)

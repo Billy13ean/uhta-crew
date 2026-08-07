@@ -1,0 +1,27 @@
+{
+  "beat": "s3",
+  "tag": "s3",
+  "label": "The teacher returns — one last line",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#1",
+      "heading": "1. Executive Summary",
+      "bm25": 38.28
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 32.19
+    }
+  ],
+  "candidates": [
+    "You raised the flame. You walked. You slept. The ground remembers you.",
+    "The world moved on its own. You were the second voice.",
+    "You lit what was dark. You walked where nothing walked. The landscape is the answer.",
+    "Every place you slept kept working. The sky turned because you did.",
+    "You chose what people would feel. They built what you inspired.",
+    "The flame became what you did with it. The world became what they did with that.",
+    "You were born against the sky. You sang something back. This is what it made.",
+    "Where you walked, the ground remembers. Where you slept, your light kept working. The sky answers."
+  ]
+}

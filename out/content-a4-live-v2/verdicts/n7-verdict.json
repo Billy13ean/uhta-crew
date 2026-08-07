@@ -1,0 +1,78 @@
+{
+  "beat": "n7",
+  "tag": "n7",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You sleep. A generation passes. Where you lie down, your light keeps working.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "where you sleep, your light keeps working",
+      "reason": "Direct quote from the tutorial narration spec, exactly the register and mechanical consequence demanded.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Sleep ends the cycle. The body you leave behind radiates for every tick of the generation that follows.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "\"The body you leave behind\" is mythological phrasing where instrumentation is required; the tutorial teaches verbs, not imagery.",
+      "correction": "Sleep ends the cycle. Where you rest, your flame radiates for every tick of the generation."
+    },
+    {
+      "index": 3,
+      "line": "When you sleep, a whole generation passes—and the sleeping body keeps glowing.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "\"keeps glowing\" loses the mechanical consequence that it radiates emotion with spatial effect; any god-game has glowing.",
+      "correction": "Sleep. A generation passes, and where you lie radiates your flame's emotion until you wake."
+    },
+    {
+      "index": 4,
+      "line": "Sleep. One generation turns while you rest, and where you lie becomes a beacon until you wake.",
+      "verdict": "FAIL",
+      "flag_class": "CONTRADICTS-CHUNK",
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "\"becomes a beacon\" contradicts the chunk: beacons are a separate verb with a cap; sleep radiates but is not a beacon.",
+      "correction": "Sleep. One generation turns while you rest, and where you lie radiates your flame until you wake."
+    },
+    {
+      "index": 5,
+      "line": "You sleep, and the world moves on without you. But the ground where you lay remembers what you felt.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "\"the world moves on without you\" and \"the ground where you lay remembers what you felt\" are mythological flourishes, not instrumentation.",
+      "correction": "You sleep, and a generation passes. Where you rest, your flame keeps radiating."
+    },
+    {
+      "index": 6,
+      "line": "Sleep advances a generation. Your body stays—a light that works through every tick you're gone.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "Names the verb, states the mechanical consequence (body stays, radiates through ticks), maintains instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "When stamina runs out, you sleep. A generation passes. Where you choose to rest, your flame never stops.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "when stamina is gone, the only remaining verb is Sleep",
+      "reason": "\"your flame never stops\" introduces permanence the chunks don't support; sleep radiation lasts the generation, not forever.",
+      "correction": "When stamina runs out, you sleep. A generation passes, and where you rest radiates until you wake."
+    },
+    {
+      "index": 8,
+      "line": "Sleep. The generation turns, and wherever you laid down keeps radiating until dawn.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation",
+      "reason": "Names the verb, states duration (generation turns) and consequence (keeps radiating until dawn), pure instrumentation.",
+      "correction": null
+    }
+  ]
+}

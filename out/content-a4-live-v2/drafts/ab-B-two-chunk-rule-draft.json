@@ -1,0 +1,27 @@
+{
+  "beat": "n4",
+  "tag": "ab-B-two-chunk-rule",
+  "label": "First Roar — whatever you intend",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 36.17
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You roar. Everyone who witnesses it is frightened, whatever you intend.",
+    "Roar. The earth shatters ahead — and everyone who sees you do it becomes afraid.",
+    "You roar and the ground breaks open. All who witness it feel fear, no matter what your flame holds.",
+    "Roar: it clears the path fast, but everyone who watches is pushed toward fear — even when you carry hope.",
+    "You can roar to shatter the earth. Everyone within sight of the breaking will be frightened, regardless of what you feel.",
+    "Roar shatters a line of ground ahead of you. Anyone who witnesses the act is made afraid — your flame's color doesn't matter.",
+    "You roar and the land splits. Every witness is frightened by what they see, whatever emotion you carry.",
+    "Roar breaks the earth in a line. All who see it happen are afraid — the flame you hold changes nothing."
+  ]
+}

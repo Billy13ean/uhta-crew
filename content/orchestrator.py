@@ -75,7 +75,8 @@ class ContentOrchestrator:
             "candidates": candidates,
         }, indent=2, ensure_ascii=False) + "\n", f"writer-{tag}")
         self._record(beat.id, f"writer-{tag}", name, t0,
-                     f"{len(candidates)} candidates")
+                     f"{len(candidates)} candidates | saw "
+                     + ", ".join(f"§{r.chunk.section}" for r in selection.selected))
         return name
 
     def _critic_stage(self, beat, selection, ct, tag: str,
@@ -102,17 +103,33 @@ class ContentOrchestrator:
             "verdicts": [asdict(v) for v in verdicts],
         }, indent=2, ensure_ascii=False) + "\n", f"critic-{tag}")
         self._record(beat.id, f"critic-{tag}", name, t0,
-                     f"{sum(1 for v in verdicts if not v.failed)}/{len(verdicts)} PASS")
+                     f"{sum(1 for v in verdicts if not v.failed)}/{len(verdicts)} PASS "
+                     f"| judged against "
+                     + ", ".join(f"§{r.chunk.section}" for r in selection.selected))
         return name, candidates
 
     # ---------------- the public call ----------------
 
-    def run_beat(self, beat, selection, ct, tag: str | None = None):
+    def run_beat(self, beat, selection, ct, tag: str | None = None,
+                 critic_selection=None):
         """Writer -> artifact -> Critic -> artifact. Returns (candidates, verdicts),
-        both read back from the blackboard rather than passed in memory."""
+        both read back from the blackboard rather than passed in memory.
+
+        `critic_selection` lets the Critic judge against a chunk set the Writer did
+        not see. It exists for the A/B stage and nothing else: comparing two
+        retrieval policies is only meaningful if the JUDGE is held constant, so
+        both arms are judged against the richer cut while only the Writer's view
+        varies. Everywhere else it defaults to the Writer's own selection, which
+        is the honest default — a Critic judging prose against chunks the Writer
+        never saw would flag omissions the Writer had no way to avoid.
+
+        Which selection each role actually got is recorded in the run's dispatch
+        ledger, so the distinction is auditable rather than implied.
+        """
         tag = tag or beat.id
+        judged_against = critic_selection if critic_selection is not None else selection
         draft_name = self._writer_stage(beat, selection, ct, tag)
-        verdict_name, candidates = self._critic_stage(beat, selection, ct, tag,
+        verdict_name, candidates = self._critic_stage(beat, judged_against, ct, tag,
                                                       draft_name)
         # Assembly reads the Critic's artifact. A verdict set that exists only in
         # this process never reaches an evidence document.

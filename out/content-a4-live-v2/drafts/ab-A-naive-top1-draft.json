@@ -1,0 +1,22 @@
+{
+  "beat": "n4",
+  "tag": "ab-A-naive-top1",
+  "label": "First Roar — whatever you intend",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You roar, and everyone who witnesses it is frightened — whatever you intend.",
+    "Roar. All who witness it are frightened, regardless of what you feel.",
+    "The roar frightens everyone who hears it. Your intention does not matter.",
+    "You roar. Everyone in its path becomes afraid — even if you burn with hope.",
+    "Roar, and all who witness are made fearful. The flame's color changes nothing.",
+    "The roar is fear itself. Everyone who hears it cowers, whatever color you carry.",
+    "You roar. The earth shatters ahead, and everyone who sees it is frightened — no matter your flame.",
+    "Roar: it frightens all witnesses. What you intend makes no difference."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "beat": "n1",
+  "tag": "n1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You hold a white flame that becomes whatever you do with it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "You wake in a dark cave holding a white flame that lights only the stone around you.",
+      "reason": "Omits the spatial constraint 'lights only the stone around you' which is the mechanical consequence that distinguishes this from any god-game flame.",
+      "correction": "You hold a white flame that lights only the stone around you — it becomes whatever you do with it."
+    },
+    {
+      "index": 2,
+      "line": "The flame in your hand is undetermined — it will become what you make people feel.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "Uses 'what you make people feel' which is lore-level abstraction, not the instrumented verb-consequence pattern required.",
+      "correction": "The flame in your hand is your alignment — white and undetermined until you act."
+    },
+    {
+      "index": 3,
+      "line": "Your flame is white, and nothing about it is decided yet.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "You wake in a dark cave holding a white flame that lights only the stone around you.",
+      "reason": "States only color and indeterminacy without the spatial lighting constraint or the action-consequence link.",
+      "correction": "Your flame is white and lights only the stone around you — it becomes what you do with it."
+    },
+    {
+      "index": 4,
+      "line": "You carry a white flame that lights only the stone around you — it becomes whatever you do with it.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "You wake in a dark cave holding a white flame that lights only the stone around you.",
+      "reason": "Combines the spatial lighting constraint from the cave tutorial with the action-consequence instrumentation pattern.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "The flame is white — genuinely undetermined — and being born against the sky says nothing about what you will sing back at it.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+      "reason": "Uses mythological language 'what you will sing back at it' when the register demands plain verb-consequence statements.",
+      "correction": "The flame is white and undetermined — it becomes whatever you do with it."
+    },
+    {
+      "index": 6,
+      "line": "You hold a flame that is neither Hope nor Fear — only what you will make it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "You wake in a dark cave holding a white flame that lights only the stone around you.",
+      "reason": "Defines the flame only by what it is not, omitting both the spatial lighting constraint and the action-consequence link.",
+      "correction": "You hold a white flame that lights only the stone around you — it becomes Hope or Fear through what you do."
+    },
+    {
+      "index": 7,
+      "line": "The white flame becomes whatever you do with it — nothing is locked.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "a starting tint only; nothing is locked",
+      "reason": "Directly echoes the chunk's assurance that initial state does not constrain outcome, paired with the action-consequence pattern.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Your flame is white and will take the shape of what you inspire.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "You wake in a dark cave holding a white flame that lights only the stone around you.",
+      "reason": "Uses vague 'take the shape of what you inspire' instead of the concrete spatial constraint or direct action-consequence link.",
+      "correction": "Your flame is white and lights only the stone around you — it becomes what you do with it."
+    }
+  ]
+}

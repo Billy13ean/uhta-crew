@@ -1,0 +1,78 @@
+{
+  "beat": "n4",
+  "tag": "n4",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You roar. Everyone who witnesses it is frightened, whatever you intend.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "NPCs within **witness radius R (~6 tiles)** of the line take an unconditional Fear push (~2.8) regardless of flame color",
+      "reason": "Missing the mechanical consequence that witness radius is bounded (~6 tiles) and that roaring outside this radius is free terrain work.",
+      "correction": "You roar. Everyone within witness radius is frightened, whatever you intend — beyond that, free terrain."
+    },
+    {
+      "index": 2,
+      "line": "Roar. All who witness the line are pushed to fear — the flame's color does not protect them.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPCs within **witness radius R (~6 tiles)** of the line take an unconditional Fear push (~2.8) regardless of flame color",
+      "reason": "States the unconditional fear push and explicitly names that flame color offers no protection, which is the core mechanical consequence.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "This is Roar. It frightens everyone who sees it, no matter what the flame carries.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Says 'everyone who sees it' without the witness-radius boundary that makes roaring tactically interesting.",
+      "correction": "This is Roar. It frightens everyone within witness radius, no matter what the flame carries — roar beyond that and only stone breaks."
+    },
+    {
+      "index": 4,
+      "line": "You can roar a path through stone. Everyone who witnesses the break feels fear.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Shatters a line of tiles — fast traversal / path creation. NPCs within **witness radius R (~6 tiles)** of the line take an unconditional Fear push",
+      "reason": "Names both the terrain effect (path through stone) and the witness-bounded fear consequence in instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Roar shatters the ground ahead. Witness it and you are frightened — your alignment, theirs, nothing stops this.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "NPCs within **witness radius R (~6 tiles)** of the line take an unconditional Fear push (~2.8) regardless of flame color",
+      "reason": "Explicitly states that alignment (yours and theirs) does not stop the fear push, which is the core tactical constraint.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "When you roar, the earth breaks and all who see it are afraid. The flame cannot change this.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "NPCs within **witness radius R (~6 tiles)** of the line",
+      "reason": "Says 'all who see it' without acknowledging the witness radius boundary that defines roar's tactical range.",
+      "correction": "When you roar, the earth breaks and all within witness radius are afraid — the flame cannot change this, distance can."
+    },
+    {
+      "index": 7,
+      "line": "Roar. The line frightens every witness regardless of what you feel or what they do.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Shatters a line of tiles — fast traversal / path creation",
+      "reason": "Omits the terrain-breaking effect entirely, reducing roar to only its fear consequence when it is dual-purpose.",
+      "correction": "Roar shatters a line of ground. Every witness is frightened regardless of what you feel or what they do."
+    },
+    {
+      "index": 8,
+      "line": "You roar and the stone splits. Fear reaches everyone in sight of the break, even those already aligned to you.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar is the *save* (clears the flag, §2.3)",
+      "reason": "Names stone-splitting, witness-bounded fear, and that even aligned followers are frightened — the exception (hope-burned save) is advanced knowledge, correctly omitted here.",
+      "correction": null
+    }
+  ]
+}

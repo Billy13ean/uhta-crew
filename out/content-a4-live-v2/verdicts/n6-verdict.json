@@ -1,0 +1,78 @@
+{
+  "beat": "n6",
+  "tag": "n6",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You light a basin and it gives you strength that does not fade.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "\"Does not fade\" is generic permanence language; the chunk specifies beacons are \"permanent aura\" structures that work \"while you sleep\" and \"every generation tick\" — the mechanical consequence is cross-generational operation, not vague persistence.",
+      "correction": "You light a basin and it gives you strength while you sleep."
+    },
+    {
+      "index": 2,
+      "line": "Light the basin. It reveals the land and the strength it gives persists.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "\"Reveals the land\" introduces fog-clearing as a beacon function; chunk 1 shows beacons radiate emotion alignment, not clear fog — fog clearing is the Raise/wave verb's effect.",
+      "correction": "Light the basin. The strength it gives persists across generations."
+    },
+    {
+      "index": 3,
+      "line": "The basin, lit, gives strength — and the strength remains.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Places a permanent aura that radiates the flame's current color every generation tick, including while you sleep",
+      "reason": "\"The strength remains\" is generic; the chunk's mechanical specificity is that beacons work \"every generation tick, including while you sleep\" — the consequence is generational operation, not abstract permanence.",
+      "correction": "The basin, lit, gives strength — and works while you sleep."
+    },
+    {
+      "index": 4,
+      "line": "You light a basin. The fog clears. The strength you gain lasts.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "\"The fog clears\" attributes fog-clearing to the beacon; chunk 1 assigns fog-clearing to \"Raise / wave the flame\" only, and beacons radiate emotion alignment, not clear fog.",
+      "correction": "You light a basin. The strength you gain works every generation."
+    },
+    {
+      "index": 5,
+      "line": "Light a basin: it shows you the region and makes you stronger, even after you leave.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "\"Shows you the region\" invents a revelation/fog-clearing function for beacons; chunk 1 shows beacons \"radiate the flame's current color\" as emotion auras, not map-revealing tools.",
+      "correction": "Light a basin: it radiates your flame's color and makes you stronger, even after you leave."
+    },
+    {
+      "index": 6,
+      "line": "The basin gives lasting strength when you light it.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "Places a permanent aura that radiates the flame's current color every generation tick, including while you sleep",
+      "reason": "\"Lasting strength\" is generic god-game upgrade language; the chunk specifies beacons work \"every generation tick, including while you sleep\" — the mechanical hook is cross-generational operation.",
+      "correction": "The basin gives strength every generation when you light it."
+    },
+    {
+      "index": 7,
+      "line": "Light the ruined basin. It clears the fog around it and the strength it grants does not end.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "you light a ruined basin and it gives you strength",
+      "reason": "\"Clears the fog around it\" assigns fog-clearing to beacons; chunk 1 shows only \"Raise / wave the flame\" clears fog, while beacons radiate emotion alignment as \"permanent aura.\"",
+      "correction": "Light the ruined basin. It radiates your flame's color and the strength it grants does not end."
+    },
+    {
+      "index": 8,
+      "line": "You light a basin and gain strength that survives the cycle.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Places a permanent aura that radiates the flame's current color every generation tick, including while you sleep",
+      "reason": "\"Survives the cycle\" directly captures the mechanical consequence that beacons work \"every generation tick, including while you sleep\" — strength that persists across the sleep/wake boundary is uhta-specific instrumentation.",
+      "correction": null
+    }
+  ]
+}

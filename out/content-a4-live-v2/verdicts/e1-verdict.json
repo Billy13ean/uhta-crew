@@ -1,0 +1,78 @@
+{
+  "beat": "e1",
+  "tag": "e1",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "Hoods and loose wraps, the color of dirt. Gathered stones marking where they slept last. Trails of compacted earth leading nowhere yet.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "Hoods are the era-locked nomad/tribal dress, and compacted earth trails are the freshly walked road tier specified in the visual canon.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "They wear what keeps them warm — hides and rough cloth, grey as the fog. No walls. What they build, they build to leave: circles of stone, embers still glowing.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you",
+      "reason": "\"What they build, they build to leave\" is thematic editorializing with no mechanical grounding; the chunks specify stone circles as visual markers but never this intentionality.",
+      "correction": "They wear what keeps them warm — hides and rough cloth, grey as the fog. Stone circles mark where they rested. Trails of compacted earth show where they walked."
+    },
+    {
+      "index": 3,
+      "line": "Nomads in worn hoods, carrying what they own. Their camps are rings of stone and ash — marks that say someone rested here, then moved on.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "Hoods, stone rings, ash, and the \"marks that say someone rested here\" directly echo the compacted-earth memory and temporary camp markers.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Hooded figures, feet wrapped, shoulders bent under the weight of wandering. Where they stop, stones arranged in circles. Where they walk, the ground remembers.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you",
+      "reason": "\"The ground remembers\" is a direct quote from the player-experience tutorial, and stone circles are the specified camp markers.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Coarse wraps and hoods pulled low. They gather in clearings marked only by stones and cold fire pits — places to sleep, not to stay.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "\"Places to sleep, not to stay\" is generic nomad flavor with no tie to uhta's mechanics; the chunks never contrast sleeping vs. staying in this way.",
+      "correction": "Coarse wraps and hoods pulled low. They gather in clearings marked by stones and cold fire pits — rings left behind when they move on."
+    },
+    {
+      "index": 6,
+      "line": "They dress in layers of hide and rough-spun cloth, grey and brown. Their camps are temporary — stone circles, dying fires, trails of compacted earth where they walked together.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you",
+      "reason": "Grey and brown dress, stone circles, dying fires, and compacted earth trails are all specified visual elements from the era and road canon.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "Hoods and simple wraps, no two exactly alike. When they settle for the night, they mark it with stones. When they leave, only the flattened ground remains.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "hood → coif → top hat",
+      "reason": "\"No two exactly alike\" introduces cosmetic variation the chunks never specify, and \"flattened ground\" is not the same as compacted earth trails with allegiance.",
+      "correction": "Hoods and simple wraps, grey and brown. When they settle for the night, they mark it with stones. When they leave, trails of compacted earth remain."
+    },
+    {
+      "index": 8,
+      "line": "Cloaked in whatever keeps the cold out — hides, rough fabric, hoods shadowing their faces. They build nothing that can't be abandoned: rings of stone, paths of packed dirt, embers.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you",
+      "reason": "Hides, rough fabric, hoods, stone rings, packed dirt paths, and embers are all concrete visual elements from the nomad era specification.",
+      "correction": null
+    }
+  ]
+}

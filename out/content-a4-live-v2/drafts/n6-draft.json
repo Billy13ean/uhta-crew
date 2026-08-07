@@ -1,0 +1,27 @@
+{
+  "beat": "n6",
+  "tag": "n6",
+  "label": "The found basin — the beacon that gives strength",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 23.58
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You light a basin and it gives you strength that does not fade.",
+    "Light the basin. It reveals the land and the strength it gives persists.",
+    "The basin, lit, gives strength — and the strength remains.",
+    "You light a basin. The fog clears. The strength you gain lasts.",
+    "Light a basin: it shows you the region and makes you stronger, even after you leave.",
+    "The basin gives lasting strength when you light it.",
+    "Light the ruined basin. It clears the fog around it and the strength it grants does not end.",
+    "You light a basin and gain strength that survives the cycle."
+  ]
+}

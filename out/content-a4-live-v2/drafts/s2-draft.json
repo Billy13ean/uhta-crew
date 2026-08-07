@@ -1,0 +1,27 @@
+{
+  "beat": "s2",
+  "tag": "s2",
+  "label": "Loss — the grey closes in",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.4",
+      "heading": "2.4 Win state / lose state",
+      "bm25": 37.71
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 32.19
+    }
+  ],
+  "candidates": [
+    "The burned were yours.",
+    "You fed the grey with your own flame.",
+    "What you made too bright became ash, and the ash became his.",
+    "The burned count toward the grey now.",
+    "Your excess became apathy.",
+    "Those you burned fed the sky.",
+    "Where you pushed too hard, the grey grew back.",
+    "The ones you burned are counted as grey."
+  ]
+}

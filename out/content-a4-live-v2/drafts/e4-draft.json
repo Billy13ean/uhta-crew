@@ -1,0 +1,27 @@
+{
+  "beat": "e4",
+  "tag": "e4",
+  "label": "Transition — Village into Victorian",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 19.63
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 28.43
+    }
+  ],
+  "candidates": [
+    "The ground remembers enough generations now that clocktowers rise where the devout have stood, and smoke climbs from the places where belief dug in deep enough to build machines.",
+    "What began as huddles wearing hoods now wear top hats and carry canes; the settlements that rooted have grown tall enough to need clocktowers, and some burn coal.",
+    "The people have aged through enough sleeps that their dress has folds and their towns have towers; where fear built walls, factories smoke, and where hope built open, clocks mark the hours.",
+    "Enough generations have turned that the coifs have become top hats, the villages have become towns with smoking stacks, and the believers carry staffs that have become canes.",
+    "The world has lived long enough that what you meet now wears top hats instead of hoods, and the places that settled have built upward—clocktowers where hope took root, smoking factories where fear did.",
+    "Time has passed in enough three-tick cycles that the nomads are Victorians now, their settlements grown into towns with clock faces and coal smoke marking where devotion hardened into industry.",
+    "The sleeps have stacked high enough that dress has evolved to top hats and canes, and the architecture has climbed—clocktowers and factory smoke rising from the sites where belief held long enough to build a second age.",
+    "Where once you woke to hoods and camps, now top hats and smoking chimneys; the people and their structures have aged together, clocktowers standing over hope's towns and coal-dark stacks over fear's."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "beat": "s3",
+  "tag": "s3",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You raised the flame. You walked. You slept. The ground remembers you.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The teacher's voice returning once, after a whole game of silence. Short. States what the player did, not what it means.",
+      "reason": "The register demands instrumentation (what the player did), but 'The ground remembers you' is mythology — it interprets consequence rather than stating the verb.",
+      "correction": "You raised the flame. You walked. You slept. Where you slept, your light kept working."
+    },
+    {
+      "index": 2,
+      "line": "The world moved on its own. You were the second voice.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "You play an unnamed kaiju-scale being born as a counterpoint to the world's ruling god — Uhtcearu, whose grief has held the people and the landscape in mourning. Counterpoint is meant in the musical sense: a second, independent voice set against the ruling theme",
+      "reason": "The phrase 'second voice' appears in the chunk as design metaphor, but the teacher never uses this terminology in-game — this imports lore the chunks don't support the teacher speaking.",
+      "correction": "You walked. You slept. The world moved on its own."
+    },
+    {
+      "index": 3,
+      "line": "You lit what was dark. You walked where nothing walked. The landscape is the answer.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "as each verb is first used, it is named and its consequence stated plainly — the flame applies what you feel; the roar frightens all who witness it, whatever you intend; waiting teaches people you don't matter; where you sleep, your light keeps working.",
+      "reason": "'The landscape is the answer' is generic god-game wisdom — it loses the specific mechanical consequence (where you slept, your light kept working) that only uhta has.",
+      "correction": "You lit what was dark. You walked where nothing walked. Where you slept, your light kept working."
+    },
+    {
+      "index": 4,
+      "line": "Every place you slept kept working. The sky turned because you did.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "where you sleep, your light keeps working. The narration is instrumentation, not lore — short declarative lines",
+      "reason": "States the specific mechanic (sleeping body as persistent beacon) and the consequence (sky turned) in plain instrumentation register.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "You chose what people would feel. They built what you inspired.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "as each verb is first used, it is named and its consequence stated plainly",
+      "reason": "Could appear in any god-game where player actions inspire NPC construction — no uhta-specific verb or mechanic survives.",
+      "correction": "You raised the flame. You walked. You slept. They built what you inspired."
+    },
+    {
+      "index": 6,
+      "line": "The flame became what you did with it. The world became what they did with that.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "You raise the flame and a flash clears the fog; you light a ruined basin and it gives you strength; you walk and the ground remembers you; you roar and the earth shatters ahead.",
+      "reason": "'The flame became what you did with it' is generic player-agency language — it loses the specific verbs (raise, light, walk, roar) that the teacher names.",
+      "correction": "You raised the flame. You walked. You roared. The world became what they did with that."
+    },
+    {
+      "index": 7,
+      "line": "You were born against the sky. You sang something back. This is what it made.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "The teacher's voice returning once, after a whole game of silence. Short. States what the player did, not what it means.",
+      "reason": "'You sang something back' is mythology interpreting the counterpoint metaphor — the register demands stating verbs, not meaning.",
+      "correction": "You raised the flame. You walked. You slept. This is what it made."
+    },
+    {
+      "index": 8,
+      "line": "Where you walked, the ground remembers. Where you slept, your light kept working. The sky answers.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you walk and the ground remembers you... where you sleep, your light keeps working. And the sky answers back — Uhtcearu feeding hope to the terrorized or grief to the hopeful",
+      "reason": "States three specific uhta mechanics (walking leaves trace, sleeping body persists, sky responds) in plain instrumentation register.",
+      "correction": null
+    }
+  ]
+}

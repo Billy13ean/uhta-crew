@@ -1,0 +1,27 @@
+{
+  "beat": "n3",
+  "tag": "n3",
+  "label": "First Flame — it applies what you feel",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 32.1
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "Raise the flame — it applies what you feel right now.",
+    "Wave the flame. It spreads whatever color you are.",
+    "Raise the flame — it clears the fog and pushes your current feeling outward.",
+    "The flame applies what you feel. Raise it to share that feeling with everyone who hears you.",
+    "Raise the flame. Whatever you are, they become.",
+    "Wave the flame — it isn't a cure, it's whatever you currently are.",
+    "Raise the flame. It applies your alignment, not theirs.",
+    "The flame spreads your feeling, not hope or fear — whatever you hold when you raise it."
+  ]
+}

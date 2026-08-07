@@ -1,0 +1,27 @@
+{
+  "beat": "n7",
+  "tag": "n7",
+  "label": "First Sleep — where you lie down matters",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 29.01
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You sleep. A generation passes. Where you lie down, your light keeps working.",
+    "Sleep ends the cycle. The body you leave behind radiates for every tick of the generation that follows.",
+    "When you sleep, a whole generation passes—and the sleeping body keeps glowing.",
+    "Sleep. One generation turns while you rest, and where you lie becomes a beacon until you wake.",
+    "You sleep, and the world moves on without you. But the ground where you lay remembers what you felt.",
+    "Sleep advances a generation. Your body stays—a light that works through every tick you're gone.",
+    "When stamina runs out, you sleep. A generation passes. Where you choose to rest, your flame never stops.",
+    "Sleep. The generation turns, and wherever you laid down keeps radiating until dawn."
+  ]
+}

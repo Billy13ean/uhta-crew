@@ -1,0 +1,27 @@
+{
+  "beat": "n2",
+  "tag": "n2",
+  "label": "First Walk — the ground remembers",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.2",
+      "heading": "2.2 Player verbs / actions",
+      "bm25": 29.16
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 47.03
+    }
+  ],
+  "candidates": [
+    "You walk. The ground remembers you — the tile you cross becomes a road that carries your color, and people will travel it.",
+    "Walk. Every tile you cross becomes a road — compacted, faster to traverse, and it carries your color now.",
+    "You walk, and the ground remembers: the path you make is a road, and roads carry your color forward.",
+    "Walk. The earth compacts where you step — a road forms, colored by what you feel, and others will follow it.",
+    "You walk. What you cross becomes road — people traverse it faster, and it carries the color you hold.",
+    "Walk, and the ground answers: your path becomes a road that holds your color and beckons travelers.",
+    "You walk. The tile remembers — it becomes a road others will travel, painted in what you carry.",
+    "Walk. Where you step, the earth compacts into road — faster for those who follow, and stained with your flame's color."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "beat": "s1",
+  "tag": "s1",
+  "label": "Win — the sky turns your color",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.4",
+      "heading": "2.4 Win state / lose state",
+      "bm25": 28.79
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 32.19
+    }
+  ],
+  "candidates": [
+    "You replaced Uhtcearu as the sky.",
+    "The world moved on its own, and your color crossed the whole map.",
+    "Opposing zealots were expelled or converted. The sky turns.",
+    "Your cultivated emotion became contagion-dominant, and the player replaces Uhtcearu as the sky.",
+    "What you did outlived you, uncounterable, until the sky turned your color.",
+    "You spread uncounterable past the threshold. The sky answers.",
+    "Your color crossed the whole map. Opposing zealots gone. You are the sky now.",
+    "The region stabilized under your emotion, and you replaced Uhtcearu as the sky."
+  ]
+}

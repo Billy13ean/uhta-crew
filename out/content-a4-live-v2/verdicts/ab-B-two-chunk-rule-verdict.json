@@ -1,0 +1,78 @@
+{
+  "beat": "n4",
+  "tag": "ab-B-two-chunk-rule",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "You roar. Everyone who witnesses it is frightened, whatever you intend.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the roar frightens all who witness it, whatever you intend",
+      "reason": "Direct lift from the tutorial narration description, preserving the crucial 'whatever you intend' paradox that makes this uhta-specific.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Roar. The earth shatters ahead — and everyone who sees you do it becomes afraid.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "you roar and the earth shatters ahead",
+      "reason": "Combines the tutorial's exact phrasing with the witness-fear mechanic, maintaining both the verb name and its dual consequence.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "You roar and the ground breaks open. All who witness it feel fear, no matter what your flame holds.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "no matter what your flame holds",
+      "reason": "Captures the unconditional Fear push mechanic and the flame-independence that defines Roar's unique position in the verb set.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Roar: it clears the path fast, but everyone who watches is pushed toward fear — even when you carry hope.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Shatters a line of tiles — fast traversal / path creation",
+      "reason": "Names both consequences (terrain work and emotional push) and explicitly states the flame-color exception that makes this verb mechanically distinct.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "You can roar to shatter the earth. Everyone within sight of the breaking will be frightened, regardless of what you feel.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "NPCs within witness radius R (~6 tiles) of the line take an unconditional Fear push",
+      "reason": "Uses 'within sight' instead of the witness-radius concept, and 'will be frightened' softens the unconditional mechanical push to generic emotional language.",
+      "correction": "You can roar to shatter the earth. Everyone within witness radius takes fear — unconditional, regardless of what you feel."
+    },
+    {
+      "index": 6,
+      "line": "Roar shatters a line of ground ahead of you. Anyone who witnesses the act is made afraid — your flame's color doesn't matter.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Shatters a line of tiles",
+      "reason": "Preserves the line-geometry of the verb and the flame-independence clause that distinguishes Roar from Raise mechanically.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "You roar and the land splits. Every witness is frightened by what they see, whatever emotion you carry.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "take an unconditional Fear push",
+      "reason": "'Frightened by what they see' implies reaction to spectacle rather than the mechanical push; 'whatever emotion you carry' is weaker than the flame-color independence.",
+      "correction": "You roar and the land splits. Every witness takes fear — unconditional, whatever your flame's color."
+    },
+    {
+      "index": 8,
+      "line": "Roar breaks the earth in a line. All who see it happen are afraid — the flame you hold changes nothing.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "the flame you hold changes nothing",
+      "reason": "Strongest statement of the flame-independence mechanic, making explicit what distinguishes Roar from every other verb in the system.",
+      "correction": null
+    }
+  ]
+}

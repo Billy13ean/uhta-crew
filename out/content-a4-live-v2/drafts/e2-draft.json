@@ -1,0 +1,27 @@
+{
+  "beat": "e2",
+  "tag": "e2",
+  "label": "Transition — Nomad into Village",
+  "retrieved": [
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.3",
+      "heading": "2.3 Systems",
+      "bm25": 19.71
+    },
+    {
+      "key": "uhta-gdd-v0.9.7-full.md#2.5",
+      "heading": "2.5 Player experience",
+      "bm25": 28.43
+    }
+  ],
+  "candidates": [
+    "The paths you walked have hardened into stone.",
+    "The wanderers you met have built walls, or villages, or vanished entirely.",
+    "The ground you crossed is paved now, and people walk it in your color.",
+    "Settlements stand where there were only grey huddles before.",
+    "Where tribes held conviction long enough, they stopped moving and built.",
+    "The earth remembers your steps as stone; the fearful have dug in; the hopeful have raised roofs.",
+    "What was dirt when you slept is pavement now, and the grey who watched you have chosen sides or disappeared.",
+    "The trails are roads, the wanderers are builders, and the world has aged while you rested."
+  ]
+}

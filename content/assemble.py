@@ -233,20 +233,41 @@ def _voice_judgment(p) -> str:
         "god-game about hope and fear. The fix was not a better prompt but a wider "
         "cut — **a narration beat now retrieves two chunks, the experience section "
         "*and* the verb's own row from the §2.2 table**.\n\n"
-        "That was design-stage. This run executes both arms on the same beat, with "
-        "the same Writer temperature and candidate count, and hands **both candidate "
-        "sets to the same Critic at temperature 0, judged against the same "
-        "chunks** — so the only variable is what the Writer could see.\n\n"
-        "| arm | retrieval | chunks the Writer saw | candidates | cleared the Critic |\n"
-        "|---|---|---|---|---|\n")
+        "That was design-stage. This run executes both arms on the same beat with "
+        "the same Writer temperature and candidate count. **The judge is held "
+        "constant:** both candidate sets go to the same Critic at temperature 0, "
+        "against the same chunk set — so the only variable is what the *Writer* "
+        "could see.\n\n"
+        "The two columns below are read from the run's dispatch ledger, not typed. "
+        "If they ever diverge, this table says so and the comparison is void.\n\n"
+        "| arm | Writer's retrieval | chunks the **Writer** saw | chunks the **Critic** judged against | candidates | cleared |\n"
+        "|---|---|---|---|---|---|\n")
+
+    def _secs(sel):
+        return ", ".join(f"`§{x.chunk.section}`" for x in sel.selected) or "—"
+
+    for label, rule, arm, npass in (
+            ("A — naive", "single experience-side query, top-1", a, a_pass),
+            ("B — GDD §4.5 rule", "two queries (mechanic + experience), unioned", b, b_pass)):
+        out.append(
+            f"| **{label}** | {rule} | {_secs(arm['selection'])} | "
+            f"{_secs(arm['judged_against'])} | {len(arm['candidates'])} | "
+            f"**{npass}/{len(arm['verdicts'])}** |\n")
+
+    judged_a = [x.chunk.key for x in a["judged_against"].selected]
+    judged_b = [x.chunk.key for x in b["judged_against"].selected]
+    matched = judged_a == judged_b
     out.append(
-        f"| **A — naive** | single experience-side query, top-1 | "
-        + ", ".join(f"`§{x.chunk.section}`" for x in a["selection"].selected)
-        + f" | {len(a['candidates'])} | **{a_pass}/{len(a['verdicts'])}** |\n")
-    out.append(
-        f"| **B — GDD §4.5 rule** | two queries (mechanic + experience), unioned | "
-        + ", ".join(f"`§{x.chunk.section}`" for x in b["selection"].selected)
-        + f" | {len(b['candidates'])} | **{b_pass}/{len(b['verdicts'])}** |\n\n")
+        f"\n**Judging context identical across arms: "
+        f"{'YES — the comparison is valid' if matched else 'NO — THE COMPARISON IS CONFOUNDED'}.** "
+        + ("Arm A's Writer saw one chunk and arm B's saw two, but both Critics "
+           "judged against the same two. A candidate that fails in one arm and "
+           "passes in the other did so because of what the Writer was given, not "
+           "because the judge changed.\n\n"
+           if matched else
+           "The two arms were judged against different chunk sets, so any "
+           "difference in pass rate confounds the Writer's view with the judge's. "
+           "Do not read a result from this table.\n\n"))
 
     delta = b_pass / max(1, len(b["verdicts"])) - a_pass / max(1, len(a["verdicts"]))
     if delta > 0:

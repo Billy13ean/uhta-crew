@@ -1,0 +1,78 @@
+{
+  "beat": "e3",
+  "tag": "e3",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "The places you walked are stone now. The people who believed have built what they felt.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Devotion reads as architecture.",
+      "reason": "Directly ties the visible structures to the emotional threshold mechanic that creates them—only uhta's settling rule produces this specific cause-and-effect.",
+      "correction": null
+    },
+    {
+      "index": 2,
+      "line": "Settlements stand where tribes stopped wandering. The roads you made have hardened into permanence.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles",
+      "reason": "\"Stopped wandering\" is correct but \"hardened into permanence\" is generic—the chunk specifies roads age from compacted earth to paver stone after one generation, not that they become permanent.",
+      "correction": "Settlements stand where tribes stopped wandering. The roads you made have aged from compacted earth to paver stone."
+    },
+    {
+      "index": 3,
+      "line": "What was dirt is paver stone. What was wandering is walls and rooftops.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "Captures the specific two-stage road aging mechanic and ties wandering-to-building to uhta's settling threshold.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "The paths you walked have become roads. The devout have stopped moving and built where they stood.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles",
+      "reason": "Correctly describes the devout-threshold settling rule and the road-aging mechanic in concrete, visible terms.",
+      "correction": null
+    },
+    {
+      "index": 5,
+      "line": "Villages root where conviction reached the threshold. The ground you crossed a generation ago is stone beneath their feet.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles",
+      "reason": "\"Conviction reached the threshold\" is the player-facing translation of the devout band mechanic, and the road-aging detail is specific to uhta's per-tile system.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "Your trails are stone roads now. Settlements mark where belief crossed into devotion and people stopped wandering.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles",
+      "reason": "\"Belief crossed into devotion\" correctly translates the devout-band threshold without using numbers, and ties it to the visible settling outcome.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "The paths harden. The faithful settle. What you walked as dirt, travelers now cross as stone.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "Economically captures both the road-aging mechanic and the settling rule in concrete, present-tense observation.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "Where tribes held deep feeling, they built. Where you walked, the earth remembers—compacted dirt aged into paver stone.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "Quotes the chunk's own metaphor (\"the ground remembering you\") and correctly describes both the devout-threshold settling and the two-stage road aging.",
+      "correction": null
+    }
+  ]
+}

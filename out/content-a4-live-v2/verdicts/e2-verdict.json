@@ -1,0 +1,78 @@
+{
+  "beat": "e2",
+  "tag": "e2",
+  "verdicts": [
+    {
+      "index": 1,
+      "line": "The paths you walked have hardened into stone.",
+      "verdict": "FAIL",
+      "flag_class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "Player-walked tiles gain a road tier, lowering cost... roads render green (Hope) / red (Fear) / grey (neutral)... A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes.",
+      "reason": "The chunks specify roads age from compacted earth to paver stone after one generation, not directly to stone.",
+      "correction": "The paths you walked have hardened into paver stone."
+    },
+    {
+      "index": 2,
+      "line": "The wanderers you met have built walls, or villages, or vanished entirely.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A settled tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles as what it feels — Hope roots into an open settlement, Fear digs into a walled camp.",
+      "reason": "Directly reflects the settling rule's architectural outcomes and the possibility of burnout-induced vanishing.",
+      "correction": null
+    },
+    {
+      "index": 3,
+      "line": "The ground you crossed is paved now, and people walk it in your color.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "Roads now carry a pole and a strength (init ~3). Tribes follow only their own color's roads... roads render green (Hope) / red (Fear) / grey (neutral).",
+      "reason": "Captures the allegiance-bearing road system and the visual consequence of player movement creating colored circulation.",
+      "correction": null
+    },
+    {
+      "index": 4,
+      "line": "Settlements stand where there were only grey huddles before.",
+      "verdict": "FAIL",
+      "flag_class": "GENERIC",
+      "quoted_chunk": "A settled tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles as what it feels — Hope roots into an open settlement, Fear digs into a walled camp.",
+      "reason": "Loses the mechanical specificity that settlements form from devout conviction, not just from grey huddles existing.",
+      "correction": "Where conviction crossed the threshold, settlements and walled camps stand."
+    },
+    {
+      "index": 5,
+      "line": "Where tribes held conviction long enough, they stopped moving and built.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A settled tribe whose average enters the devout band (|value| ≥ 6) and holds it for a generation stops wandering and settles as what it feels",
+      "reason": "Directly translates the settling rule's conviction-threshold and time requirement into visible consequence.",
+      "correction": null
+    },
+    {
+      "index": 6,
+      "line": "The earth remembers your steps as stone; the fearful have dug in; the hopeful have raised roofs.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes... Hope roots into an open settlement, Fear digs into a walled camp.",
+      "reason": "Weaves road aging, asymmetric settlement architecture, and the 'ground remembering' phrase into one forensic image.",
+      "correction": null
+    },
+    {
+      "index": 7,
+      "line": "What was dirt when you slept is pavement now, and the grey who watched you have chosen sides or disappeared.",
+      "verdict": "PASS",
+      "flag_class": null,
+      "quoted_chunk": "A freshly walked trail renders as compacted earth — the ground remembering you — and becomes paver stone after one generation passes... grey wanderers, pale tentatives, saturated devout",
+      "reason": "Combines road aging with the banded NPC display system showing alignment choices emerging from grey.",
+      "correction": null
+    },
+    {
+      "index": 8,
+      "line": "The trails are roads, the wanderers are builders, and the world has aged while you rested.",
+      "verdict": "FAIL",
+      "flag_class": "WRONG-REGISTER",
+      "quoted_chunk": "Era progression — Nomad/Tribal → Village → Victorian, at tunable sleep thresholds (provisional 6 and 14), derived from sleep count at draw time.",
+      "reason": "The register demands no numbers, but 'aged' implies the era system without showing what aging looks like visually.",
+      "correction": "The trails are roads, the wanderers wear coifs and carry staffs, and settlements have grown clocktowers."
+    }
+  ]
+}
