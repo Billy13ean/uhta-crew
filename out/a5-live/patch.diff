@@ -1,0 +1,23 @@
+--- a/build/uhta-slice.html
++++ b/build/uhta-slice.html
+@@ -607,6 +607,9 @@
+    sleeps at which the world's dress advances Nomad -> Village -> Victorian. */
+ const ERA_SLEEPS=[6,14];
+ function eraOf(s){return s>=ERA_SLEEPS[1]?2:s>=ERA_SLEEPS[0]?1:0;}
++
++const TEACHING={flame:'You kindle a flame. Belief spreads.',road:'You lay a road. Travelers align.',wait:'You witness in silence. Doubt fades.',raze:'You raze a settlement. They scatter.'};
++function teachingTextFor(sleep_no,verb){return eraOf(sleep_no)===0&&TEACHING[verb]?TEACHING[verb]:null;}
+ /* art pass 3: player-road two-stage aging (Director: the player's road stays its own
+    category — trodden ground while it's fresh, paved once a generation passes; GDD canon,
+    roads upgrade across generations). Pure so the headless self-test (G10) can gate it:
+@@ -634,6 +637,10 @@
+   // G1 do-nothing -> Apathy loss ~16-26 (genesis decays without a shepherd)
+   let ok1=0,sl=[];for(let s=0;s<8;s++){const w=mk(s);while(w.sleep_no<45&&!w.terminal)w.do_sleep();if(w.terminal&&w.terminal[0]==='loss'&&w.terminal[1]>=15&&w.terminal[1]<=28){ok1++;sl.push(w.terminal[1]);}}
+   out.push(['G1 do-nothing -> Apathy loss ~18', ok1===8, `${ok1}/8 loss @ ${sl.join(',')}`]);
++  // G9 teaching text: present for all verbs during genesis (era 0), absent at first sleep (era 1+)
++  const tt_gen=teachingTextFor(3,'flame')!==null&&teachingTextFor(4,'road')!==null&&teachingTextFor(5,'wait')!==null&&teachingTextFor(2,'raze')!==null;
++  const tt_gone=teachingTextFor(6,'flame')===null&&teachingTextFor(10,'road')===null&&teachingTextFor(20,'wait')===null&&teachingTextFor(14,'raze')===null;
++  out.push(['G9 teaching text: genesis-only, ends at first sleep', tt_gen&&tt_gone, `gen ${tt_gen} gone ${tt_gone}`]);
+   // G2 genesis forms: nomads gather (grey drops) and tribes settle
+   let formed=0;const g2=[];for(let s=0;s<5;s++){const w=mk(s);const g0=w.npcs.filter(x=>x.tribe===-1).length;for(let i=0;i<6;i++)w.do_sleep();const g1=w.npcs.filter(x=>x.tribe===-1).length;const settled=w.tribes.some(t=>t.settled);if(settled&&g1<g0){formed++;}g2.push(`${g0}->${g1}`);}
+   out.push(['G2 genesis: zealots gather nomads & settle', formed===5, `grey ${g2.join(' ')}`]);

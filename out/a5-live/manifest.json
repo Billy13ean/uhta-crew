@@ -1,0 +1,237 @@
+{
+  "run_id": "a5-live",
+  "pipeline": "builder (Assignment 5 \u2014 goal-oriented coding agent)",
+  "mode": "live",
+  "prompt_versions": {
+    "analyst": "analyst v2 (builder pipeline)",
+    "gap-adjudicator": "gap-adjudicator v1 (builder pipeline)",
+    "programmer": "programmer v2 (builder pipeline)"
+  },
+  "policies": {
+    "corpus": {
+      "name": "build-decision material v1",
+      "gdd_version": "0.9.9",
+      "rationale": "This pipeline decides what to build next. That decision is made against the game's design (what the game is supposed to be) AND against the project's own build order and acceptance test (what counts as next, and what counts as done). The content pipeline excluded the latter because prose a player reads must not be grounded in project process; this pipeline requires it, because process is the decision criteria.",
+      "include_top_level": {
+        "1": "Summary \u2014 the tone contract and the design stance. \u00a71 is where the narrated opening's spec actually lives: 'a narrator names each verb the first time you use it; the words end permanently at your first Sleep.'",
+        "2": "Game Mechanics \u2014 the verb table, the systems, the antagonist, the win/loss check. The feature inventory's main source.",
+        "3": "Build order \u2014 the CORE/PASS-1/PASS-2/NICE/PROPOSED/CUT tiers and the stop rule. Supplies the tier weight and the stop-rule term.",
+        "4": "Definition of Playable \u2014 the six acceptance criteria. Supplies the gate term, which is the term that decides the ranking.",
+        "8": "Logic gaps and open questions \u2014 names what is unresolved, which is how a feature gets marked dependency-blocked rather than merely unbuilt."
+      },
+      "exclude_top_level": {
+        "5": "\u00a75 is the AI-architecture / agent roster \u2014 how the game is built, not what is in it and not how the build order is decided. A feature extracted from the roster would be an agent, not a game feature.",
+        "6": "\u00a76 is technical strategy, verification layers and token budget. It describes the pipeline's own economics; nothing in it is a feature the slice could be missing.",
+        "7": "\u00a77 is revision provenance \u2014 a record of which Assignment-1 note landed where. Document history, not game material."
+      },
+      "exclude_docs": {
+        "CANON-process.md": "Process canon \u2014 Keeper escalation, report discipline, artifact counts. Governs how the project runs."
+      },
+      "exclude_front_matter": "Version preamble. Describes what changed between GDD revisions, not what is true in the world or what remains to be built."
+    },
+    "scan": {
+      "name": "authored-source-only v1",
+      "rationale": "A symbol index over a vendored library reports PRESENT for nearly every feature the GDD names, because a game framework necessarily defines Scene, World, Tween, Zone and Wander. Excluding it is not tidiness \u2014 it is the difference between a gap detector that reads the codebase and one that reports whatever the framework happens to be called.",
+      "rules": {
+        "vendor_line": "a single line longer than 2000 characters",
+        "vendor_signature": "a line opening with a known minified-bundle preamble",
+        "data_uri": "a base64 `data:image/...` payload \u2014 an embedded asset, not code"
+      }
+    }
+  },
+  "inputs": {
+    "gdd": "gdd/uhta-gdd-v0.9.9-condensed.md",
+    "build": "build/uhta-slice.html",
+    "scan_targets": [
+      "build/uhta-slice.html",
+      "rules/rules-v3.9.1-C.json",
+      "sim/harness.py"
+    ]
+  },
+  "corpus": {
+    "chunks": 33,
+    "excluded": 8
+  },
+  "scan": {
+    "symbols": 856,
+    "literals": 341,
+    "key_paths": 226,
+    "excluded_regions": 5,
+    "excluded_chars": 1253989,
+    "files": {
+      "build/uhta-slice.html": {
+        "lines": 1308,
+        "indexed": 1303,
+        "excluded": 5
+      },
+      "rules/rules-v3.9.1-C.json": {
+        "key_paths": 226
+      },
+      "sim/harness.py": {
+        "lines": 983
+      }
+    }
+  },
+  "features": 58,
+  "verdicts": {
+    "PRESENT": 1,
+    "PARTIAL": 12,
+    "ABSENT": 45
+  },
+  "adjudicated": 16,
+  "disagreements": [
+    "verb-walk",
+    "verb-flame",
+    "verb-roar",
+    "verb-beacon",
+    "verb-raze",
+    "verb-wait",
+    "verb-sleep",
+    "the-12-12-scale",
+    "the-unification-win-loss-check",
+    "burnout-the-save",
+    "genesis",
+    "settling",
+    "beacons",
+    "worship-stamina",
+    "ascension",
+    "peer-contagion",
+    "the-grief-front",
+    "road-allegiance",
+    "faction-fights"
+  ],
+  "selected": "narrated-teaching-opening",
+  "selection_margin": 7.0,
+  "new_assertions": [
+    "G9 teaching text: genesis-only, ends at first sleep"
+  ],
+  "patched_selftest": {
+    "pass": 12,
+    "fail": 0
+  },
+  "repair_round_trips": 0,
+  "stage_status": {
+    "1": "OK",
+    "2": "OK",
+    "3": "OK",
+    "4": "OK",
+    "5": "OK"
+  },
+  "duration_s": 280.7,
+  "artifacts": {
+    "FAILED.md": "9f1f282fe9b065c63f6d0508e8b5a30ef21b4a36cce1957ecd3b7958d5a4128c",
+    "FEATURES.md": "88b652f24557cb4099b31893714ab62ab8d20f44c94e8a7fa537eb38a8feee7f",
+    "GAP-REPORT.md": "8f2e25b0aa5983ba9af3052fe35b6c08a28bead74f36728acc88bc55246ea8f5",
+    "GENERATED.md": "dca7d1873478796ec03136886ba8523b37ba13352ddaa2630c5e9cb2e1d6b1f5",
+    "PRIORITY.md": "9bcdcac3ea3d104077da976f4c2061d827168c71f043a42e38756b9e75be4a95",
+    "RUN-LOG.md": "72ede58ade0e66588a4d2a40e3d309f8974d0cdfa9d490b63ce93f7691e56a94",
+    "patch.diff": "b104d8b29b6162c21e8f1283150bd276ee94212ec15aa4198cf90f4746acedc5",
+    "uhta-slice.patched.html": "0ca0d38dae521491ffcecca665cb782663d956f83d0028be5ae35fa0870f9bb6"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.9-condensed.md",
+      "agent": "analyst",
+      "bytes": 20826,
+      "sha256": "8e5249696eddb1f3"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "analyst",
+      "bytes": 6811,
+      "sha256": "389d41b0f3f72dad"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-full.md",
+      "agent": "analyst",
+      "bytes": 99631,
+      "sha256": "a2a6921c280eb233"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "codescan",
+      "bytes": 1351456,
+      "sha256": "0c68d98135225f67"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/rules/rules-v3.9.1-C.json",
+      "agent": "codescan",
+      "bytes": 16362,
+      "sha256": "a6656af817cce7fe"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/sim/harness.py",
+      "agent": "codescan",
+      "bytes": 59308,
+      "sha256": "8df4ea9edf073929"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "programmer",
+      "bytes": 1351456,
+      "sha256": "0c68d98135225f67"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a5-live/uhta-slice.patched.html",
+      "agent": "programmer",
+      "bytes": 1352279,
+      "sha256": "0ca0d38dae521491"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a5-live/patch.diff",
+      "agent": "programmer",
+      "bytes": 2206,
+      "sha256": "b104d8b29b6162c2"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a5-live/FEATURES.md",
+      "agent": "assemble",
+      "bytes": 7951,
+      "sha256": "88b652f24557cb40"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a5-live/GAP-REPORT.md",
+      "agent": "assemble",
+      "bytes": 25008,
+      "sha256": "8f2e25b0aa5983ba"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a5-live/PRIORITY.md",
+      "agent": "assemble",
+      "bytes": 7436,
+      "sha256": "9bcdcac3ea3d1040"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a5-live/GENERATED.md",
+      "agent": "assemble",
+      "bytes": 2288,
+      "sha256": "dca7d1873478796e"
+    }
+  ]
+}

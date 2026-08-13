@@ -15,3 +15,26 @@ services:
     #   docker compose run --rm crew --mock-llm
     #   docker compose run --rm crew --seeds 20
     command: ["--selftest"]
+
+  # Assignment 5. A separate image (Dockerfile.builder) rather than a second
+  # command on the crew image: the crew image is part of a tagged submission,
+  # its build-time gate is `run_crew.py --selftest`, and it carries no node.
+  # This one needs node — builder/generate.py EXECUTES the patched build's
+  # acceptance self-test, and without node that check reports SKIPPED instead
+  # of passing.
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile.builder
+    image: uhta-builder:latest
+    volumes:
+      - ./out:/app/out
+    environment:
+      # docker compose reads .env from the project directory automatically —
+      # which is the whole reason to run this way rather than exporting by hand.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CREW_MODEL: ${CREW_MODEL:-claude-sonnet-4-5}
+    # Default is the no-key selftest. Override at the CLI:
+    #   docker compose run --rm builder --mock-llm
+    #   docker compose run --rm builder --run-id a5-live
+    command: ["--selftest"]
