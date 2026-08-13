@@ -1,0 +1,62 @@
+--- a/build/uhta-slice.html
++++ b/build/uhta-slice.html
+@@ -612,6 +612,9 @@
+    roads upgrade across generations). Pure so the headless self-test (G10) can gate it:
+    a tile is 'compacted' only during the waking cycle it was first laid in. */
+ function roadStageFor(bornSleep,currentSleep){return bornSleep===currentSleep?'compacted':'paved';}
++const TEACHING_TEXT={walk:'You walk. The grey wanderers see your trail and follow roads.',flame:'You kindle a flame. Nearby people feel its warmth and adopt your conviction.',roar:'You roar. The sound carves a road through the land.',wait:'You wait and witness. Apathy grows where you stand idle.',beacon:'You light a beacon. It calls the devoted even while you sleep.',raze:'You raze a structure. Its people scatter back to wandering.',sleep:'You sleep. The world moves without you; your people spread your belief.'};
++const TEACHING_CONSEQUENCES={walk:'nomads follow roads',flame:'conviction spreads',roar:'carves road',wait:'apathy grows',beacon:'calls devoted',raze:'scatters tribe',sleep:'world moves'};
++function teachingFor(verb,sleep_no,spoken){if(sleep_no!==0)return null;if(spoken.has(verb))return null;return TEACHING_TEXT[verb]||null;}
+ const F={wanderer_grey:0,wanderer_hope_tent:1,wanderer_hope_dev:2,wanderer_fear_tent:3,wanderer_fear_dev:4,zealot_hope:5,zealot_fear:6,loner:7,burnout:8,avatar_hope:9,avatar_fear:10,ground_lit:11,ground_memory:12,ground_void:13,road_neutral:14,road_hope:15,road_fear:16,rock_a:17,grass_a:18,ember_a:19,rock_b:20,grass_b:21,ember_b:22,rock_c:23,grass_c:24,ember_c:25,settlement_hope:26,settlement_fear:27,beacon_hope:28,beacon_fear:29,ring_frozen_hope:30,ring_frozen_fear:31,clash:32,convert_sparkle_hope:33,convert_sparkle_fear:34,scatter_puff:35,flame_hope:36,flame_fear:37,flame_white:38,roar:39,belief_meter:40,stamina_pip:41,icon_wait:42,icon_sleep:43,icon_raze:44,title_wordmark:45,icon_flame_hope:46,icon_flame_fear:47,icon_roar:48,icon_beacon:49,
+   villager_grey:50,villager_hope_tent:51,villager_hope_dev:52,villager_fear_tent:53,villager_fear_dev:54,townsfolk_grey:55,townsfolk_hope_tent:56,townsfolk_hope_dev:57,townsfolk_fear_tent:58,townsfolk_fear_dev:59,settlement_hope_v2:60,settlement_fear_v2:61,settlement_hope_v3:62,settlement_fear_v3:63,road_neutral_v2:64,road_hope_v2:65,road_fear_v2:66,road_neutral_v3:67,road_hope_v3:68,road_fear_v3:69,beacon_site:70,
+   compacted_neutral:71,compacted_hope:72,compacted_fear:73,
+@@ -650,6 +653,15 @@
+   function roadErode(seed){const w=mk(seed);w._layRoad([20,20],[24,20],1);const f=w.npcs.find(x=>x.tribe!==-1&&x.I<0&&!x.zealot);if(!f)return true;f.pos=[22,20];f.v=-5;const v0=f.v;w.do_sleep();return Math.abs(f.v)<Math.abs(v0)||f.tribe===-1;}
+   let re=0;for(let s=0;s<5;s++)if(roadErode(s))re++;
+   out.push(['G5 road allegiance erodes enemy crossing', re>=4, `${re}/5 eroded`]);
++  // G12 teaching narration: each verb named once on sleep 0, null after
++  const taught=new Set();
++  const t1=teachingFor('walk',0,taught);const t2=teachingFor('walk',0,taught);taught.add('walk');const t3=teachingFor('walk',0,taught);const t4=teachingFor('walk',1,taught);
++  const valid=t1&&t1.includes('walk')&&t1===t2&&t3===null&&t4===null;
++  out.push(['G12 teaching: once per verb on sleep 0 only', valid, `walk: ${!!t1} ${!!t2} ${!!t3} ${!!t4}`]);
++  // G13 teaching coverage: all seven verbs have text
++  const verbs=['walk','flame','roar','wait','beacon','raze','sleep'];
++  let covered=0;for(const v of verbs)if(teachingFor(v,0,new Set()))covered++;
++  out.push(['G13 teaching: all 7 verbs covered', covered===7, `${covered}/7 have text`]);
+   // ---- schema 3.9 grief front (Run 23b, rules-v3.9.1-C) — scripted deterministic worlds ----
+   function gfSetup(seed){   // hope tribe all-devout; probe isolated inside the zealot sphere (no contagion
+     // neighbours within 2 tiles); an off-pole fear probe inside the front radius; 45 nomads aligned +2
+@@ -964,6 +976,7 @@
+     if(WALK_C>this.remaining()+1e-9)return;
+     this.layRoad(SIM.player_pos,np);            // your trail becomes a road (nomads follow roads)
+     SIM.act('walk',np,null,WALK_C);
++    if(SIM.sleep_no===0&&!this.tut.taught_walk){this.tut.taught_walk=true;this.tut.pending_teaching='walk';}
+     this.revealAround(SIM.player_pos,SIGHT);
+     this.tut.moved=true; if(this.tut.slept)this.tut.led=true;
+     if(SIM.terminal)this.toEnd();
+@@ -977,6 +990,7 @@
+       if(fxn)this.fxq.push({n:fxn,x:SIM.player_pos[0]*CELL+CELL/2,y:SIM.player_pos[1]*CELL+CELL/2-CELL*0.75,t:55}); }
+     if(kind==='beacon_light'){SIM.beacons.push([SIM.player_pos.slice(),SIM.player_pole]);SIM.placed_beacons++;SIM.stamina_spent_this_wake+=cost;SIM.tick([],false);}
+     else SIM.act(kind,SIM.player_pos.slice(),SIM.player_pole,cost);
++    if(SIM.sleep_no===0&&!this.tut['taught_'+kind]){this.tut['taught_'+kind]=true;this.tut.pending_teaching=kind;}
+     if(SIM.terminal)this.toEnd();
+   }
+   onClick(p){
+@@ -1005,6 +1019,7 @@
+   doSleep(){
+     this.tut.slept=true; const tier0=SIM.tier;
+     transitioning=true; this.nightAlpha=0;
++    if(SIM.sleep_no===0&&!this.tut.taught_sleep){this.tut.taught_sleep=true;this.tut.pending_teaching='sleep';}
+     const rise=()=>{ this.nightAlpha+=0.09; this.drawWorld();
+       if(this.nightAlpha<1)this.time.delayedCall(16,rise);
+       else{ SIM.do_sleep(); wakeBudget=SIM.budget(); this.revealAround(SIM.player_pos,SIGHT);
+@@ -1287,7 +1302,8 @@
+     const oppZealot=SIM.npcs.some(x=>x.zealot&&x.I*SIM.player_pole<0);
+     const frac=SIM.win_count()/SIM.pop();
+     let msg;
+-    if(!t.moved)       msg=`The world wakes as grey wanderers. Your <b>${p}</b> zealot gathers the first of them nearby — press <b>W A S D</b> to walk to your people.`;
++    if(this.tut.pending_teaching){const txt=TEACHING_TEXT[this.tut.pending_teaching];if(txt){msg=txt;this.tut.pending_teaching=null;}}
++    else if(!t.moved)       msg=`The world wakes as grey wanderers. Your <b>${p}</b> zealot gathers the first of them nearby — press <b>W A S D</b> to walk to your people.`;
+     else if(!t.flamed) msg=`<b>Left-click</b> to wash a wave of your color over the wanderers and deepen your flock. <b>Right-click</b> to roar toward a point — it carves a road there and blasts Fear along it.`;
+     else if(!t.slept)  msg=`Your flame dims (the shrinking ring). Press <b>space</b> to <b>sleep</b> — a generation passes: wanderers gather, bands settle, the world grows.`;
+     else if(!t.led)    msg=`Your <b>WASD</b> trail becomes a road stamped your color — it erodes enemies who cross it. Grow a settlement and it will <b>colonize</b>; bend rival camps until every enemy zealot falls.`;

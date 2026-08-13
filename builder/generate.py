@@ -35,10 +35,13 @@ from crew.llm import LLMCall
 
 from . import AgentError, parse_json_payload, render_chunks
 
-PROMPT_VERSION = "programmer v2 (builder pipeline)"
+PROMPT_VERSION = "programmer v4 (builder pipeline)"
 TEMPERATURE = 0.2
 
 _ASSERTION = re.compile(r"out\.push\(\[\s*'([^']+)'")
+_G_NUM = re.compile(r"^G(\d+)\b")
+#: Top-level declarations introduced by an insert, for the reachability check.
+_DECLARED = re.compile(r"^\s*(?:const|let|var|function|class)\s+([A-Za-z_$][\w$]*)", re.M)
 _SCRIPT = re.compile(r"<script>(.*?)</script>", re.DOTALL)
 
 
@@ -136,7 +139,75 @@ def check_assertions(original: str, patched: str) -> list[str]:
             f"nobody can check is the one thing that does not belong in this file. "
             f"Add at least one `out.push([...])`."
         )
+
+    # The first live run named its new assertion "G9 teaching text: …" while the
+    # build already had "G9 era resolver + era frames in atlas map". Two G9s pass
+    # every check above — the strings differ — and leave a self-test nobody can
+    # read. The numbers are the file's index; a collision is a defect.
+    used = {m.group(1) for m in (_G_NUM.match(a) for a in before) if m}
+    clashes = [a for a in gained
+               if (m := _G_NUM.match(a)) and m.group(1) in used]
+    if clashes:
+        nxt = max((int(n) for n in used), default=0) + 1
+        raise PatchInvalid(
+            f"the new assertion reuses an existing G-number: {clashes}. The build "
+            f"already uses {sorted(used, key=int)}. Number yours from G{nxt} "
+            f"upward — two assertions with the same number make the self-test "
+            f"output unreadable, which is the one thing it exists to be."
+        )
     return gained
+
+
+def check_reachable(patched: str, patch: Patch) -> list[str]:
+    """Whatever the patch declares must be USED by the game, not only by its test.
+
+    The first live run produced this, and it passed every other check in this
+    module:
+
+        const TEACHING={flame:'You kindle a flame…'};
+        function teachingTextFor(sleep_no,verb){…}
+
+    `teachingTextFor` was called from exactly two places — the two self-test
+    assertions the same patch added. `guide()` and `setTip` were byte-identical
+    to the original. The build was green, the assertion was green, and the player
+    saw nothing, because nothing in the render path ever called it.
+
+    A pure resolver plus an assertion that exercises it is a local maximum: it
+    satisfies "extend the self-test" at the lowest possible cost and delivers no
+    feature. So reachability is a gate. A declaration is reachable when it is
+    referenced somewhere that is neither its own definition nor inside
+    `selfTest()`.
+    """
+    declared = _DECLARED.findall(patch.insert)
+    if not declared:
+        return []
+
+    st_start, st_end = selftest_region(patched)
+    lines = patched.splitlines()
+    insert_lines = set(patch.insert.splitlines())
+    outside = "\n".join(
+        ln for i, ln in enumerate(lines)
+        if not (st_start <= i <= st_end) and ln not in insert_lines
+    )
+
+    reached = [n for n in declared if re.search(rf"\b{re.escape(n)}\b", outside)]
+    # ONE entry point is enough. A patch may legitimately declare a lookup table
+    # consumed only by its own resolver — `TEACHING` used solely inside
+    # `teachingTextFor` is fine, as long as something in the game calls
+    # `teachingTextFor`. Requiring every name to be externally referenced
+    # rejected that shape, which is the correct one.
+    if not reached:
+        raise PatchInvalid(
+            f"the patch declares {declared} and nothing outside the self-test "
+            f"ever calls any of them. That is dead code with a passing test "
+            f"attached: the build stays green and the player sees nothing change.\n\n"
+            f"Wire it into the running game. `guide()` builds the string that "
+            f"`setTip()` renders every frame — splice the narration there with an "
+            f"`edits` entry, so the feature reaches the screen and not just the "
+            f"assertion. At least one declaration must be reachable from the "
+            f"render path."
+        )
+    return reached
 
 
 def check_parses(patched: str, node_bin: str = "node") -> None:
@@ -263,10 +334,16 @@ def check_selftest_runs(patched: str, node_bin: str = "node") -> tuple[int, int]
 
 def validate(original: str, patch: Patch, node_bin: str = "node"
              ) -> tuple[str, list[str], tuple[int, int]]:
+    # Order is cheapest-and-most-structural first, most-semantic last. You only
+    # ask "is this wired into the game" once you know it is valid JavaScript,
+    # carries a real assertion, and actually runs green — otherwise a patch that
+    # does not parse gets reported as a wiring problem, which sends the repair
+    # round-trip after the wrong thing.
     patched = apply_patch(original, patch)
     gained = check_assertions(original, patched)
     check_parses(patched, node_bin)
     result = check_selftest_runs(patched, node_bin)
+    check_reachable(patched, patch)
     return patched, gained, result
 
 
@@ -452,6 +529,45 @@ def selftest_anchor_candidates(source: str, max_n: int = 12) -> list[tuple[int, 
     return out[-max_n:] if len(out) > max_n else out
 
 
+#: Methods the prompt names as wiring points. An `edits` entry replaces a line
+#: rather than inserting after one, so an indented line inside a method body is
+#: a legal target here in a way it never is for the insertion anchor.
+HOOK_METHODS = ("moveStep(dx,dy){", "tryAct(kind,cost){", "doSleep(){", "guide(){")
+
+
+def hook_candidates(source: str, per_method: int = 6) -> list[tuple[int, str]]:
+    """Menu of real lines inside the render-layer methods, for `edits`.
+
+    The second live run invented `'  constructor(seed,poles){'` for an `edits`
+    anchor — the real line is
+    `constructor(seed,poles=[-1,-1,1],start='tentative'){`. Exactly the failure
+    the insertion menu was built to stop, in the one field that was still free
+    text. So `edits` gets a menu too, and after this there is no anchor anywhere
+    in the patch contract that the model composes itself.
+    """
+    lines = source.splitlines()
+    uniq = _unique_lines(source, lines)
+    out: list[tuple[int, str]] = []
+    for sig in HOOK_METHODS:
+        start = next((i for i, l in enumerate(lines) if l.strip() == sig.strip()), -1)
+        if start < 0:
+            continue
+        taken = 0
+        for i in range(start, min(start + 40, len(lines))):
+            ln = lines[i]
+            if i > start and re.match(r"^  [A-Za-z_$][\w$]*\s*\(", ln):
+                break                      # next method — stop
+            if not (ANCHOR_MIN_CHARS <= len(ln) <= ANCHOR_MAX_CHARS):
+                continue
+            if ln not in uniq or not is_complete_statement(ln):
+                continue
+            out.append((i + 1, ln))
+            taken += 1
+            if taken >= per_method:
+                break
+    return out
+
+
 def render_menu(cands: list[tuple[int, str]], width: int = 190) -> str:
     if not cands:
         return "(no candidate found — this is a bug in anchor_candidates, not your problem)"
@@ -510,18 +626,31 @@ def _pick(agent: str, raw: dict, id_field: str, text_field: str,
 
 
 def _parse_patch(agent: str, raw, anchors: dict[int, str] | None = None,
-                 st_anchors: dict[int, str] | None = None) -> Patch:
+                 st_anchors: dict[int, str] | None = None,
+                 hooks: dict[int, str] | None = None) -> Patch:
     if not isinstance(raw, dict):
         raise AgentError(agent, f"expected a JSON object, got {type(raw).__name__}")
     edits = raw.get("edits") or []
     if not isinstance(edits, list):
         raise AgentError(agent, "`edits` must be an array (possibly empty)")
+
+    # Resolve every edit's anchor from the hook menu. After this no anchor in the
+    # patch contract is text the model wrote.
+    resolved: list[dict] = []
+    for i, e in enumerate(edits, 1):
+        if not isinstance(e, dict):
+            continue
+        e = dict(e)
+        e["anchor"] = _pick(agent, e, "anchor_id", "anchor", hooks,
+                            f"edits[{i}].anchor")
+        resolved.append(e)
+    edits = resolved
     return Patch(
         summary=str(raw.get("summary") or "").strip(),
         rationale=str(raw.get("rationale") or "").strip(),
         anchor=_pick(agent, raw, "anchor_id", "anchor", anchors, "The insertion anchor"),
         insert=str(raw.get("insert") or ""),
-        edits=[e for e in edits if isinstance(e, dict)],
+        edits=edits,
         # Only required when there are assertions to place. A patch may deliver
         # them through `edits` instead — the fixture does — and `apply_patch`
         # already treats the anchor as needed only when selftest_insert is set.
@@ -544,8 +673,10 @@ def run_programmer(llm, prompts_dir, feature, verdict, selection, source: str, i
                   if verdict.quoted_code else ""))
     cands = anchor_candidates(source)
     st_cands = selftest_anchor_candidates(source)
+    hook_cands = hook_candidates(source)
     anchors = {n: ln for n, ln in cands}
     st_anchors = {n: ln for n, ln in st_cands}
+    hooks = {n: ln for n, ln in hook_cands}
 
     base = (template
             .replace("{{FEATURE_NAME}}", feature.name)
@@ -555,7 +686,8 @@ def run_programmer(llm, prompts_dir, feature, verdict, selection, source: str, i
             .replace("{{CODE_CONTEXT}}", code_context(source, verdict, idx))
             .replace("{{SELFTEST_CONTEXT}}", _selftest_context(source))
             .replace("{{ANCHOR_MENU}}", render_menu(cands))
-            .replace("{{SELFTEST_ANCHOR_MENU}}", render_menu(st_cands)))
+            .replace("{{SELFTEST_ANCHOR_MENU}}", render_menu(st_cands))
+            .replace("{{HOOK_MENU}}", render_menu(hook_cands)))
 
     repair_log: list[str] = []
     user = base
@@ -569,7 +701,7 @@ def run_programmer(llm, prompts_dir, feature, verdict, selection, source: str, i
             user=user, temperature=TEMPERATURE, max_tokens=8000,
         ))
         patch = _parse_patch(agent_label, parse_json_payload(agent_label, out),
-                             anchors, st_anchors)
+                             anchors, st_anchors, hooks)
         try:
             patched, gained, selftest_result = validate(source, patch, node_bin)
             return patch, patched, gained, repair_log, selftest_result

@@ -83,6 +83,20 @@ _PROGRAMMER_PATCH = {
         "anchor": "  return out;",
         "replacement": _NARRATION_ASSERTIONS + "  return out;",
         "why": "the new assertions have to run before selfTest returns its results array",
+    }, {
+        # THE WIRING. Without this the patch is a pure resolver with a passing
+        # test and no effect on the game — which is exactly what the first
+        # successful live run produced, and what check_reachable now rejects.
+        # tryAct() is the single point every stamina-spending verb passes
+        # through, so one splice here covers flame / roar / raze / wait / beacon.
+        "anchor": "    if(cost>this.remaining()+1e-9)return;",
+        "replacement":
+            "    if(cost>this.remaining()+1e-9)return;\n"
+            "    { const _s=this._spoken||(this._spoken=new Set());   // §1: per-verb first use\n"
+            "      const _n=narrationFor(kind,_s,SIM.sleep_no);\n"
+            "      if(_n){_s.add(kind); setTip(_n);} }",
+        "why": "narrationFor has to reach the screen. tryAct is where every verb "
+               "is dispatched, and setTip is what guide() already renders through.",
     }],
     "selftest_anchor": "",
     "selftest_insert": "",

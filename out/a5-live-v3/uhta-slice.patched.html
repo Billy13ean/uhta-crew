@@ -1302,12 +1302,7 @@ class Slice extends Phaser.Scene{
     const oppZealot=SIM.npcs.some(x=>x.zealot&&x.I*SIM.player_pole<0);
     const frac=SIM.win_count()/SIM.pop();
     let msg;
-    /* [DIRECTOR AMEND — run a5-live-v3] The agent cleared pending_teaching on first READ,
-       and setTip(this.guide()) runs every frame from update(), so each line showed for one
-       frame (~16ms) and was gone. Hold it until the next verb overwrites it, and drop it at
-       the first Sleep — GDD §1: 'the words end permanently at your first Sleep'. */
-    if(this.tut.pending_teaching){const txt=TEACHING_TEXT[this.tut.pending_teaching];
-      if(txt&&SIM.sleep_no===0)msg=txt; else this.tut.pending_teaching=null;}
+    if(this.tut.pending_teaching){const txt=TEACHING_TEXT[this.tut.pending_teaching];if(txt){msg=txt;this.tut.pending_teaching=null;}}
     else if(!t.moved)       msg=`The world wakes as grey wanderers. Your <b>${p}</b> zealot gathers the first of them nearby — press <b>W A S D</b> to walk to your people.`;
     else if(!t.flamed) msg=`<b>Left-click</b> to wash a wave of your color over the wanderers and deepen your flock. <b>Right-click</b> to roar toward a point — it carves a road there and blasts Fear along it.`;
     else if(!t.slept)  msg=`Your flame dims (the shrinking ring). Press <b>space</b> to <b>sleep</b> — a generation passes: wanderers gather, bands settle, the world grows.`;

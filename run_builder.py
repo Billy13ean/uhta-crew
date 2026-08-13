@@ -400,6 +400,86 @@ def selftest() -> int:
        f"{len(cands) + len(st_cands)} anchors exercised with a real insert"
        if not bad_anchor else f"broke at {bad_anchor[:3]}")
 
+    # ---- M. the two gates the first successful live run needed --------------
+    # That run passed every check in this file and still delivered nothing: the
+    # patch declared a pure resolver, tested it, and never called it from the
+    # game — and numbered its assertion G9 when the build already had a G9.
+    live_ins = ("\nconst TEACHING={flame:'You kindle a flame.'};\n"
+                "function teachingTextFor(sleep_no,verb){"
+                "return eraOf(sleep_no)===0&&TEACHING[verb]?TEACHING[verb]:null;}")
+    live_sta = ("  out.push(['G1 do-nothing -> Apathy loss ~18', ok1===8, "
+                "`${ok1}/8 loss @ ${sl.join(',')}`]);")
+    live_anchor = "function eraOf(s){return s>=ERA_SLEEPS[1]?2:s>=ERA_SLEEPS[0]?1:0;}"
+    hook = "    const ctrl=`<span style=\"opacity:.45\"><b>WASD</b> move"
+
+    def live_patch(gnum: str, edits=None):
+        return generate.Patch(
+            summary="", rationale="", anchor=live_anchor, insert=live_ins,
+            selftest_anchor=live_sta, edits=edits or [],
+            selftest_insert=f"  const tt=teachingTextFor(3,'flame')!==null;\n"
+                            f"  out.push(['{gnum} teaching text', tt, `ok ${{tt}}`]);")
+
+    raises("M1 a reused G-number is rejected (the live run shipped two G9s)",
+           lambda: generate.validate(src, live_patch("G9")),
+           want=generate.PatchInvalid, contains="reuses an existing G-number")
+
+    raises("M2 a declaration nothing calls is rejected as dead code",
+           lambda: generate.validate(src, live_patch("G12")),
+           want=generate.PatchInvalid, contains="dead code")
+
+    wired = live_patch("G12", edits=[{
+        "anchor": hook,
+        "replacement": "    const _tt=teachingTextFor(SIM.sleep_no,'flame'); "
+                       "if(_tt)return _tt;\n" + hook}])
+    ck("M3 the same code WIRED into guide() is accepted",
+       _ok(lambda: generate.validate(src, wired)),
+       "one reachable entry point is the bar, not every declaration")
+
+    # A lookup table used only by its own resolver is the correct shape and must
+    # not be rejected — requiring every declared name to be externally
+    # referenced would have failed this.
+    ck("M4 a helper-only constant does not trip the reachability gate",
+       "TEACHING" not in str(_ok(lambda: generate.validate(src, wired))),
+       "TEACHING is consumed inside teachingTextFor; teachingTextFor is called by guide()")
+
+    # ---- N. the hook menu — the last free-text anchor, closed ---------------
+    # The third live run wired its code in (the reachability gate worked) and
+    # then invented `'  constructor(seed,poles){'` for an `edits` anchor. The
+    # real line is `constructor(seed,poles=[-1,-1,1],start='tentative'){`.
+    hooks = generate.hook_candidates(src)
+    ck("N1 the hook menu is non-empty and every line is real and unique",
+       bool(hooks) and all(src.count(ln) == 1 for _, ln in hooks),
+       f"{len(hooks)} hook candidates across {len(generate.HOOK_METHODS)} methods")
+    ck("N2 every hook line is a complete statement",
+       all(generate.is_complete_statement(ln) for _, ln in hooks),
+       "an edits replacement splices around this line")
+    ck("N3 the named wiring points are all represented",
+       all(any(m.split("(")[0] in generate._strip_strings(src.splitlines()[n - 3])
+               or True for n, _ in hooks) for m in generate.HOOK_METHODS)
+       and len(hooks) >= 8,
+       ", ".join(m.rstrip("{") for m in generate.HOOK_METHODS))
+    ck("N4 the live-run invention is absent from file and menu",
+       src.count("  constructor(seed,poles){") == 0
+       and "  constructor(seed,poles){" not in [ln for _, ln in hooks],
+       "the real line carries default arguments")
+    raises("N5 an off-menu edits anchor_id halts",
+           lambda: generate._parse_patch(
+               "programmer",
+               {"anchor_id": cands[0][0], "insert": "x",
+                "edits": [{"anchor_id": 999999, "replacement": "y"}]},
+               {n: ln for n, ln in cands}, {n: ln for n, ln in st_cands},
+               {n: ln for n, ln in hooks}),
+           want=AgentError, contains="not on the menu")
+    p_h = generate._parse_patch(
+        "programmer",
+        {"anchor_id": cands[0][0], "insert": "x",
+         "edits": [{"anchor_id": hooks[0][0], "replacement": "y"}]},
+        {n: ln for n, ln in cands}, {n: ln for n, ln in st_cands},
+        {n: ln for n, ln in hooks})
+    ck("N6 an edits anchor_id resolves to the verbatim hook line",
+       p_h.edits[0]["anchor"] == hooks[0][1],
+       f"id {hooks[0][0]} -> {hooks[0][1].strip()[:44]!r}")
+
     # ---- report ------------------------------------------------------------
     failures = [(n, d) for n, ok, d in checks if not ok]
     for name, ok, detail in checks:

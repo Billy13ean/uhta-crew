@@ -1,12 +1,25 @@
 # Programmer — write the selected feature
 
-**Version:** programmer v2 (builder pipeline)
+**Version:** programmer v4 (builder pipeline)
 
 > **v2 (live-run fix).** v1 asked for an `anchor` copied verbatim from source the
 > Programmer had never been shown — `code_context()` only surfaces lines the gap
 > detector matched, and a genuinely-missing feature matches nothing. The model
 > reconstructed two real function names with invented bodies and the patch was
 > rejected twice. v2 replaces free-text anchors with numbered menus of real lines.
+>
+> **v3 (second live-run fix).** v2 produced a patch that passed every gate and
+> delivered nothing: a pure resolver, tested, never called from the render path,
+> gated on `eraOf(...)===0` (six sleeps) where the GDD says the first Sleep, and
+> numbered G9 against an existing G9. v3 names the call sites, states the
+> literal-threshold rule, and `check_reachable` makes dead code a halt.
+>
+> **v4 (third live-run fix).** v3 pushed the Programmer to wire its code in, and
+> it fell into the last free-text field: it invented `'  constructor(seed,poles){'`
+> for an `edits` anchor (the real line is
+> `constructor(seed,poles=[-1,-1,1],start='tentative'){`). v4 gives `edits` a
+> menu too. No anchor anywhere in the contract is now text the model composes.
+
 **Temperature:** 0.2
 **Consumed by:** `builder/generate.py :: run_programmer`
 
@@ -88,7 +101,7 @@ rejected twice and the run died. An index cannot fail that way.
   "anchor_id": 158,
   "insert": "the new code, ready to paste",
   "edits": [
-    {"anchor": "an exact unique existing line to replace", "replacement": "what it becomes", "why": "why this line had to change"}
+    {"anchor_id": 974, "replacement": "the picked line, plus your addition", "why": "why this line had to change"}
   ],
   "selftest_anchor_id": 754,
   "selftest_insert": "one or more out.push([...]) assertions in the existing G-numbered style",
@@ -99,15 +112,72 @@ rejected twice and the run died. An index cannot fail that way.
 `anchor_id` and `selftest_anchor_id` are **numbers from the menus above**. An id
 that is not on its menu halts the run.
 
-`edits[].anchor` is the one place a literal line is still required, because you
-are replacing a line rather than inserting after one. Take it from the source
-shown in the context section below, exactly as printed — and only when the
-feature genuinely requires an existing behaviour to stop.
+#### Hook lines — for `edits`, pick by id from this menu too
+
+An `edits` entry REPLACES the line you pick, so your `replacement` must normally
+contain that line again plus your addition. These are the real lines inside
+`moveStep`, `tryAct`, `doSleep` and `guide` — the wiring points.
+
+{{HOOK_MENU}}
+
+Every `edits` entry takes `anchor_id` from this menu. There is no field in this
+patch left where you write out a line of the file yourself:
+
+```json
+"edits": [
+  {"anchor_id": 974,
+   "replacement": "    if(cost>this.remaining()+1e-9)return;\n    …your addition…",
+   "why": "the narration has to fire when a verb is actually spent"}
+]
+```
+
+### The patch must reach the SCREEN, not just the self-test
+
+A previous run passed every check in this list and delivered nothing. It added:
+
+```js
+const TEACHING={flame:'You kindle a flame…'};
+function teachingTextFor(sleep_no,verb){return eraOf(sleep_no)===0&&TEACHING[verb]?TEACHING[verb]:null;}
+```
+
+…tested it, and never called it from anywhere else. The build was green, the
+assertion was green, and the player saw no change, because nothing in the render
+path referenced it. **A pure resolver plus an assertion that exercises it is the
+cheapest way to satisfy the letter of these rules and the surest way to deliver
+nothing.**
+
+So: **at least one thing your `insert` declares must be referenced from outside
+your insert and outside `selfTest()`**, via an `edits` entry. Unreferenced
+declarations halt the run.
+
+Where the hook goes, in this build:
+
+- **`tryAct(kind, cost)`** is where every stamina-spending verb is dispatched —
+  one splice covers flame, roar, raze, wait and beacon. The line
+  `    if(cost>this.remaining()+1e-9)return;` is unique and is the natural place
+  to fire once a verb is known to succeed.
+- **`moveStep(dx,dy)`** is the same for Walk; **`doSleep()`** for Sleep.
+- **`setTip(html)`** is what puts a string on screen. `guide()` returns the
+  string it renders each frame.
+
+### Read the GDD requirement literally
+
+If it names a threshold, use that threshold — not a nearby one that already
+exists in the file. The previous run gated its narration on `eraOf(sleep_no)===0`
+because `eraOf` was in front of it. `ERA_SLEEPS=[6,14]`, so era 0 runs through
+sleep 5: the text it claimed "ends at first sleep" actually ran for six. If the
+document says *first Sleep*, the condition is `sleep_no===0`.
+
+Likewise *"names each verb the first time you use it"* means per-VERB state — a
+set of verbs already spoken — not a per-category flag and not a single boolean.
 
 Rules that halt the run if broken:
 
 - an `anchor_id` or `selftest_anchor_id` that is not on its menu
-- an `edits[].anchor` that is not in the file, or appears more than once
+- a declaration in `insert` that nothing outside `selfTest()` ever references
+- a new assertion reusing an existing `G`-number. The build uses G1–G11; number
+  yours from **G12** upward
+- an `edits[].anchor_id` that is not on the hook menu
 - a patch that removes or alters any of the existing self-test assertions — they
   are the proof the port is faithful and they must all still be there
 - `selftest_insert` that adds no new `out.push([` assertion. **A feature that
