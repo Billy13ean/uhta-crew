@@ -264,17 +264,32 @@ def selftest() -> int:
     # ---- J. the patch validator, against the real build --------------------
     src = bb.read_bb(BUILD_TARGET, "selftest")
     before = generate.assertions_in(src)
-    ck("J1 the committed build carries 11 assertions", len(before) == 11, f"{len(before)}")
+    # The lowest free G-number in the CURRENT build. Hardcoding 12 is what
+    # broke this selftest once the pipeline's own patch was applied.
+    _nextg = generate.next_g_number(src)
+    # Not "11" — the build gains assertions each time a generated patch is
+    # applied. Assert the shape (a numbered G-series, none missing) rather than
+    # a count that goes stale the moment this pipeline succeeds.
+    gnums = sorted(int(m.group(1)) for a in before
+                   if (m := generate._G_NUM.match(a)))
+    ck("J1 the committed build carries a complete G-series",
+       len(before) >= 11 and gnums == list(range(1, len(gnums) + 1)),
+       f"{len(before)} assertions, G1-G{max(gnums, default=0)}")
 
-    from builder.fixtures import _PROGRAMMER_PATCH
+    from builder.fixtures import _PROGRAMMER_PATCH, _renumber
+    # Renumber past whatever the CURRENT build uses. Once a generated patch has
+    # been applied, blackboard/build owns G12/G13 and the fixture collides with
+    # it — which is how `--selftest` broke the moment a5-live-v3 landed.
+    _PROGRAMMER_PATCH = _renumber(_PROGRAMMER_PATCH, src)
     patch = generate.Patch(**{k: v for k, v in _PROGRAMMER_PATCH.items()})
     patched, gained, (npass, nfail) = generate.validate(src, patch)
+    n_after = len(generate.assertions_in(patched))
     ck("J2 the fixture patch applies and parses (node --check)",
-       len(generate.assertions_in(patched)) == 13, f"11 -> {len(generate.assertions_in(patched))}")
+       n_after == len(before) + 2, f"{len(before)} -> {n_after}")
     ck("J3 every original assertion survives",
        all(a in generate.assertions_in(patched) for a in before), f"{len(gained)} new")
     ck("J9 the PATCHED BUILD RUNS and its self-test is green",
-       npass == 13 and nfail == 0, f"headless: {npass} PASS / {nfail} FAIL")
+       npass == n_after and nfail == 0, f"headless: {npass} PASS / {nfail} FAIL")
 
     def bad(**kw):
         base = dict(_PROGRAMMER_PATCH)
@@ -304,7 +319,7 @@ def selftest() -> int:
            want=generate.PatchInvalid, contains="threw")
     raises("J11 a patch that leaves the self-test RED is rejected",
            bad(edits=[{"anchor": "  return out;",
-                       "replacement": "  out.push(['G12 deliberately false', false, 'x']);\n"
+                       "replacement": f"  out.push(['G{_nextg} deliberately false', false, 'x']);\n"
                                       "  return out;"}]),
            want=generate.PatchInvalid, contains="not green")
 
@@ -424,10 +439,10 @@ def selftest() -> int:
            want=generate.PatchInvalid, contains="reuses an existing G-number")
 
     raises("M2 a declaration nothing calls is rejected as dead code",
-           lambda: generate.validate(src, live_patch("G12")),
+           lambda: generate.validate(src, live_patch(f"G{_nextg}")),
            want=generate.PatchInvalid, contains="dead code")
 
-    wired = live_patch("G12", edits=[{
+    wired = live_patch(f"G{_nextg}", edits=[{
         "anchor": hook,
         "replacement": "    const _tt=teachingTextFor(SIM.sleep_no,'flame'); "
                        "if(_tt)return _tt;\n" + hook}])

@@ -67,6 +67,34 @@ _NARRATION_ASSERTIONS = """  // ---- narration (GDD §1): per-verb first use, an
   }
 """
 
+def _renumber(patch: dict, prompt: str) -> dict:
+    """Shift the fixture's G-numbers past whatever the target build already uses.
+
+    The fixture is written against an 11-assertion build, so it authors G12/G13.
+    Once a generated patch has been APPLIED, the build owns G12/G13 and the
+    fixture collides with it — `--selftest` and `--mock-llm` both started failing
+    the moment the a5-live-v3 patch landed in `blackboard/build/`.
+    The prompt carries the live self-test, so read the numbers out of that rather
+    than assuming any particular build.
+    """
+    used = [int(n) for n in re.findall(r"out\.push\(\['G(\d+)", prompt)]
+    base = max(used, default=11) + 1
+    if base == 12:
+        return patch
+    shift = base - 12
+    out = json.loads(json.dumps(patch))
+    def bump(m):
+        return f"G{int(m.group(1)) + shift}"
+    for key in ("selftest_insert", "insert"):
+        if out.get(key):
+            out[key] = re.sub(r"G(1[23])\b", bump, out[key])
+    out["edits"] = [{**e, "replacement": re.sub(r"G(1[23])\b", bump, e.get("replacement", ""))}
+                    for e in out.get("edits", [])]
+    out["assertion_names"] = [re.sub(r"G(1[23])\b", bump, a)
+                              for a in out.get("assertion_names", [])]
+    return out
+
+
 _PROGRAMMER_PATCH = {
     "summary": "Adds the narrated teaching opening's two GDD-specified rules as pure "
                "resolvers, and gates both with new self-test assertions.",
@@ -161,5 +189,6 @@ class BuilderMockLLM(BaseLLM):
         if agent.startswith("gap"):
             return _gap(call.user)
         if agent.startswith("programmer"):
-            return "```json\n" + json.dumps(_PROGRAMMER_PATCH, indent=1) + "\n```"
+            return "```json\n" + json.dumps(_renumber(_PROGRAMMER_PATCH, call.user),
+                                            indent=1) + "\n```"
         raise RuntimeError(f"no builder fixture for agent {call.agent!r}")

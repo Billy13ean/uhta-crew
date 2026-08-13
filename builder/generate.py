@@ -158,6 +158,20 @@ def check_assertions(original: str, patched: str) -> list[str]:
     return gained
 
 
+def next_g_number(source: str) -> int:
+    """The lowest free G-number in this build's self-test.
+
+    Nothing may hardcode `G12`. The moment a generated patch is APPLIED, the
+    build owns G12 — and the fixtures and selftest that used to produce it start
+    colliding with the file they are testing against. That is exactly what broke
+    `--selftest` after the a5-live-v3 patch landed: the one command this
+    pipeline's README tells a reader to run crashed, because the build had moved
+    and the tests had not.
+    """
+    used = [int(m.group(1)) for a in assertions_in(source) if (m := _G_NUM.match(a))]
+    return max(used, default=0) + 1
+
+
 def check_reachable(patched: str, patch: Patch) -> list[str]:
     """Whatever the patch declares must be USED by the game, not only by its test.
 
