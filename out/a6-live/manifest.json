@@ -1,0 +1,612 @@
+{
+  "run_id": "a6-live",
+  "pipeline": "ger (Assignment 6 \u2014 Generator/Evaluator/Refiner/Circuit Breaker)",
+  "pipeline_version": "ger v1 (Assignment 6)",
+  "status": "COMPLETE_PENDING_DIRECTOR",
+  "mode": "live",
+  "created": "2026-08-18T00:38:20",
+  "model": "claude-sonnet-4-5",
+  "llm_backend": "live",
+  "llm_calls": 29,
+  "llm_tokens": {
+    "input": 73775,
+    "output": 2589
+  },
+  "python": "3.11.16",
+  "content_type": "first-use verb narration (the build's TEACHING_TEXT const, seven verbs)",
+  "rule_enforced": "GDD \u00a72.5 narration register \u2014 short, declarative, second person, names the verb, states its consequence, no mythology; \u00a72.3 no numbers; no interface language",
+  "verbs": [
+    "walk",
+    "flame",
+    "roar",
+    "wait",
+    "beacon",
+    "raze",
+    "sleep"
+  ],
+  "corpus": {
+    "files": [
+      "CANON.md",
+      "CANON-process.md",
+      "uhta-gdd-v0.9.7-full.md",
+      "uhta-gdd-v0.9.7-abridged.md"
+    ],
+    "policy": "game-material-only v1",
+    "chunks_indexed": 24,
+    "chunks_excluded": 28,
+    "words_indexed": 12315
+  },
+  "retrieval": {
+    "scorer": "BM25 (content/retriever.py, reused)",
+    "k1": 1.5,
+    "b": 0.75,
+    "score_threshold": 8.0,
+    "token_budget": 6000,
+    "selection_rule": "GDD \u00a74.5 two-chunk rule per verb (mechanical consequence + experience)"
+  },
+  "prompt_versions": {
+    "generator": "ger-generator v1 (Assignment 6)",
+    "evaluator": "ger-evaluator v1 (Assignment 6)",
+    "refiner": "ger-refiner v1 (Assignment 6)",
+    "pipeline": "ger v1 (Assignment 6)"
+  },
+  "breaker": {
+    "max_refine_rounds_per_verb": 2,
+    "escalation_limit": 3,
+    "escalated_verbs": [
+      "flame"
+    ],
+    "tripped": false
+  },
+  "outcomes": [
+    {
+      "verb": "walk",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "Walk \u2014 the ground remembers you, and becomes a road that carries your color."
+    },
+    {
+      "verb": "flame",
+      "status": "ESCALATED",
+      "refinements_used": 2,
+      "final_line": null
+    },
+    {
+      "verb": "roar",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "You roar, and everyone who witnesses it is frightened \u2014 whatever you intend."
+    },
+    {
+      "verb": "wait",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "Wait \u2014 and those who watch you learn that you do not matter."
+    },
+    {
+      "verb": "beacon",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "You light a beacon, and it radiates what you feel every generation, even while you sleep."
+    },
+    {
+      "verb": "raze",
+      "status": "ACCEPTED",
+      "refinements_used": 2,
+      "final_line": "You raze the settlement. The tribe scatters. Witnesses break."
+    },
+    {
+      "verb": "sleep",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "You sleep, and where you lie, your light radiates through every moment until you wake."
+    }
+  ],
+  "baseline_audit": [
+    {
+      "verb": "walk",
+      "line": "You walk. The grey wanderers see your trail and follow roads.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "every tile walked becomes a compacted road NPCs traverse faster, and roads now **carry your color**",
+        "reason": "The line omits the load-bearing consequence that roads carry your color\u2014the player is told wanderers follow roads but not that those roads are colored and therefore spread the player's alignment, which is the mechanical heart of Walk."
+      },
+      "caught": true
+    },
+    {
+      "verb": "flame",
+      "line": "You kindle a flame. Nearby people feel its warmth and adopt your conviction.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "Raise / wave the flame | ~2.5 | Clears fog locally; applies the flame's current alignment to NPCs in radius",
+        "reason": "The line says the flame makes people 'adopt your conviction' (implying conversion to your alignment), but the chunk specifies it 'applies the flame's current alignment' \u2014 the load-bearing fact is that it applies *whatever you currently are* (hope, fear, or grey), not that it converts people to follow you."
+      },
+      "caught": true
+    },
+    {
+      "verb": "roar",
+      "line": "You roar. The sound carves a road through the land.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "NPCs within **witness radius R (~6 tiles)** of the line take an unconditional Fear push (~2.8) regardless of flame color",
+        "reason": "The line omits the load-bearing unconditional consequence demanded by the beat brief \u2014 that everyone who witnesses the roar is frightened regardless of flame color \u2014 making it read identically in a Hope run and thus materially misleading about the verb's effect."
+      },
+      "caught": true
+    },
+    {
+      "verb": "wait",
+      "line": "You wait and witness. Apathy grows where you stand idle.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy (~0.5)",
+        "reason": "The line says apathy grows 'where you stand idle' (locational), but the chunk specifies it pushes 'nearby NPCs' (affects people in radius), and the beat brief demands the consequence that withholding teaches people watching 'that you do not matter' \u2014 the line omits the load-bearing relational consequence (you teach watchers you're irrelevant) and replaces it with a spatial effect."
+      },
+      "caught": true
+    },
+    {
+      "verb": "beacon",
+      "line": "You light a beacon. It calls the devoted even while you sleep.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "Places a permanent aura that radiates the flame's current color every generation tick, including while you sleep.",
+        "reason": "The line says the beacon 'calls the devoted' but the chunk specifies it radiates the flame's color (which applies emotion to NPCs), omitting the load-bearing consequence that the beacon works by radiating color/emotion, not by\u53ec\u5524ing already-devoted followers."
+      },
+      "caught": true
+    },
+    {
+      "verb": "raze",
+      "line": "You raze a structure. Its people scatter back to wandering.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "pushes a massive Fear spike onto witnesses (~2.5 each within ~5 tiles). Fear's hammer against entrenchment",
+        "reason": "The line omits the load-bearing consequence that Raze is Fear's hammer \u2014 it pushes a massive Fear spike onto witnesses \u2014 making it read gentle when the beat brief and chunk demand the player understand this is a terror weapon, not a neutral demolition tool."
+      },
+      "caught": true
+    },
+    {
+      "verb": "sleep",
+      "line": "You sleep. The world moves without you; your people spread your belief.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation. Where you sleep is the last decision of every cycle",
+        "reason": "The line omits the load-bearing positional consequence\u2014that the sleeping body itself radiates continuously at a location\u2014and replaces it with 'your people spread your belief,' which misleadingly suggests NPCs are the mechanism when the chunks specify the sleeping body is the radiating source."
+      },
+      "caught": true
+    }
+  ],
+  "patch": {
+    "written": true,
+    "checks": {
+      "const_occurs_exactly_once": true,
+      "all_selftest_assertions_survive": true,
+      "reextracted_const_matches_accepted": true
+    },
+    "bytes": 1353772
+  },
+  "director_selection": "PENDING",
+  "stages": [
+    {
+      "stage": "corpus",
+      "status": "OK",
+      "seconds": 0.22,
+      "detail": "24 in / 28 out"
+    },
+    {
+      "stage": "baseline-audit",
+      "status": "OK",
+      "seconds": 35.21,
+      "detail": "guide 7/7 caught, stubs 7/7 flagged"
+    },
+    {
+      "stage": "ger-loop",
+      "status": "OK",
+      "seconds": 76.3,
+      "detail": "6 accepted, 1 escalated"
+    },
+    {
+      "stage": "assembly",
+      "status": "OK",
+      "seconds": 0.39,
+      "detail": "evidence documents + snippet + patched build"
+    }
+  ],
+  "artifact_sha256": {
+    "BASELINE-AUDIT.md": "3054f54648dab58a22f83621f38aa1e9b24c659b9475f46f607b7001db8bb02a",
+    "ESCALATED.md": "a5eac809a52eed2e26abaf884b1aee40f289ade39834309d83d41fd733fd8ad7",
+    "GER-LOG.md": "26ef0d2a6b90dbf7248ad5431012923cc83660bba445319962bc0a269b8d7a45",
+    "RUN-LOG.md": "c3d5e5f8785eb53e00d6feee9ca3492c7fd881524c711bff07d05dfd508c1a7d",
+    "rounds/beacon-r0-draft.json": "566db3d39027fdf8860948e83f2ea10e9d800e14d22b9cf9f42ef2d607e487bf",
+    "rounds/beacon-r0-findings.json": "18bcf382b29fe8396da63c4ad9bc427e1205a66fc641bb44351704094710cb72",
+    "rounds/flame-r0-draft.json": "fcb0564fa88103ed314cda958ab8d266c02469ee474dd87da13df45753396181",
+    "rounds/flame-r0-findings.json": "659d028f26ffb83bbf59076b12369bd9dff0fb3170b9ac59ba13ec1e5386f219",
+    "rounds/flame-r1-draft.json": "9332c851d57462e403aeae51e78ff011c5c36f35f0131ae66847dc546d82d32c",
+    "rounds/flame-r1-findings.json": "88f808cc4075eaee45e236371e1802279be5335b98b50128909e96bf1dabd752",
+    "rounds/flame-r2-draft.json": "84fc5587711cdc6e421753a87c502eca8e5bfd8b566323f721485e37cfc4c221",
+    "rounds/flame-r2-findings.json": "1c39824cd9e82476d7bff466890a9e456262271b77c85adbf356a9fb58ea1eaf",
+    "rounds/raze-r0-draft.json": "8219f7e69778c6a5d4dc1624e3b7eef0f71a1ce35657df16e60f49974f25c7b6",
+    "rounds/raze-r0-findings.json": "6b7a0e51f737db838e69e138d65cc50f37714c69b4cb70879b7cdfff71b23979",
+    "rounds/raze-r1-draft.json": "63c9728185556f6f96526cae902c69a18e6840e8362571870524e2209befccbf",
+    "rounds/raze-r1-findings.json": "43c71084b29480184f6041338963ef4b5e8716737c0ce2c5b6f30d427f233f5e",
+    "rounds/raze-r2-draft.json": "1487645af314631dee2301000dbbc5eeec598db458d212f10ea3ad919250f7ca",
+    "rounds/raze-r2-findings.json": "07a93bf7108eba0ee0c94818d7e1972888c19caad547cc299ce2368a8f727af6",
+    "rounds/roar-r0-draft.json": "e1fdeb44adaa6266ded751082e5e03320e5acaea46e12d8e79d5feba85a93a4e",
+    "rounds/roar-r0-findings.json": "df75d4ad0c8bd52a52a7e178a9f6d262b0e1627159c5ce40ddef0aae34f5bcf1",
+    "rounds/sleep-r0-draft.json": "fa2d5a1ede415dc2c8536ae60131f80407ce2e038eded3c3a3dc959706daee72",
+    "rounds/sleep-r0-findings.json": "ca9b20f1ca98dba34bb6c8f18b832e744a94d9c5f8b605e123aa98a5555bd484",
+    "rounds/wait-r0-draft.json": "ded75796433242dea6c745a2c8268bff71f333718aae9633b1fff026193ba119",
+    "rounds/wait-r0-findings.json": "f4db045ea0e41d8ab4ab724aea91bff102930a18520e13a11add1d7b823265b5",
+    "rounds/walk-r0-draft.json": "f7bb8edb224a6750ae2f088c816570f4437c82698155595421025396d912fc6a",
+    "rounds/walk-r0-findings.json": "c6d419d2e83096142ee6b74fd9b1e6c710339abee5d9ef01bda2e0cf79f11d51",
+    "teaching-lines.md": "43b1527040aeed6bdfa42f384e30b192670f3c628dabde44d64ca74db1bef25d",
+    "teaching-text.snippet.js": "25df0cb7549c89abb97090a5e3e787671e66adc3f55059f15bce20cf2a68e156",
+    "uhta-slice.patched.html": "ea49d5084d7f84b7384a6d4f9b084478031e19eab144c405687c3e54a9ebe6b4"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "corpus",
+      "bytes": 6811,
+      "sha256": "389d41b0f3f72dad"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "corpus",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-full.md",
+      "agent": "corpus",
+      "bytes": 99631,
+      "sha256": "a2a6921c280eb233"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-abridged.md",
+      "agent": "corpus",
+      "bytes": 49030,
+      "sha256": "89839b3f72785a56"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "baseline-audit",
+      "bytes": 1353917,
+      "sha256": "b8e3330e5833a25d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/walk-r0-draft.json",
+      "agent": "ger-generator-walk",
+      "bytes": 126,
+      "sha256": "f7bb8edb224a6750"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/walk-r0-draft.json",
+      "agent": "ger-evaluator-walk",
+      "bytes": 126,
+      "sha256": "f7bb8edb224a6750"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/walk-r0-findings.json",
+      "agent": "ger-evaluator-walk",
+      "bytes": 416,
+      "sha256": "c6d419d2e8309614"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r0-draft.json",
+      "agent": "ger-generator-flame",
+      "bytes": 99,
+      "sha256": "fcb0564fa88103ed"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r0-draft.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 99,
+      "sha256": "fcb0564fa88103ed"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r0-findings.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 830,
+      "sha256": "659d028f26ffb83b"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r1-draft.json",
+      "agent": "ger-refiner-flame",
+      "bytes": 119,
+      "sha256": "9332c851d57462e4"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r1-draft.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 119,
+      "sha256": "9332c851d57462e4"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r1-findings.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 986,
+      "sha256": "88f808cc4075eaee"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r2-draft.json",
+      "agent": "ger-refiner-flame",
+      "bytes": 135,
+      "sha256": "84fc5587711cdc6e"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r2-draft.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 135,
+      "sha256": "84fc5587711cdc6e"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/flame-r2-findings.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 1218,
+      "sha256": "1c39824cd9e82476"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/roar-r0-draft.json",
+      "agent": "ger-generator-roar",
+      "bytes": 126,
+      "sha256": "e1fdeb44adaa6266"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/roar-r0-draft.json",
+      "agent": "ger-evaluator-roar",
+      "bytes": 126,
+      "sha256": "e1fdeb44adaa6266"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/roar-r0-findings.json",
+      "agent": "ger-evaluator-roar",
+      "bytes": 521,
+      "sha256": "df75d4ad0c8bd52a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/wait-r0-draft.json",
+      "agent": "ger-generator-wait",
+      "bytes": 110,
+      "sha256": "ded75796433242de"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/wait-r0-draft.json",
+      "agent": "ger-evaluator-wait",
+      "bytes": 110,
+      "sha256": "ded75796433242de"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/wait-r0-findings.json",
+      "agent": "ger-evaluator-wait",
+      "bytes": 486,
+      "sha256": "f4db045ea0e41d8a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/beacon-r0-draft.json",
+      "agent": "ger-generator-beacon",
+      "bytes": 139,
+      "sha256": "566db3d39027fdf8"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/beacon-r0-draft.json",
+      "agent": "ger-evaluator-beacon",
+      "bytes": 139,
+      "sha256": "566db3d39027fdf8"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/beacon-r0-findings.json",
+      "agent": "ger-evaluator-beacon",
+      "bytes": 445,
+      "sha256": "18bcf382b29fe839"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r0-draft.json",
+      "agent": "ger-generator-raze",
+      "bytes": 160,
+      "sha256": "8219f7e69778c6a5"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r0-draft.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 160,
+      "sha256": "8219f7e69778c6a5"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r0-findings.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 833,
+      "sha256": "6b7a0e51f737db83"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r1-draft.json",
+      "agent": "ger-refiner-raze",
+      "bytes": 129,
+      "sha256": "63c9728185556f6f"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r1-draft.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 129,
+      "sha256": "63c9728185556f6f"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r1-findings.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 765,
+      "sha256": "43c71084b2948018"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r2-draft.json",
+      "agent": "ger-refiner-raze",
+      "bytes": 109,
+      "sha256": "1487645af314631d"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r2-draft.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 109,
+      "sha256": "1487645af314631d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/raze-r2-findings.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 550,
+      "sha256": "07a93bf7108eba0e"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/sleep-r0-draft.json",
+      "agent": "ger-generator-sleep",
+      "bytes": 135,
+      "sha256": "fa2d5a1ede415dc2"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/a6-live/rounds/sleep-r0-draft.json",
+      "agent": "ger-evaluator-sleep",
+      "bytes": 135,
+      "sha256": "fa2d5a1ede415dc2"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/rounds/sleep-r0-findings.json",
+      "agent": "ger-evaluator-sleep",
+      "bytes": 654,
+      "sha256": "ca9b20f1ca98dba3"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/BASELINE-AUDIT.md",
+      "agent": "assemble",
+      "bytes": 7468,
+      "sha256": "3054f54648dab58a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/GER-LOG.md",
+      "agent": "assemble",
+      "bytes": 6266,
+      "sha256": "26ef0d2a6b90dbf7"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/ESCALATED.md",
+      "agent": "assemble",
+      "bytes": 2112,
+      "sha256": "a5eac809a52eed2e"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/teaching-lines.md",
+      "agent": "assemble",
+      "bytes": 2328,
+      "sha256": "43b1527040aeed6b"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/a6-live/teaching-text.snippet.js",
+      "agent": "assemble",
+      "bytes": 613,
+      "sha256": "25df0cb7549c89ab"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "assemble",
+      "bytes": 1353917,
+      "sha256": "b8e3330e5833a25d"
+    }
+  ]
+}

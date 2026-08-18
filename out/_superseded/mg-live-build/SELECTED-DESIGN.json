@@ -1,0 +1,23 @@
+{
+  "id": "first-contact-hope",
+  "encounter": "first-contact",
+  "pole": "hope",
+  "name": "Steady the Flame",
+  "premise": "A ring of grey nomads approach slowly from all sides, wavering between curiosity and fear. The flame above you flickers with each input—your task is to hold it steady as they close the distance.",
+  "loop": "The flame brightness responds to left-click (brightens) and naturally decays toward dim. The nomads approach in a slow, uneven ring, pausing when the flame wavers outside a narrow 'steady' band. Hold the flame in the correct range—visible but not blazing—by tapping left-click sparingly to counteract decay. Over-click and the flame flares too bright, cracking the air with light; the nomads recoil and some break away. Under-maintain and it dims toward grey; wavering nomads drift back into the fog. The steady band itself drifts slightly, demanding constant reading rather than a fixed rhythm.",
+  "signals": "Flame brightness is the flame itself, glowing above your body—gold-white core when steady, searing white when too bright, ember-dim when failing. Nomad commitment shows in their posture: upright and steady when the flame is right, leaning back and hesitating when it flares, turning away and fading when it dims. Distance closes visibly—they walk toward you, and their ring tightens as the encounter progresses. No meters, no UI—only the flame's glow and their bodies.",
+  "controls": [
+    "left-click"
+  ],
+  "outcome_win": "The ring closes completely. The nomads kneel in unison, their grey forms saturating to warm gold as they convert. Few in number, but their posture is deep—heads bowed, fully committed.",
+  "outcome_fail": "The flame either shatters in a white flash (too bright) or gutters to ash (too dim). Nomads scatter or fade back into the fog. The encounter ends with no conversions, or worse—some grey out entirely, ringed in the faint gold they almost carried.",
+  "effects": [
+    "convert_devout",
+    "burnout",
+    "drift_apathy",
+    "no_effect"
+  ],
+  "why_fun": "Tests restraint and reading a drifting target—the skill is knowing when to act and when to let the flame settle. The tension comes from fighting the instinct to over-correct; one extra click can undo the entire hold.",
+  "pattern_source": "Threshold fight — the steady hold",
+  "gdd_quote": "They approach in a wavering ring and commit only if the flame is steady when they arrive. Too bright and they break; too dim and they drift. The correct move is usually to do less."
+}

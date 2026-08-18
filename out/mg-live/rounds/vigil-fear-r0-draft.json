@@ -1,0 +1,24 @@
+{
+  "id": "vigil-fear",
+  "encounter": "vigil",
+  "pole": "fear",
+  "name": "The Watch",
+  "premise": "Night falls as you prepare to sleep. Your believers scatter across the dark landscape as points of dim light, flickering. Shadows creep inward from the edges—visible as encroaching darkness that will extinguish any light it reaches.",
+  "loop": "You are a bright flame. Left-click places a shield—a dome of your light with visible radius. Shields cost stamina (shown as your body dimming slightly with each placement). You can move shields by clicking and dragging, but moving costs stamina continuously. The darkness advances in waves from all edges; believers outside shields when a wave hits are extinguished (their light goes out). You have 45 seconds and limited stamina to position shields before dawn. More believers than you can possibly cover; you must choose clusters and abandon stragglers.",
+  "signals": "Your brightness IS your remaining stamina—you visibly dim as you spend. Believer lights flicker more urgently as darkness nears them. Shield domes glow in your color with clear visible boundaries. The dark is literal encroaching blackness, advancing in visible pulses. Distance between believer-lights shows clustering. Extinguished believers vanish to black exactly where they stood. Dawn arrives as sudden light from the horizon.",
+  "controls": [
+    "mouse-move",
+    "left-click"
+  ],
+  "outcome_win": "Many lights still burn at dawn—the ones you shielded. Your body brightens as you absorb their faith. The darkness retreats.",
+  "outcome_fail": "Few or no lights remain. The darkness holds the field. Your body is barely visible, starved.",
+  "effects": [
+    "convert_shallow",
+    "stamina_gain",
+    "drift_apathy",
+    "burnout"
+  ],
+  "why_fun": "Pure resource allocation under time pressure with spatial consequences. The skill is recognizing valuable clusters fast and accepting losses. The tension is watching lights you chose NOT to save flicker out exactly where you abandoned them—cold triage made visceral.",
+  "pattern_source": "Triage — protect what you can",
+  "gdd_quote": "Your believers are points of light and the dark presses in. You shield what you can and you cannot shield everything. Fear's version is triage — choosing who to abandon before dawn."
+}

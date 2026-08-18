@@ -1,0 +1,167 @@
+{
+  "run_id": "build-fc",
+  "pipeline": "minigame (Assignment 6 #2 \u2014 GER + human gate + Programmer)",
+  "pipeline_version": "minigame v1 (Assignment 6, pipeline #2)",
+  "phase": "build",
+  "status": "COMPLETE_PENDING_DIRECTOR_APPLY",
+  "mode": "live",
+  "created": "2026-08-18T23:30:38",
+  "model": "claude-sonnet-4-5",
+  "llm_backend": "live",
+  "llm_calls": 4,
+  "llm_tokens": {
+    "input": 18642,
+    "output": 4868
+  },
+  "python": "3.11.16",
+  "content_type": "encounter mini-game designs (GDD \u00a72 PROPOSED tier: three encounters x two poles)",
+  "rule_enforced": "GDD \u00a72 encounter rules \u2014 wordless/diegetic ('no interface, no text, only your body and theirs'), pole asymmetry ('the two poles never play the same game'), individual-scale",
+  "slots": [
+    "first-contact-hope",
+    "first-contact-fear",
+    "vigil-hope",
+    "vigil-fear",
+    "holding-hope",
+    "holding-fear"
+  ],
+  "corpus": {},
+  "retrieval": {
+    "scorer": "BM25 (content/retriever.py, reused)",
+    "score_threshold": 8.0,
+    "token_budget": 6000,
+    "selection_rule": "three queries per slot (encounter, mechanics, pattern), unioned \u2014 the \u00a74.5 rule extended"
+  },
+  "prompt_versions": {
+    "designer": "minigame-designer v1 (Assignment 6 #2)",
+    "judge": "minigame-judge v1 (Assignment 6 #2)",
+    "refiner": "minigame-refiner v1 (Assignment 6 #2)",
+    "programmer": "minigame-programmer v3 (Assignment 6 #2)",
+    "instructor": "minigame-instructor v1 (Assignment 6 #2, build v2)",
+    "presenter": "minigame-presenter v1 (Assignment 6 #2, build v2)",
+    "pipeline": "minigame v1 (Assignment 6, pipeline #2)"
+  },
+  "breaker": {
+    "max_refine_rounds_per_verb": 2,
+    "escalation_limit": 3,
+    "escalated_verbs": [],
+    "tripped": false
+  },
+  "outcomes": [],
+  "build": {
+    "selected": "first-contact-hope",
+    "from_run": "mg-live-2",
+    "checks": {
+      "parse:logic_block": true,
+      "parse:frame_line": true,
+      "parse:input_line": true,
+      "parse:selftest_block": true,
+      "all_preexisting_assertions_survive": true,
+      "adds_at_least_one_M_assertion": true,
+      "grew": true,
+      "whole_file_brace_balance": true,
+      "never_writes_transitioning": true,
+      "director_test_hook": true,
+      "first_use_line_present": true
+    },
+    "repair_rounds": 0,
+    "node_available": true,
+    "play_probe": "SKIPPED: playwright not available on this machine",
+    "playwright_available": false,
+    "first_use_line": "You hold the flame steady, and those who approach without flinching will kneel.",
+    "instructor_repairs": 0,
+    "presenter_repairs": 1
+  },
+  "director_gate": "PROPOSE ENDS AT SELECTION; BUILD REQUIRES --select \u2014 the gate is structural",
+  "stages": [
+    {
+      "stage": "director-gate",
+      "status": "OK",
+      "seconds": 0.1,
+      "detail": "first-contact-hope"
+    },
+    {
+      "stage": "instructor",
+      "status": "OK",
+      "seconds": 2.83,
+      "detail": ""
+    },
+    {
+      "stage": "presenter",
+      "status": "OK",
+      "seconds": 62.91,
+      "detail": ""
+    },
+    {
+      "stage": "programmer",
+      "status": "OK",
+      "seconds": 47.47,
+      "detail": "0 repair round(s)"
+    },
+    {
+      "stage": "assembly",
+      "status": "OK",
+      "seconds": 0.04,
+      "detail": ""
+    }
+  ],
+  "artifact_sha256": {
+    "MINIGAME-BUILD.md": "6fed0a096c1fbf0ffc7ed744cd19ae93b9d4871ae05cb7db300ce254bc4203b1",
+    "RUN-LOG.md": "54b4e74b57b8d341cebaeac0bcb1d79b4956a9c512a238607465b22b63a76976",
+    "SELECTED-DESIGN.json": "18af66a96ba7a6764debd1ab922f9cc0e086df614a9acbee5790e9d0c4ff95d0",
+    "instructions.json": "6fb78b84d73078caa732f2e51cb17c21c79babc10ae765d1d28338e265b87d2b",
+    "patch-attempt-1.json": "555651e23e572d8032efad02120ed4107cebe4ebb6a905305e35de5e9336d582",
+    "presentation.json": "fbdfb1ee84cfad0dc8245b25cd8d917d57a89811597772362b030eac0fcaa4f7",
+    "probe-candidate-1.html": "4b7b02f431629b937764190a3851c46f113936648f662d9d92e3ee7737fc5ccf",
+    "uhta-slice.minigame.patched.html": "4b7b02f431629b937764190a3851c46f113936648f662d9d92e3ee7737fc5ccf"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/build-fc/SELECTED-DESIGN.json",
+      "agent": "director-gate",
+      "bytes": 2436,
+      "sha256": "18af66a96ba7a676"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/build-fc/instructions.json",
+      "agent": "mg-instructor",
+      "bytes": 127,
+      "sha256": "6fb78b84d73078ca"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/build-fc/presentation.json",
+      "agent": "mg-presenter",
+      "bytes": 4325,
+      "sha256": "fbdfb1ee84cfad0d"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "mg-programmer",
+      "bytes": 1353917,
+      "sha256": "b8e3330e5833a25d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/build-fc/patch-attempt-1.json",
+      "agent": "mg-programmer",
+      "bytes": 6729,
+      "sha256": "555651e23e572d80"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/build-fc/MINIGAME-BUILD.md",
+      "agent": "assemble",
+      "bytes": 10225,
+      "sha256": "6fed0a096c1fbf0f"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "verb": "beacon",
+  "round": 0,
+  "verdict": "PASS",
+  "findings": [],
+  "judgment": {
+    "verdict": "PASS",
+    "class": null,
+    "quoted_chunk": "Places a permanent aura that radiates the flame's current color every generation tick, including while you sleep.",
+    "reason": "The line correctly names the beacon verb and states its permanent, sleep-independent consequence using the exact mechanical language from the verb table."
+  }
+}

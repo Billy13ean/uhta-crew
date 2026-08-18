@@ -1,0 +1,116 @@
+{
+  "run_id": "mock-demo-mg",
+  "mode": "mock",
+  "accepted": [
+    {
+      "id": "first-contact-fear",
+      "encounter": "first-contact",
+      "pole": "fear",
+      "name": "The Scatter",
+      "premise": "The band breaks at your roar and runners peel off along every open line.",
+      "loop": "For a few strides you are faster than they are. Each runner flees along a visible line toward the dark; you cut lines by moving through them. You cannot reach every line — every step toward one runner opens another's escape.",
+      "signals": "Escape routes read as the runners' own paths and the gaps between rocks; a runner you head off stops dead and cowers; an escaped runner shrinks into the dark still carrying the story.",
+      "controls": [
+        "wasd-move"
+      ],
+      "outcome_win": "Everyone you head off turns shallowly to your color, trembling.",
+      "outcome_fail": "The ones who escape spread the tale of you outward to camps you have never seen.",
+      "effects": [
+        "convert_shallow",
+        "story_spreads"
+      ],
+      "why_fun": "Chase geometry as instant triage — commitment costs are visible the moment you move, and you cannot catch everyone by design.",
+      "pattern_source": "Interception — the cutoff",
+      "gdd_quote": "you have a handful of strides to cut off the runners"
+    },
+    {
+      "id": "first-contact-hope",
+      "encounter": "first-contact",
+      "pole": "hope",
+      "name": "Steady the Flame",
+      "premise": "A grey band circles you at the edge of the firelight, wavering between approach and flight.",
+      "loop": "Your flame breathes on its own; holding space feeds it, releasing lets it fade. Each nomad drifts inward only while the light sits inside their comfort — too bright and the nearest flinch back, too dim and the farthest turn away. The correct move is usually to do less.",
+      "signals": "Brightness is the flame itself; each nomad's comfort shows in their posture — leaning in, shielding their eyes, or turning; commitment shows as kneeling.",
+      "controls": [
+        "space"
+      ],
+      "outcome_win": "Those who reach you kneel and take your color deeply; the fire settles.",
+      "outcome_fail": "A flare or a fade; the flinchers freeze grey, ringed in your color, and the rest scatter.",
+      "effects": [
+        "convert_devout",
+        "burnout"
+      ],
+      "why_fun": "Restraint under temptation — the urge to feed the flame is the trap, and the skill is modulation, not action.",
+      "pattern_source": "Threshold fight — the steady hold",
+      "gdd_quote": "commit only if the flame is steady when they arrive"
+    },
+    {
+      "id": "holding-hope",
+      "encounter": "holding",
+      "pole": "hope",
+      "name": "The Procession",
+      "premise": "A rooted settlement resists you everywhere but along your own roads.",
+      "loop": "You walk your road toward the heart and converts fall in behind you, one by one. The line holds only while your pace stays slow and your turns stay wide; move too fast or cut too sharply and the tail detaches where you rushed. Whoever is still with you at the heart converts a resident.",
+      "signals": "The line of followers IS the state — its length, its gaps, and the stragglers left standing where the line broke.",
+      "controls": [
+        "wasd-move"
+      ],
+      "outcome_win": "The unbroken line reaches the heart; residents step out and kneel.",
+      "outcome_fail": "The line breaks; whoever you dropped stands where you lost them, and the settlement's doors close.",
+      "effects": [
+        "convert_devout",
+        "resistance_drop"
+      ],
+      "why_fun": "The leader's restraint is the skill — the whole tension is between the pace you want and the pace the line can hold.",
+      "pattern_source": "Procession — follow-the-leader escort",
+      "gdd_quote": "the line breaks if you move too fast or turn too sharply"
+    },
+    {
+      "id": "vigil-fear",
+      "encounter": "vigil",
+      "pole": "fear",
+      "name": "The Watch",
+      "premise": "Your believers are points of light and the dark presses in from every side.",
+      "loop": "You hold a shadow-shield over one cluster at a time while the dark gnaws at every unshielded light. Coverage is the shield's own shadow; the pressure visibly shifts, and you drag your protection between clusters knowing the rest are burning down.",
+      "signals": "A shielded cluster sits in your cast shadow and burns steady; an unshielded cluster gutters, dims, and greys — the flame height itself is the state.",
+      "controls": [
+        "mouse-move",
+        "left-click"
+      ],
+      "outcome_win": "Dawn arrives with the clusters you chose still burning.",
+      "outcome_fail": "The lights you abandoned are grey by morning, standing exactly where you left them.",
+      "effects": [
+        "drift_apathy",
+        "convert_shallow"
+      ],
+      "why_fun": "Triage under guaranteed loss — the skill is deciding what to lose, and living with it.",
+      "pattern_source": "Triage — protect what you can; Diegetic state display",
+      "gdd_quote": "You shield what you can and you cannot shield everything"
+    },
+    {
+      "id": "vigil-hope",
+      "encounter": "vigil",
+      "pole": "hope",
+      "name": "The Weaving",
+      "premise": "Sleep takes you; your believers hang in the dark as points of your color.",
+      "loop": "With your last stamina you draw a thread from believer to believer with slow movements. The thread holds only while your pace stays gentle and your turns stay wide; a rushed segment frays and snaps. Longer chains reach further and are harder to hold.",
+      "signals": "The thread is drawn light between bodies; fraying shows as the thread thinning and trembling; a completed chain settles into a steady channel glow.",
+      "controls": [
+        "mouse-move",
+        "left-click"
+      ],
+      "outcome_win": "Completed chains carry belief between the sleepers all generation.",
+      "outcome_fail": "A snapped thread leaves its two ends dark; unchained believers stand alone against the grey.",
+      "effects": [
+        "convert_devout",
+        "stamina_loss"
+      ],
+      "why_fun": "The ambition tradeoff — every extra link is reach you want and risk you must hold with smoother hands.",
+      "pattern_source": "Path tracing — the drawn line",
+      "gdd_quote": "Completed chains become channels belief travels while you are gone"
+    }
+  ],
+  "escalated": [
+    "holding-fear"
+  ]
+}

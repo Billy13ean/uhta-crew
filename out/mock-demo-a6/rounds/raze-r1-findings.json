@@ -1,0 +1,9 @@
+{
+  "verb": "raze",
+  "round": 1,
+  "verdict": "FAIL",
+  "findings": [
+    "[deterministic] R4 DECLARATIVE: contains ! — §2.5: 'short DECLARATIVE lines'; the narrator states, never asks or exclaims"
+  ],
+  "judgment": null
+}

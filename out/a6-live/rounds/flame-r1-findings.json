@@ -1,0 +1,14 @@
+{
+  "verb": "flame",
+  "round": 1,
+  "verdict": "FAIL",
+  "findings": [
+    "[llm] CONTRADICTS-CHUNK: The line says the flame applies 'what you feel' but omits the load-bearing fact that it applies the flame's *current* alignment (which can be Hope or Fear), making it sound like a simple expression of emotion rather than the mechanical consequence that it pushes NPCs toward whatever color the flame currently holds. — chunk: \"applies the flame's current alignment to NPCs in radius\""
+  ],
+  "judgment": {
+    "verdict": "FAIL",
+    "class": "CONTRADICTS-CHUNK",
+    "quoted_chunk": "applies the flame's current alignment to NPCs in radius",
+    "reason": "The line says the flame applies 'what you feel' but omits the load-bearing fact that it applies the flame's *current* alignment (which can be Hope or Fear), making it sound like a simple expression of emotion rather than the mechanical consequence that it pushes NPCs toward whatever color the flame currently holds."
+  }
+}

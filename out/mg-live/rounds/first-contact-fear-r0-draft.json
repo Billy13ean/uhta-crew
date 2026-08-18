@@ -1,0 +1,22 @@
+{
+  "id": "first-contact-fear",
+  "encounter": "first-contact",
+  "pole": "fear",
+  "name": "The Scatter",
+  "premise": "You meet an unaligned nomad band. You roar and they break in all directions—grey figures sprinting away on diverging paths across the terrain.",
+  "loop": "The player has superior speed for a handful of seconds. Runners flee on readable vectors—each body leaning into its escape angle, leaving faint trails showing direction. The player sprints (wasd-move) to position their body across escape lines, physically blocking fleeing nomads. When the player's body intersects a runner's path, that runner stops, turns to face the player, and shifts from grey to pale red (shallow convert). Runners the player cannot reach continue sprinting until they exit visibility range, their trails brightening as they carry the story outward. The window closes when all runners have either been cut off or escaped—typically 8-12 seconds.",
+  "signals": "Runner count and speed: visible as the number of grey bodies and their sprint animation speed. Escape vectors: shown by body lean, arm position, and the faint dust trail each runner leaves. Cutoff success: the runner stops, turns 180°, and their grey desaturates to pale Fear-red. Escape success: the runner's trail brightens to white as they exit the visible radius. Time remaining: the player's own body glows brighter red as stamina drains, dimming as the window closes. Conversion depth: shallow converts remain pale red, never deepening to the saturated crimson of devout followers.",
+  "controls": [
+    "wasd-move"
+  ],
+  "outcome_win": "Four to six pale-red converts standing in a loose cluster where you blocked them, breathing hard. Two to four bright trails fading at the edge of vision—stories spreading.",
+  "outcome_fail": "One or two pale converts, seven or eight bright escape trails. The story spreads wide and thin.",
+  "effects": [
+    "convert_shallow",
+    "story_spreads",
+    "stamina_loss"
+  ],
+  "why_fun": "Instant spatial triage under time pressure—you read the scatter geometry, commit to an intercept angle knowing you're abandoning others, and live with watching half the band carry fear outward. The skill is reading vectors and choosing which losses you can afford.",
+  "pattern_source": "Interception — the cutoff",
+  "gdd_quote": "You roar, the band breaks, and you have a handful of strides to cut off the runners. Everyone you head off turns; everyone who escapes carries the story outward. Many converts, every one of them shallow."
+}

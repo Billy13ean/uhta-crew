@@ -1,0 +1,443 @@
+{
+  "run_id": "mg-live",
+  "pipeline": "minigame (Assignment 6 #2 \u2014 GER + human gate + Programmer)",
+  "pipeline_version": "minigame v1 (Assignment 6, pipeline #2)",
+  "phase": "propose",
+  "status": "COMPLETE_AWAITING_DIRECTOR_SELECTION",
+  "mode": "live",
+  "created": "2026-08-18T01:31:34",
+  "model": "claude-sonnet-4-5",
+  "llm_backend": "live",
+  "llm_calls": 14,
+  "llm_tokens": {
+    "input": 54072,
+    "output": 5529
+  },
+  "python": "3.11.15",
+  "content_type": "encounter mini-game designs (GDD \u00a72 PROPOSED tier: three encounters x two poles)",
+  "rule_enforced": "GDD \u00a72 encounter rules \u2014 wordless/diegetic ('no interface, no text, only your body and theirs'), pole asymmetry ('the two poles never play the same game'), individual-scale",
+  "slots": [
+    "first-contact-hope",
+    "first-contact-fear",
+    "vigil-hope",
+    "vigil-fear",
+    "holding-hope",
+    "holding-fear"
+  ],
+  "corpus": {
+    "files": [
+      "uhta-gdd-v0.9.9-condensed.md",
+      "uhta-gdd-v0.9.7-full.md",
+      "minigame-patterns.md"
+    ],
+    "policy": "minigame per-doc policy v1",
+    "chunks_indexed": 22,
+    "chunks_excluded": 23,
+    "words_indexed": 9398,
+    "exclusions": [
+      {
+        "key": "uhta-gdd-v0.9.9-condensed.md#front-matter",
+        "reason": "version preambles and seeding notes describe the documents, not the game or the patterns."
+      },
+      {
+        "key": "uhta-gdd-v0.9.9-condensed.md#5",
+        "reason": "\u00a75 is the AI architecture \u2014 pipeline material."
+      },
+      {
+        "key": "uhta-gdd-v0.9.9-condensed.md#6",
+        "reason": "\u00a76 is technical strategy and token budgets \u2014 pipeline material."
+      },
+      {
+        "key": "uhta-gdd-v0.9.9-condensed.md#7",
+        "reason": "\u00a77 is revision provenance."
+      },
+      {
+        "key": "uhta-gdd-v0.9.9-condensed.md#8",
+        "reason": "\u00a78 is open-questions process notes; the design content it references lives in \u00a72\u2013\u00a74, which are indexed."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#front-matter",
+        "reason": "version preambles and seeding notes describe the documents, not the game or the patterns."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#1",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.1",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.2",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.3",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.4",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.5",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#3.6",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.1",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.2",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.3",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.4",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#4.5",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#5",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#6",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "uhta-gdd-v0.9.7-full.md#Appendix A",
+        "reason": "only \u00a72 (mechanics detail) is indexed from the full v0.9.7 binding; its \u00a73\u2013\u00a77 are that document's pipeline material, and \u00a74.5 in particular carries the Director's hand-written worked example (the A4 exclusion, upheld)."
+      },
+      {
+        "key": "minigame-patterns.md#front-matter",
+        "reason": "version preambles and seeding notes describe the documents, not the game or the patterns."
+      }
+    ]
+  },
+  "retrieval": {
+    "scorer": "BM25 (content/retriever.py, reused)",
+    "score_threshold": 8.0,
+    "token_budget": 6000,
+    "selection_rule": "three queries per slot (encounter, mechanics, pattern), unioned \u2014 the \u00a74.5 rule extended"
+  },
+  "prompt_versions": {
+    "designer": "minigame-designer v1 (Assignment 6 #2)",
+    "judge": "minigame-judge v1 (Assignment 6 #2)",
+    "refiner": "minigame-refiner v1 (Assignment 6 #2)",
+    "programmer": "minigame-programmer v1 (Assignment 6 #2)",
+    "pipeline": "minigame v1 (Assignment 6, pipeline #2)"
+  },
+  "breaker": {
+    "max_refine_rounds_per_verb": 2,
+    "escalation_limit": 3,
+    "escalated_verbs": [],
+    "tripped": false
+  },
+  "outcomes": [
+    {
+      "slot": "first-contact-hope",
+      "status": "ACCEPTED",
+      "refinements_used": 0
+    },
+    {
+      "slot": "first-contact-fear",
+      "status": "ACCEPTED",
+      "refinements_used": 0
+    },
+    {
+      "slot": "vigil-hope",
+      "status": "ACCEPTED",
+      "refinements_used": 0
+    },
+    {
+      "slot": "vigil-fear",
+      "status": "ACCEPTED",
+      "refinements_used": 1
+    },
+    {
+      "slot": "holding-hope",
+      "status": "ACCEPTED",
+      "refinements_used": 0
+    },
+    {
+      "slot": "holding-fear",
+      "status": "ACCEPTED",
+      "refinements_used": 0
+    }
+  ],
+  "build": {},
+  "director_gate": "PROPOSE ENDS AT SELECTION; BUILD REQUIRES --select \u2014 the gate is structural",
+  "stages": [
+    {
+      "stage": "corpus",
+      "status": "OK",
+      "seconds": 0.01,
+      "detail": "22 in / 23 out"
+    },
+    {
+      "stage": "ger-loop",
+      "status": "OK",
+      "seconds": 174.97,
+      "detail": "6 accepted, 0 escalated"
+    },
+    {
+      "stage": "assembly",
+      "status": "OK",
+      "seconds": 0.0,
+      "detail": "candidates + evidence"
+    }
+  ],
+  "artifact_sha256": {
+    "CANDIDATES.json": "41ce7517c2a95885835f4940e3b30cf453a3cbf7e1881c82c2492508d14288b1",
+    "MG-GER-LOG.md": "48ab1b70db2236487a2501ca6b0d725db047b1b3e01698a1799af96e6bfaa29b",
+    "MINIGAME-CANDIDATES.md": "c673ffb14ce53d932c93023e11a2e42627153a41336510a6a088452093fe326f",
+    "RUN-LOG.md": "233e84552c37e54f74d14f7ad0c76f90f736221814584a0c04136130fc0cd113",
+    "rounds/first-contact-fear-r0-draft.json": "bb4fe1cb4cb02495396d40d08ddb11fbfcfc8e4d90366d9c908fba2fcfb41b19",
+    "rounds/first-contact-fear-r0-findings.json": "8d55f72788a8597b3ba3052bc6d58892471c2741bc076ac0a18bedbf96e770bd",
+    "rounds/first-contact-hope-r0-draft.json": "407614fd51100c5f3b8b7024691487387045933081a7117eaffa201edc3f84cf",
+    "rounds/first-contact-hope-r0-findings.json": "0a2363899409e6c45ebf80a23c352f025ac355eaa687f330a79834a9d4f2c6d9",
+    "rounds/holding-fear-r0-draft.json": "4bbe7d3cba906fd6fac4a545ef01717d257af910e9a36e0d74e3d6159ac13802",
+    "rounds/holding-fear-r0-findings.json": "e6b28309c90c33513326de47a5b07250e669888ddbcb20467c7cbbd351b5b7d7",
+    "rounds/holding-hope-r0-draft.json": "2ccdd563b80fed960b9ad49e5163b9ff26d16eab2bde3b738588320781c5c48c",
+    "rounds/holding-hope-r0-findings.json": "35feb1164883bcad6043a9a593e7c7e707a2bdaf06c023270ba9668a1e17efd2",
+    "rounds/vigil-fear-r0-draft.json": "da6519db30f5b21508534e4b724039b5164fd49732790fe3b0e9560eff14c9f8",
+    "rounds/vigil-fear-r0-findings.json": "70271b8e534f8a57c16de6799e613943758acfff9a162fc6b012c528b3c238e3",
+    "rounds/vigil-fear-r1-draft.json": "26746ced2f738c2aec1387d8ea1a8a2fb539295a5fc68cb45ef75844fc909a8e",
+    "rounds/vigil-fear-r1-findings.json": "3bcca4f808d22ca409635fa4d7cd31d0eac683281012602dae11ee514a51ff71",
+    "rounds/vigil-hope-r0-draft.json": "e7300ad7551838a64b81306b4622c59175fb07035f973e6fdf6f251f08a36dd3",
+    "rounds/vigil-hope-r0-findings.json": "49b2257d7ec5e5110a6bd527685185a44729873c9b4ed041ed74f3cdd1e91fc8"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.9-condensed.md",
+      "agent": "corpus",
+      "bytes": 20826,
+      "sha256": "8e5249696eddb1f3"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-full.md",
+      "agent": "corpus",
+      "bytes": 99631,
+      "sha256": "a2a6921c280eb233"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/research/minigame-patterns.md",
+      "agent": "corpus",
+      "bytes": 8401,
+      "sha256": "c7a9e855090e6e4f"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/first-contact-hope-r0-draft.json",
+      "agent": "mg-designer-first-contact-hope",
+      "bytes": 2529,
+      "sha256": "407614fd51100c5f"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mg-live/rounds/first-contact-hope-r0-draft.json",
+      "agent": "mg-judge-first-contact-hope",
+      "bytes": 2529,
+      "sha256": "407614fd51100c5f"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/first-contact-hope-r0-findings.json",
+      "agent": "mg-judge-first-contact-hope",
+      "bytes": 87,
+      "sha256": "0a2363899409e6c4"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/first-contact-fear-r0-draft.json",
+      "agent": "mg-designer-first-contact-fear",
+      "bytes": 2544,
+      "sha256": "bb4fe1cb4cb02495"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mg-live/rounds/first-contact-fear-r0-draft.json",
+      "agent": "mg-judge-first-contact-fear",
+      "bytes": 2544,
+      "sha256": "bb4fe1cb4cb02495"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/first-contact-fear-r0-findings.json",
+      "agent": "mg-judge-first-contact-fear",
+      "bytes": 87,
+      "sha256": "8d55f72788a8597b"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-hope-r0-draft.json",
+      "agent": "mg-designer-vigil-hope",
+      "bytes": 2560,
+      "sha256": "e7300ad7551838a6"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-hope-r0-draft.json",
+      "agent": "mg-judge-vigil-hope",
+      "bytes": 2560,
+      "sha256": "e7300ad7551838a6"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-hope-r0-findings.json",
+      "agent": "mg-judge-vigil-hope",
+      "bytes": 79,
+      "sha256": "49b2257d7ec5e511"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-fear-r0-draft.json",
+      "agent": "mg-designer-vigil-fear",
+      "bytes": 2316,
+      "sha256": "da6519db30f5b215"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-fear-r0-draft.json",
+      "agent": "mg-judge-vigil-fear",
+      "bytes": 2316,
+      "sha256": "da6519db30f5b215"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-fear-r0-findings.json",
+      "agent": "mg-judge-vigil-fear",
+      "bytes": 703,
+      "sha256": "70271b8e534f8a57"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-fear-r1-draft.json",
+      "agent": "mg-refiner-vigil-fear",
+      "bytes": 2764,
+      "sha256": "26746ced2f738c2a"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-fear-r1-draft.json",
+      "agent": "mg-judge-vigil-fear",
+      "bytes": 2764,
+      "sha256": "26746ced2f738c2a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/vigil-fear-r1-findings.json",
+      "agent": "mg-judge-vigil-fear",
+      "bytes": 79,
+      "sha256": "3bcca4f808d22ca4"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/holding-hope-r0-draft.json",
+      "agent": "mg-designer-holding-hope",
+      "bytes": 2805,
+      "sha256": "2ccdd563b80fed96"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mg-live/rounds/holding-hope-r0-draft.json",
+      "agent": "mg-judge-holding-hope",
+      "bytes": 2805,
+      "sha256": "2ccdd563b80fed96"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/holding-hope-r0-findings.json",
+      "agent": "mg-judge-holding-hope",
+      "bytes": 81,
+      "sha256": "35feb1164883bcad"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/holding-fear-r0-draft.json",
+      "agent": "mg-designer-holding-fear",
+      "bytes": 2449,
+      "sha256": "4bbe7d3cba906fd6"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mg-live/rounds/holding-fear-r0-draft.json",
+      "agent": "mg-judge-holding-fear",
+      "bytes": 2449,
+      "sha256": "4bbe7d3cba906fd6"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/rounds/holding-fear-r0-findings.json",
+      "agent": "mg-judge-holding-fear",
+      "bytes": 81,
+      "sha256": "e6b28309c90c3351"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/MINIGAME-CANDIDATES.md",
+      "agent": "assemble",
+      "bytes": 20302,
+      "sha256": "c673ffb14ce53d93"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/CANDIDATES.json",
+      "agent": "assemble",
+      "bytes": 16314,
+      "sha256": "41ce7517c2a95885"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live/MG-GER-LOG.md",
+      "agent": "assemble",
+      "bytes": 5376,
+      "sha256": "48ab1b70db223648"
+    }
+  ]
+}

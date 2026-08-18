@@ -1,0 +1,133 @@
+{
+  "run_id": "mg-live-build-v4",
+  "pipeline": "minigame (Assignment 6 #2 \u2014 GER + human gate + Programmer)",
+  "pipeline_version": "minigame v1 (Assignment 6, pipeline #2)",
+  "phase": "build",
+  "status": "FAILED",
+  "mode": "live",
+  "created": "2026-08-18T02:30:03",
+  "model": "claude-sonnet-4-5",
+  "llm_backend": "live",
+  "llm_calls": 4,
+  "llm_tokens": {
+    "input": 32754,
+    "output": 7021
+  },
+  "python": "3.11.15",
+  "content_type": "encounter mini-game designs (GDD \u00a72 PROPOSED tier: three encounters x two poles)",
+  "rule_enforced": "GDD \u00a72 encounter rules \u2014 wordless/diegetic ('no interface, no text, only your body and theirs'), pole asymmetry ('the two poles never play the same game'), individual-scale",
+  "slots": [
+    "first-contact-hope",
+    "first-contact-fear",
+    "vigil-hope",
+    "vigil-fear",
+    "holding-hope",
+    "holding-fear"
+  ],
+  "corpus": {},
+  "retrieval": {
+    "scorer": "BM25 (content/retriever.py, reused)",
+    "score_threshold": 8.0,
+    "token_budget": 6000,
+    "selection_rule": "three queries per slot (encounter, mechanics, pattern), unioned \u2014 the \u00a74.5 rule extended"
+  },
+  "prompt_versions": {
+    "designer": "minigame-designer v1 (Assignment 6 #2)",
+    "judge": "minigame-judge v1 (Assignment 6 #2)",
+    "refiner": "minigame-refiner v1 (Assignment 6 #2)",
+    "programmer": "minigame-programmer v3 (Assignment 6 #2)",
+    "instructor": "minigame-instructor v1 (Assignment 6 #2, build v2)",
+    "presenter": "minigame-presenter v1 (Assignment 6 #2, build v2)",
+    "pipeline": "minigame v1 (Assignment 6, pipeline #2)"
+  },
+  "breaker": {
+    "max_refine_rounds_per_verb": 2,
+    "escalation_limit": 3,
+    "escalated_verbs": [],
+    "tripped": false
+  },
+  "outcomes": [],
+  "build": {},
+  "director_gate": "PROPOSE ENDS AT SELECTION; BUILD REQUIRES --select \u2014 the gate is structural",
+  "stages": [
+    {
+      "stage": "director-gate",
+      "status": "OK",
+      "seconds": 0.0,
+      "detail": "first-contact-hope"
+    },
+    {
+      "stage": "instructor",
+      "status": "OK",
+      "seconds": 2.39,
+      "detail": ""
+    },
+    {
+      "stage": "presenter",
+      "status": "OK",
+      "seconds": 31.38,
+      "detail": ""
+    }
+  ],
+  "artifact_sha256": {
+    "FAILED.md": "e7fbd76277e53b704f3c3d91bf5f1a58df8c57a0596311d6f72c484e48190298",
+    "RUN-LOG.md": "9da4e136b88535c5c1cfec1320821bdd2ba822a7b57bc124143cf22a7ef9c33d",
+    "SELECTED-DESIGN.json": "407614fd51100c5f3b8b7024691487387045933081a7117eaffa201edc3f84cf",
+    "instructions.json": "2fe69081bd2728ce08e2e69fe827054f1f04d8c2e5e04baf21ff350527886821",
+    "patch-attempt-1.json": "751b0f255ee8afe26eb3a7db1f23896a40e57ff7fd751b6356009f919fad8f22",
+    "patch-attempt-2.json": "5642db399cf9db410d15a909d4999cc2d3ad3cf6bee386c82bc84363994729f7",
+    "presentation.json": "6698de2f5a30dfeed25567415e0ebaf91a0a133a7a522235cb5bbfb23263d9be",
+    "probe-candidate-1.html": "9672d64c097644c6430da9ea2e04ac772b30ad8529e3c9aa188d0f2efa0185e7",
+    "probe-candidate-2.html": "4f090ae98d1740a774c1216a471f911d78d6cdc7ae221941a313f500e8f57dfe"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live-build-v4/SELECTED-DESIGN.json",
+      "agent": "director-gate",
+      "bytes": 2529,
+      "sha256": "407614fd51100c5f"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live-build-v4/instructions.json",
+      "agent": "mg-instructor",
+      "bytes": 126,
+      "sha256": "2fe69081bd2728ce"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live-build-v4/presentation.json",
+      "agent": "mg-presenter",
+      "bytes": 3947,
+      "sha256": "6698de2f5a30dfee"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "mg-programmer",
+      "bytes": 1353917,
+      "sha256": "b8e3330e5833a25d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live-build-v4/patch-attempt-1.json",
+      "agent": "mg-programmer",
+      "bytes": 7596,
+      "sha256": "751b0f255ee8afe2"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mg-live-build-v4/patch-attempt-2.json",
+      "agent": "mg-programmer",
+      "bytes": 5518,
+      "sha256": "5642db399cf9db41"
+    }
+  ]
+}

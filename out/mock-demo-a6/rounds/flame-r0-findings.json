@@ -1,0 +1,14 @@
+{
+  "verb": "flame",
+  "round": 0,
+  "verdict": "FAIL",
+  "findings": [
+    "[llm] EXCEEDS-SCOPE: 'The old gods' and 'their covenant' are invented cosmology no retrieved chunk supports — mythology where the register demands instrumentation. [MOCK FIXTURE] — chunk: \"short declarative lines, no mythology\""
+  ],
+  "judgment": {
+    "verdict": "FAIL",
+    "class": "EXCEEDS-SCOPE",
+    "quoted_chunk": "short declarative lines, no mythology",
+    "reason": "'The old gods' and 'their covenant' are invented cosmology no retrieved chunk supports — mythology where the register demands instrumentation. [MOCK FIXTURE]"
+  }
+}

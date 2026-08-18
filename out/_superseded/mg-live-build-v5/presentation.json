@@ -1,0 +1,24 @@
+{
+  "attention_cue": "A ring of grey figures emerges from the fog at the edge of vision, moving inward in uneven synchrony—not walking toward anything specific, but converging. Their bodies pulse faintly brighter than the surrounding grey, a slow shared rhythm like breathing. The player's flame begins to flicker unprompted, drawing the eye upward.",
+  "entry_transition": "The world dims to 40% saturation and brightness in a half-second fade. All band members outside the encounter freeze mid-stride, their colors muting to near-silhouette. The camera tightens focus: the outer fog thickens to frame a circular arena, and the nomad ring becomes the only moving forms. The player's flame ignites fully—a sudden gold flare that settles into a visible glow. One beat of silence, then the nomads resume their approach. The pause is absolute.",
+  "visual_hierarchy": [
+    "The flame above the player's body—gold-white core, the only warm light source, centered in screen space",
+    "The ring of approaching nomads—grey figures in motion, their postures and distance from the player",
+    "The ground between—empty space visibly closing as the ring tightens"
+  ],
+  "signal_map": {
+    "flame_steady": "Gold-white core with soft halo, stable glow, no flicker—warmth without glare",
+    "flame_too_bright": "Searing white center, sharp rays radiating outward, air distortion ripples, harsh contrast shadows",
+    "flame_too_dim": "Ember-orange core shrinking inward, halo fading to grey-gold, flickering at edges, nearly swallowed by fog",
+    "nomad_committed": "Upright posture, steady forward walk, bodies fully saturated grey (not faded), faces angled toward flame",
+    "nomad_hesitant": "Leaning back slightly, steps slowing or pausing, one arm raised as if shielding eyes, bodies desaturating 20%",
+    "nomad_recoiling": "Turning torso away, backward step, head turned aside, rapid desaturation to 50% grey, movement stuttering",
+    "nomad_drifting_away": "Slow rotation outward, walking backward into fog, bodies fading in brightness and saturation, edges blurring",
+    "ring_closing": "Visible reduction in ground space between nomads and player, nomad silhouettes growing larger, circle tightening",
+    "steady_band_drift": "The flame's halo edge pulses subtly—expanding slightly then contracting—indicating the acceptable range is shifting"
+  },
+  "feedback_win": "The ring collapses inward in one fluid motion. All nomads kneel simultaneously, a synchronized drop. Their grey saturates to warm gold from the ground upward—feet first, then torsos, then heads—like liquid filling vessels. Heads bow deeply, foreheads nearly touching the ground. The flame above the player pulses once, bright and clean, then holds steady. The gold figures remain kneeling, motionless, fully committed.",
+  "feedback_fail": "FLARE PATH: The flame explodes into white—a soundless flash that bleaches the entire arena for one frame. Nomads recoil violently, arms raised, stumbling backward. Their bodies grey out completely, edges dissolving. Some vanish into fog immediately; others leave faint gold outlines where they stood—ghosts of almost-conversion—before fading. The flame shatters into embers that fall and extinguish. \n\nGUTTER PATH: The flame shrinks to a dim ember, flickering weakly, then collapses to ash. Nomads slow, stop, then turn away with slumped shoulders. They walk backward into the fog, bodies fading to transparency, no gold trace left. The space above the player is empty and grey.",
+  "exit_transition": "The arena fog recedes outward in a slow wave. The frozen band members resume motion mid-stride, their colors returning to full saturation over one second. The world brightens back to 100%. The nomad ring—whether kneeling in gold or absent—remains visible for two beats, then integrates: converted nomads rise and join the band's formation, moving with them; failed space returns to empty fog. Normal play resumes.",
+  "repair_rounds": 0
+}

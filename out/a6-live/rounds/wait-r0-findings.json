@@ -1,0 +1,12 @@
+{
+  "verb": "wait",
+  "round": 0,
+  "verdict": "PASS",
+  "findings": [],
+  "judgment": {
+    "verdict": "PASS",
+    "class": null,
+    "quoted_chunk": "witnessed inaction pushes nearby NPCs toward Apathy (~0.5)",
+    "reason": "The line correctly names the Wait verb and states its mechanical consequence—that withholding action teaches observers the player doesn't matter by pushing them toward Apathy—in the required short declarative register without mythology or numbers."
+  }
+}

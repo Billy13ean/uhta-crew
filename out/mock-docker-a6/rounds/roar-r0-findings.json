@@ -1,0 +1,9 @@
+{
+  "verb": "roar",
+  "round": 0,
+  "verdict": "FAIL",
+  "findings": [
+    "[deterministic] R2 NO-UI-LANGUAGE: interface vocabulary 'Press' — the register is the narrator naming what the being does, not which key is pressed"
+  ],
+  "judgment": null
+}

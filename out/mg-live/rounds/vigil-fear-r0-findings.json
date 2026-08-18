@@ -1,0 +1,8 @@
+{
+  "slot": "vigil-fear",
+  "round": 0,
+  "verdict": "FAIL",
+  "findings": [
+    "[llm] NOT-DIEGETIC: The design requires the player to read stamina state from 'your body dimming slightly with each placement' while simultaneously managing click-and-drag shield placement under a 45-second timer—this is an implied resource meter disguised as diegetic dimming, functioning as a HUD the player must monitor separately from the spatial triage task itself. The stamina-as-brightness signal competes for attention with the core spatial decision (which clusters to shield) rather than being legible through the encounter's own geometry. — chunk: \"no interface, no text, only your body and theirs\""
+  ]
+}

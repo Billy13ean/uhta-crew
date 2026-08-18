@@ -1,0 +1,23 @@
+{
+  "id": "vigil-fear",
+  "encounter": "vigil",
+  "pole": "fear",
+  "name": "The Watch",
+  "premise": "Night falls as you prepare to sleep. Your believers scatter across the dark landscape as points of dim light, flickering. Shadows creep inward from the edges—visible as encroaching darkness that will extinguish any light it reaches.",
+  "loop": "You are a bright flame that can move (WASD). Your light casts a protective radius around you—a visible dome. Believers inside your dome when darkness reaches them survive; those outside are extinguished. The darkness advances in waves from all edges. You have 45 seconds before dawn. Your flame shrinks visibly each time you move—each step costs size, and your protective radius shrinks with you. You begin large enough to cover perhaps a third of the field if you stand still, but movement is expensive. The choice: stay central and save a dense cluster, or spend yourself moving between groups, arriving smaller each time, able to shelter fewer. More believers than you can possibly cover; you must choose who to reach and who to abandon.",
+  "signals": "Your flame's size IS your remaining capacity—it shrinks visibly with each step, and your protective dome shrinks with it. Believer lights flicker more urgently as darkness nears them. The dome edge glows in your color with clear visible boundary. The dark is literal encroaching blackness, advancing in visible pulses. Distance between believer-lights shows clustering—near groups versus distant stragglers. Extinguished believers vanish to black exactly where they stood. Dawn arrives as sudden light from the horizon.",
+  "controls": [
+    "wasd-move"
+  ],
+  "outcome_win": "Many lights still burn at dawn—the ones inside your final radius. Your body brightens as you absorb their faith. The darkness retreats.",
+  "outcome_fail": "Few or no lights remain. The darkness holds the field. Your body is barely visible, starved.",
+  "effects": [
+    "convert_shallow",
+    "stamina_gain",
+    "drift_apathy",
+    "burnout"
+  ],
+  "why_fun": "Pure spatial resource allocation under time pressure. Your shrinking body IS the resource meter—legible through the encounter's own geometry. The skill is recognizing whether to hold position over a dense cluster or spend yourself reaching distant groups. The tension is watching lights you chose NOT to reach flicker out in the distance while you stand over the ones you saved—cold triage made visceral through your own diminishing presence.",
+  "pattern_source": "Triage — protect what you can",
+  "gdd_quote": "Your believers are points of light and the dark presses in. You shield what you can and you cannot shield everything. Fear's version is triage — choosing who to abandon before dawn."
+}

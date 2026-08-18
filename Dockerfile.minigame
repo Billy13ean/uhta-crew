@@ -1,0 +1,44 @@
+# uhta mini-game pipeline (Assignment 6, pipeline #2).
+#
+# Its own image, same reasoning as builder/ger: tagged submission images stay
+# untouched. This one NEEDS node — the build phase's patch contract runs
+# `node --check` on every inserted block, and without node that check
+# degrades to a labelled brace-balance. An image that silently weakened the
+# strongest post-check would be worse than no image (the Dockerfile.builder
+# argument, again).
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends nodejs \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY crew/       ./crew/
+COPY content/    ./content/
+COPY ger/        ./ger/
+COPY minigame/   ./minigame/
+COPY prompts/    ./prompts/
+COPY blackboard/ ./blackboard/
+COPY tests/      ./tests/
+COPY run_content.py run_ger.py run_minigame.py ./
+COPY Rouke-uhta-A6-MINIGAME-README.md ./
+
+RUN mkdir -p /app/out
+
+# Build-time gates: node is present and usable, the mini-game pipeline's
+# deterministic spine passes IN THIS IMAGE (38 assertions, incl. the fixture
+# patch against the real build under node --check), and the pipelines this
+# one imports are undisturbed.
+RUN node --version && python3 run_minigame.py --selftest
+RUN python3 run_ger.py --selftest && python3 run_content.py --selftest
+
+ENTRYPOINT ["python3", "run_minigame.py"]
+CMD ["--selftest"]

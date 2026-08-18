@@ -1,0 +1,14 @@
+{
+  "verb": "flame",
+  "round": 2,
+  "verdict": "FAIL",
+  "findings": [
+    "[llm] CONTRADICTS-CHUNK: The line says the flame applies alignment 'to those who see it' (witness-based), but the chunk specifies it applies 'to NPCs in radius' — a spatial mechanic, not a line-of-sight one, and the beat brief explicitly demands the load-bearing fact that it applies the flame's *current* alignment (so not a heal, but whatever you currently are), which this line buries under the wrong trigger condition. — chunk: \"applies the flame's current alignment to NPCs in radius (~3 tiles, grows with Ascension)\""
+  ],
+  "judgment": {
+    "verdict": "FAIL",
+    "class": "CONTRADICTS-CHUNK",
+    "quoted_chunk": "applies the flame's current alignment to NPCs in radius (~3 tiles, grows with Ascension)",
+    "reason": "The line says the flame applies alignment 'to those who see it' (witness-based), but the chunk specifies it applies 'to NPCs in radius' — a spatial mechanic, not a line-of-sight one, and the beat brief explicitly demands the load-bearing fact that it applies the flame's *current* alignment (so not a heal, but whatever you currently are), which this line buries under the wrong trigger condition."
+  }
+}

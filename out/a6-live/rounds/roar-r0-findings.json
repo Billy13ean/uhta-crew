@@ -1,0 +1,12 @@
+{
+  "verb": "roar",
+  "round": 0,
+  "verdict": "PASS",
+  "findings": [],
+  "judgment": {
+    "verdict": "PASS",
+    "class": null,
+    "quoted_chunk": "NPCs within **witness radius R (~6 tiles)** of the line take an unconditional Fear push (~2.8) regardless of flame color",
+    "reason": "The line correctly names Roar and carries the unconditional clause that witnessing causes fear independent of the flame's alignment, which is the load-bearing mechanical consequence that distinguishes this verb in Hope runs."
+  }
+}

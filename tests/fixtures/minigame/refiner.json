@@ -1,0 +1,64 @@
+{
+  "vigil-fear": [
+    {
+      "id": "vigil-fear", "encounter": "vigil", "pole": "fear",
+      "name": "The Watch",
+      "premise": "Your believers are points of light and the dark presses in from every side.",
+      "loop": "You hold a shadow-shield over one cluster at a time while the dark gnaws at every unshielded light. Coverage is the shield's own shadow; the pressure visibly shifts, and you drag your protection between clusters knowing the rest are burning down.",
+      "signals": "A shielded cluster sits in your cast shadow and burns steady; an unshielded cluster gutters, dims, and greys — the flame height itself is the state.",
+      "controls": ["mouse-move", "left-click"],
+      "outcome_win": "Dawn arrives with the clusters you chose still burning.",
+      "outcome_fail": "The lights you abandoned are grey by morning, standing exactly where you left them.",
+      "effects": ["drift_apathy", "convert_shallow"],
+      "why_fun": "Triage under guaranteed loss — the skill is deciding what to lose, and living with it.",
+      "pattern_source": "Triage — protect what you can; Diegetic state display",
+      "gdd_quote": "You shield what you can and you cannot shield everything"
+    }
+  ],
+  "holding-hope": [
+    {
+      "id": "holding-hope", "encounter": "holding", "pole": "hope",
+      "name": "The Procession",
+      "premise": "A rooted settlement resists you everywhere but along your own roads.",
+      "loop": "You walk your road toward the heart and converts fall in behind you, one by one. The line holds only while your pace stays slow and your turns stay wide; move too fast or cut too sharply and the tail detaches where you rushed. Whoever is still with you at the heart converts a resident.",
+      "signals": "The line of followers IS the state — its length, its gaps, and the stragglers left standing where the line broke.",
+      "controls": ["wasd-move"],
+      "outcome_win": "The unbroken line reaches the heart; residents step out and kneel.",
+      "outcome_fail": "The line breaks; whoever you dropped stands where you lost them, and the settlement's doors close.",
+      "effects": ["convert_devout", "resistance_drop"],
+      "why_fun": "The leader's restraint is the skill — the whole tension is between the pace you want and the pace the line can hold.",
+      "pattern_source": "Procession — follow-the-leader escort",
+      "gdd_quote": "the line breaks if you move too fast or turn too sharply"
+    }
+  ],
+  "holding-fear": [
+    {
+      "id": "holding-fear", "encounter": "holding", "pole": "fear",
+      "name": "The Breaking (v2)",
+      "premise": "The settlement's resistance shows as a ring around it, thick where belief runs deep.",
+      "loop": "Strike the ring where it is thinnest; each strike hardens the arcs beside it. Find the collapsing sequence before your stamina runs out.",
+      "signals": "Arc strength reads as the ring's thickness and glow; a struck arc cracks; hardened arcs brighten.",
+      "controls": ["left-click"],
+      "outcome_win": "The ring collapses and the settlement lies open; the town pays you in gold coins.",
+      "outcome_fail": "Stamina spent, the ring reseals thicker than before.",
+      "effects": ["gold_coins", "resistance_drop"],
+      "why_fun": "A sequencing puzzle wearing an action skin.",
+      "pattern_source": "Weak-point sequencing — the collapsing order",
+      "gdd_quote": "Strike where it is thinnest"
+    },
+    {
+      "id": "holding-fear", "encounter": "holding", "pole": "fear",
+      "name": "The Breaking (v3)",
+      "premise": "The settlement's resistance shows as a ring around it, thick where belief runs deep.",
+      "loop": "Strike the ring where it is thinnest; each strike hardens the arcs beside it. Find the collapsing sequence before your stamina runs out.",
+      "signals": "Arc strength reads as the ring's thickness and glow; a struck arc cracks; hardened arcs brighten.",
+      "controls": ["arrow-keys", "left-click"],
+      "outcome_win": "The ring collapses and the settlement lies open.",
+      "outcome_fail": "Stamina spent, the ring reseals thicker than before.",
+      "effects": ["burnout", "resistance_drop"],
+      "why_fun": "A sequencing puzzle wearing an action skin.",
+      "pattern_source": "Weak-point sequencing — the collapsing order",
+      "gdd_quote": "Strike where it is thinnest"
+    }
+  ]
+}

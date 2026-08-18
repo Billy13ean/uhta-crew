@@ -1,0 +1,12 @@
+{
+  "verb": "raze",
+  "round": 2,
+  "verdict": "PASS",
+  "findings": [],
+  "judgment": {
+    "verdict": "PASS",
+    "class": null,
+    "quoted_chunk": "Destroys a settlement, forcibly unsettles the tribe, and pushes a massive Fear spike onto witnesses",
+    "reason": "The line names the verb and delivers all three mechanical consequences from §2.2 in short declarative form—settlement destruction, forced unsettling, and witness Fear impact—with register matching the instrumentation demand and brutality appropriate to 'Fear's hammer.'"
+  }
+}

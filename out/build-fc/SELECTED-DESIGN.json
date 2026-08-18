@@ -1,0 +1,21 @@
+{
+  "id": "first-contact-hope",
+  "encounter": "first-contact",
+  "pole": "hope",
+  "name": "Steady the Flame",
+  "premise": "A ring of grey nomads approaches slowly from all sides, wavering as they walk. They will only commit if your flame burns steady—not too bright, not too dim—when the first of them arrives at arm's reach.",
+  "loop": "You hold space to raise the flame, release to let it dim. The flame pulses with a natural rhythm—it wants to flare when held, fade when released. The nomads approach in an uneven ring, each at their own pace, hesitating when the flame surges too bright, drifting sideways when it dims too low. You must read their distance and modulate pressure: short taps to keep the glow inside the narrow band they will accept, doing less as they draw near. One overcorrection—a flare that makes them flinch or a fade that breaks their focus—and that nomad turns away. The encounter ends when the first nomad reaches you or when all have drifted out of range.",
+  "signals": "Flame brightness is the size and intensity of the light-corona around your body. Nomad commitment shows in posture: they lean forward when the flame is steady, recoil and raise a hand to shield their eyes when it flares, turn their heads and slow when it dims. Distance is literal: you see how many steps each nomad has left. The acceptable band is never shown numerically—you learn it by watching them hesitate at the edges.",
+  "controls": [
+    "space"
+  ],
+  "outcome_win": "The first nomad to reach you kneels, and the flame settles into their chest. One to three others who were still approaching when contact happened also kneel in sequence. Each converts deep—already devout.",
+  "outcome_fail": "All nomads have turned away or stopped outside reach, standing with shoulders turned, gazes elsewhere. They walk back into the grey. No conversion.",
+  "effects": [
+    "convert_devout",
+    "no_effect"
+  ],
+  "why_fun": "The skill is fine motor restraint and rhythm-reading against a drifting target. The tension comes from knowing that doing more usually feels safer, but here the correct move is to do less—to trust the hold rather than chase it.",
+  "pattern_source": "Threshold fight — the steady hold",
+  "gdd_quote": "They approach in a wavering ring and commit only if the flame is steady when they arrive. Too bright and they break; too dim and they drift. The correct move is usually to do less."
+}

@@ -1,0 +1,13 @@
+{
+  "pass": {
+    "quoted_chunk": "a short, wordless, diegetic exchange — no interface, no text, only your body and theirs",
+    "reason": "Wordless, diegetic, pole-honest, and every stake pays in the sim's own currencies. [MOCK FIXTURE — canned verdict, no model judged this design]"
+  },
+  "fail_names": {
+    "The Procession (stormer)": {
+      "class": "POLE-SYMMETRY",
+      "quoted_chunk": "Hope — patience, depth, few | Fear — speed, force, many",
+      "reason": "This is Fear's texture wearing Hope's slot — charging, slamming, shoving, and paying out many shallow converts. The GDD's Hope holding is the procession: patience and line discipline, few and deep. [MOCK FIXTURE]"
+    }
+  }
+}

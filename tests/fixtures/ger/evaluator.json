@@ -1,0 +1,18 @@
+{
+  "pass": {
+    "quoted_chunk": "a narrator names each verb the first time you use it",
+    "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE — canned verdict, no model judged this line]"
+  },
+  "fail_lines": {
+    "The old gods kindled this flame in the first dark; raise it and their covenant spreads your feeling.": {
+      "class": "EXCEEDS-SCOPE",
+      "quoted_chunk": "short declarative lines, no mythology",
+      "reason": "'The old gods' and 'their covenant' are invented cosmology no retrieved chunk supports — mythology where the register demands instrumentation. [MOCK FIXTURE]"
+    },
+    "You roar. The sound carves a road through the land.": {
+      "class": "CONTRADICTS-CHUNK",
+      "quoted_chunk": "NPCs within witness radius take an unconditional Fear push regardless of flame color",
+      "reason": "The line names only the road and omits Roar's load-bearing consequence — every witness is frightened whatever the flame's color. A Hope player reading this stub learns nothing about the cost. [MOCK FIXTURE]"
+    }
+  }
+}

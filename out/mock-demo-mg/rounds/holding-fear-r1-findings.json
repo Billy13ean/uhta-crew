@@ -1,0 +1,8 @@
+{
+  "slot": "holding-fear",
+  "round": 1,
+  "verdict": "FAIL",
+  "findings": [
+    "[deterministic] C4 REAL-STAKES: effects ['gold_coins'] not in the sim's outcome vocabulary ['convert_devout', 'convert_shallow', 'burnout', 'drift_apathy', 'stamina_gain', 'stamina_loss', 'resistance_drop', 'story_spreads', 'no_effect'] — stakes must pay in the main loop's real currencies"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "verb": "raze",
+  "round": 2,
+  "verdict": "FAIL",
+  "findings": [
+    "[deterministic] R5 NO-NUMBERS: contains a digit — §2.3 banded display: the player never sees a number; say 'everyone who hears you', not a radius"
+  ],
+  "judgment": null
+}

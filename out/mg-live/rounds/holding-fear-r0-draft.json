@@ -1,0 +1,26 @@
+{
+  "id": "holding-fear",
+  "encounter": "holding",
+  "pole": "fear",
+  "name": "The Breaking",
+  "premise": "You stand before a rooted settlement's outer edge. Its resistance forms a visible ring of light around the heart — brighter where conviction runs deep, dimmer where doubt has crept in.",
+  "loop": "You left-click a segment of the ring to strike it with a roar-pulse. The struck segment darkens (resistance drops) but the arcs immediately adjacent flare brighter (hardening). You must find the sequence — which segment to break first, second, third — that collapses the entire ring before your stamina (shown as the intensity of your own glow) runs out. Each strike costs stamina; each wrong choice hardens the structure against you. The ring must fully darken to breach the settlement.",
+  "signals": "The settlement's resistance is a ring of light encircling its center — segment brightness IS conviction strength. Your stamina is your body's glow intensity, dimming with each strike. Struck segments visibly darken and crack; adjacent segments flare brighter and pulse. When the ring collapses, the light shatters and scatters outward. Settlers themselves appear as silhouettes within — more upright where the ring is bright, slumping where it dims.",
+  "controls": [
+    "mouse-move",
+    "left-click"
+  ],
+  "outcome_win": "The ring shatters completely. The settlement's silhouettes scatter in all directions like startled birds — many turn and face you (conversion), their postures bent low in fear.",
+  "outcome_fail": "Your glow dims to nothing before the ring breaks. You stagger back. The ring pulses once, bright and intact, and the settlement's silhouettes stand taller, unbroken.",
+  "effects": [
+    "convert_shallow",
+    "convert_shallow",
+    "convert_shallow",
+    "stamina_loss",
+    "resistance_drop",
+    "story_spreads"
+  ],
+  "why_fun": "The tension is spatial planning under pressure — reading the structure, committing to a sequence, and watching your stamina drain as each choice either opens the path or hardens the wall. The skill is pattern recognition and adaptive sequencing when early strikes reveal unexpected thickness.",
+  "pattern_source": "Weak-point sequencing — the collapsing order",
+  "gdd_quote": "Resistance shows as a ring. Strike where it is thinnest — but each strike hardens the arc beside it, so winning means finding the collapsing sequence before your stamina runs out."
+}

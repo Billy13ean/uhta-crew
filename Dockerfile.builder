@@ -39,7 +39,9 @@ COPY blackboard/ ./blackboard/
 COPY tests/      ./tests/
 COPY tools/      ./tools/
 COPY run_crew.py run_content.py run_builder.py ./
-COPY README.md README-A5.md ARCHITECTURE.md ./
+# (README-A5.md was renamed Rouke-uhta-A5-README.md at submission; the old
+# name here broke `docker compose build builder` after the rename.)
+COPY README.md Rouke-uhta-A5-README.md ARCHITECTURE.md ./
 
 RUN mkdir -p /app/out
 

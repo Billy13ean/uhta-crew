@@ -1,0 +1,23 @@
+{
+  "attention_cue": "Grey nomads emerge from fog at world edge, moving inward in loose formation—not wandering, but approaching with intent. Their bodies lean forward slightly, hesitant but drawn. A faint shimmer above the player's band begins: the flame's first flicker, barely visible, pulsing softly gold against grey.",
+  "entry_transition": "World pauses. All other bands freeze mid-step. The surrounding terrain desaturates to near-monochrome, fog thickens at edges. Camera tightens focus: the player's band centered, the approaching nomads now clearly visible in a wide ring. The flame above the player ignites fully—a small, wavering gold-white glow suspended at head-height. Silence: ambient sound mutes to a low hum. The ring of nomads resumes movement, slow and synchronized, while the rest of the world remains frozen.",
+  "visual_hierarchy": [
+    "The flame itself—gold-white core, hovering above the player's body, brightest element on screen, eye drawn immediately to its flicker and sway",
+    "The ring of nomads—grey silhouettes in a wide circle, bodies upright, moving inward with visible hesitation, their posture readable against the desaturated fog",
+    "The player's band—still, grounded, centered beneath the flame, anchor point for the entire composition"
+  ],
+  "signal_map": {
+    "flame_steady": "Gold-white core, stable glow, soft halo—light does not pulse or flicker wildly, burns with even warmth",
+    "flame_too_bright": "Searing white, harsh rays extending outward, air around it distorts with heat shimmer, no gold remaining—pure blinding light",
+    "flame_too_dim": "Ember-red core shrinking, gold fading to grey-orange, glow barely reaching beyond the flame itself, edges dissolving into fog",
+    "nomad_committed": "Upright posture, bodies leaning slightly forward, steady forward movement, silhouettes sharp and saturated toward warm grey",
+    "nomad_hesitant_flare": "Bodies lean back, shoulders raised, movement stutters to pause, some turn heads away, silhouettes recoil from light",
+    "nomad_hesitant_dim": "Bodies turn slightly sideways, heads tilt uncertain, forward movement slows to drift, edges of silhouettes begin to fade into fog",
+    "nomad_breaking_away": "Full turn, bodies walking outward, silhouettes losing saturation, fading rapidly into surrounding fog, distance increasing",
+    "ring_closing": "Visible distance shrinking—nomads larger on screen, circle tightening, individual figures more distinct, their shadows reaching toward center"
+  },
+  "feedback_win": "The ring closes to arm's length. All nomads kneel in perfect unison—a single fluid motion, bodies folding downward, heads bowed low. As they kneel, their grey forms saturate to warm gold from the ground up, like liquid light filling vessels. The flame above the player flares once, bright and clean, then settles to a steady golden glow. The kneeling figures remain still, fully committed, gold against grey fog.",
+  "feedback_fail": "Flare path: The flame explodes to searing white, a sharp crack of light that bleaches the entire screen for one frame. Nomads recoil violently—arms raised, bodies stumbling backward, then scattering outward in all directions, silhouettes dissolving into fog. The flame shatters to sparks and vanishes. Dim path: The flame shrinks to a red ember, flickers twice, then collapses to ash—a small grey puff. Nomads turn away slowly, their forms fading to transparency, walking back into fog without urgency. Some linger as faint grey outlines ringed in the barest gold glow—almost converted, now lost.",
+  "exit_transition": "The flame extinguishes (win: fades gently to nothing; fail: already gone). Camera pulls back to normal view. The frozen world desaturates further for one beat, then color and motion flood back in a single wave—surrounding bands resume movement, terrain regains saturation, ambient sound returns. Converted nomads (if any) rise from kneeling and join the player's band, their gold forms now moving in sync. The fog recedes to normal density. Play resumes.",
+  "repair_rounds": 0
+}

@@ -1,0 +1,14 @@
+{
+  "verb": "flame",
+  "round": 0,
+  "verdict": "FAIL",
+  "findings": [
+    "[llm] CONTRADICTS-CHUNK: The line omits that the flame applies alignment specifically to NPCs, making it sound like a general emotional broadcast rather than the targeted NPC-affecting verb the mechanics demand. — chunk: \"Raise / wave the flame | ~2.5 | Clears fog locally; applies the flame's current alignment to NPCs in radius\""
+  ],
+  "judgment": {
+    "verdict": "FAIL",
+    "class": "CONTRADICTS-CHUNK",
+    "quoted_chunk": "Raise / wave the flame | ~2.5 | Clears fog locally; applies the flame's current alignment to NPCs in radius",
+    "reason": "The line omits that the flame applies alignment specifically to NPCs, making it sound like a general emotional broadcast rather than the targeted NPC-affecting verb the mechanics demand."
+  }
+}

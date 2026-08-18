@@ -1,0 +1,13 @@
+{
+  "attention_cue": "The grey band stops wandering and turns to face you together, edging into a loose ring at the rim of your light — behaviour, not markers.",
+  "entry_transition": "The world outside the ring dims and desaturates as the simulation pauses; the camera's focus tightens on you and the band; your flame brightens once, like an intake of breath.",
+  "visual_hierarchy": ["your flame and its glow band", "the nearest nomads' posture", "the closing ring's distance"],
+  "signal_map": {
+    "flame steadiness": "the flame's corona: warm gold when inside the band, searing white when too bright, ember-dim when failing",
+    "nomad commitment": "posture — leaning in, shielding eyes, or turning away; kneeling on commitment",
+    "encounter progress": "the ring's radius visibly tightening toward you"
+  },
+  "feedback_win": "The ring closes; the kneelers saturate to warm gold in one slow wave.",
+  "feedback_fail": "A white flash or a gutter to ash; the ring breaks outward and the fog takes the leavers.",
+  "exit_transition": "The dimmed world breathes back to full color and the simulation resumes; the flame settles to its ordinary size."
+}

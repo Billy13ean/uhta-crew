@@ -1,0 +1,24 @@
+{
+  "attention_cue": "Grey nomad sprites halt their wandering and turn to face the player's band from multiple directions simultaneously. Their bodies lean forward slightly, heads tilted toward the player. A faint pulse of warmth begins to glow above the player's lead figure—not yet a flame, just a gathering of light, like embers collecting.",
+  "entry_transition": "The world dims to 40% saturation and brightness. All non-participant sprites slow to half-speed, then freeze. The camera tightens its bounds, centering on the player's band with the nomad ring visible at the edges. The ember-glow above the player ignites into a small, flickering flame—gold-orange, unstable. The nomads begin their slow approach inward. The pause is held for 1.5 seconds before player input is accepted.",
+  "visual_hierarchy": [
+    "The flame above the player's body—its brightness, color, and stability",
+    "The nomad ring—their posture, distance, and movement toward or away from center",
+    "The player's own figure beneath the flame—grounded, still, the anchor point"
+  ],
+  "signal_map": {
+    "flame_steady": "Gold-white core with soft orange corona, gentle flicker, height approximately 1.5x sprite height, warm glow radius touching nearest nomads",
+    "flame_too_bright": "Searing white-blue core, harsh flare extending 2x normal height, sharp crackle of light rays, corona bleeds into surrounding air",
+    "flame_too_dim": "Ember-red, low flicker, height barely above sprite, orange glow fading to grey at edges, threatening to extinguish",
+    "nomad_committed": "Upright posture, steady forward walk, bodies leaning slightly inward, grey sprites warming to faint gold undertone at edges",
+    "nomad_hesitant": "Leaning back, torso angled away, forward movement paused or stuttering, one foot forward but weight shifted back",
+    "nomad_recoiling": "Bodies turn 45° away, hands raised to shield face, backward steps, grey deepening, movement away from center",
+    "nomad_drifting": "Torso sags, head turns aside, slow rotation away from center, sprites fading in saturation, edges softening into fog",
+    "ring_closing": "Distance between nomads and player shrinks visibly, ring tightens from loose circle to close formation, individual sprites grow larger on screen",
+    "steady_band_drift": "The flame's 'correct' brightness shifts subtly—the nomads' commitment response threshold moves, visible only by watching their reactions lag or anticipate the current flame state"
+  },
+  "feedback_win": "The nomads complete their approach and kneel in perfect unison—a synchronized drop to both knees, heads bowed low, hands open at their sides. Their grey sprites saturate fully to warm gold, glowing from within. The flame above the player stabilizes into a steady, radiant pillar—no flicker, pure gold-white. The light expands gently to touch all kneeling figures. Hold for 2 seconds in this tableau.",
+  "feedback_fail": "FLARE PATH: The flame explodes into a white starburst, searing outward with sharp rays. Nomads throw arms up, bodies recoil violently, then scatter in all directions—running sprites, chaotic movement, grey deepening to near-black. The flame collapses to nothing. / DIM PATH: The flame gutters, shrinks to a single ember, then extinguishes to grey ash that drifts upward. Nomads turn away slowly, shoulders slumped, and fade back into the fog—sprites losing opacity and saturation, edges dissolving. Some retain a faint gold outline, a ghost of what they almost became.",
+  "exit_transition": "The world's saturation and brightness return to 100% over 1 second. Frozen background sprites resume normal speed. The camera bounds expand back to standard play view. Converted nomads (if any) rise from kneeling, now gold-toned, and join the player's band formation. The flame above the player fades naturally. Play resumes.",
+  "repair_rounds": 0
+}

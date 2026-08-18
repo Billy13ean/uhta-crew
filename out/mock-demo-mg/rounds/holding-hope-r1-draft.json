@@ -1,0 +1,21 @@
+{
+  "id": "holding-hope",
+  "encounter": "holding",
+  "pole": "hope",
+  "name": "The Procession",
+  "premise": "A rooted settlement resists you everywhere but along your own roads.",
+  "loop": "You walk your road toward the heart and converts fall in behind you, one by one. The line holds only while your pace stays slow and your turns stay wide; move too fast or cut too sharply and the tail detaches where you rushed. Whoever is still with you at the heart converts a resident.",
+  "signals": "The line of followers IS the state — its length, its gaps, and the stragglers left standing where the line broke.",
+  "controls": [
+    "wasd-move"
+  ],
+  "outcome_win": "The unbroken line reaches the heart; residents step out and kneel.",
+  "outcome_fail": "The line breaks; whoever you dropped stands where you lost them, and the settlement's doors close.",
+  "effects": [
+    "convert_devout",
+    "resistance_drop"
+  ],
+  "why_fun": "The leader's restraint is the skill — the whole tension is between the pace you want and the pace the line can hold.",
+  "pattern_source": "Procession — follow-the-leader escort",
+  "gdd_quote": "the line breaks if you move too fast or turn too sharply"
+}

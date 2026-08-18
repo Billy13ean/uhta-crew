@@ -1,0 +1,21 @@
+{
+  "id": "holding-hope",
+  "encounter": "holding",
+  "pole": "hope",
+  "name": "The Procession (stormer)",
+  "premise": "A rooted settlement resists you everywhere but along your own roads.",
+  "loop": "You charge down your road at full speed, slamming through the gate before the residents can react, and shove as many as possible toward the heart in the seconds before the ring closes. The more you force through at once, the more turn.",
+  "signals": "The road carries your color; residents knocked aside sprawl; the ring closing shows as doors and shoulders turning inward.",
+  "controls": [
+    "wasd-move"
+  ],
+  "outcome_win": "Everyone you shoved to the heart flips to your color at once.",
+  "outcome_fail": "The ring closes and ejects you; the settlement hardens.",
+  "effects": [
+    "convert_shallow",
+    "resistance_drop"
+  ],
+  "why_fun": "Speed and force — hitting the gap hard before it shuts.",
+  "pattern_source": "Interception — the cutoff",
+  "gdd_quote": "Roads are the only way in"
+}

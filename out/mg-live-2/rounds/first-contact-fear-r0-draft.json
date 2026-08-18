@@ -1,0 +1,22 @@
+{
+  "id": "first-contact-fear",
+  "encounter": "first-contact",
+  "pole": "fear",
+  "name": "The Scatter",
+  "premise": "You roar — the unaligned nomad band fractures into panicked runners fleeing in all directions. The simulation freezes them mid-stride, each body a readable vector pointing toward escape.",
+  "loop": "You sprint (WASD) to intercept. Each runner is a body aimed at the edge of the encounter radius, moving at constant speed. You are faster. When you cross a runner's path ahead of them (your body blocks their line), they stop, turn to face you, and kneel — converted. Runners you cannot reach flee past the boundary and vanish. The encounter ends when all runners have either converted or escaped, or when 45 seconds expire.",
+  "signals": "Runner posture: sprinting away, backs to you, arms pumping. Speed: visible stride rate, dust trails. Your advantage: you cover ground faster, your body leaves a bright wake. Conversion: the moment you cut them off they freeze mid-step, pivot to face you, drop to one knee, and glow faintly in your Fear-red. Escape: a runner crosses the dark boundary ring and dissolves into shadow. Remaining time: the boundary ring itself pulses faster as seconds drain.",
+  "controls": [
+    "wasd-move"
+  ],
+  "outcome_win": "You block five or more runners before they reach the edge — they kneel in a scattered constellation around you, shallow converts already fading to pale red. The rest escape into the dark.",
+  "outcome_fail": "Most of the band scatters past you. Only one or two kneel. The boundary dissolves and the simulation resumes with distant silhouettes still running, carrying the story outward.",
+  "effects": [
+    "convert_shallow",
+    "story_spreads",
+    "stamina_loss"
+  ],
+  "why_fun": "Pure spatial triage under time pressure: you read eight fleeing angles, plot the collapse sequence that saves the most, commit to a sprinting line, and live with who you abandoned. The skill is chase geometry; the tension is that every miss has a name.",
+  "pattern_source": "Interception — the cutoff",
+  "gdd_quote": "You roar, the band breaks, and you have a handful of strides to cut off the runners. Everyone you head off turns; everyone who escapes carries the story outward. Many converts, every one of them shallow."
+}

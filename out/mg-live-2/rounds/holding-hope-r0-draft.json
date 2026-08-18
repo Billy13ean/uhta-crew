@@ -1,0 +1,22 @@
+{
+  "id": "holding-hope",
+  "encounter": "holding",
+  "pole": "hope",
+  "name": "The Procession",
+  "premise": "You stand at the edge of a rooted settlement, its heart visible deep within along winding roads. Converts from outside the settlement appear and begin to follow behind you as you walk the roads inward.",
+  "loop": "You walk toward the settlement's heart using WASD, staying on the roads you've built. Each convert that appears falls into line behind you, forming a visible chain. If you move too quickly (hold movement keys without pausing), the tail of the line stretches and breaks — those behind the break stop following and stand where the break occurred. If you turn too sharply (sudden 90° or sharper direction changes), the chain whips and the tail detaches. You must modulate your pace with brief pauses and take wide, gentle turns. The line visibly tightens when you slow, loosens when you accelerate. When you reach the settlement's heart (a distinct gathering of residents), whoever remains in your procession causes one resident to step forward and shift toward your color.",
+  "signals": "The procession line itself shows your success: each convert is a body in your color walking behind you, spacing shows tension (tight = safe, stretched = about to break). The settlement heart is a cluster of standing figures in neutral or opposing colors at the road's end. Residents who convert step out from the cluster and change color. Detached converts stand frozen where the line broke, still visible but no longer following.",
+  "controls": [
+    "wasd-move"
+  ],
+  "outcome_win": "You arrive at the heart with multiple converts still in line; one or more residents step forward from the cluster and shift to your color, standing taller.",
+  "outcome_fail": "You arrive alone or with only one convert remaining; no residents move, or you lose patience and move too quickly, scattering everyone before you reach the heart.",
+  "effects": [
+    "convert_devout",
+    "stamina_loss",
+    "no_effect"
+  ],
+  "why_fun": "The skill is restraint and spatial planning — reading the road ahead and choosing when to pause, when to creep forward, which turns to widen. The tension comes from impatience: you want to rush to preserve stamina and reach more settlements, but rushing destroys the very thing you're building.",
+  "pattern_source": "Procession — follow-the-leader escort",
+  "gdd_quote": "Roads are the only way in. Converts fall in behind you as you walk and the line breaks if you move too fast or turn too sharply; whoever is still with you at the heart converts a resident."
+}

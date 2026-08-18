@@ -1,0 +1,25 @@
+{
+  "id": "vigil-hope",
+  "encounter": "vigil",
+  "pole": "hope",
+  "name": "The Weaving",
+  "premise": "Night falls and your believers stand scattered in the dark, holding candles. You have only your last stamina and the thread of light you carry to bind them together before sleep takes you.",
+  "loop": "Click and hold on a believer to anchor your thread, then move the mouse smoothly to trace a glowing line toward another believer; release on them to complete the link. Each completed link drains stamina (longer links cost more). The thread breaks if you move too fast (mouse speed exceeds a threshold) or make too sharp a turn (angle threshold). Broken threads vanish and waste the stamina. You can branch from any anchored believer to start a new chain segment. When stamina depletes or you press space to sleep, the encounter ends.",
+  "signals": "Believers appear as stationary figures holding small candle flames in the darkness. Your current stamina is the brightness of the thread you're drawing—it dims visibly as you extend lines and glows brightest when full. The thread itself is a living ribbon of light trailing your mouse; it shimmers steady when you move smoothly, flickers when you approach the speed limit, and shatters into fading sparks when you break it. Completed chains pulse gently between their anchored believers. Distance between believers is visible space; longer chains are obviously harder to hold smooth.",
+  "controls": [
+    "mouse-move",
+    "left-click",
+    "space"
+  ],
+  "outcome_win": "A web of light connects many believers in long, graceful chains. When you sleep, the channels glow and belief visibly flows along them, reaching distant figures. The believers you connected stand taller.",
+  "outcome_fail": "Only short, scattered links survive, or many chains lie broken. Most believers remain isolated in the dark. When you sleep, the weak web barely holds and distant believers drift toward grey.",
+  "effects": [
+    "convert_devout",
+    "stamina_loss",
+    "story_spreads",
+    "drift_apathy"
+  ],
+  "why_fun": "The tension between ambition and control: longer chains reach further and convert more deeply, but demand smoother execution and drain more stamina. You must judge what you can hold—planning the ideal web, then executing it without rushing or jerking the line. Failure is legible the instant your hand moves too fast.",
+  "pattern_source": "Path tracing — the drawn line",
+  "gdd_quote": "Your believers hang in the dark and you trace lines between them with your last stamina. Completed chains become channels belief travels while you are gone; longer chains reach further and are harder to hold."
+}

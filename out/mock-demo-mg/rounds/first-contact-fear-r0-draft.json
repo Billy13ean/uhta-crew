@@ -1,0 +1,21 @@
+{
+  "id": "first-contact-fear",
+  "encounter": "first-contact",
+  "pole": "fear",
+  "name": "The Scatter",
+  "premise": "The band breaks at your roar and runners peel off along every open line.",
+  "loop": "For a few strides you are faster than they are. Each runner flees along a visible line toward the dark; you cut lines by moving through them. You cannot reach every line — every step toward one runner opens another's escape.",
+  "signals": "Escape routes read as the runners' own paths and the gaps between rocks; a runner you head off stops dead and cowers; an escaped runner shrinks into the dark still carrying the story.",
+  "controls": [
+    "wasd-move"
+  ],
+  "outcome_win": "Everyone you head off turns shallowly to your color, trembling.",
+  "outcome_fail": "The ones who escape spread the tale of you outward to camps you have never seen.",
+  "effects": [
+    "convert_shallow",
+    "story_spreads"
+  ],
+  "why_fun": "Chase geometry as instant triage — commitment costs are visible the moment you move, and you cannot catch everyone by design.",
+  "pattern_source": "Interception — the cutoff",
+  "gdd_quote": "you have a handful of strides to cut off the runners"
+}

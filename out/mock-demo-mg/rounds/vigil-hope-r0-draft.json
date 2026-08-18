@@ -1,0 +1,22 @@
+{
+  "id": "vigil-hope",
+  "encounter": "vigil",
+  "pole": "hope",
+  "name": "The Weaving",
+  "premise": "Sleep takes you; your believers hang in the dark as points of your color.",
+  "loop": "With your last stamina you draw a thread from believer to believer with slow movements. The thread holds only while your pace stays gentle and your turns stay wide; a rushed segment frays and snaps. Longer chains reach further and are harder to hold.",
+  "signals": "The thread is drawn light between bodies; fraying shows as the thread thinning and trembling; a completed chain settles into a steady channel glow.",
+  "controls": [
+    "mouse-move",
+    "left-click"
+  ],
+  "outcome_win": "Completed chains carry belief between the sleepers all generation.",
+  "outcome_fail": "A snapped thread leaves its two ends dark; unchained believers stand alone against the grey.",
+  "effects": [
+    "convert_devout",
+    "stamina_loss"
+  ],
+  "why_fun": "The ambition tradeoff — every extra link is reach you want and risk you must hold with smoother hands.",
+  "pattern_source": "Path tracing — the drawn line",
+  "gdd_quote": "Completed chains become channels belief travels while you are gone"
+}

@@ -38,3 +38,43 @@ services:
     #   docker compose run --rm builder --mock-llm
     #   docker compose run --rm builder --run-id a5-live
     command: ["--selftest"]
+
+  # Assignment 6. Its own image (Dockerfile.ger), same reasoning as builder:
+  # the tagged submission images stay untouched. No node in this one — the GER
+  # patch checks are pure-Python regex over an anchored pattern, not an
+  # execution of the build. The image build itself gates on
+  # `run_ger.py --selftest` (38 assertions, two of them against the real
+  # build file baked into blackboard/) and on `run_content.py --selftest`
+  # (ger/ imports content/; prove the direction, don't assert it).
+  ger:
+    build:
+      context: .
+      dockerfile: Dockerfile.ger
+    image: uhta-ger:latest
+    volumes:
+      - ./out:/app/out
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CREW_MODEL: ${CREW_MODEL:-claude-sonnet-4-5}
+    # Default is the no-key selftest. Override at the CLI:
+    #   docker compose run --rm ger --mock-llm --run-id mock-docker-a6
+    #   docker compose run --rm ger --run-id a6-live
+    command: ["--selftest"]
+
+  # Assignment 6, pipeline #2. Needs node (the patch contract runs
+  # `node --check` on every inserted block); image gates on its own selftest
+  # plus ger/content non-regression. Two-phase usage — the human gate is the
+  # command line:
+  #   docker compose run --rm minigame --run-id mg-live                (propose)
+  #   docker compose run --rm minigame --build --select <id> --from-run mg-live
+  minigame:
+    build:
+      context: .
+      dockerfile: Dockerfile.minigame
+    image: uhta-minigame:latest
+    volumes:
+      - ./out:/app/out
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CREW_MODEL: ${CREW_MODEL:-claude-sonnet-4-5}
+    command: ["--selftest"]

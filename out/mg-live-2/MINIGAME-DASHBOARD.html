@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>uhta — mini-game candidates · Director's dashboard · mg-live-2</title>
+<style>
+  :root { --bg:#0b0b0e; --card:#15151b; --ink:#d8d4c8; --dim:#8a8578;
+           --gold:#e8b64c; --ember:#c8503c; --green:#5cb46a; --line:#2a2a33; }
+  * { box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); margin:0;
+         font:15px/1.55 Georgia, 'Times New Roman', serif; padding-bottom:120px; }
+  header { padding:28px 32px 18px; border-bottom:1px solid var(--line); }
+  header h1 { margin:0; font-size:22px; font-weight:normal; letter-spacing:.06em; }
+  header h1 b { color:var(--gold); font-weight:normal; }
+  header p { color:var(--dim); margin:6px 0 0; font-size:13px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(430px,1fr));
+          gap:18px; padding:24px 32px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+          padding:18px 20px; }
+  .card.escalated { opacity:.55; }
+  .cardhead { display:flex; gap:14px; align-items:flex-start; }
+  .card h2 { margin:0 0 6px; font-size:18px; color:var(--gold); font-weight:normal; }
+  .badges { display:flex; gap:6px; flex-wrap:wrap; }
+  .badge { font:11px/1 monospace; padding:4px 8px; border-radius:20px;
+           border:1px solid var(--line); color:var(--dim); }
+  .badge.hope { color:var(--green); border-color:var(--green); }
+  .badge.fear { color:var(--ember); border-color:var(--ember); }
+  .badge.pass { color:var(--gold); border-color:var(--gold); }
+  .badge.built { color:#0b0b0e; background:var(--gold); border-color:var(--gold); }
+  .badge.locked { color:var(--ember); border-color:var(--ember); }
+  .approve input { display:none; }
+  .approve span { display:inline-block; width:26px; height:26px; margin-top:2px;
+                  border:2px solid var(--dim); border-radius:6px; cursor:pointer; }
+  .approve input:checked + span { background:var(--gold); border-color:var(--gold);
+      box-shadow:0 0 12px rgba(232,182,76,.5); }
+  .approve input:disabled + span { opacity:.3; cursor:not-allowed; }
+  .premise { font-style:italic; color:var(--dim); margin:12px 0; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .col h3 { font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--gold); margin:0 0 6px; font-weight:normal; }
+  .col h3 .sub { color:var(--dim); text-transform:none; letter-spacing:0; }
+  .col p { margin:0 0 8px; font-size:13.5px; }
+  .kv b { color:var(--dim); font-weight:normal; font-variant:small-caps;
+          margin-right:6px; }
+  .ground { border-top:1px dashed var(--line); margin-top:12px; padding-top:10px;
+            font-size:12.5px; color:var(--dim); }
+  .ground b { color:var(--ink); font-weight:normal; font-variant:small-caps; }
+  .ground .chunk { font-style:italic; }
+  footer { position:fixed; bottom:0; left:0; right:0; background:#101017;
+           border-top:1px solid var(--line); padding:14px 32px;
+           display:flex; gap:18px; align-items:center; }
+  footer .count { color:var(--gold); font-size:15px; min-width:180px; }
+  footer button { background:var(--gold); color:#0b0b0e; border:none;
+      font:14px Georgia, serif; padding:10px 22px; border-radius:8px; cursor:pointer; }
+  footer button:disabled { opacity:.35; cursor:not-allowed; }
+  footer a { color:var(--gold); font-size:13px; display:none; }
+  #ruling { display:none; white-space:pre-wrap; background:#101017;
+      border:1px solid var(--gold); border-radius:10px; margin:0 32px 24px;
+      padding:16px 20px; font:12.5px/1.6 monospace; color:var(--ink); }
+</style></head><body>
+<header>
+  <h1><b>uhta</b> · encounter mini-game candidates — the Director's dashboard</h1>
+  <p>Run <code>mg-live-2</code> · 6 selectable candidate(s) ·
+     check what you approve, then generate the ruling. The gate stays
+     structural: the ruling contains the build command — a human still runs it.</p>
+</header>
+<div class="grid">
+<div class="card " data-id="first-contact-hope">
+  <div class="cardhead">
+    <label class="approve">
+      <input type="checkbox" class="pick" value="first-contact-hope"
+              onchange="tally()">
+      <span></span>
+    </label>
+    <div>
+      <h2>Steady the Flame</h2>
+      <div class="badges">
+        <span class="badge slot">first-contact</span>
+        <span class="badge hope">hope</span>
+        <span class="badge pass">judge: PASS</span>
+        
+      </div>
+    </div>
+  </div>
+  <p class="premise">A ring of grey nomads approaches slowly from all sides, wavering as they walk. They will only commit if your flame burns steady—not too bright, not too dim—when the first of them arrives at arm&#x27;s reach.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>The rules</h3>
+      <p>You hold space to raise the flame, release to let it dim. The flame pulses with a natural rhythm—it wants to flare when held, fade when released. The nomads approach in an uneven ring, each at their own pace, hesitating when the flame surges too bright, drifting sideways when it dims too low. You must read their distance and modulate pressure: short taps to keep the glow inside the narrow band they will accept, doing less as they draw near. One overcorrection—a flare that makes them flinch or a fade that breaks their focus—and that nomad turns away. The encounter ends when the first nomad reaches you or when all have drifted out of range.</p>
+      <p class="kv"><b>Controls</b> space</p>
+      <p class="kv"><b>Stakes</b> convert_devout, no_effect</p>
+      <p class="kv"><b>Win</b> The first nomad to reach you kneels, and the flame settles into their chest. One to three others who were still approaching when contact happened also kneel in sequence. Each converts deep—already devout.</p>
+      <p class="kv"><b>Fail</b> All nomads have turned away or stopped outside reach, standing with shoulders turned, gazes elsewhere. They walk back into the grey. No conversion.</p>
+    </div>
+    <div class="col">
+      <h3>The visuals <span class="sub">(drop-in for the render layer)</span></h3>
+      <p>Flame brightness is the size and intensity of the light-corona around your body. Nomad commitment shows in posture: they lean forward when the flame is steady, recoil and raise a hand to shield their eyes when it flares, turn their heads and slow when it dims. Distance is literal: you see how many steps each nomad has left. The acceptable band is never shown numerically—you learn it by watching them hesitate at the edges.</p>
+      <p class="kv"><b>Why fun</b> The skill is fine motor restraint and rhythm-reading against a drifting target. The tension comes from knowing that doing more usually feels safer, but here the correct move is to do less—to trust the hold rather than chase it.</p>
+      <p class="kv"><b>Pattern</b> Threshold fight — the steady hold</p>
+    </div>
+  </div>
+  <div class="ground">
+    <p><b>GDD grounding</b> “They approach in a wavering ring and commit only if the flame is steady when they arrive. Too bright and they break; too dim and they drift. The correct move is usually to do less.”</p>
+    <p><b>Judge</b> The design implements the GDD&#x27;s exact intent: a threshold-hold mechanic where space modulates flame brightness, nomads approach in a ring and react to flare/fade with recoil/drift, and success yields few devout converts. The diegetic signals (flame corona size, nomad posture and lean) require no HUD, and the patience/restraint texture is distinctly Hope&#x27;s pole.</p>
+    <p class="chunk">chunk honored: “They approach in a wavering ring and commit only if the flame is steady when they arrive. Too bright and they break; too dim and they drift. The correct move is usually to do less. Few converts, and they arrive already devout”</p>
+  </div>
+</div>
+
+<div class="card " data-id="first-contact-fear">
+  <div class="cardhead">
+    <label class="approve">
+      <input type="checkbox" class="pick" value="first-contact-fear"
+              onchange="tally()">
+      <span></span>
+    </label>
+    <div>
+      <h2>The Scatter</h2>
+      <div class="badges">
+        <span class="badge slot">first-contact</span>
+        <span class="badge fear">fear</span>
+        <span class="badge pass">judge: PASS</span>
+        
+      </div>
+    </div>
+  </div>
+  <p class="premise">You roar — the unaligned nomad band fractures into panicked runners fleeing in all directions. The simulation freezes them mid-stride, each body a readable vector pointing toward escape.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>The rules</h3>
+      <p>You sprint (WASD) to intercept. Each runner is a body aimed at the edge of the encounter radius, moving at constant speed. You are faster. When you cross a runner&#x27;s path ahead of them (your body blocks their line), they stop, turn to face you, and kneel — converted. Runners you cannot reach flee past the boundary and vanish. The encounter ends when all runners have either converted or escaped, or when 45 seconds expire.</p>
+      <p class="kv"><b>Controls</b> wasd-move</p>
+      <p class="kv"><b>Stakes</b> convert_shallow, stamina_loss, story_spreads</p>
+      <p class="kv"><b>Win</b> You block five or more runners before they reach the edge — they kneel in a scattered constellation around you, shallow converts already fading to pale red. The rest escape into the dark.</p>
+      <p class="kv"><b>Fail</b> Most of the band scatters past you. Only one or two kneel. The boundary dissolves and the simulation resumes with distant silhouettes still running, carrying the story outward.</p>
+    </div>
+    <div class="col">
+      <h3>The visuals <span class="sub">(drop-in for the render layer)</span></h3>
+      <p>Runner posture: sprinting away, backs to you, arms pumping. Speed: visible stride rate, dust trails. Your advantage: you cover ground faster, your body leaves a bright wake. Conversion: the moment you cut them off they freeze mid-step, pivot to face you, drop to one knee, and glow faintly in your Fear-red. Escape: a runner crosses the dark boundary ring and dissolves into shadow. Remaining time: the boundary ring itself pulses faster as seconds drain.</p>
+      <p class="kv"><b>Why fun</b> Pure spatial triage under time pressure: you read eight fleeing angles, plot the collapse sequence that saves the most, commit to a sprinting line, and live with who you abandoned. The skill is chase geometry; the tension is that every miss has a name.</p>
+      <p class="kv"><b>Pattern</b> Interception — the cutoff</p>
+    </div>
+  </div>
+  <div class="ground">
+    <p><b>GDD grounding</b> “You roar, the band breaks, and you have a handful of strides to cut off the runners. Everyone you head off turns; everyone who escapes carries the story outward. Many converts, every one of them shallow.”</p>
+    <p><b>Judge</b> The design implements Fear&#x27;s speed/force/many texture faithfully: sprint-based interception triage, visible fleeing vectors, immediate shallow conversions on cutoff, and escapees spreading the story. All state is diegetic (posture, dust trails, kneeling bodies, boundary pulse) with no interface elements, and the chase geometry plays nothing like Hope&#x27;s patient flame-steadying.</p>
+    <p class="chunk">chunk honored: “You roar, the band breaks, and you have a handful of strides to cut off the runners. Everyone you head off turns; everyone who escapes carries the story outward. Many converts, every one of them shallow.”</p>
+  </div>
+</div>
+
+<div class="card " data-id="vigil-hope">
+  <div class="cardhead">
+    <label class="approve">
+      <input type="checkbox" class="pick" value="vigil-hope"
+              onchange="tally()">
+      <span></span>
+    </label>
+    <div>
+      <h2>The Weaving</h2>
+      <div class="badges">
+        <span class="badge slot">vigil</span>
+        <span class="badge hope">hope</span>
+        <span class="badge pass">judge: PASS</span>
+        
+      </div>
+    </div>
+  </div>
+  <p class="premise">Night falls and your believers stand scattered in the dark, holding candles. You have only your last stamina and the thread of light you carry to bind them together before sleep takes you.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>The rules</h3>
+      <p>Click and hold on a believer to anchor your thread, then move the mouse smoothly to trace a glowing line toward another believer; release on them to complete the link. Each completed link drains stamina (longer links cost more). The thread breaks if you move too fast (mouse speed exceeds a threshold) or make too sharp a turn (angle threshold). Broken threads vanish and waste the stamina. You can branch from any anchored believer to start a new chain segment. When stamina depletes or you press space to sleep, the encounter ends.</p>
+      <p class="kv"><b>Controls</b> mouse-move, left-click, space</p>
+      <p class="kv"><b>Stakes</b> convert_devout, drift_apathy, stamina_loss, story_spreads</p>
+      <p class="kv"><b>Win</b> A web of light connects many believers in long, graceful chains. When you sleep, the channels glow and belief visibly flows along them, reaching distant figures. The believers you connected stand taller.</p>
+      <p class="kv"><b>Fail</b> Only short, scattered links survive, or many chains lie broken. Most believers remain isolated in the dark. When you sleep, the weak web barely holds and distant believers drift toward grey.</p>
+    </div>
+    <div class="col">
+      <h3>The visuals <span class="sub">(drop-in for the render layer)</span></h3>
+      <p>Believers appear as stationary figures holding small candle flames in the darkness. Your current stamina is the brightness of the thread you&#x27;re drawing—it dims visibly as you extend lines and glows brightest when full. The thread itself is a living ribbon of light trailing your mouse; it shimmers steady when you move smoothly, flickers when you approach the speed limit, and shatters into fading sparks when you break it. Completed chains pulse gently between their anchored believers. Distance between believers is visible space; longer chains are obviously harder to hold smooth.</p>
+      <p class="kv"><b>Why fun</b> The tension between ambition and control: longer chains reach further and convert more deeply, but demand smoother execution and drain more stamina. You must judge what you can hold—planning the ideal web, then executing it without rushing or jerking the line. Failure is legible the instant your hand moves too fast.</p>
+      <p class="kv"><b>Pattern</b> Path tracing — the drawn line</p>
+    </div>
+  </div>
+  <div class="ground">
+    <p><b>GDD grounding</b> “Your believers hang in the dark and you trace lines between them with your last stamina. Completed chains become channels belief travels while you are gone; longer chains reach further and are harder to hold.”</p>
+    <p><b>Judge</b> The design is fully diegetic (thread brightness as stamina, spatial distance, visible shimmer/flicker/shatter as constraint feedback), implements Hope&#x27;s patience texture (planning then smooth execution, rewarding control over speed), and directly instantiates the GDD&#x27;s intent where longer chains cost more stamina and break under rushed movement. The mouse-tracing mechanic with speed and angle thresholds creates the &#x27;harder to hold&#x27; constraint for ambitious webs.</p>
+    <p class="chunk">chunk honored: “Your believers hang in the dark and you trace lines between them with your last stamina. Completed chains become channels belief travels while you are gone; longer chains reach further and are harder to hold.”</p>
+  </div>
+</div>
+
+<div class="card " data-id="vigil-fear">
+  <div class="cardhead">
+    <label class="approve">
+      <input type="checkbox" class="pick" value="vigil-fear"
+              onchange="tally()">
+      <span></span>
+    </label>
+    <div>
+      <h2>The Watch</h2>
+      <div class="badges">
+        <span class="badge slot">vigil</span>
+        <span class="badge fear">fear</span>
+        <span class="badge pass">judge: PASS</span>
+        
+      </div>
+    </div>
+  </div>
+  <p class="premise">Night falls as you prepare to sleep. Your believers appear as flickering flames scattered across the dark. Shadows creep inward from all sides, closing on each flame.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>The rules</h3>
+      <p>Each believer is a flame threatened by encroaching darkness. You left-click and drag to sweep your body through the space, pushing back shadows in an arc around you. Darkness advances in pulses—slow at first, then faster. Each sweep costs stamina (visible as your body dimming slightly). You cannot be everywhere; shadows will claim flames you don&#x27;t protect. You must choose which clusters to defend and which to abandon before your stamina runs out and sleep takes you.</p>
+      <p class="kv"><b>Controls</b> mouse-move, left-click</p>
+      <p class="kv"><b>Stakes</b> convert_devout, convert_shallow, drift_apathy, stamina_loss</p>
+      <p class="kv"><b>Win</b> Multiple protected flames burn bright at dawn—the believers you shielded stand devout, their fear of the dark confirmed and you their proven guardian.</p>
+      <p class="kv"><b>Fail</b> Scattered dark points mark where flames died. Few believers remain, and those who do are shallow—you were there, but not everywhere, and they saw what you abandoned.</p>
+    </div>
+    <div class="col">
+      <h3>The visuals <span class="sub">(drop-in for the render layer)</span></h3>
+      <p>Believers are flame-points, brighter for devout, dimmer for shallow. Darkness is visible as creeping shadow-tendrils advancing toward each flame. Your body glows, dimming as stamina drains. When you sweep through space, shadows recoil in that arc. Flames snuffed by shadow go dark where they stood. Flames you successfully guard burn steadier and brighter when dawn comes.</p>
+      <p class="kv"><b>Why fun</b> Pure triage under mounting pressure—you watch your choices play out spatially as shadows claim what you didn&#x27;t protect. The skill is reading the map fast: which clusters are dense enough to save efficiently, which single flames cost too much, and when to cut your losses before stamina runs out.</p>
+      <p class="kv"><b>Pattern</b> Triage — protect what you can</p>
+    </div>
+  </div>
+  <div class="ground">
+    <p><b>GDD grounding</b> “Your believers are points of light and the dark presses in. You shield what you can and you cannot shield everything. Fear&#x27;s version is triage — choosing who to abandon before dawn.”</p>
+    <p><b>Judge</b> The design implements spatial triage with diegetic signals (flame brightness for devotion depth, shadow advance, body dimming for stamina) and Fear-appropriate texture (speed, force, many-but-shallow converts, cold abandonment choices). The mouse-drag sweeping mechanic creates pressure-under-time without interface elements, and the outcome correctly maps protected flames to devout Fear converts while abandoned flames drift toward apathy—matching Fear&#x27;s &#x27;many converts, every one of them shallow&#x27; when the player spreads thin, and deeper conversion only for the clusters successfully defended.</p>
+    <p class="chunk">chunk honored: “Your believers are points of light and the dark presses in. You shield what you can and you cannot shield everything. Fear&#x27;s version is triage — choosing who to abandon before dawn”</p>
+  </div>
+</div>
+
+<div class="card " data-id="holding-hope">
+  <div class="cardhead">
+    <label class="approve">
+      <input type="checkbox" class="pick" value="holding-hope"
+              onchange="tally()">
+      <span></span>
+    </label>
+    <div>
+      <h2>The Procession</h2>
+      <div class="badges">
+        <span class="badge slot">holding</span>
+        <span class="badge hope">hope</span>
+        <span class="badge pass">judge: PASS</span>
+        
+      </div>
+    </div>
+  </div>
+  <p class="premise">You stand at the edge of a rooted settlement, its heart visible deep within along winding roads. Converts from outside the settlement appear and begin to follow behind you as you walk the roads inward.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>The rules</h3>
+      <p>You walk toward the settlement&#x27;s heart using WASD, staying on the roads you&#x27;ve built. Each convert that appears falls into line behind you, forming a visible chain. If you move too quickly (hold movement keys without pausing), the tail of the line stretches and breaks — those behind the break stop following and stand where the break occurred. If you turn too sharply (sudden 90° or sharper direction changes), the chain whips and the tail detaches. You must modulate your pace with brief pauses and take wide, gentle turns. The line visibly tightens when you slow, loosens when you accelerate. When you reach the settlement&#x27;s heart (a distinct gathering of residents), whoever remains in your procession causes one resident to step forward and shift toward your color.</p>
+      <p class="kv"><b>Controls</b> wasd-move</p>
+      <p class="kv"><b>Stakes</b> convert_devout, no_effect, stamina_loss</p>
+      <p class="kv"><b>Win</b> You arrive at the heart with multiple converts still in line; one or more residents step forward from the cluster and shift to your color, standing taller.</p>
+      <p class="kv"><b>Fail</b> You arrive alone or with only one convert remaining; no residents move, or you lose patience and move too quickly, scattering everyone before you reach the heart.</p>
+    </div>
+    <div class="col">
+      <h3>The visuals <span class="sub">(drop-in for the render layer)</span></h3>
+      <p>The procession line itself shows your success: each convert is a body in your color walking behind you, spacing shows tension (tight = safe, stretched = about to break). The settlement heart is a cluster of standing figures in neutral or opposing colors at the road&#x27;s end. Residents who convert step out from the cluster and change color. Detached converts stand frozen where the line broke, still visible but no longer following.</p>
+      <p class="kv"><b>Why fun</b> The skill is restraint and spatial planning — reading the road ahead and choosing when to pause, when to creep forward, which turns to widen. The tension comes from impatience: you want to rush to preserve stamina and reach more settlements, but rushing destroys the very thing you&#x27;re building.</p>
+      <p class="kv"><b>Pattern</b> Procession — follow-the-leader escort</p>
+    </div>
+  </div>
+  <div class="ground">
+    <p><b>GDD grounding</b> “Roads are the only way in. Converts fall in behind you as you walk and the line breaks if you move too fast or turn too sharply; whoever is still with you at the heart converts a resident.”</p>
+    <p><b>Judge</b> The design implements the GDD&#x27;s exact procession mechanic: converts form a following line that breaks on excessive speed or sharp turns, with survivors converting residents at the heart. The loop is entirely diegetic (line spacing, body positions, color shifts visible in world-space), demands patience and restraint (Hope&#x27;s texture per CHUNK 1&#x27;s &#x27;patience, depth, few&#x27;), and the skill lies in the leader&#x27;s discipline rather than interface management, matching CHUNK 3&#x27;s escort pattern guidance.</p>
+    <p class="chunk">chunk honored: “Roads are the only way in. Converts fall in behind you as you walk and the line breaks if you move too fast or turn too sharply; whoever is still with you at the heart converts a resident.”</p>
+  </div>
+</div>
+
+<div class="card " data-id="holding-fear">
+  <div class="cardhead">
+    <label class="approve">
+      <input type="checkbox" class="pick" value="holding-fear"
+              onchange="tally()">
+      <span></span>
+    </label>
+    <div>
+      <h2>The Breaking</h2>
+      <div class="badges">
+        <span class="badge slot">holding</span>
+        <span class="badge fear">fear</span>
+        <span class="badge pass">judge: PASS</span>
+        
+      </div>
+    </div>
+  </div>
+  <p class="premise">You stand before a rooted settlement whose resistance forms a visible ring around its heart. The ring pulses unevenly — some arcs glow thick and bright, others thin and wavering.</p>
+  <div class="cols">
+    <div class="col">
+      <h3>The rules</h3>
+      <p>You circle the settlement&#x27;s perimeter with mouse-move, searching for the thinnest section of the resistance ring. Left-click strikes that arc, cracking it — the struck section darkens and crumbles, but the two neighbouring arcs immediately thicken and brighten in response. Each strike costs stamina (shown as your body&#x27;s dimming glow). You must read the shifting ring, plan which arc to strike next, and find the collapsing sequence that breaks the entire structure before your light goes out. When the last arc falls, the settlement&#x27;s inhabitants scatter outward in all directions.</p>
+      <p class="kv"><b>Controls</b> mouse-move, left-click</p>
+      <p class="kv"><b>Stakes</b> convert_shallow, no_effect, stamina_loss</p>
+      <p class="kv"><b>Win</b> The final arc shatters, the ring collapses entirely, and the settlement&#x27;s inhabitants scatter in panic across the terrain — many shallow converts fleeing outward, carrying your pressure with them.</p>
+      <p class="kv"><b>Fail</b> Your body dims to near-invisibility, too faint to strike again. The remaining ring arcs pulse brighter in triumph. The settlement stands unbroken; you retreat with nothing.</p>
+    </div>
+    <div class="col">
+      <h3>The visuals <span class="sub">(drop-in for the render layer)</span></h3>
+      <p>The resistance ring hovers above the settlement as a circular wall of light with visible thickness variations — thick bright sections are strong, thin dim sections are weak. Your stamina is your body&#x27;s luminosity and size; as it drains you visibly shrink and dim. Each successful strike: the arc shatters with a crack, fragments fall, neighbouring arcs pulse and swell thicker. The settlement&#x27;s people are visible inside as huddled silhouettes; when the ring breaks they burst outward as individual running figures.</p>
+      <p class="kv"><b>Why fun</b> The tension is resource-puzzle spatial — reading a dynamic structure under time pressure, committing to strikes that immediately reshape the problem, and discovering whether your chosen sequence was the collapsing order or a dead end that hardened the wall beyond your remaining strength.</p>
+      <p class="kv"><b>Pattern</b> Weak-point sequencing — the collapsing order</p>
+    </div>
+  </div>
+  <div class="ground">
+    <p><b>GDD grounding</b> “Resistance shows as a ring. Strike where it is thinnest — but each strike hardens the arc beside it, so winning means finding the collapsing sequence before your stamina runs out.”</p>
+    <p><b>Judge</b> The design faithfully implements the GDD&#x27;s exact specification: a visible resistance ring with thickness variations, strikes that harden neighboring arcs, and a stamina-constrained sequencing puzzle. The diegetic signals (ring thickness/brightness for strength, body luminosity for stamina, shattering arcs, scattering figures) require no interface, and the speed/force/many texture (mouse-driven striking, panic scatter, shallow converts) contrasts cleanly with Hope&#x27;s patient procession design.</p>
+    <p class="chunk">chunk honored: “Resistance shows as a ring. Strike where it is thinnest — but each strike hardens the arc beside it, so winning means finding the collapsing sequence before your stamina runs out.”</p>
+  </div>
+</div></div>
+<pre id="ruling"></pre>
+<footer>
+  <span class="count" id="count">0 approved</span>
+  <button id="go" disabled onclick="rule()">Generate Director's ruling</button>
+  <button id="copy" style="display:none" onclick="copyRuling()">Copy</button>
+  <a id="dl" download="DIRECTOR-SELECTION.md">Download DIRECTOR-SELECTION.md</a>
+</footer>
+<script>
+const RUN = "mg-live-2";
+function picks() {
+  return [...document.querySelectorAll('.pick:checked')].map(x => x.value);
+}
+function tally() {
+  const n = picks().length;
+  document.getElementById('count').textContent = n + ' approved';
+  document.getElementById('go').disabled = n === 0;
+}
+function rule() {
+  const ids = picks();
+  const lines = [];
+  lines.push('# DIRECTOR SELECTION — encounter mini-games');
+  lines.push('');
+  lines.push('Run: ' + RUN);
+  lines.push('Approved: ' + ids.join(', '));
+  lines.push('Rejected/held: ' + [...document.querySelectorAll('.pick:not(:checked):not(:disabled)')].map(x=>x.value).join(', '));
+  lines.push('');
+  lines.push('## Build commands (one per approved design)');
+  lines.push('');
+  for (const id of ids)
+    lines.push('python3 run_minigame.py --build --select ' + id + ' --from-run ' + RUN + ' --run-id build-' + id);
+  lines.push('');
+  lines.push('Signed (Director): Nicholas Rouke');
+  const text = lines.join('\n');
+  const pre = document.getElementById('ruling');
+  pre.textContent = text; pre.style.display = 'block';
+  const dl = document.getElementById('dl');
+  dl.href = 'data:text/markdown;charset=utf-8,' + encodeURIComponent(text);
+  dl.style.display = 'inline';
+  document.getElementById('copy').style.display = 'inline';
+  pre.scrollIntoView({behavior:'smooth'});
+}
+function copyRuling() {
+  const t = document.getElementById('ruling').textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(t);
+}
+</script>
+</body></html>

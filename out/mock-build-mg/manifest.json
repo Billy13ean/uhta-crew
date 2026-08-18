@@ -1,0 +1,116 @@
+{
+  "run_id": "mock-build-mg",
+  "pipeline": "minigame (Assignment 6 #2 \u2014 GER + human gate + Programmer)",
+  "pipeline_version": "minigame v1 (Assignment 6, pipeline #2)",
+  "phase": "build",
+  "status": "COMPLETE_PENDING_DIRECTOR_APPLY",
+  "mode": "mock",
+  "created": "2026-08-18T01:19:31",
+  "model": "mock-llm (tests/fixtures/minigame)",
+  "llm_backend": "mock",
+  "llm_calls": 1,
+  "llm_tokens": {
+    "input": 0,
+    "output": 0
+  },
+  "python": "3.10.12",
+  "content_type": "encounter mini-game designs (GDD \u00a72 PROPOSED tier: three encounters x two poles)",
+  "rule_enforced": "GDD \u00a72 encounter rules \u2014 wordless/diegetic ('no interface, no text, only your body and theirs'), pole asymmetry ('the two poles never play the same game'), individual-scale",
+  "slots": [
+    "first-contact-hope",
+    "first-contact-fear",
+    "vigil-hope",
+    "vigil-fear",
+    "holding-hope",
+    "holding-fear"
+  ],
+  "corpus": {},
+  "retrieval": {
+    "scorer": "BM25 (content/retriever.py, reused)",
+    "score_threshold": 8.0,
+    "token_budget": 6000,
+    "selection_rule": "three queries per slot (encounter, mechanics, pattern), unioned \u2014 the \u00a74.5 rule extended"
+  },
+  "prompt_versions": {
+    "designer": "minigame-designer v1 (Assignment 6 #2)",
+    "judge": "minigame-judge v1 (Assignment 6 #2)",
+    "refiner": "minigame-refiner v1 (Assignment 6 #2)",
+    "programmer": "minigame-programmer v1 (Assignment 6 #2)",
+    "pipeline": "minigame v1 (Assignment 6, pipeline #2)"
+  },
+  "breaker": {
+    "max_refine_rounds_per_verb": 2,
+    "escalation_limit": 3,
+    "escalated_verbs": [],
+    "tripped": false
+  },
+  "outcomes": [],
+  "build": {
+    "selected": "first-contact-hope",
+    "from_run": "mock-demo-mg",
+    "checks": {
+      "parse:logic_block": true,
+      "parse:selftest_block": true,
+      "parse:hook_line": true,
+      "all_preexisting_assertions_survive": true,
+      "adds_at_least_one_M_assertion": true,
+      "grew": true,
+      "whole_file_brace_balance": true
+    },
+    "repair_rounds": 0,
+    "node_available": true
+  },
+  "director_gate": "PROPOSE ENDS AT SELECTION; BUILD REQUIRES --select \u2014 the gate is structural",
+  "stages": [
+    {
+      "stage": "director-gate",
+      "status": "OK",
+      "seconds": 0.03,
+      "detail": "first-contact-hope"
+    },
+    {
+      "stage": "programmer",
+      "status": "OK",
+      "seconds": 1.05,
+      "detail": "0 repair round(s)"
+    },
+    {
+      "stage": "assembly",
+      "status": "OK",
+      "seconds": 0.01,
+      "detail": ""
+    }
+  ],
+  "artifact_sha256": {
+    "MINIGAME-BUILD.md": "bb7a1ca01bd053ddecb144ab146a03a96635732b073ffa116796fdfde903dd96",
+    "RUN-LOG.md": "c213916bff2fc9b560f88a7f1bb141bf62b216428bef237c0ad162c660be2a11",
+    "SELECTED-DESIGN.json": "6e76b2ae6793ffabd3b982992ee770eb0ba35891613da832139c68c3006e4039",
+    "uhta-slice.minigame.patched.html": "7b8494f189fdb51daf9a55cfbf1683293518820eec2b893b851060dd852fd626"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-build-mg/SELECTED-DESIGN.json",
+      "agent": "director-gate",
+      "bytes": 1226,
+      "sha256": "6e76b2ae6793ffab"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "mg-programmer",
+      "bytes": 1353917,
+      "sha256": "b8e3330e5833a25d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-build-mg/MINIGAME-BUILD.md",
+      "agent": "assemble",
+      "bytes": 3568,
+      "sha256": "bb7a1ca01bd053dd"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "verb": "raze",
+  "round": 0,
+  "verdict": "FAIL",
+  "findings": [
+    "[llm] WRONG-REGISTER: The line uses three clauses with literary parallelism ('to nothing', 'back into wanderers', 'learns fear') where the register demands short declarative instrumentation that states consequence without embellishment. — chunk: \"The narration is instrumentation, not lore — short declarative lines, no mythology\""
+  ],
+  "judgment": {
+    "verdict": "FAIL",
+    "class": "WRONG-REGISTER",
+    "quoted_chunk": "The narration is instrumentation, not lore — short declarative lines, no mythology",
+    "reason": "The line uses three clauses with literary parallelism ('to nothing', 'back into wanderers', 'learns fear') where the register demands short declarative instrumentation that states consequence without embellishment."
+  }
+}

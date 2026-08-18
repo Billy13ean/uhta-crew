@@ -1,0 +1,12 @@
+{
+  "verb": "beacon",
+  "round": 0,
+  "verdict": "PASS",
+  "findings": [],
+  "judgment": {
+    "verdict": "PASS",
+    "class": null,
+    "quoted_chunk": "a narrator names each verb the first time you use it",
+    "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE — canned verdict, no model judged this line]"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "holding-fear",
+  "encounter": "holding",
+  "pole": "fear",
+  "name": "The Breaking",
+  "premise": "You stand before a rooted settlement whose resistance forms a visible ring around its heart. The ring pulses unevenly — some arcs glow thick and bright, others thin and wavering.",
+  "loop": "You circle the settlement's perimeter with mouse-move, searching for the thinnest section of the resistance ring. Left-click strikes that arc, cracking it — the struck section darkens and crumbles, but the two neighbouring arcs immediately thicken and brighten in response. Each strike costs stamina (shown as your body's dimming glow). You must read the shifting ring, plan which arc to strike next, and find the collapsing sequence that breaks the entire structure before your light goes out. When the last arc falls, the settlement's inhabitants scatter outward in all directions.",
+  "signals": "The resistance ring hovers above the settlement as a circular wall of light with visible thickness variations — thick bright sections are strong, thin dim sections are weak. Your stamina is your body's luminosity and size; as it drains you visibly shrink and dim. Each successful strike: the arc shatters with a crack, fragments fall, neighbouring arcs pulse and swell thicker. The settlement's people are visible inside as huddled silhouettes; when the ring breaks they burst outward as individual running figures.",
+  "controls": [
+    "mouse-move",
+    "left-click"
+  ],
+  "outcome_win": "The final arc shatters, the ring collapses entirely, and the settlement's inhabitants scatter in panic across the terrain — many shallow converts fleeing outward, carrying your pressure with them.",
+  "outcome_fail": "Your body dims to near-invisibility, too faint to strike again. The remaining ring arcs pulse brighter in triumph. The settlement stands unbroken; you retreat with nothing.",
+  "effects": [
+    "convert_shallow",
+    "stamina_loss",
+    "no_effect"
+  ],
+  "why_fun": "The tension is resource-puzzle spatial — reading a dynamic structure under time pressure, committing to strikes that immediately reshape the problem, and discovering whether your chosen sequence was the collapsing order or a dead end that hardened the wall beyond your remaining strength.",
+  "pattern_source": "Weak-point sequencing — the collapsing order",
+  "gdd_quote": "Resistance shows as a ring. Strike where it is thinnest — but each strike hardens the arc beside it, so winning means finding the collapsing sequence before your stamina runs out."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "holding-fear",
+  "encounter": "holding",
+  "pole": "fear",
+  "name": "The Breaking (v3)",
+  "premise": "The settlement's resistance shows as a ring around it, thick where belief runs deep.",
+  "loop": "Strike the ring where it is thinnest; each strike hardens the arcs beside it. Find the collapsing sequence before your stamina runs out.",
+  "signals": "Arc strength reads as the ring's thickness and glow; a struck arc cracks; hardened arcs brighten.",
+  "controls": [
+    "arrow-keys",
+    "left-click"
+  ],
+  "outcome_win": "The ring collapses and the settlement lies open.",
+  "outcome_fail": "Stamina spent, the ring reseals thicker than before.",
+  "effects": [
+    "burnout",
+    "resistance_drop"
+  ],
+  "why_fun": "A sequencing puzzle wearing an action skin.",
+  "pattern_source": "Weak-point sequencing — the collapsing order",
+  "gdd_quote": "Strike where it is thinnest"
+}

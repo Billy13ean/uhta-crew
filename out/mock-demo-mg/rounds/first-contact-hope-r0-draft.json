@@ -1,0 +1,21 @@
+{
+  "id": "first-contact-hope",
+  "encounter": "first-contact",
+  "pole": "hope",
+  "name": "Steady the Flame",
+  "premise": "A grey band circles you at the edge of the firelight, wavering between approach and flight.",
+  "loop": "Your flame breathes on its own; holding space feeds it, releasing lets it fade. Each nomad drifts inward only while the light sits inside their comfort — too bright and the nearest flinch back, too dim and the farthest turn away. The correct move is usually to do less.",
+  "signals": "Brightness is the flame itself; each nomad's comfort shows in their posture — leaning in, shielding their eyes, or turning; commitment shows as kneeling.",
+  "controls": [
+    "space"
+  ],
+  "outcome_win": "Those who reach you kneel and take your color deeply; the fire settles.",
+  "outcome_fail": "A flare or a fade; the flinchers freeze grey, ringed in your color, and the rest scatter.",
+  "effects": [
+    "convert_devout",
+    "burnout"
+  ],
+  "why_fun": "Restraint under temptation — the urge to feed the flame is the trap, and the skill is modulation, not action.",
+  "pattern_source": "Threshold fight — the steady hold",
+  "gdd_quote": "commit only if the flame is steady when they arrive"
+}

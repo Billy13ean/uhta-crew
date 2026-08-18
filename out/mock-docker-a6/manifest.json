@@ -1,0 +1,612 @@
+{
+  "run_id": "mock-docker-a6",
+  "pipeline": "ger (Assignment 6 \u2014 Generator/Evaluator/Refiner/Circuit Breaker)",
+  "pipeline_version": "ger v1 (Assignment 6)",
+  "status": "COMPLETE_PENDING_DIRECTOR",
+  "mode": "mock",
+  "created": "2026-08-18T00:36:06",
+  "model": "mock-llm (tests/fixtures/ger)",
+  "llm_backend": "mock",
+  "llm_calls": 25,
+  "llm_tokens": {
+    "input": 0,
+    "output": 0
+  },
+  "python": "3.11.16",
+  "content_type": "first-use verb narration (the build's TEACHING_TEXT const, seven verbs)",
+  "rule_enforced": "GDD \u00a72.5 narration register \u2014 short, declarative, second person, names the verb, states its consequence, no mythology; \u00a72.3 no numbers; no interface language",
+  "verbs": [
+    "walk",
+    "flame",
+    "roar",
+    "wait",
+    "beacon",
+    "raze",
+    "sleep"
+  ],
+  "corpus": {
+    "files": [
+      "CANON.md",
+      "CANON-process.md",
+      "uhta-gdd-v0.9.7-full.md",
+      "uhta-gdd-v0.9.7-abridged.md"
+    ],
+    "policy": "game-material-only v1",
+    "chunks_indexed": 24,
+    "chunks_excluded": 28,
+    "words_indexed": 12315
+  },
+  "retrieval": {
+    "scorer": "BM25 (content/retriever.py, reused)",
+    "k1": 1.5,
+    "b": 0.75,
+    "score_threshold": 8.0,
+    "token_budget": 6000,
+    "selection_rule": "GDD \u00a74.5 two-chunk rule per verb (mechanical consequence + experience)"
+  },
+  "prompt_versions": {
+    "generator": "ger-generator v1 (Assignment 6)",
+    "evaluator": "ger-evaluator v1 (Assignment 6)",
+    "refiner": "ger-refiner v1 (Assignment 6)",
+    "pipeline": "ger v1 (Assignment 6)"
+  },
+  "breaker": {
+    "max_refine_rounds_per_verb": 2,
+    "escalation_limit": 3,
+    "escalated_verbs": [
+      "raze"
+    ],
+    "tripped": false
+  },
+  "outcomes": [
+    {
+      "verb": "walk",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "You walk, and the ground remembers \u2014 every tile you cross becomes a road that carries your color."
+    },
+    {
+      "verb": "flame",
+      "status": "ACCEPTED",
+      "refinements_used": 1,
+      "final_line": "You raise the flame, and those near it take on whatever you feel right now."
+    },
+    {
+      "verb": "roar",
+      "status": "ACCEPTED",
+      "refinements_used": 1,
+      "final_line": "You roar. Everyone who witnesses it is pushed toward fear, whatever color you carry."
+    },
+    {
+      "verb": "wait",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "You wait. Those who watch you drift toward apathy \u2014 witnessed inaction is still an act."
+    },
+    {
+      "verb": "beacon",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "You light a beacon. It radiates your color every generation, even while you are gone."
+    },
+    {
+      "verb": "raze",
+      "status": "ESCALATED",
+      "refinements_used": 2,
+      "final_line": null
+    },
+    {
+      "verb": "sleep",
+      "status": "ACCEPTED",
+      "refinements_used": 0,
+      "final_line": "You sleep, and a generation passes. Where you lie down keeps radiating what you feel."
+    }
+  ],
+  "baseline_audit": [
+    {
+      "verb": "walk",
+      "line": "You walk. The grey wanderers see your trail and follow roads.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "PASS",
+        "class": null,
+        "quoted_chunk": "a narrator names each verb the first time you use it",
+        "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE \u2014 canned verdict, no model judged this line]"
+      },
+      "caught": false
+    },
+    {
+      "verb": "flame",
+      "line": "You kindle a flame. Nearby people feel its warmth and adopt your conviction.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "PASS",
+        "class": null,
+        "quoted_chunk": "a narrator names each verb the first time you use it",
+        "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE \u2014 canned verdict, no model judged this line]"
+      },
+      "caught": false
+    },
+    {
+      "verb": "roar",
+      "line": "You roar. The sound carves a road through the land.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "FAIL",
+        "class": "CONTRADICTS-CHUNK",
+        "quoted_chunk": "NPCs within witness radius take an unconditional Fear push regardless of flame color",
+        "reason": "The line names only the road and omits Roar's load-bearing consequence \u2014 every witness is frightened whatever the flame's color. A Hope player reading this stub learns nothing about the cost. [MOCK FIXTURE]"
+      },
+      "caught": true
+    },
+    {
+      "verb": "wait",
+      "line": "You wait and witness. Apathy grows where you stand idle.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "PASS",
+        "class": null,
+        "quoted_chunk": "a narrator names each verb the first time you use it",
+        "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE \u2014 canned verdict, no model judged this line]"
+      },
+      "caught": false
+    },
+    {
+      "verb": "beacon",
+      "line": "You light a beacon. It calls the devoted even while you sleep.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "PASS",
+        "class": null,
+        "quoted_chunk": "a narrator names each verb the first time you use it",
+        "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE \u2014 canned verdict, no model judged this line]"
+      },
+      "caught": false
+    },
+    {
+      "verb": "raze",
+      "line": "You raze a structure. Its people scatter back to wandering.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "PASS",
+        "class": null,
+        "quoted_chunk": "a narrator names each verb the first time you use it",
+        "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE \u2014 canned verdict, no model judged this line]"
+      },
+      "caught": false
+    },
+    {
+      "verb": "sleep",
+      "line": "You sleep. The world moves without you; your people spread your belief.",
+      "layer1": [],
+      "layer2": {
+        "verdict": "PASS",
+        "class": null,
+        "quoted_chunk": "a narrator names each verb the first time you use it",
+        "reason": "Names the verb, states its consequence from the retrieved chunk, and holds the register. [MOCK FIXTURE \u2014 canned verdict, no model judged this line]"
+      },
+      "caught": false
+    }
+  ],
+  "patch": {
+    "written": true,
+    "checks": {
+      "const_occurs_exactly_once": true,
+      "all_selftest_assertions_survive": true,
+      "reextracted_const_matches_accepted": true
+    },
+    "bytes": 1353820
+  },
+  "director_selection": "PENDING",
+  "stages": [
+    {
+      "stage": "corpus",
+      "status": "OK",
+      "seconds": 0.16,
+      "detail": "24 in / 28 out"
+    },
+    {
+      "stage": "baseline-audit",
+      "status": "OK",
+      "seconds": 0.31,
+      "detail": "guide 7/7 caught, stubs 1/7 flagged"
+    },
+    {
+      "stage": "ger-loop",
+      "status": "OK",
+      "seconds": 1.99,
+      "detail": "6 accepted, 1 escalated"
+    },
+    {
+      "stage": "assembly",
+      "status": "OK",
+      "seconds": 0.29,
+      "detail": "evidence documents + snippet + patched build"
+    }
+  ],
+  "artifact_sha256": {
+    "BASELINE-AUDIT.md": "b1064192fdc527741ec332bcd02fb7195a42bc1d60274749a0299858e4de97e2",
+    "ESCALATED.md": "3725468a2931f3f9e20d12e89315e771e0879b0146e56654efe43ca81cfb76b9",
+    "GER-LOG.md": "a37c340718f1cc0633ccaef0db5d95cd4ad83de5ce4eda9f199858097620d0f2",
+    "RUN-LOG.md": "f453ec7b433e09b9ea624e3c8a74a8d8ea15e3065c356d0919a727c63b3b918c",
+    "rounds/beacon-r0-draft.json": "b39a3d5f3ca332d78a0b6e7971603b4667f5b32003208c5d165f3a1aaa73423d",
+    "rounds/beacon-r0-findings.json": "dcede0edcd6747a4839a81b7bd815e289ae512d19e86810b9606820ea395c40b",
+    "rounds/flame-r0-draft.json": "fd9e0171872f324eab5cfc9cc02b9eac6bcf8ccc71d9baf90d6f82b879ffe2dd",
+    "rounds/flame-r0-findings.json": "70cbc4cf53d8f72603bab6022a826cd30136ed2792e8f343ee7aa0b30690553f",
+    "rounds/flame-r1-draft.json": "c200fce120cce1cee3b3f4f6cc7c65928e86cab70526546ff9929e5989cf1360",
+    "rounds/flame-r1-findings.json": "cae88a34835fe9afe99d99439f09a93cbe829a74957081859fba9df8b565b624",
+    "rounds/raze-r0-draft.json": "6183ac7f28bbef26095033f7adad133638229f81d4ee0c32da8ee4da75939edc",
+    "rounds/raze-r0-findings.json": "0c292d2dbe17730b42cd9f91b9995e30c9e6ed26fb8cd5f1efef69cca8d27f9e",
+    "rounds/raze-r1-draft.json": "46ead9216f55e6df4444b1d4fb348893dd1c1682c7d642007a0f3675c48d989b",
+    "rounds/raze-r1-findings.json": "2c020967bf9474567d410717e949d239874f34ca8fe125995805108275e4117e",
+    "rounds/raze-r2-draft.json": "9627082a9326c58a5b8d9b9d3b31aabb6b65d6e0fd54f869765cbb8745c6040b",
+    "rounds/raze-r2-findings.json": "f2d0265b29f0b1e896840eac74b95a157576b56375e2f91ccec1a699c5807b55",
+    "rounds/roar-r0-draft.json": "f6f1d5f2cc22834b3930360e5bd2b4ec14be549485ede859cb90df6aa8c97513",
+    "rounds/roar-r0-findings.json": "3db1a55740f199fb07526d790ba6f5d0c3324397ef8e9f5f7b12491e6674a890",
+    "rounds/roar-r1-draft.json": "a34cae87c7bea8914159238beab0fc934ab7e4b8304b44a79547eed45834c1d8",
+    "rounds/roar-r1-findings.json": "4a8e21f06f538affb03db33bf1a2b6f8333db979ec645bba02076f61b10df7dd",
+    "rounds/sleep-r0-draft.json": "209bc8b9d83c92b4ca9c09f6841c2f4a441aff0a6d5bf53970774fd1b4296701",
+    "rounds/sleep-r0-findings.json": "2ef627f1629a234c2ff8a1a94ec5002cb3a6ac3ad781ba52e8498ec35362d143",
+    "rounds/wait-r0-draft.json": "13d307c3ce9b6a6c9f6ac07942f004b0464d809a42703adba1b6532a7a7cc6f1",
+    "rounds/wait-r0-findings.json": "f3ae4406074722f503dbaa641436c545c652f0cd89e82364e0fdb131c2703886",
+    "rounds/walk-r0-draft.json": "76d2a735d40d054f5ec64d9f6d6f421274b880af1bbd1a05adcb67b1007112ae",
+    "rounds/walk-r0-findings.json": "1c5dcb0564a45c2347f545ea3687214b25b1ca04358e278fbe6205f87eee36f6",
+    "teaching-lines.md": "6969d629c8e31a3b347eeaf7df8dba399d1086c80fbb283cd9bd89a6af85385e",
+    "teaching-text.snippet.js": "543778a6e0ba0623574a7f5774296274baa83b1f29366832ef15cea6e4c425d6",
+    "uhta-slice.patched.html": "db7a73e59ee50d845fd41544bae5ac794a8efe1ce31285e6f05bb11063a1f533"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "corpus",
+      "bytes": 6811,
+      "sha256": "389d41b0f3f72dad"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "corpus",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-full.md",
+      "agent": "corpus",
+      "bytes": 99631,
+      "sha256": "a2a6921c280eb233"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.7-abridged.md",
+      "agent": "corpus",
+      "bytes": 49030,
+      "sha256": "89839b3f72785a56"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "baseline-audit",
+      "bytes": 1353917,
+      "sha256": "b8e3330e5833a25d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/walk-r0-draft.json",
+      "agent": "ger-generator-walk",
+      "bytes": 147,
+      "sha256": "76d2a735d40d054f"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/walk-r0-draft.json",
+      "agent": "ger-evaluator-walk",
+      "bytes": 147,
+      "sha256": "76d2a735d40d054f"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/walk-r0-findings.json",
+      "agent": "ger-evaluator-walk",
+      "bytes": 378,
+      "sha256": "1c5dcb0564a45c23"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/flame-r0-draft.json",
+      "agent": "ger-generator-flame",
+      "bytes": 149,
+      "sha256": "fd9e0171872f324e"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/flame-r0-draft.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 149,
+      "sha256": "fd9e0171872f324e"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/flame-r0-findings.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 628,
+      "sha256": "70cbc4cf53d8f726"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/flame-r1-draft.json",
+      "agent": "ger-refiner-flame",
+      "bytes": 124,
+      "sha256": "c200fce120cce1ce"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/flame-r1-draft.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 124,
+      "sha256": "c200fce120cce1ce"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/flame-r1-findings.json",
+      "agent": "ger-evaluator-flame",
+      "bytes": 379,
+      "sha256": "cae88a34835fe9af"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/roar-r0-draft.json",
+      "agent": "ger-generator-roar",
+      "bytes": 119,
+      "sha256": "f6f1d5f2cc22834b"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/roar-r0-draft.json",
+      "agent": "ger-evaluator-roar",
+      "bytes": 119,
+      "sha256": "f6f1d5f2cc22834b"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/roar-r0-findings.json",
+      "agent": "ger-evaluator-roar",
+      "bytes": 252,
+      "sha256": "3db1a55740f199fb"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/roar-r1-draft.json",
+      "agent": "ger-refiner-roar",
+      "bytes": 132,
+      "sha256": "a34cae87c7bea891"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/roar-r1-draft.json",
+      "agent": "ger-evaluator-roar",
+      "bytes": 132,
+      "sha256": "a34cae87c7bea891"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/roar-r1-findings.json",
+      "agent": "ger-evaluator-roar",
+      "bytes": 378,
+      "sha256": "4a8e21f06f538aff"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/wait-r0-draft.json",
+      "agent": "ger-generator-wait",
+      "bytes": 137,
+      "sha256": "13d307c3ce9b6a6c"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/wait-r0-draft.json",
+      "agent": "ger-evaluator-wait",
+      "bytes": 137,
+      "sha256": "13d307c3ce9b6a6c"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/wait-r0-findings.json",
+      "agent": "ger-evaluator-wait",
+      "bytes": 378,
+      "sha256": "f3ae4406074722f5"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/beacon-r0-draft.json",
+      "agent": "ger-generator-beacon",
+      "bytes": 135,
+      "sha256": "b39a3d5f3ca332d7"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/beacon-r0-draft.json",
+      "agent": "ger-evaluator-beacon",
+      "bytes": 135,
+      "sha256": "b39a3d5f3ca332d7"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/beacon-r0-findings.json",
+      "agent": "ger-evaluator-beacon",
+      "bytes": 380,
+      "sha256": "dcede0edcd6747a4"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r0-draft.json",
+      "agent": "ger-generator-raze",
+      "bytes": 117,
+      "sha256": "6183ac7f28bbef26"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r0-draft.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 117,
+      "sha256": "6183ac7f28bbef26"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r0-findings.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 227,
+      "sha256": "0c292d2dbe17730b"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r1-draft.json",
+      "agent": "ger-refiner-raze",
+      "bytes": 122,
+      "sha256": "46ead9216f55e6df"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r1-draft.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 122,
+      "sha256": "46ead9216f55e6df"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r1-findings.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 227,
+      "sha256": "2c020967bf947456"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r2-draft.json",
+      "agent": "ger-refiner-raze",
+      "bytes": 101,
+      "sha256": "9627082a9326c58a"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r2-draft.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 101,
+      "sha256": "9627082a9326c58a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/raze-r2-findings.json",
+      "agent": "ger-evaluator-raze",
+      "bytes": 251,
+      "sha256": "f2d0265b29f0b1e8"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/sleep-r0-draft.json",
+      "agent": "ger-generator-sleep",
+      "bytes": 134,
+      "sha256": "209bc8b9d83c92b4"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/sleep-r0-draft.json",
+      "agent": "ger-evaluator-sleep",
+      "bytes": 134,
+      "sha256": "209bc8b9d83c92b4"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/rounds/sleep-r0-findings.json",
+      "agent": "ger-evaluator-sleep",
+      "bytes": 379,
+      "sha256": "2ef627f1629a234c"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/BASELINE-AUDIT.md",
+      "agent": "assemble",
+      "bytes": 6471,
+      "sha256": "b1064192fdc52774"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/GER-LOG.md",
+      "agent": "assemble",
+      "bytes": 4816,
+      "sha256": "a37c340718f1cc06"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/ESCALATED.md",
+      "agent": "assemble",
+      "bytes": 1671,
+      "sha256": "3725468a2931f3f9"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/teaching-lines.md",
+      "agent": "assemble",
+      "bytes": 2820,
+      "sha256": "6969d629c8e31a3b"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/mock-docker-a6/teaching-text.snippet.js",
+      "agent": "assemble",
+      "bytes": 659,
+      "sha256": "543778a6e0ba0623"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/build/uhta-slice.html",
+      "agent": "assemble",
+      "bytes": 1353917,
+      "sha256": "b8e3330e5833a25d"
+    }
+  ]
+}

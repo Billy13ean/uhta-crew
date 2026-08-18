@@ -1,0 +1,12 @@
+{
+  "verb": "walk",
+  "round": 0,
+  "verdict": "PASS",
+  "findings": [],
+  "judgment": {
+    "verdict": "PASS",
+    "class": null,
+    "quoted_chunk": "every tile walked becomes a compacted road NPCs traverse faster, and roads now **carry your color**",
+    "reason": "The line correctly names Walk and states both load-bearing consequences from the chunk: tiles become roads and those roads carry your color."
+  }
+}

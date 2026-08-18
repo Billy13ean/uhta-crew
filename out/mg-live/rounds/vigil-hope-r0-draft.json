@@ -1,0 +1,24 @@
+{
+  "id": "vigil-hope",
+  "encounter": "vigil",
+  "pole": "hope",
+  "name": "The Weaving",
+  "premise": "Night falls as you prepare to Sleep. Your believers stand scattered across the dark landscape, each a small warm light. You have stamina for one last act before dawn.",
+  "loop": "Click and hold on a believer to begin a thread of light flowing from your body. While holding, move the mouse to draw the thread toward another believer—but the thread dims and frays if you move too fast or turn too sharply. Release on a second believer to complete the chain; it flashes bright and holds. Completed chains glow steadily between believers. Each chain costs stamina; longer chains (more distance, more turns) cost more and demand steadier hands. You choose: many short safe chains, or fewer ambitious ones that might break if you rush.",
+  "signals": "Each believer is a warm point of light, brightness showing their devotion depth. Your thread flows visibly from your position as pale light following the mouse. Thread brightness shows stability—bright when slow and smooth, flickering when you move too fast, breaking entirely if you jerk or overshoot. Completed chains are steady lines of light between believers. Your body dims as stamina drains with each chain attempt. The dark presses in around uncompleted believers.",
+  "controls": [
+    "mouse-move",
+    "left-click"
+  ],
+  "outcome_win": "A web of light connects your scattered believers. The chains pulse gently. As Sleep takes you, belief will flow along these threads while you are gone—longer chains reaching distant believers, the whole network holding your presence in the world through the dark generation.",
+  "outcome_fail": "Few chains hold, or only short ones. Most believers stand isolated as night comes. Many will drift toward grey without the channels to carry belief while you sleep. Broken thread-ends fade around the disconnected.",
+  "effects": [
+    "convert_devout",
+    "story_spreads",
+    "stamina_loss",
+    "drift_apathy"
+  ],
+  "why_fun": "Patience and smooth execution under scarcity. You want ambitious chains that reach far, but greed and haste break the thread. The skill is choosing which connections matter most, then tracing them with a steady hand before stamina runs out.",
+  "pattern_source": "Path tracing — the drawn line",
+  "gdd_quote": "Your believers hang in the dark and you trace lines between them with your last stamina. Completed chains become channels belief travels while you are gone; longer chains reach further and are harder to hold."
+}

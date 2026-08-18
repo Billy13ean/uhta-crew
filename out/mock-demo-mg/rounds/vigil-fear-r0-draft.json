@@ -1,0 +1,22 @@
+{
+  "id": "vigil-fear",
+  "encounter": "vigil",
+  "pole": "fear",
+  "name": "The Watch (marked)",
+  "premise": "Your believers are points of light and the dark presses in from every side.",
+  "loop": "You hold a shadow-shield over one cluster at a time while the dark gnaws at every unshielded light. A text label marks who is safe and who is fading, and you drag coverage between clusters as the pressure shifts.",
+  "signals": "A text label over each cluster reads SAFE or FADING so the player always knows the state.",
+  "controls": [
+    "mouse-move",
+    "left-click"
+  ],
+  "outcome_win": "Dawn arrives with the clusters you chose still burning.",
+  "outcome_fail": "The lights you abandoned are grey by morning, standing exactly where you left them.",
+  "effects": [
+    "drift_apathy",
+    "convert_shallow"
+  ],
+  "why_fun": "Triage under guaranteed loss — the skill is deciding what to lose, and living with it.",
+  "pattern_source": "Triage — protect what you can",
+  "gdd_quote": "You shield what you can and you cannot shield everything"
+}

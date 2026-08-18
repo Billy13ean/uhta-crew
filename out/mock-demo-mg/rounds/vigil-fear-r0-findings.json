@@ -1,0 +1,8 @@
+{
+  "slot": "vigil-fear",
+  "round": 0,
+  "verdict": "FAIL",
+  "findings": [
+    "[deterministic] C5 WORDLESS: field 'loop' contains interface vocabulary 'text' — 'no interface, no text, only your body and theirs'"
+  ]
+}

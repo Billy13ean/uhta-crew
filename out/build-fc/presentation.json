@@ -1,0 +1,28 @@
+{
+  "attention_cue": "Grey figures emerge from the fog at the world's edge, moving in a slow converging pattern—not toward any destination, but toward *you*. Their gait is unsteady, wavering side-to-side. As they cross into medium distance, they begin to synchronize: all heads turn to face your position, bodies still drifting but gazes locked.",
+  "entry_transition": "The world PAUSES. All other band members freeze mid-stride. The camera tightens to frame you at center with the approaching ring visible at the edges. The world outside the encounter zone desaturates to 40% grey. A subtle vignette darkens the periphery. Your flame—normally a small ambient glow—pulses once, bright then dim, announcing itself as the active element. The nomads resume their approach in slow-motion for one second, then accelerate to normal speed. The encounter has begun.",
+  "visual_hierarchy": [
+    "Your flame's corona—size and intensity of the light-halo around your body, the only element you directly control",
+    "The nearest nomad's posture and facing—leaning in, recoiling, or turning away—your immediate feedback loop",
+    "The ring's overall geometry—how many are still approaching vs. drifting sideways or retreating, the strategic read"
+  ],
+  "signal_map": {
+    "flame_too_dim": "Corona shrinks to a faint outline, barely larger than your sprite. Light is cool and weak, casting no shadows on nearby ground.",
+    "flame_steady_low": "Corona is a soft halo one body-width in radius, warm yellow-white, gentle pulse like breathing.",
+    "flame_steady_acceptable": "Corona is steady at 1.5 body-widths, golden, no flicker—this is the target band. Nomads lean forward.",
+    "flame_steady_high": "Corona reaches 2 body-widths, bright white-gold, beginning to flicker at the edges. Nomads hesitate, posture stiffens.",
+    "flame_too_bright": "Corona flares to 3+ body-widths, harsh white light with sharp edges. Nomads recoil, raise one hand to shield eyes, shoulders pull back.",
+    "nomad_committed": "Body leans forward from the waist, both arms relaxed at sides, head and gaze fixed on you, stride steady and purposeful.",
+    "nomad_hesitating": "Stride slows, head tilts slightly, one shoulder drops—they're reading the flame, deciding whether to continue.",
+    "nomad_recoiling": "Upper body pulls back, one hand rises to eye level (shielding gesture), stride breaks into a backward step or sideways drift.",
+    "nomad_drifting": "Head turns 45° away, gaze breaks, body angles sideways, movement becomes lateral rather than approach.",
+    "nomad_retreating": "Full turn, shoulders squared away from you, walking back into the grey with steady pace—they've given up.",
+    "distance_close": "Nomad is within 3-4 body-lengths—you can see facial features, posture details. This is the critical zone.",
+    "distance_medium": "Nomad is 5-10 body-lengths away—posture is readable, but details are soft. You have time to correct.",
+    "distance_far": "Nomad is at the edge of the encounter circle, 10+ body-lengths. A silhouette with basic facing and lean visible."
+  },
+  "feedback_win": "The first nomad reaches arm's length and drops to both knees in one fluid motion. Your flame detaches—a mote of golden light—and drifts into their chest, where it settles and glows beneath the skin. One to three others who were mid-approach also kneel in sequence, each receiving a mote. The kneeling figures' bodies gain a faint inner luminosity. All other nomads stop, turn, and walk slowly back into the grey—not fleeing, simply departing.",
+  "feedback_fail": "All nomads stop outside arm's reach, bodies angled away, gazes averted. They stand for one beat—a moment of collective refusal—then turn and walk back into the grey in a loose, uncoordinated scatter. Your flame dims to its ambient minimum and stays there. The ring dissolves into fog.",
+  "exit_transition": "The vignette lifts. The world outside the encounter zone returns to full saturation over one second. Your converted nomads rise from kneeling and join your band's formation, their inner glow fading to match your other followers. The camera pulls back to normal play framing. The world UNPAUSES: your band resumes movement, the grey expanse returns to its ambient state. The encounter is over.",
+  "repair_rounds": 1
+}

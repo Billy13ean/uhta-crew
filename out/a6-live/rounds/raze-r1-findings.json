@@ -1,0 +1,14 @@
+{
+  "verb": "raze",
+  "round": 1,
+  "verdict": "FAIL",
+  "findings": [
+    "[llm] WRONG-REGISTER: The line includes the number '2.5' from the chunk when §2.3 mandates banded display and §2.5 instrumentation forbids numbers — 'no numbers (§2.3, banded display)' was explicit in the brief. — chunk: \"pushes a massive Fear spike onto witnesses (~2.5 each within ~5 tiles)\""
+  ],
+  "judgment": {
+    "verdict": "FAIL",
+    "class": "WRONG-REGISTER",
+    "quoted_chunk": "pushes a massive Fear spike onto witnesses (~2.5 each within ~5 tiles)",
+    "reason": "The line includes the number '2.5' from the chunk when §2.3 mandates banded display and §2.5 instrumentation forbids numbers — 'no numbers (§2.3, banded display)' was explicit in the brief."
+  }
+}

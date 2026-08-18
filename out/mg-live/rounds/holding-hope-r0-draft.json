@@ -1,0 +1,24 @@
+{
+  "id": "holding-hope",
+  "encounter": "holding",
+  "pole": "hope",
+  "name": "The Procession",
+  "premise": "You stand at the edge of a rooted settlement whose roads glow faintly with resistance. A handful of wanderers appear at the settlement's border, watching you. To convert a resident at the heart, you must lead these converts inward without breaking the line.",
+  "loop": "You walk slowly along the settlement's roads toward the central hearth. Each wanderer who sees you begins to follow, forming a line behind you. The line stretches and thins as you move—walk too fast and the tail detaches, turn too sharply and the chain snaps at the bend. Residents appear as still figures along the route; they only acknowledge the procession when you pass close with your line intact. The road itself narrows and curves as it approaches the center, demanding tighter control. You must balance forward progress against the elasticity of your following.",
+  "signals": "Followers glow softly in your color and trail visible light-threads connecting each to the next; when you move too abruptly the thread stretches taut and snaps, and the severed convert stops moving, their glow dimming to grey. Residents stand upright and still, their posture closed; as an intact procession passes within arm's reach they shift—leaning slightly toward the line, their color beginning to warm. The settlement's heart is visible as a brighter concentration of structures and a central fire. Distance between you and your last follower shows as the literal space and the brightness of the connecting thread.",
+  "controls": [
+    "wasd-move",
+    "mouse-move"
+  ],
+  "outcome_win": "You reach the heart with followers still connected. The line collapses inward as each convert touches a resident; those residents shift fully into your color, postures opening. The converts who made the journey kneel, deeply devout.",
+  "outcome_fail": "You arrive alone or with only one or two followers. The few who remain convert shallowly—standing but uncertain, their color pale. Any you dropped stand frozen where the line broke, grey and unreachable until the next encounter.",
+  "effects": [
+    "convert_devout",
+    "convert_shallow",
+    "drift_apathy",
+    "stamina_loss"
+  ],
+  "why_fun": "The skill is restraint and spatial planning—reading the road ahead and governing your own speed, resisting the urge to rush. The tension lives in the growing tail: each new follower is a gift and a liability, lengthening the fragile chain you must protect.",
+  "pattern_source": "Procession — follow-the-leader escort",
+  "gdd_quote": "Roads are the only way in. Converts fall in behind you as you walk and the line breaks if you move too fast or turn too sharply; whoever is still with you at the heart converts a resident"
+}

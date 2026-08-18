@@ -1,0 +1,53 @@
+# uhta GER pipeline (Assignment 6).
+#
+# A SEPARATE image, same reasoning as Dockerfile.builder: the A3 crew image is
+# part of a tagged submission and nothing here should be able to break it.
+#
+# Unlike the builder image this one needs NO node — the GER patch checks
+# (const occurs once, every pre-existing self-test assertion survives, the
+# re-extracted const equals the accepted lines) are pure-Python regex over an
+# anchored pattern, not an execution of the build. The Director still opens
+# the patched build in a browser at Phase 4; that check was never the
+# container's to make.
+#
+# What it does need: crew/ (blackboard + LLM), content/ (the reused BM25
+# retriever and corpus policy), and blackboard/ INCLUDING build/uhta-slice.html
+# — two selftest assertions and the whole baseline-audit stage read the real
+# build file. An image without it fails at build time, below, rather than at
+# the first run.
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY crew/       ./crew/
+COPY content/    ./content/
+COPY ger/        ./ger/
+COPY prompts/    ./prompts/
+COPY blackboard/ ./blackboard/
+COPY tests/      ./tests/
+COPY run_content.py run_ger.py ./
+COPY Rouke-uhta-A6-README.md ./
+
+# out/ is a mount point in docker-compose; create it so a bare `docker run`
+# without a volume still works.
+RUN mkdir -p /app/out
+
+# Build-time proof, same discipline as the other two images: the deterministic
+# spine — build extraction, the register gate fired on the shipped guide()
+# strings, retrieval, every halt guard, the breaker, the patch round-trip —
+# must pass IN THIS IMAGE or the build fails rather than the first run.
+RUN python3 run_ger.py --selftest
+
+# ger/ imports crew/ and content/; nothing imports ger/. Prove the dependency
+# direction here rather than asserting it in a README.
+RUN python3 run_content.py --selftest
+
+ENTRYPOINT ["python3", "run_ger.py"]
+CMD ["--selftest"]

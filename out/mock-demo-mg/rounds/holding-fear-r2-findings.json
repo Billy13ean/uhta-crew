@@ -1,0 +1,8 @@
+{
+  "slot": "holding-fear",
+  "round": 2,
+  "verdict": "FAIL",
+  "findings": [
+    "[deterministic] C3 BUILDABLE-INPUT: controls ['arrow-keys'] not in the slice's input vocabulary ['wasd-move', 'mouse-move', 'left-click', 'right-click', 'space', 'e-key'] — a design this build cannot receive input for cannot be built into it"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "verb": "sleep",
+  "round": 0,
+  "verdict": "PASS",
+  "findings": [],
+  "judgment": {
+    "verdict": "PASS",
+    "class": null,
+    "quoted_chunk": "Sleep | Ends the cycle | Advances one generation — and is **positional**: the sleeping body radiates the flame's emotion over a radius (~3 tiles, grows with Ascension) for every tick of the generation. Where you sleep is the last decision of every cycle",
+    "reason": "Names Sleep, states both consequences (generation passes and positional radiation), uses the instrumentation register demanded, and honors the 'where you lie down matters' beat with mechanical specificity from the chunks."
+  }
+}

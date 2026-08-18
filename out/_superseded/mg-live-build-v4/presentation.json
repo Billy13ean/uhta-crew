@@ -1,0 +1,24 @@
+{
+  "attention_cue": "Grey nomad silhouettes appear at the edge of vision in multiple directions simultaneously—not walking toward the player yet, but standing still, facing inward. Their forms are slightly brighter than the fog behind them. After 2-3 seconds, they begin to move inward in unison, slowly, creating a contracting circle. This synchronized inward drift is the unmistakable tell.",
+  "entry_transition": "The world desaturates to 40% brightness in a radial fade from the player outward (0.8 sec). All non-encounter entities freeze mid-step. The camera pulls back slightly to frame the full ring of approaching nomads. A small flame ignites above the player's head—gold-white, flickering gently. The pause is absolute: the world holds its breath.",
+  "visual_hierarchy": [
+    "The flame above the player's head—brightest element on screen, the only warm light source, positioned at the top-center of the player sprite",
+    "The ring of nomad silhouettes—grey forms at mid-distance, their postures and spacing defining the circle's integrity",
+    "The distance between nomads and player—the shrinking negative space, readable as the gap between their feet and yours"
+  ],
+  "signal_map": {
+    "flame_steady": "Gold-white core with soft amber halo, gentle flicker (2-3 pixel variance), warm glow casting faint light on nearby ground",
+    "flame_too_bright": "Searing white core, sharp rays extending outward, harsh flicker (6-8 pixel variance), ground beneath washes out to near-white",
+    "flame_too_dim": "Ember-red core, minimal halo, slow pulse instead of flicker, glow barely reaches ground—grey creeping in at edges",
+    "nomad_committed": "Upright posture, steady forward walk (1 pixel per 0.3 sec), bodies fully opaque grey, facing directly toward player",
+    "nomad_hesitant": "Posture leans back 15°, walk stutters (pause every 2 steps), slight transparency (85% opacity), head tilts slightly away",
+    "nomad_recoiling": "Sharp backward lean, 2-step retreat, hands raised to shield face, body flickers brighter (fear-white edge-glow)",
+    "nomad_drifting_away": "Body turns 45° outward, walk reverses direction, opacity fades to 60%, form blurs slightly at edges as fog reclaims them",
+    "ring_closing": "Distance shrinks uniformly—nomads maintain equal spacing, their circle tightens like a drawstring, final distance is 3-4 sprite-widths from player",
+    "ring_breaking": "Gaps appear in circle as individual nomads stop or retreat, spacing becomes uneven, some silhouettes fade entirely"
+  },
+  "feedback_win": "All nomads kneel in perfect unison (0.4 sec drop to knees). Their grey bodies saturate to warm gold from feet upward (1.2 sec gradient wave). Heads bow deeply, arms rest on thighs. The flame above the player pulses once—bright but controlled—then settles to a steady, confident glow. The kneeling ring holds for 2 full seconds in silence.",
+  "feedback_fail": "BRIGHT FAIL: Flame explodes in white flash (full-screen bloom for 0.2 sec), nomads throw arms up and scatter outward in all directions, their forms bleaching to white before fading. DIM FAIL: Flame gutters to black ash that drifts downward, nomads turn away and fade to 20% opacity, walking backward into fog—some retain faint gold edge-glow (the commitment they almost gave) as they vanish. In both cases, the ring dissolves completely.",
+  "exit_transition": "WIN: The kneeling nomads rise slowly and walk to join the player's band (merging into follower formation). World color returns from 40% to 100% as they integrate (1.5 sec). Camera returns to normal framing. World unfreezes—other entities resume motion. FAIL: Scattered or faded nomads disappear entirely. The flame above the player extinguishes (ash falls, then gone). World color returns more quickly (0.6 sec, slightly cold). Camera snaps back. World unfreezes with a faint judder—a visual stutter that marks the failure.",
+  "repair_rounds": 0
+}
