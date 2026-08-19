@@ -36,6 +36,18 @@
       box-shadow:0 0 12px rgba(232,182,76,.5); }
   .approve input:disabled + span { opacity:.3; cursor:not-allowed; }
   .premise { font-style:italic; color:var(--dim); margin:12px 0; }
+  .dossier { border-top:1px dashed var(--line); margin-top:14px; padding-top:10px; }
+  .dossier h3 { font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--gold); margin:0 0 8px; font-weight:normal; }
+  .dossier .sub { color:var(--dim); text-transform:none; letter-spacing:0; }
+  .seat { font-size:13px; margin:8px 0; }
+  .seat .line { font-style:italic; color:var(--gold); }
+  .seat.links a, .dossier a { color:var(--gold); }
+  details.seat summary { cursor:pointer; }
+  details.seat { background:#0f0f14; border:1px solid var(--line);
+            border-radius:8px; padding:8px 12px; }
+  .shots { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .shots img { height:84px; border:1px solid var(--line); border-radius:6px; }
   .cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   .col h3 { font-size:12px; letter-spacing:.14em; text-transform:uppercase;
             color:var(--gold); margin:0 0 6px; font-weight:normal; }
@@ -106,6 +118,7 @@
     <p><b>Judge</b> The design implements Fear&#x27;s first-contact texture exactly as specified: speed-based interception geometry yielding many shallow converts, with escaped runners spreading the story. All state is diegetic (body lean, dust trails, color shifts, player glow), controls use only movement, and the triage-under-pressure loop is mechanically distinct from Hope&#x27;s patient flame-steadying.</p>
     <p class="chunk">chunk honored: “You roar, the band breaks, and you have a handful of strides to cut off the runners. Everyone you head off turns; everyone who escapes carries the story outward. Many converts, every one of them shallow”</p>
   </div>
+  
 </div>
 
 <div class="card " data-id="first-contact-hope">
@@ -121,7 +134,7 @@
         <span class="badge slot">first-contact</span>
         <span class="badge hope">hope</span>
         <span class="badge pass">judge: PASS</span>
-        <span class="badge built">BUILT — built &amp; ratified — out/mg-directors-cut/uhta-slice.minigame.patched.html#mg</span>
+        <span class="badge built">BUILT — ratified — the Director&#x27;s cut</span>
       </div>
     </div>
   </div>
@@ -147,6 +160,7 @@
     <p><b>Judge</b> The design implements the GDD&#x27;s exact intent: a threshold-hold game where restraint is the skill, flame brightness is diegetically visible, nomads&#x27; commitment reads in their posture and distance, and the outcome delivers few devout converts. The loop matches the retrieved pattern&#x27;s &#x27;sustained modulation rather than bursts&#x27; and &#x27;one overcorrection undoes the hold,&#x27; and all failure states (burnout from flare, drift from dimness) align with chunk mechanics.</p>
     <p class="chunk">chunk honored: “They approach in a wavering ring and commit only if the flame is steady when they arrive. Too bright and they break; too dim and they drift. The correct move is usually to do less. Few converts, and they arrive already devout”</p>
   </div>
+  <div class="dossier"><h3>The build — the seats past the gate <span class="sub">(run <code>mg-directors-cut + mg-live-build-v2</code>)</span></h3><p class="seat"><b>Writer (Instructor)</b> — first-use line · 0 repair round(s):<br><span class="line">&ldquo;You tend the flame, and those who approach will stay only if it neither wavers nor burns.&rdquo;</span></p><details class="seat"><summary><b>Aesthetic Director (Presenter)</b> — presentation spec: 9 signal(s), entry/win/fail/exit defined</summary><p class='kv'><b>Attention cue</b> Grey nomad sprites halt their wandering and turn to face the player&#x27;s band from multiple directions simultaneously. Their bodies lean forward slightly, heads tilted toward the player. A faint pulse of warmth begins to glow above the player&#x27;s lead figure—not yet a flame, just a gathering of light, like embers collecting.</p><p class='kv'><b>Entry</b> The world dims to 40% saturation and brightness. All non-participant sprites slow to half-speed, then freeze. The camera tightens its bounds, centering on the player&#x27;s band with the nomad ring visible at the edges. The ember-glow above the player ignites into a small, flickering flame—gold-orange, unstable. The nomads begin their slow approach inward. The pause is held for 1.5 seconds before player input is accepted.</p><p class='kv'><b>Win</b> The nomads complete their approach and kneel in perfect unison—a synchronized drop to both knees, heads bowed low, hands open at their sides. Their grey sprites saturate fully to warm gold, glowing from within. The flame above the player stabilizes into a steady, radiant pillar—no flicker, pure gold-white. The light expands gently to touch all kneeling figures. Hold for 2 seconds in this tableau.</p><p class='kv'><b>Fail</b> FLARE PATH: The flame explodes into a white starburst, searing outward with sharp rays. Nomads throw arms up, bodies recoil violently, then scatter in all directions—running sprites, chaotic movement, grey deepening to near-black. The flame collapses to nothing. / DIM PATH: The flame gutters, shrinks to a single ember, then extinguishes to grey ash that drifts upward. Nomads turn away slowly, shoulders slumped, and fade back into the fog—sprites losing opacity and saturation, edges dissolving. Some retain a faint gold outline, a ghost of what they almost became.</p><p class='kv'><b>Exit</b> The world&#x27;s saturation and brightness return to 100% over 1 second. Frozen background sprites resume normal speed. The camera bounds expand back to standard play view. Converted nomads (if any) rise from kneeling, now gold-toned, and join the player&#x27;s band formation. The flame above the player fades naturally. Play resumes.</p><p class='kv'><b>Visual hierarchy</b></p><p class='kv'>1. The flame above the player&#x27;s body—its brightness, color, and stability</p><p class='kv'>2. The nomad ring—their posture, distance, and movement toward or away from center</p><p class='kv'>3. The player&#x27;s own figure beneath the flame—grounded, still, the anchor point</p><p class='kv'><b>Signal map</b></p><p class='kv'><b>flame steady</b> Gold-white core with soft orange corona, gentle flicker, height approximately 1.5x sprite height, warm glow radius touching nearest nomads</p><p class='kv'><b>flame too bright</b> Searing white-blue core, harsh flare extending 2x normal height, sharp crackle of light rays, corona bleeds into surrounding air</p><p class='kv'><b>flame too dim</b> Ember-red, low flicker, height barely above sprite, orange glow fading to grey at edges, threatening to extinguish</p><p class='kv'><b>nomad committed</b> Upright posture, steady forward walk, bodies leaning slightly inward, grey sprites warming to faint gold undertone at edges</p><p class='kv'><b>nomad hesitant</b> Leaning back, torso angled away, forward movement paused or stuttering, one foot forward but weight shifted back</p><p class='kv'><b>nomad recoiling</b> Bodies turn 45° away, hands raised to shield face, backward steps, grey deepening, movement away from center</p><p class='kv'><b>nomad drifting</b> Torso sags, head turns aside, slow rotation away from center, sprites fading in saturation, edges softening into fog</p><p class='kv'><b>ring closing</b> Distance between nomads and player shrinks visibly, ring tightens from loose circle to close formation, individual sprites grow larger on screen</p><p class='kv'><b>steady band drift</b> The flame&#x27;s &#x27;correct&#x27; brightness shifts subtly—the nomads&#x27; commitment response threshold moves, visible only by watching their reactions lag or anticipate the current flame state</p></details><p class="seat"><b>Programmer</b> — patch post-checks 9/9 passed · 1 repair round(s)</p><p class="seat"><b>Play-probe</b> (headless playthrough) — 9/9 checks passed</p><p class="seat links"><a class="play" href="../mg-directors-cut/uhta-slice.minigame.patched.html#mg" target="_blank">&#9654; play the patched build</a> · <a href="../mg-directors-cut/DIRECTORS-REPAIR.md" target="_blank">Director's repair ledger</a></p><div class="shots"><a href="../mg-directors-cut/cave-opening.png" target="_blank"><img src="../mg-directors-cut/cave-opening.png" alt="cave-opening.png" loading="lazy"></a><a href="../mg-directors-cut/mg-0-cue.png" target="_blank"><img src="../mg-directors-cut/mg-0-cue.png" alt="mg-0-cue.png" loading="lazy"></a><a href="../mg-directors-cut/mg-1-encounter-start.png" target="_blank"><img src="../mg-directors-cut/mg-1-encounter-start.png" alt="mg-1-encounter-start.png" loading="lazy"></a><a href="../mg-directors-cut/mg-2-midplay.png" target="_blank"><img src="../mg-directors-cut/mg-2-midplay.png" alt="mg-2-midplay.png" loading="lazy"></a><a href="../mg-directors-cut/mg-3-end.png" target="_blank"><img src="../mg-directors-cut/mg-3-end.png" alt="mg-3-end.png" loading="lazy"></a></div></div>
 </div>
 
 <div class="card " data-id="holding-fear">
@@ -188,6 +202,7 @@
     <p><b>Judge</b> The design faithfully implements the GDD&#x27;s exact prescription: segment brightness encodes resistance strength diegetically, striking hardens neighbors, and the puzzle is finding the collapsing sequence within stamina constraints. The Fear texture is present — speed, force, many shallow converts scattering like startled birds — and all state (ring brightness, body glow intensity, settler postures) lives in visible bodies and light with no interface required.</p>
     <p class="chunk">chunk honored: “Resistance shows as a ring. Strike where it is thinnest — but each strike hardens the arc beside it, so winning means finding the collapsing sequence before your stamina runs out.”</p>
   </div>
+  
 </div>
 
 <div class="card " data-id="holding-hope">
@@ -229,6 +244,7 @@
     <p><b>Judge</b> The design implements the GDD&#x27;s exact procession mechanic: followers form a line that breaks on excessive speed or sharp turns, roads constrain entry, and intact arrival converts residents. The diegetic signals (light-threads, follower glow, resident posture shifts) require no HUD, the patience-and-restraint texture matches Hope&#x27;s pole, and the outcome correctly yields few devout converts rather than many shallow ones.</p>
     <p class="chunk">chunk honored: “Roads are the only way in. Converts fall in behind you as you walk and the line breaks if you move too fast or turn too sharply; whoever is still with you at the heart converts a resident”</p>
   </div>
+  
 </div>
 
 <div class="card " data-id="vigil-fear">
@@ -270,6 +286,7 @@
     <p><b>Judge</b> The shrinking flame body as movement cost creates genuine spatial triage—you literally cannot cover everyone and your protective radius diminishes with each repositioning choice. The design is purely diegetic (flame size, dome radius, encroaching darkness, flickering lights), plays to Fear&#x27;s speed/force/many texture through time pressure and shallow converts, and mechanically diverges from Hope&#x27;s patient weaving by forcing rapid allocation decisions rather than careful connection-building.</p>
     <p class="chunk">chunk honored: “Fear&#x27;s version is triage — choosing who to abandon before dawn”</p>
   </div>
+  
 </div>
 
 <div class="card " data-id="vigil-hope">
@@ -311,6 +328,7 @@
     <p><b>Judge</b> The design faithfully implements the GDD&#x27;s vigil-hope intent as a path-tracing game where thread stability depends on smooth, patient execution—longer chains cost more stamina and demand steadier control. All state is diegetic (believer lights, thread brightness/fraying, body dimming) with no interface elements, and the patience/depth/few texture matches Hope&#x27;s pole identity from CHUNK 1&#x27;s encounter table.</p>
     <p class="chunk">chunk honored: “Your believers hang in the dark and you trace lines between them with your last stamina. Completed chains become channels belief travels while you are gone; longer chains reach further and are harder to hold.”</p>
   </div>
+  
 </div></div>
 <pre id="ruling"></pre>
 <footer>

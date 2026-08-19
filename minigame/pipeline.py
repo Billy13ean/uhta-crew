@@ -474,8 +474,39 @@ class MinigamePipeline:
             t0 = time.time()
             self.current_stage = "assembly"
             assemble.write_build(self, design, patch)
-            self._stage("assembly", "OK", t0)
             self._write_manifest("COMPLETE_PENDING_DIRECTOR_APPLY", "build")
+
+            # Close the loop back to the human gate: refresh the ORIGINATING
+            # propose run's dashboard so the built card carries this build's
+            # dossier — the Instructor's line, the Presenter's spec, the
+            # Programmer's post-checks, the probe verdict, and a link to the
+            # playable. Deterministic, best-effort: a failure here never
+            # fails the build (the dossier can always be regenerated with
+            # `python3 -m minigame.dashboard`).
+            try:
+                from . import dashboard as _dash
+                propose_dir = self.root / "out" / from_run
+                rid, cards = _dash.cards_from_run(
+                    propose_dir,
+                    built={select_id: f"this ruling — run {self.run_id}"})
+                doss = _dash.dossier_from_build(self.bb.run_dir)
+                for c in cards:
+                    if c["id"] == select_id and doss:
+                        c["dossier"] = doss
+                (propose_dir / _dash.DASHBOARD_NAME).write_text(
+                    _dash.render_dashboard(rid, cards, self.canon.summary()),
+                    encoding="utf-8")
+                self.bb.note("assemble",
+                             f"refreshed `out/{from_run}/"
+                             f"{_dash.DASHBOARD_NAME}` — the built card now "
+                             f"carries this build's dossier")
+            except Exception as exc:  # noqa: BLE001 — never fail the build
+                self.bb.note("assemble",
+                             f"could not refresh the propose dashboard "
+                             f"({exc}) — regenerate with `python3 -m "
+                             f"minigame.dashboard out/{from_run} --dossier "
+                             f"{select_id}=out/{self.run_id}`")
+            self._stage("assembly", "OK", t0)
             self.bb.log("\n**Build run complete.** The in-place build was "
                         "not touched — apply and verify per "
                         "MINIGAME-BUILD.md.\n")

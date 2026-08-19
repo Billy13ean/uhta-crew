@@ -84,7 +84,180 @@ def _card(c: dict) -> str:
     {f'<p><b>Judge</b> {_e(judge)}</p>' if judge else ''}
     {f'<p class="chunk">chunk honored: “{_e(chunk)}”</p>' if chunk else ''}
   </div>
+  {_dossier_html(c['dossier']) if c.get('dossier') else ''}
 </div>"""
+
+
+def dossier_from_build(build_dir: Path) -> dict | None:
+    """Read a BUILD run directory into a dossier: what every seat past the
+    human gate actually did. Deterministic, best-effort — each artifact is
+    optional so a partial or Director's-cut directory still yields a
+    dossier. Paths in the result are relative to a sibling run directory
+    (the propose run's dashboard lives in out/<propose>/, the build in
+    out/<build>/ — hence "../<build>/...")."""
+    build_dir = Path(build_dir)
+    if not build_dir.is_dir():
+        return None
+
+    def _load(name: str):
+        f = build_dir / name
+        if f.exists():
+            try:
+                return json.loads(f.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                return None
+        return None
+
+    rel = f"../{build_dir.name}"
+    instructions = _load("instructions.json") or {}
+    presentation = _load("presentation.json") or {}
+    manifest = _load("manifest.json") or {}
+    build = manifest.get("build") or {}
+    probe_raw = _load("play-probe.json")
+    patch = _load("patch.json") or {}
+
+    probe = None
+    if probe_raw is not None:
+        if probe_raw.get("skipped"):
+            probe = {"skipped": str(probe_raw["skipped"])}
+        elif isinstance(probe_raw.get("checks"), dict):
+            ch = probe_raw["checks"]
+            probe = {"passed": sum(1 for v in ch.values() if v),
+                     "total": len(ch),
+                     "failed": sorted(k for k, v in ch.items() if not v)}
+
+    d = {
+        "build_run": build_dir.name,
+        "first_use_line": (instructions.get("first_use_line")
+                           or build.get("first_use_line")
+                           or patch.get("first_use_line")),
+        "instructor_repairs": instructions.get(
+            "repair_rounds", build.get("instructor_repairs")),
+        "presentation": presentation or None,
+        "checks": build.get("checks"),
+        "repair_rounds": build.get("repair_rounds"),
+        "probe": probe,
+        "patched_rel": (f"{rel}/uhta-slice.minigame.patched.html"
+                        if (build_dir /
+                            "uhta-slice.minigame.patched.html").exists()
+                        else None),
+        "repair_ledger_rel": (f"{rel}/DIRECTORS-REPAIR.md"
+                              if (build_dir / "DIRECTORS-REPAIR.md").exists()
+                              else None),
+        "shots": [f"{rel}/{f.name}"
+                  for f in sorted(build_dir.glob("*.png"))],
+        "canon": manifest.get("canon"),
+    }
+    if not any((d["first_use_line"], d["presentation"], d["checks"],
+                d["probe"], d["patched_rel"])):
+        return None
+    return d
+
+
+def dossier_merge(dossiers: list[dict | None]) -> dict | None:
+    """Merge dossiers from several build directories into one card's
+    dossier (e.g. the LLM build run that holds the Instructor/Presenter
+    artifacts + the Director's-cut directory that holds the ratified
+    playable, the probe, the ledger, and the screenshots). First
+    non-empty value wins per field; screenshots concatenate in order."""
+    ds = [d for d in dossiers if d]
+    if not ds:
+        return None
+    out = dict(ds[0])
+    for d in ds[1:]:
+        for k, v in d.items():
+            if k == "shots":
+                out["shots"] = (out.get("shots") or []) + v
+            elif not out.get(k):
+                out[k] = v
+    out["build_run"] = " + ".join(dict.fromkeys(d["build_run"] for d in ds))
+    return out
+
+
+def _dossier_html(d: dict) -> str:
+    parts = ['<div class="dossier">',
+             '<h3>The build — the seats past the gate '
+             f'<span class="sub">(run <code>{_e(d["build_run"])}</code>)'
+             '</span></h3>']
+
+    if d.get("first_use_line"):
+        rep = d.get("instructor_repairs")
+        rep_s = (f" · {rep} repair round(s)" if rep is not None else "")
+        parts.append(
+            f'<p class="seat"><b>Writer (Instructor)</b> — first-use line'
+            f'{rep_s}:<br><span class="line">&ldquo;'
+            f'{_e(d["first_use_line"])}&rdquo;</span></p>')
+
+    pres = d.get("presentation")
+    if pres:
+        sig = pres.get("signal_map") or {}
+        hier = pres.get("visual_hierarchy") or []
+        rows = "".join(
+            f"<p class='kv'><b>{_e(k.replace('_', ' '))}</b> {_e(v)}</p>"
+            for k, v in sig.items())
+        hier_html = "".join(f"<p class='kv'>{i + 1}. {_e(h)}</p>"
+                            for i, h in enumerate(hier))
+        blocks = ""
+        for key, label in (("attention_cue", "Attention cue"),
+                           ("entry_transition", "Entry"),
+                           ("feedback_win", "Win"),
+                           ("feedback_fail", "Fail"),
+                           ("exit_transition", "Exit")):
+            if pres.get(key):
+                blocks += (f"<p class='kv'><b>{label}</b> "
+                           f"{_e(pres[key])}</p>")
+        parts.append(
+            f'<details class="seat"><summary><b>Aesthetic Director '
+            f'(Presenter)</b> — presentation spec: {len(sig)} signal(s), '
+            f'entry/win/fail/exit defined</summary>'
+            f'{blocks}'
+            + (f"<p class='kv'><b>Visual hierarchy</b></p>{hier_html}"
+               if hier_html else "")
+            + (f"<p class='kv'><b>Signal map</b></p>{rows}" if rows else "")
+            + '</details>')
+
+    checks = d.get("checks")
+    if checks:
+        n_ok = sum(1 for v in checks.values() if v)
+        bad = sorted(k for k, v in checks.items() if not v)
+        rr = d.get("repair_rounds")
+        parts.append(
+            f'<p class="seat"><b>Programmer</b> — patch post-checks '
+            f'{n_ok}/{len(checks)} passed'
+            + (f", failed: {_e(', '.join(bad))}" if bad else "")
+            + (f" · {rr} repair round(s)" if rr is not None else "")
+            + '</p>')
+
+    probe = d.get("probe")
+    if probe:
+        if probe.get("skipped"):
+            parts.append(f'<p class="seat"><b>Play-probe</b> — SKIPPED: '
+                         f'{_e(probe["skipped"])}</p>')
+        else:
+            bad = probe.get("failed") or []
+            parts.append(
+                f'<p class="seat"><b>Play-probe</b> (headless playthrough) '
+                f'— {probe["passed"]}/{probe["total"]} checks'
+                + (f", failed: {_e(', '.join(bad))}" if bad else " passed")
+                + '</p>')
+
+    links = []
+    if d.get("patched_rel"):
+        links.append(f'<a class="play" href="{_e(d["patched_rel"])}#mg" '
+                     f'target="_blank">&#9654; play the patched build</a>')
+    if d.get("repair_ledger_rel"):
+        links.append(f'<a href="{_e(d["repair_ledger_rel"])}" '
+                     f'target="_blank">Director\'s repair ledger</a>')
+    if links:
+        parts.append('<p class="seat links">' + " · ".join(links) + '</p>')
+    if d.get("shots"):
+        imgs = "".join(
+            f'<a href="{_e(u)}" target="_blank"><img src="{_e(u)}" '
+            f'alt="{_e(Path(u).name)}" loading="lazy"></a>'
+            for u in d["shots"])
+        parts.append(f'<div class="shots">{imgs}</div>')
+    parts.append('</div>')
+    return "".join(parts)
 
 
 def _canon_line(canon: dict | None) -> str:
@@ -158,6 +331,18 @@ def render_dashboard(run_id: str, cards: list[dict],
       box-shadow:0 0 12px rgba(232,182,76,.5); }}
   .approve input:disabled + span {{ opacity:.3; cursor:not-allowed; }}
   .premise {{ font-style:italic; color:var(--dim); margin:12px 0; }}
+  .dossier {{ border-top:1px dashed var(--line); margin-top:14px; padding-top:10px; }}
+  .dossier h3 {{ font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--gold); margin:0 0 8px; font-weight:normal; }}
+  .dossier .sub {{ color:var(--dim); text-transform:none; letter-spacing:0; }}
+  .seat {{ font-size:13px; margin:8px 0; }}
+  .seat .line {{ font-style:italic; color:var(--gold); }}
+  .seat.links a, .dossier a {{ color:var(--gold); }}
+  details.seat summary {{ cursor:pointer; }}
+  details.seat {{ background:#0f0f14; border:1px solid var(--line);
+            border-radius:8px; padding:8px 12px; }}
+  .shots {{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }}
+  .shots img {{ height:84px; border:1px solid var(--line); border-radius:6px; }}
   .cols {{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }}
   .col h3 {{ font-size:12px; letter-spacing:.14em; text-transform:uppercase;
             color:var(--gold); margin:0 0 6px; font-weight:normal; }}
@@ -269,7 +454,7 @@ def cards_from_run(run_dir: Path, built: dict[str, str] | None = None) -> tuple[
 def main(argv: list[str]) -> int:
     if not argv:
         print("usage: python3 -m minigame.dashboard <run_dir> "
-              "[--built id=note ...]")
+              "[--built id=note ...] [--dossier id=build_dir ...]")
         return 1
     run_dir = Path(argv[0])
     built: dict[str, str] = {}
@@ -287,7 +472,23 @@ def main(argv: list[str]) -> int:
             i += 2
         else:
             i += 1
+    dossiers: dict[str, str] = {}
+    i = 1
+    while i < len(argv):
+        if argv[i] == "--dossier" and i + 1 < len(argv) and "=" in argv[i + 1]:
+            k, v = argv[i + 1].split("=", 1)
+            dossiers[k] = v
+            i += 2
+        else:
+            i += 1
     run_id, cards = cards_from_run(run_dir, built)
+    for c in cards:
+        if c["id"] in dossiers:
+            d = dossier_merge([dossier_from_build(Path(x.strip()))
+                               for x in dossiers[c["id"]].split(",")])
+            if d:
+                c["dossier"] = d
+                c.setdefault("built", built.get(c["id"]) or d["build_run"])
     canon = None
     mf = run_dir / "manifest.json"
     if mf.exists():

@@ -386,6 +386,60 @@ def selftest() -> int:
     check("a ruled Bible shows the repeal as status, loudly",
           'badge REPEALED" id="badge-mg-c5-wordless">REPEALED' in _page_r)
 
+    # ---- the build dossier: every seat past the gate reports back ----
+    import tempfile as _tf
+    from minigame.dashboard import (dossier_from_build, dossier_merge,
+                                    render_dashboard)
+    with _tf.TemporaryDirectory() as _td:
+        _bd = Path(_td) / "build-x"
+        _bd.mkdir()
+        (_bd / "instructions.json").write_text(_json.dumps(
+            {"first_use_line": "You hold the line steady.",
+             "repair_rounds": 1}), encoding="utf-8")
+        (_bd / "presentation.json").write_text(_json.dumps(
+            {"attention_cue": "the ring halts", "entry_transition": "dim",
+             "visual_hierarchy": ["flame", "ring"],
+             "signal_map": {"flame_steady": "gold"},
+             "feedback_win": "kneel", "feedback_fail": "scatter",
+             "exit_transition": "wake"}), encoding="utf-8")
+        (_bd / "manifest.json").write_text(_json.dumps(
+            {"build": {"checks": {"grew": True, "director_test_hook": True},
+                       "repair_rounds": 0}}), encoding="utf-8")
+        (_bd / "play-probe.json").write_text(_json.dumps(
+            {"checks": {"P1": True, "P5": False}}), encoding="utf-8")
+        (_bd / "uhta-slice.minigame.patched.html").write_text(
+            "<html></html>", encoding="utf-8")
+        (_bd / "shot.png").write_bytes(b"\x89PNG")
+        _d = dossier_from_build(_bd)
+        check("a build dossier reads every seat's artifact",
+              _d is not None
+              and _d["first_use_line"] == "You hold the line steady."
+              and _d["presentation"]["signal_map"] == {"flame_steady": "gold"}
+              and _d["probe"] == {"passed": 1, "total": 2, "failed": ["P5"]}
+              and _d["patched_rel"].endswith(
+                  "build-x/uhta-slice.minigame.patched.html")
+              and len(_d["shots"]) == 1)
+        _empty = Path(_td) / "empty"
+        _empty.mkdir()
+        check("an artifact-less directory yields NO dossier",
+              dossier_from_build(_empty) is None)
+        _card_in = {**GOOD, "dossier": _d, "built": "test",
+                    "status": "ACCEPTED"}
+        _dash_page = render_dashboard("selftest-run", [_card_in])
+        check("a built card renders the dossier — Writer, Presenter, "
+              "Programmer, probe, playable link",
+              "The build — the seats past the gate" in _dash_page
+              and "You hold the line steady." in _dash_page
+              and "Aesthetic Director" in _dash_page
+              and "1/2 checks" in _dash_page
+              and "play the patched build" in _dash_page)
+        check("dossiers from two build dirs merge (first wins, shots "
+              "concatenate)",
+              (dossier_merge([_d, dossier_from_build(_bd)]) or {}).get(
+                  "shots", []) == _d["shots"] * 2
+              and dossier_merge([None, _d])["first_use_line"]
+              == _d["first_use_line"])
+
     total = len(failures)
     print("\n" + BANNER)
     if failures:
@@ -397,7 +451,8 @@ def selftest() -> int:
     print("every judge/refiner halt guard, the shared breaker, and the patch")
     print("contract exercised against the real build with a real fixture")
     print("patch, plus the canon bench and the Bible (registry drift,")
-    print("amend/repeal enforcement, the no-ignore contract). No API key,")
+    print("amend/repeal enforcement, the no-ignore contract) and the build")
+    print("dossier round-trip. No API key,")
     print("no API calls, no model.")
     print(BANNER)
     return 0
