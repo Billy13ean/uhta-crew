@@ -16,7 +16,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from ..llm import LLMCall
-from . import AgentError, markdown_block
+from . import AgentError, fenced_blocks, markdown_block
 
 PROMPT_VERSION = "keeper v2 (crew port)"
 
@@ -45,6 +45,50 @@ state a commit can be in).*
 
 **Signed (Director):** _______________  **Date:** ____________
 """
+
+
+# ---- the packet contract (added after crew-021217) ------------------------
+# That live run's Keeper reply carried no ```markdown fence, so extraction
+# fell through to "first unlabelled fence" — which was a 507-byte grief_front
+# JSON excerpt, not the packet. The gate (len > 400) passed it, and the
+# Mechanic Designer spent six refusal-retries on a prompt built from a
+# fragment. The packet is located by its own contract now, not by fence luck.
+
+PACKET_H1 = "# Context packet"
+PACKET_HEADINGS = [
+    "## CANON digest",
+    "## Canon lines this run touches",
+    "## Relevant specification excerpts",
+    "## The baseline ruleset and what may move",
+    "## Open questions in scope for this run",
+    "## Excluded from this packet",
+    "## Assumptions",
+]
+
+
+def extract_packet(out: str) -> str | None:
+    """The packet, located by its H1. Prefers a fenced block containing it
+    (any label), falls back to the raw text from the H1 onward."""
+    for b in fenced_blocks(out):
+        if PACKET_H1 in b:
+            return b.strip()
+    i = out.find(PACKET_H1)
+    if i != -1:
+        return out[i:].strip()
+    return None
+
+
+def packet_findings(packet: str | None) -> list[str]:
+    """Every way the packet can fail its own output contract, named."""
+    if packet is None:
+        return [f"no '{PACKET_H1}' heading anywhere in the response"]
+    f = []
+    if len(packet) < 400:
+        f.append(f"implausibly short ({len(packet)} chars)")
+    missing = [h for h in PACKET_HEADINGS if h not in packet]
+    if missing:
+        f.append("missing required section(s): " + ", ".join(missing))
+    return f
 
 
 def _sections(prompt_text: str, mode: str) -> str:
@@ -84,14 +128,37 @@ def run_keeper_b1(bb, llm, ctx) -> Path:
         .replace("{{BASELINE_RULES_JSON}}", baseline)
         .replace("{{GDD_SECTIONS}}", gdd)
     )
+    sys_prompt = "You are the Keeper for uhta. " + system.strip()[:400]
     out = llm.complete(LLMCall(
-        agent=agent,
-        system="You are the Keeper for uhta. " + system.strip()[:400],
+        agent=agent, system=sys_prompt,
         user=user, temperature=0.0, max_tokens=12000,
     ))
-    packet = markdown_block(out)
-    if len(packet) < 400:
-        raise AgentError(agent, f"packet is implausibly short ({len(packet)} chars).")
+    packet = extract_packet(out)
+    findings = packet_findings(packet)
+    if findings:
+        # One repair round, then halt — same budget as every other seat.
+        bb.note(agent, "packet failed its structural contract ("
+                       + "; ".join(findings) + ") — **one repair round**")
+        repair = (
+            "\n\n### REPAIR — your previous response did not deliver the "
+            "packet.\nFindings:\n"
+            + "".join(f"- {f}\n" for f in findings)
+            + "\nEmit ONLY the context packet, inside a single ```markdown "
+              "fence, starting at the `# Context packet` heading, with every "
+              "required `##` section present. No prose before or after the "
+              "fence.")
+        out = llm.complete(LLMCall(
+            agent=agent, system=sys_prompt,
+            user=user + repair, temperature=0.0, max_tokens=12000,
+        ))
+        packet = extract_packet(out)
+        findings = packet_findings(packet)
+        if findings:
+            raise AgentError(
+                agent, "packet failed its structural contract twice: "
+                       + "; ".join(findings)
+                       + " — a Designer briefed by this packet designs from "
+                         "a fragment (crew-021217).")
     if getattr(llm, "name", "") == "mock":
         packet = llm.FIXTURE_BANNER + "\n" + packet
     return bb.write(ctx.packet_name, packet + "\n", agent)

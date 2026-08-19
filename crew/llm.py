@@ -109,9 +109,14 @@ class LiveLLM(BaseLLM):
         status = getattr(exc, "status_code", None)
         return status is not None and (status == 429 or 500 <= status < 600)
 
+    REFUSAL_LIMIT = 3   # stochastic refusals pass on retry 1-2 (FINDINGS.md);
+                        # three in a row means THIS prompt refuses
+                        # deterministically and more retries just burn time.
+
     def complete(self, call: LLMCall) -> str:
         last: Exception | None = None
         used = 0
+        refusals = 0
         for attempt in range(1, MAX_ATTEMPTS + 1):
             used = attempt
             try:
@@ -146,6 +151,12 @@ class LiveLLM(BaseLLM):
                 return text
             except Exception as exc:  # noqa: BLE001 — classified immediately below
                 last = exc
+                if isinstance(exc, RefusalError):
+                    refusals += 1
+                    if refusals >= self.REFUSAL_LIMIT:
+                        break
+                else:
+                    refusals = 0
                 if attempt >= MAX_ATTEMPTS or not self._transient(exc):
                     break
                 delay = BASE_BACKOFF_S * (2 ** (attempt - 1)) + random.uniform(0, 0.5)
@@ -156,6 +167,16 @@ class LiveLLM(BaseLLM):
                         f"in {delay:.1f}s"
                     )
                 time.sleep(delay)
+        if refusals >= self.REFUSAL_LIMIT:
+            raise LLMError(
+                f"{call.agent}: {refusals} consecutive stop_reason='refusal' "
+                f"responses. A stochastic refusal passes on retry "
+                f"(FINDINGS.md); {refusals} in a row means THIS prompt "
+                f"refuses deterministically — check the assembled inputs (a "
+                f"malformed upstream artifact is the usual cause, e.g. "
+                f"crew-021217's 507 B packet) and use crew/probe_refusal.py "
+                f"to isolate which part trips it."
+            ) from last
         kind = "transient, retries exhausted" if self._transient(last) else "non-transient, not retried"
         raise LLMError(
             f"{call.agent}: Anthropic API call failed after {used} attempt(s) "

@@ -88,7 +88,15 @@ class Blackboard:
         with self._log_path.open("a", encoding="utf-8") as fh:
             fh.write(line.rstrip() + "\n")
         if not self.quiet:
-            print(line.rstrip(), flush=True)
+            try:
+                print(line.rstrip(), flush=True)
+            except UnicodeEncodeError:
+                # A cp1252 console (Windows, redirected stdout) must never
+                # kill a live run over an arrow glyph — crew-020353,
+                # 2026-08-19. RUN-LOG.md above holds the true UTF-8 text;
+                # this echo degrades instead of halting.
+                print(line.rstrip().encode("ascii", "backslashreplace")
+                      .decode("ascii"), flush=True)
 
     def stage(self, n: int, agent: str, what: str) -> None:
         self.log(f"\n## Stage {n} — {agent}\n\n{what}\n")

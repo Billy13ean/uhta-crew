@@ -9,6 +9,11 @@ One page per concern:
                  minigame) in selftest, mock, or live mode, with a run id and
                  extra args; watch running jobs and their log tails live
     /runs        every run directory, newest first, with its artifacts
+    /run?id=...  the RUN ROOM — live log while agents work, then the run's
+                 human gate rendered as a form: approve mini-game candidates
+                 (and launch builds), rule on a Keeper flag, sign off
+                 teaching lines. The button writes the decision into the run
+                 directory as recorded evidence.
     /bible       the canon bible — every rule the Evaluators enforce, as
                  cards the Director rules on (uphold / amend / repeal, no
                  ignore); saving writes canon/CANON-RULING.json + .md and
@@ -44,6 +49,8 @@ import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
+import console_rooms
+
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "out"
 LOGS = OUT / "console-logs"
@@ -69,6 +76,11 @@ _lock = threading.Lock()
 def _env_with_key() -> dict:
     import os
     env = dict(os.environ)
+    # Windows: a child Python with redirected stdout defaults to cp1252,
+    # and the first '\u2192' in a blackboard note kills a live run
+    # (crew-020353, 2026-08-19). Force UTF-8 for every launched pipeline.
+    env["PYTHONUTF8"] = "1"
+    env["PYTHONIOENCODING"] = "utf-8"
     envfile = ROOT / ".env"
     if envfile.exists():
         for line in envfile.read_text(encoding="utf-8").splitlines():
@@ -169,6 +181,7 @@ async function start(p){
   const extra=document.querySelector('#extra-'+p).value;
   await fetch('/start',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({pipeline:p,mode:mode,run_id:rid,extra:extra})});
+  if (mode !== 'selftest') window.open('/run?id='+encodeURIComponent(rid),'_blank');
   poll();
 }
 async function saveRuling(){
@@ -189,6 +202,8 @@ async function poll(){
       <span class="run">${j.run_id||''}</span>
       <span class="state ${cls}">${j.state}</span>
       <span class="note">${j.started}</span>
+      ${j.run_id?`<a href="/run?id=${encodeURIComponent(j.run_id)}" target="_blank"
+         style="color:var(--gold)">room →</a>`:''}
       ${j.dashboard?`<a href="/view?p=${encodeURIComponent(j.dashboard)}" target="_blank"
          style="color:var(--gold)">→ open the Director's dashboard</a>`:''}
       </div><pre>${j.tail.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</pre></div>`;
@@ -251,7 +266,10 @@ def runs_page() -> bytes:
                 f"{' target=_blank' if a.endswith('.html') else ''}>{html.escape(a)}</a>"
                 for a in arts[:12])
             more = f" <span class='note'>+{len(arts)-12} more</span>" if len(arts) > 12 else ""
-            rows += f"<div class='runsrow'><b>{html.escape(d.name)}</b><span>{links}{more}</span></div>"
+            room = (f"<a href='/run?id={urllib.parse.quote(d.name)}' "
+                    f"style='color:var(--gold)'>room →</a> · ")
+            rows += (f"<div class='runsrow'><b>{html.escape(d.name)}</b>"
+                     f"<span>{room}{links}{more}</span></div>")
     return page("runs", f"<div class='wrap'>{rows or '<p>no runs yet</p>'}</div>")
 
 
@@ -285,6 +303,22 @@ class Handler(BaseHTTPRequestHandler):
             with _lock:
                 states = [job_state(j) for j in _jobs]
             return self._send(200, json.dumps(states).encode(),
+                              "application/json")
+        if url.path == "/run":
+            rid = re.sub(r"[^A-Za-z0-9._-]", "",
+                         urllib.parse.parse_qs(url.query).get("id", [""])[0])
+            if not rid:
+                return self._send(404, b"no run id")
+            return self._send(200, console_rooms.render_room(rid, CSS, page))
+        if url.path == "/run_state":
+            rid = re.sub(r"[^A-Za-z0-9._-]", "",
+                         urllib.parse.parse_qs(url.query).get("id", [""])[0])
+            with _lock:
+                jobs = list(_jobs)
+            st = console_rooms.run_state(rid, OUT, jobs, job_state)
+            if st is None:
+                return self._send(404, b"unknown run")
+            return self._send(200, json.dumps(st).encode(),
                               "application/json")
         if url.path == "/bible":
             # regenerate from the CURRENT registry + ruling every time —
@@ -329,6 +363,17 @@ class Handler(BaseHTTPRequestHandler):
             job = start_job(pipeline, mode, rid, extra)
             return self._send(200, json.dumps({"started": job["id"]}).encode(),
                               "application/json")
+        if self.path == "/decide":
+            rid = re.sub(r"[^A-Za-z0-9._-]", "", str(data.get("run", "")))
+            run_dir = OUT / rid
+            if not rid or not run_dir.is_dir():
+                return self._send(404, f"no run directory out/{rid}".encode())
+            try:
+                msg = console_rooms.record_decision(
+                    run_dir, str(data.get("kind", "")), data)
+            except console_rooms.DecisionError as exc:
+                return self._send(400, str(exc).encode("utf-8"))
+            return self._send(200, msg.encode("utf-8"))
         if self.path == "/save_canon":
             # A canon ruling from the Bible page. Validated against the
             # registry BEFORE it touches disk; the prior ruling (if any) is
