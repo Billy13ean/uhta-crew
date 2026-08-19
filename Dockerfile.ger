@@ -29,6 +29,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY crew/       ./crew/
 COPY content/    ./content/
 COPY ger/        ./ger/
+COPY canon/      ./canon/
 COPY prompts/    ./prompts/
 COPY blackboard/ ./blackboard/
 COPY tests/      ./tests/

@@ -25,6 +25,13 @@ from crew.llm import LLMCall
 from ger.checks import run_register_checks
 from ger.spec import REGISTER
 
+
+def _effective_register() -> str:
+    """The register law with any Director ruling applied — same text
+    the narration pipeline enforces (canon rule ger-register)."""
+    from crew.canon import get_canon
+    return get_canon().text("ger-register", REGISTER)
+
 INSTRUCTOR_PV = "minigame-instructor v1 (Assignment 6 #2, build v2)"
 
 
@@ -39,7 +46,7 @@ def _call(llm, prompts_dir: Path, design: dict, findings_text: str,
     user = (_template(prompts_dir)
             .replace("{{DESIGN}}", json.dumps(design, ensure_ascii=False,
                                               indent=2))
-            .replace("{{REGISTER}}", REGISTER)
+            .replace("{{REGISTER}}", _effective_register())
             .replace("{{REPAIR}}", findings_text or "(first attempt)"))
     out = llm.complete(LLMCall(
         agent=agent,

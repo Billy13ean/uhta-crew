@@ -28,6 +28,7 @@ from content.pipeline import CORPUS_FILES
 from content.retriever import (BM25_B, BM25_K1, CORPUS_POLICY, SCORE_THRESHOLD,
                                TOKEN_BUDGET, Retriever, build_corpus)
 from crew.blackboard import Blackboard, MissingArtifactError
+from crew.canon import get_canon
 
 from . import PIPELINE_VERSION, assemble
 from .breaker import (BreakerTripped, CircuitBreaker, RoundRecord, VerbOutcome)
@@ -62,6 +63,11 @@ class GerPipeline:
             kwargs["escalation_limit"] = escalation_limit
         self.breaker = CircuitBreaker(**kwargs)
         self.skip_baseline = skip_baseline
+        #: The law in force: the canon bench applies any Director ruling
+        #: (canon/CANON-RULING.json) over the baseline REGISTER; the run
+        #: records it in CANON-IN-FORCE.md and the manifest.
+        self.canon = get_canon()
+        self.register = self.canon.text("ger-register", REGISTER)
 
         self.current_stage = "corpus"
         self.stages: list[dict] = []
@@ -101,6 +107,7 @@ class GerPipeline:
                              "second person, names the verb, states its "
                              "consequence, no mythology; §2.3 no numbers; no "
                              "interface language",
+            "canon": self.canon.summary(),
             "verbs": [s.verb for s in self.specs],
             "corpus": self.corpus_stats,
             "retrieval": {
@@ -167,7 +174,7 @@ class GerPipeline:
                          f"{label_suffix} — line never reached the LLM judge")
             return det, None
         judgment = run_evaluator(self.llm, self.prompts_dir, spec, selection,
-                                 line, REGISTER,
+                                 line, self.register,
                                  agent_label=f"ger-evaluator-{spec.verb}")
         if judgment.failed:
             return [judgment.finding()], judgment
@@ -245,7 +252,7 @@ class GerPipeline:
                     self.llm, self.prompts_dir, spec,
                     self.selections.setdefault(
                         spec.verb, retriever.select_multi(spec.queries)),
-                    line, REGISTER,
+                    line, self.register,
                     agent_label=f"ger-evaluator-baseline-{spec.verb}")
             row = {
                 "verb": spec.verb, "line": line,
@@ -284,7 +291,7 @@ class GerPipeline:
 
             outcome = VerbOutcome(spec.verb, "ACCEPTED")
             line = run_generator(self.llm, self.prompts_dir, spec, selection,
-                                 REGISTER)
+                                 self.register)
             round_no = 0
             while True:
                 self.bb.write(f"rounds/{spec.verb}-r{round_no}-draft.json",
@@ -331,7 +338,7 @@ class GerPipeline:
                     self.breaker.escalate(outcome)   # may raise BreakerTripped
                     break
                 line = run_refiner(self.llm, self.prompts_dir, spec, selection,
-                                   on_disk, findings, REGISTER)
+                                   on_disk, findings, self.register)
                 round_no += 1
             self.outcomes.append(outcome)
 
@@ -354,6 +361,8 @@ class GerPipeline:
 
     def run(self) -> int:
         try:
+            self.bb.write("CANON-IN-FORCE.md", self.canon.render_in_force(),
+                          "canon-bench")
             retriever = self.stage_corpus()
             self.stage_baseline(retriever)
             self.stage_ger_loop(retriever)

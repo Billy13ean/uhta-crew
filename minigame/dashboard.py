@@ -87,7 +87,37 @@ def _card(c: dict) -> str:
 </div>"""
 
 
-def render_dashboard(run_id: str, cards: list[dict]) -> str:
+def _canon_line(canon: dict | None) -> str:
+    """The law these candidates were judged under — the same summary the
+    manifest carries, stamped on the human gate so a verdict can never be
+    separated from its canon. Links to the Bible (../../canon/ works when
+    the page is opened from a run directory on disk; the console serves the
+    live Bible at /bible)."""
+    link = ("<a href='../../canon/CANON-BIBLE.html'>open the canon bible</a> "
+            "(or <code>/bible</code> in the crew console)")
+    if canon is None:
+        return (f"<p class='canonline'>Judged under baseline canon — this "
+                f"run predates the canon bench (no canon block in its "
+                f"manifest). {link}.</p>")
+    if not canon.get("rules"):
+        return (f"<p class='canonline'>Judged under baseline canon — "
+                f"registry absent, the spec constants in force. {link}.</p>")
+    if canon.get("ruling_file"):
+        non = canon.get("non_upheld") or {}
+        det = ("; ".join(f"<code>{_e(k)}</code> {_e(v)}"
+                         for k, v in non.items())
+               or "every rule UPHELD")
+        return (f"<p class='canonline'>Judged under RULED canon — "
+                f"{_e(canon['ruling_file'])} "
+                f"(sha256:{_e(canon.get('ruling_sha256_16') or '')}, ruled by "
+                f"{_e(canon.get('ruled_by') or '(unsigned)')}): {det}. "
+                f"{link}.</p>")
+    return (f"<p class='canonline'>Judged under baseline canon — every rule "
+            f"UPHELD as written, no ruling on file. {link}.</p>")
+
+
+def render_dashboard(run_id: str, cards: list[dict],
+                     canon: dict | None = None) -> str:
     n_ok = sum(1 for c in cards if c.get("status") == "ACCEPTED")
     cards_html = "\n".join(_card(c) for c in cards)
     return f"""<!DOCTYPE html>
@@ -103,6 +133,9 @@ def render_dashboard(run_id: str, cards: list[dict]) -> str:
   header h1 {{ margin:0; font-size:22px; font-weight:normal; letter-spacing:.06em; }}
   header h1 b {{ color:var(--gold); font-weight:normal; }}
   header p {{ color:var(--dim); margin:6px 0 0; font-size:13px; }}
+  header p.canonline {{ font-size:12px; }}
+  header p.canonline a {{ color:var(--gold); }}
+  header p.canonline code {{ color:var(--gold); font-size:11px; }}
   .grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(430px,1fr));
           gap:18px; padding:24px 32px; }}
   .card {{ background:var(--card); border:1px solid var(--line); border-radius:10px;
@@ -153,6 +186,7 @@ def render_dashboard(run_id: str, cards: list[dict]) -> str:
   <p>Run <code>{_e(run_id)}</code> · {n_ok} selectable candidate(s) ·
      check what you approve, then generate the ruling. The gate stays
      structural: the ruling contains the build command — a human still runs it.</p>
+  {_canon_line(canon)}
 </header>
 <div class="grid">{cards_html}</div>
 <pre id="ruling"></pre>
@@ -254,8 +288,15 @@ def main(argv: list[str]) -> int:
         else:
             i += 1
     run_id, cards = cards_from_run(run_dir, built)
+    canon = None
+    mf = run_dir / "manifest.json"
+    if mf.exists():
+        try:
+            canon = json.loads(mf.read_text(encoding="utf-8")).get("canon")
+        except json.JSONDecodeError:
+            pass
     out = run_dir / DASHBOARD_NAME
-    out.write_text(render_dashboard(run_id, cards), encoding="utf-8")
+    out.write_text(render_dashboard(run_id, cards, canon), encoding="utf-8")
     print(f"wrote {out} ({out.stat().st_size} B, {len(cards)} cards)")
     return 0
 

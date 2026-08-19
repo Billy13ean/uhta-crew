@@ -22,6 +22,7 @@ from pathlib import Path
 from content.agents import AgentError
 from content.retriever import (SCORE_THRESHOLD, TOKEN_BUDGET, Retriever)
 from crew.blackboard import Blackboard, MissingArtifactError
+from crew.canon import get_canon
 from ger.breaker import (BreakerTripped, CircuitBreaker, RoundRecord,
                          VerbOutcome)
 
@@ -69,6 +70,10 @@ class MinigamePipeline:
         self.build_report: dict = {}
         self.instructions: dict = {}
         self.presentation: dict = {}
+        #: The law in force: the canon bench applies any Director ruling
+        #: (canon/CANON-RULING.json) over the baseline encounter rules;
+        #: the run records it in CANON-IN-FORCE.md and the manifest.
+        self.canon = get_canon()
 
     # ---------------- bookkeeping ----------------
 
@@ -99,6 +104,7 @@ class MinigamePipeline:
                              "('no interface, no text, only your body and "
                              "theirs'), pole asymmetry ('the two poles never "
                              "play the same game'), individual-scale",
+            "canon": self.canon.summary(),
             "slots": [s.id for s in self.specs],
             "corpus": self.corpus_stats,
             "retrieval": {"scorer": "BM25 (content/retriever.py, reused)",
@@ -257,6 +263,8 @@ class MinigamePipeline:
 
     def propose(self) -> int:
         try:
+            self.bb.write("CANON-IN-FORCE.md", self.canon.render_in_force(),
+                          "canon-bench")
             retriever = self.stage_corpus()
             self.stage_ger_loop(retriever)
             t0 = time.time()
@@ -324,6 +332,8 @@ class MinigamePipeline:
 
     def build(self, from_run: str, select_id: str) -> int:
         try:
+            self.bb.write("CANON-IN-FORCE.md", self.canon.render_in_force(),
+                          "canon-bench")
             t0 = time.time()
             self.current_stage = "director-gate"
             self.bb.stage(1, "director gate",

@@ -51,7 +51,8 @@ from content.retriever import (Retriever, Selection, build_corpus)  # noqa: E402
 from crew.blackboard import Blackboard, MissingArtifactError  # noqa: E402
 from crew.llm import LLMCall  # noqa: E402
 from ger.breaker import BreakerTripped, CircuitBreaker, RoundRecord, VerbOutcome  # noqa: E402
-from ger.checks import (BANNED_UI_TOKENS, MAX_CHARS, extract_guide_strings,  # noqa: E402
+from ger.checks import (BANNED_UI_TOKENS, MAX_CHARS, MAX_WORDS,  # noqa: E402
+                        extract_guide_strings,
                         extract_teaching_text, js_escape,
                         render_teaching_snippet, run_register_checks,
                         strip_html, _TEACHING_RE)
@@ -98,7 +99,7 @@ def selftest() -> int:
             failures.append(name)
 
     # ---- 1. the build is the spec ----
-    print("\n[1/7] Build extraction — the verb list IS the build's verb list")
+    print("\n[1/8] Build extraction — the verb list IS the build's verb list")
     check("the build is seeded on the blackboard", bb.bb_path(BUILD_REL).exists())
     html = bb.read_bb(BUILD_REL, "selftest")
     teaching = extract_teaching_text(html)
@@ -111,7 +112,7 @@ def selftest() -> int:
           len(guides) >= 4, f"{len(guides)} strings")
 
     # ---- 2. the deterministic register gate ----
-    print("\n[2/7] The register gate — every check fires, and only when it should")
+    print("\n[2/8] The register gate — every check fires, and only when it should")
     cases = [
         ("R1 NAMES-VERB", "You move and the ground remembers you.", "walk"),
         ("R2 NO-UI-LANGUAGE", "Press the walk key to walk forward.", "walk"),
@@ -147,7 +148,7 @@ def selftest() -> int:
           "'presses'/'express' contain 'press' but only as substrings")
 
     # ---- 3. retrieval, per verb ----
-    print("\n[3/7] Retrieval — every verb clears the two-chunk rule")
+    print("\n[3/8] Retrieval — every verb clears the two-chunk rule")
     docs = {n: bb.read_bb(r, "selftest") for n, r in CORPUS_FILES.items()}
     _, _, kept = build_corpus(docs)
     r = Retriever(kept)
@@ -162,7 +163,7 @@ def selftest() -> int:
     check("an off-topic control retrieves NOTHING", not off.selected)
 
     # ---- 4. evaluator halt guards ----
-    print("\n[4/7] Evaluator guards — diagnosis must be cited, and never a repair")
+    print("\n[4/8] Evaluator guards — diagnosis must be cited, and never a repair")
     spec = spec_for("roar")
     sel = r.select_multi(spec.queries)
 
@@ -204,7 +205,7 @@ def selftest() -> int:
     check("a well-formed PASS parses", not j.failed and j.quoted_chunk)
 
     # ---- 5. generator + refiner guards ----
-    print("\n[5/7] Generator and Refiner guards")
+    print("\n[5/8] Generator and Refiner guards")
     try:
         run_generator(_ScriptedLLM('{"line":"x"}'), ROOT / "prompts", spec,
                       Selection("q", [], []), REGISTER,
@@ -245,7 +246,7 @@ def selftest() -> int:
           got == "You roar and every witness fears it.")
 
     # ---- 6. the circuit breaker ----
-    print("\n[6/7] Circuit breaker — meters content, and knows when to stop the run")
+    print("\n[6/8] Circuit breaker — meters content, and knows when to stop the run")
     br = CircuitBreaker(max_rounds=2, escalation_limit=3)
     check("refinement 1 and 2 are allowed, 3 is not",
           br.allow_refinement(0) and br.allow_refinement(1)
@@ -269,7 +270,7 @@ def selftest() -> int:
               "known conclusion")
 
     # ---- 7. the patch round-trip ----
-    print("\n[7/7] The patch — snippet renders, applies once, and changes nothing else")
+    print("\n[7/8] The patch — snippet renders, applies once, and changes nothing else")
     check("js_escape survives quotes and backslashes",
           js_escape("it's a \\ test") == "it\\'s a \\\\ test")
     new_lines = dict(teaching)
@@ -289,6 +290,57 @@ def selftest() -> int:
           len(patched) - len(html) == len(snippet) - (_TEACHING_RE.search(html).end()
                                                       - _TEACHING_RE.search(html).start()))
 
+    # ---- 8. the canon bench ----
+    print("\n[8/8] The canon bench — registry drift, rulings, and the "
+          "no-ignore contract")
+    from crew.canon import Canon, CanonError
+    import json as _json
+    _registry = _json.loads((ROOT / "canon" / "rules.json")
+                            .read_text(encoding="utf-8"))
+    _c0 = Canon(_registry)
+    check("registry baseline matches the spec (ger-register text)",
+          _c0.text("ger-register") == REGISTER)
+    check("registry baseline matches the gate (length caps + UI tokens)",
+          _c0.param("ger-length-caps", "max_chars") == MAX_CHARS
+          and _c0.param("ger-length-caps", "max_words") == MAX_WORDS
+          and _c0.param("ger-no-ui-language", "banned_tokens")
+          == BANNED_UI_TOKENS)
+    _amend = Canon(_registry, {"rules": {"ger-length-caps": {
+        "status": "AMENDED", "params": {"max_chars": 10, "max_words": 3}}}})
+    check("an AMENDED cap is enforced (clean 76-char line now fails R3)",
+          any(f.check == "R3 SHORT"
+              for f in run_register_checks(clean, "walk", canon=_amend)))
+    _repeal = Canon(_registry, {"rules": {"ger-no-ui-language": {
+        "status": "REPEALED", "reason": "selftest"}}})
+    _ui_line = "You press the walk key and walk."
+    check("a REPEALED R2 is skipped (UI line passes R2, and only R2)",
+          not any(f.check == "R2 NO-UI-LANGUAGE"
+                  for f in run_register_checks(_ui_line, "walk",
+                                               canon=_repeal))
+          and any(f.check == "R2 NO-UI-LANGUAGE"
+                  for f in run_register_checks(_ui_line, "walk", canon=_c0)))
+    check("the repeal is LOUD — CANON-IN-FORCE names the skip",
+          "REPEALED — not enforced this run" in _repeal.render_in_force())
+    try:
+        Canon(_registry, {"rules": {"ger-register": {"status": "WAIVED"}}})
+        check("status WAIVED is rejected (no ignore, by the Director's own "
+              "ruling)", False)
+    except CanonError as exc:
+        check("status WAIVED is rejected (no ignore, by the Director's own "
+              "ruling)", "off the bench" in str(exc))
+    try:
+        Canon(_registry, {"rules": {"ger-register": {"status": "REPEALED"}}})
+        check("the register law itself cannot be repealed (amend, don't "
+              "delete)", False)
+    except CanonError as exc:
+        check("the register law itself cannot be repealed (amend, don't "
+              "delete)", "not repealable" in str(exc))
+    try:
+        Canon(_registry, {"rules": {"no-such-rule": {"status": "UPHELD"}}})
+        check("a ruling naming an unknown rule id HALTS", False)
+    except CanonError:
+        check("a ruling naming an unknown rule id HALTS", True)
+
     total = len(failures)
     print("\n" + BANNER)
     if failures:
@@ -298,7 +350,8 @@ def selftest() -> int:
     print(f"SELFTEST PASSED — {counted[0]} assertions:")
     print("build extraction, the register gate (fired on the")
     print("shipped guide() strings), per-verb retrieval, every halt guard in all")
-    print("three agents, the circuit breaker, and the patch round-trip.")
+    print("three agents, the circuit breaker, the patch round-trip, and the")
+    print("canon bench (registry drift, amend/repeal, the no-ignore contract).")
     print("No API key, no API calls, no model.")
     print(BANNER)
     return 0

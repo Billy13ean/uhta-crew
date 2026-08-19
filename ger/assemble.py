@@ -38,7 +38,7 @@ def _hdr(p, title: str) -> str:
 def write_baseline(p) -> None:
     lines = [_hdr(p, "BASELINE AUDIT — the Evaluator vs the shipped build")]
     lines.append(
-        "The rule under enforcement (GDD §2.5): *\"" + REGISTER + "\"*\n\n"
+        "The rule under enforcement (GDD §2.5): *\"" + getattr(p, "register", REGISTER) + "\"*\n\n"
         "Before generating anything, the Evaluator was pointed at the text "
         "already in `blackboard/build/uhta-slice.html`: the seven stub "
         "`TEACHING_TEXT` lines A5's Programmer wrote as placeholders, and the "

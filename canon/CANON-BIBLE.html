@@ -1,0 +1,246 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>uhta · canon bible</title><style>
+:root{--bg:#0b0b0e;--card:#15151b;--ink:#d8d4c8;--dim:#8a8578;--gold:#e8b64c;
+--ember:#c8503c;--green:#5cb46a;--blue:#5c8ab4;--line:#2a2a33}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);margin:0;
+font:15px/1.55 Georgia,serif}
+header{padding:26px 34px 16px;border-bottom:1px solid var(--line)}
+header h1{margin:0;font-size:21px;font-weight:normal}
+header h1 b{color:var(--gold);font-weight:normal}
+header p{color:var(--dim);font-size:13px;max-width:920px}
+.wrap{padding:20px 34px;max-width:1080px}
+h2{color:var(--gold);font-weight:normal;font-size:15px;letter-spacing:.09em;
+text-transform:uppercase;margin:28px 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:16px 20px;margin-bottom:14px}
+.card.repealed-now{opacity:.75;border-color:#4a2a22}
+.rhead{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.rhead b{color:var(--gold);font-weight:normal;font-size:15.5px}
+.rid{font:11.5px monospace;color:var(--dim)}
+.badge{font:10.5px monospace;letter-spacing:.06em;padding:2px 8px;
+border-radius:9px;border:1px solid var(--line);color:var(--dim)}
+.badge.UPHELD{color:var(--green);border-color:var(--green)}
+.badge.AMENDED{color:var(--gold);border-color:var(--gold)}
+.badge.REPEALED{color:var(--ember);border-color:var(--ember)}
+.src{color:var(--dim);font-size:12px;margin:4px 0 8px}
+.law{background:#0f0f14;border:1px solid var(--line);border-radius:8px;
+padding:10px 13px;font-size:13.5px;margin:8px 0;color:var(--ink)}
+.law.amended-law{border-color:var(--gold)}
+.params{font:12px monospace;color:var(--dim)}
+.controls{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;align-items:center}
+.controls label{font-size:13px;cursor:pointer}
+.controls input[type=radio]{accent-color:var(--gold)}
+.norepeal{color:var(--dim);font-size:12px;font-style:italic}
+textarea,input[type=text],input[type=number]{background:#0f0f14;color:var(--ink);
+border:1px solid var(--line);border-radius:7px;font:12.5px monospace;
+padding:8px 10px;width:100%}
+textarea{min-height:84px}
+.editor{display:none;margin-top:10px}.editor.show{display:block}
+.editor .plabel{font-size:12px;color:var(--dim);margin:8px 0 3px}
+.opt{display:block;margin:6px 0;font-size:13.5px;cursor:pointer}
+button{background:var(--gold);color:#0b0b0e;border:none;font:14px Georgia,serif;
+padding:10px 20px;border-radius:8px;cursor:pointer}
+button.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.bench{background:var(--card);border:1px solid var(--gold);border-radius:10px;
+padding:18px 22px;margin:26px 0}
+.bench .row{display:flex;gap:10px;margin:8px 0;flex-wrap:wrap}
+.bench input[type=text]{flex:1;min-width:200px}
+#out{display:none;margin-top:14px}#out.show{display:block}
+#out a{color:var(--gold)}
+.note{color:var(--dim);font-size:12.5px}
+pre{background:#0f0f14;border:1px solid var(--line);border-radius:8px;
+padding:10px 13px;font:11.5px/1.5 monospace;overflow-x:auto;white-space:pre-wrap;
+color:var(--dim)}
+.hist{font-size:12px;color:var(--dim);margin-top:8px}
+</style></head><body>
+<header><h1><b>uhta</b> · the canon bible</h1>
+<p>Every rule the two Evaluators enforce, and the bench to rule on them.
+A rule is <b style="color:var(--green)">UPHELD</b> (the default),
+<b style="color:var(--gold)">AMENDED</b> (your edited law is enforced instead;
+the baseline is kept as history), or
+<b style="color:var(--ember)">REPEALED</b> (not enforced — and the skip is
+logged in every run's CANON-IN-FORCE.md). There is deliberately no ignore
+button: a silent skip would make every green run log unfalsifiable. This page
+changes nothing by itself — it writes a <i>ruling</i>
+(canon/CANON-RULING.json), and the next run obeys it.</p></header>
+<div class="wrap"><h2>Encounter law — the mini-game pipeline</h2><div class="card" id="card-mg-encounter-rules"><div class="rhead"><b>Encounter law — wordless, diegetic, pole-asymmetric</b><span class="rid">mg-encounter-rules · prose</span><span class="badge UPHELD" id="badge-mg-encounter-rules">UPHELD</span></div><div class="src">source: GDD v0.9.9 §2 (Encounters) · enforced by: Designer/Judge/Refiner prompts ({{RULES}}); judge classes NOT-DIEGETIC and POLE-SYMMETRY cite it</div><div class="law">&ldquo;GDD §2, Encounters: when you meet a group directly the simulation pauses and you play a short, wordless, diegetic exchange — &#x27;no interface, no text, only your body and theirs&#x27;. &#x27;This is the only time you act on individuals rather than a population&#x27;, and &#x27;the two poles never play the same game&#x27;: Hope plays patience, depth, few (converts arrive devout); Fear plays speed, force, many (converts are shallow). A design that needs a HUD, a label, or a word has failed; a design whose Hope and Fear versions are the same game reskinned has failed.&rdquo;</div><div class="controls"><label><input type="radio" name="st-mg-encounter-rules" value="UPHELD" checked onchange="setStatus('mg-encounter-rules','UPHELD')"> uphold</label><label><input type="radio" name="st-mg-encounter-rules" value="AMENDED" onchange="setStatus('mg-encounter-rules','AMENDED')"> amend</label><span class="norepeal">not repealable — The Judge cannot judge against no law. Amend the text instead.</span></div><div class="editor" id="ed-mg-encounter-rules"><div class="plabel">amended text</div><textarea id="text-mg-encounter-rules">GDD §2, Encounters: when you meet a group directly the simulation pauses and you play a short, wordless, diegetic exchange — &#x27;no interface, no text, only your body and theirs&#x27;. &#x27;This is the only time you act on individuals rather than a population&#x27;, and &#x27;the two poles never play the same game&#x27;: Hope plays patience, depth, few (converts arrive devout); Fear plays speed, force, many (converts are shallow). A design that needs a HUD, a label, or a word has failed; a design whose Hope and Fear versions are the same game reskinned has failed.</textarea><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-mg-encounter-rules" value=""></div></div><div class="card" id="card-mg-allowed-inputs"><div class="rhead"><b>Buildable inputs — the slice&#x27;s input vocabulary</b><span class="rid">mg-allowed-inputs · params</span><span class="badge UPHELD" id="badge-mg-allowed-inputs">UPHELD</span></div><div class="src">source: the build (uhta-slice.html); checks.py C3 BUILDABLE-INPUT · enforced by: checks.py C3 — controls ⊆ this list, else deterministic fail</div><div class="params">allowed_inputs = [&quot;wasd-move&quot;, &quot;mouse-move&quot;, &quot;left-click&quot;, &quot;right-click&quot;, &quot;space&quot;, &quot;e-key&quot;]</div><div class="controls"><label><input type="radio" name="st-mg-allowed-inputs" value="UPHELD" checked onchange="setStatus('mg-allowed-inputs','UPHELD')"> uphold</label><label><input type="radio" name="st-mg-allowed-inputs" value="AMENDED" onchange="setStatus('mg-allowed-inputs','AMENDED')"> amend</label><span class="norepeal">not repealable — A fact of the build, not a preference. Amend the list when the build grows an input.</span></div><div class="editor" id="ed-mg-allowed-inputs"><div class="plabel">allowed_inputs (one per line)</div><textarea id="p-mg-allowed-inputs-allowed_inputs">wasd-move
+mouse-move
+left-click
+right-click
+space
+e-key</textarea><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-mg-allowed-inputs" value=""></div></div><div class="card" id="card-mg-outcome-effects"><div class="rhead"><b>Real stakes — the sim&#x27;s outcome vocabulary</b><span class="rid">mg-outcome-effects · params</span><span class="badge UPHELD" id="badge-mg-outcome-effects">UPHELD</span></div><div class="src">source: GDD §2.2 systems; checks.py C4 REAL-STAKES · enforced by: checks.py C4 — effects ⊆ this list, else deterministic fail</div><div class="params">outcome_effects = [&quot;convert_devout&quot;, &quot;convert_shallow&quot;, &quot;burnout&quot;, &quot;drift_apathy&quot;, &quot;stamina_gain&quot;, &quot;stamina_loss&quot;, &quot;resistance_drop&quot;, &quot;story_spreads&quot;, &quot;no_effect&quot;]</div><div class="controls"><label><input type="radio" name="st-mg-outcome-effects" value="UPHELD" checked onchange="setStatus('mg-outcome-effects','UPHELD')"> uphold</label><label><input type="radio" name="st-mg-outcome-effects" value="AMENDED" onchange="setStatus('mg-outcome-effects','AMENDED')"> amend</label><span class="norepeal">not repealable — Stakes must pay in currencies the sim has. Amend the list when the sim grows one.</span></div><div class="editor" id="ed-mg-outcome-effects"><div class="plabel">outcome_effects (one per line)</div><textarea id="p-mg-outcome-effects-outcome_effects">convert_devout
+convert_shallow
+burnout
+drift_apathy
+stamina_gain
+stamina_loss
+resistance_drop
+story_spreads
+no_effect</textarea><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-mg-outcome-effects" value=""></div></div><div class="card" id="card-mg-c5-wordless"><div class="rhead"><b>C5 WORDLESS — no interface vocabulary in player-facing fields</b><span class="rid">mg-c5-wordless · check</span><span class="badge UPHELD" id="badge-mg-c5-wordless">UPHELD</span></div><div class="src">source: GDD §2: &#x27;no interface, no text, only your body and theirs&#x27; · enforced by: checks.py C5 (deterministic) + the Judge&#x27;s NOT-DIEGETIC class</div><div class="params">banned_tokens = [&quot;hud&quot;, &quot;menu&quot;, &quot;text&quot;, &quot;label&quot;, &quot;labels&quot;, &quot;button&quot;, &quot;buttons&quot;, &quot;prompt&quot;, &quot;tooltip&quot;, &quot;dialog&quot;, &quot;dialogue&quot;, &quot;caption&quot;, &quot;subtitle&quot;, &quot;tutorial&quot;, &quot;score display&quot;, &quot;scoreboard&quot;, &quot;counter&quot;, &quot;meter bar&quot;, &quot;progress bar&quot;, &quot;words&quot;, &quot;written&quot;, &quot;font&quot;, &quot;icon&quot;, &quot;arrow indicator&quot;, &quot;cursor&quot;]</div><div class="note" style="margin-top:6px">The pending HUD amendment targets this rule. Repealing it lets designs name HUD/text; the encounter-law prose (mg-encounter-rules) should be amended in the same ruling so the Judge&#x27;s law agrees.</div><div class="controls"><label><input type="radio" name="st-mg-c5-wordless" value="UPHELD" checked onchange="setStatus('mg-c5-wordless','UPHELD')"> uphold</label><label><input type="radio" name="st-mg-c5-wordless" value="AMENDED" onchange="setStatus('mg-c5-wordless','AMENDED')"> amend</label><label><input type="radio" name="st-mg-c5-wordless" value="REPEALED" onchange="setStatus('mg-c5-wordless','REPEALED')"> repeal</label></div><div class="editor" id="ed-mg-c5-wordless"><div class="plabel">banned_tokens (one per line)</div><textarea id="p-mg-c5-wordless-banned_tokens">hud
+menu
+text
+label
+labels
+button
+buttons
+prompt
+tooltip
+dialog
+dialogue
+caption
+subtitle
+tutorial
+score display
+scoreboard
+counter
+meter bar
+progress bar
+words
+written
+font
+icon
+arrow indicator
+cursor</textarea><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-mg-c5-wordless" value=""></div></div><div class="card" id="card-mg-c6-short"><div class="rhead"><b>C6 SHORT — field length caps</b><span class="rid">mg-c6-short · check</span><span class="badge UPHELD" id="badge-mg-c6-short">UPHELD</span></div><div class="src">source: GDD §2: &#x27;a short, wordless, diegetic exchange&#x27; · enforced by: checks.py C6 (deterministic)</div><div class="params">max_field_words = 130 · max_name_chars = 48</div><div class="controls"><label><input type="radio" name="st-mg-c6-short" value="UPHELD" checked onchange="setStatus('mg-c6-short','UPHELD')"> uphold</label><label><input type="radio" name="st-mg-c6-short" value="AMENDED" onchange="setStatus('mg-c6-short','AMENDED')"> amend</label><label><input type="radio" name="st-mg-c6-short" value="REPEALED" onchange="setStatus('mg-c6-short','REPEALED')"> repeal</label></div><div class="editor" id="ed-mg-c6-short"><div class="plabel">max_field_words</div><input type="number" id="p-mg-c6-short-max_field_words" value="130"><div class="plabel">max_name_chars</div><input type="number" id="p-mg-c6-short-max_name_chars" value="48"><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-mg-c6-short" value=""></div></div><h2>Narration law — the verb-teaching pipeline</h2><div class="card" id="card-ger-register"><div class="rhead"><b>Narration register — the §2.5 law</b><span class="rid">ger-register · prose</span><span class="badge UPHELD" id="badge-ger-register">UPHELD</span></div><div class="src">source: GDD §2.5 + §2.3 (banded display) · enforced by: Generator/Evaluator/Refiner prompts ({{REGISTER}}); Instructor reuses it</div><div class="law">&ldquo;Short, declarative, second person. Names the verb and states its consequence. Instrumentation, not lore — GDD §2.5: &#x27;short declarative lines, no mythology&#x27;. No interface language: this is a wordless game&#x27;s one narrated cycle, not a tutorial overlay — the narrator names what the being DOES, never which key the player presses. No numbers (§2.3, banded display).&rdquo;</div><div class="controls"><label><input type="radio" name="st-ger-register" value="UPHELD" checked onchange="setStatus('ger-register','UPHELD')"> uphold</label><label><input type="radio" name="st-ger-register" value="AMENDED" onchange="setStatus('ger-register','AMENDED')"> amend</label><span class="norepeal">not repealable — The narration pipeline&#x27;s whole law. Amend, don&#x27;t delete.</span></div><div class="editor" id="ed-ger-register"><div class="plabel">amended text</div><textarea id="text-ger-register">Short, declarative, second person. Names the verb and states its consequence. Instrumentation, not lore — GDD §2.5: &#x27;short declarative lines, no mythology&#x27;. No interface language: this is a wordless game&#x27;s one narrated cycle, not a tutorial overlay — the narrator names what the being DOES, never which key the player presses. No numbers (§2.3, banded display).</textarea><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-ger-register" value=""></div></div><div class="card" id="card-ger-length-caps"><div class="rhead"><b>R3 length caps for narration lines</b><span class="rid">ger-length-caps · check</span><span class="badge UPHELD" id="badge-ger-length-caps">UPHELD</span></div><div class="src">source: &#x27;short&#x27; made mechanical (ger/checks.py header) · enforced by: ger/checks.py run_register_checks (deterministic)</div><div class="params">max_chars = 120 · max_words = 24</div><div class="controls"><label><input type="radio" name="st-ger-length-caps" value="UPHELD" checked onchange="setStatus('ger-length-caps','UPHELD')"> uphold</label><label><input type="radio" name="st-ger-length-caps" value="AMENDED" onchange="setStatus('ger-length-caps','AMENDED')"> amend</label><label><input type="radio" name="st-ger-length-caps" value="REPEALED" onchange="setStatus('ger-length-caps','REPEALED')"> repeal</label></div><div class="editor" id="ed-ger-length-caps"><div class="plabel">max_chars</div><input type="number" id="p-ger-length-caps-max_chars" value="120"><div class="plabel">max_words</div><input type="number" id="p-ger-length-caps-max_words" value="24"><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-ger-length-caps" value=""></div></div><div class="card" id="card-ger-no-ui-language"><div class="rhead"><b>R2 NO-UI-LANGUAGE — narration never names keys</b><span class="rid">ger-no-ui-language · check</span><span class="badge UPHELD" id="badge-ger-no-ui-language">UPHELD</span></div><div class="src">source: GDD §2.5 corollary; the guide() baseline-audit catch · enforced by: ger/checks.py run_register_checks R2 (also gates Instructor lines)</div><div class="params">banned_tokens = [&quot;press&quot;, &quot;click&quot;, &quot;clicked&quot;, &quot;left-click&quot;, &quot;right-click&quot;, &quot;key&quot;, &quot;keys&quot;, &quot;keyboard&quot;, &quot;button&quot;, &quot;buttons&quot;, &quot;mouse&quot;, &quot;cursor&quot;, &quot;scroll&quot;, &quot;wasd&quot;, &quot;spacebar&quot;, &quot;hotkey&quot;, &quot;hud&quot;, &quot;menu&quot;, &quot;drag&quot;, &quot;hover&quot;, &quot;tap&quot;, &quot;interface&quot;, &quot;tutorial&quot;]</div><div class="note" style="margin-top:6px">Instructor lines run through this same gate. If the instruction-text amendment passes, prefer scoping via amendment over repeal so narration lines stay wordless.</div><div class="controls"><label><input type="radio" name="st-ger-no-ui-language" value="UPHELD" checked onchange="setStatus('ger-no-ui-language','UPHELD')"> uphold</label><label><input type="radio" name="st-ger-no-ui-language" value="AMENDED" onchange="setStatus('ger-no-ui-language','AMENDED')"> amend</label><label><input type="radio" name="st-ger-no-ui-language" value="REPEALED" onchange="setStatus('ger-no-ui-language','REPEALED')"> repeal</label></div><div class="editor" id="ed-ger-no-ui-language"><div class="plabel">banned_tokens (one per line)</div><textarea id="p-ger-no-ui-language-banned_tokens">press
+click
+clicked
+left-click
+right-click
+key
+keys
+keyboard
+button
+buttons
+mouse
+cursor
+scroll
+wasd
+spacebar
+hotkey
+hud
+menu
+drag
+hover
+tap
+interface
+tutorial</textarea><div class="plabel">reason (goes into the ruling and every run log)</div><input type="text" id="reason-ger-no-ui-language" value=""></div></div><h2>Proposed amendments awaiting ruling</h2><div class="card"><div class="rhead"><b>Encounter-scoped HUD</b><span class="rid">prop-hud · raised 2026-08-19 · targets mg-c5-wordless, mg-encounter-rules</span></div><div class="note" style="margin:6px 0 8px">Six playtests: fully wordless was undiscoverable and illegible until presentation passes approached HUD-ness in diegetic clothing (the ember ring IS a target indicator).</div><label class="opt"><input type="radio" name="choice-prop-hud" value="encounter-scoped"> HUD allowed, encounter-scoped only — overlay while the world is paused; overworld stays HUD-free (C5 becomes HUD-SCOPE, NOT-DIEGETIC becomes NOT-SCOPED)</label><label class="opt"><input type="radio" name="choice-prop-hud" value="persistent"> HUD may persist into the overworld view</label><label class="opt"><input type="radio" name="choice-prop-hud" value="uphold"> No HUD — uphold the wordless rule as written</label><div class="editor show"><div class="plabel">notes for the ruling (the "specific circumstances", N for fading, etc.)</div><textarea id="pnotes-prop-hud"></textarea></div></div><div class="card"><div class="rhead"><b>Instruction text in encounters</b><span class="rid">prop-instructions · raised 2026-08-19 · targets mg-c5-wordless, ger-no-ui-language</span></div><div class="note" style="margin:6px 0 8px">&#x27;And text instructions I think.&#x27; The Instructor agent already writes one register-gated line; this rules on how much text, and when.</div><label class="opt"><input type="radio" name="choice-prop-instructions" value="always"> Instructions always shown while the encounter is active</label><label class="opt"><input type="radio" name="choice-prop-instructions" value="fading"> First N plays, then fading — training wheels that come off</label><label class="opt"><input type="radio" name="choice-prop-instructions" value="sleep0-window"> Only during the sleep-0 narrated window, matching verb teaching</label><div class="editor show"><div class="plabel">notes for the ruling (the "specific circumstances", N for fading, etc.)</div><textarea id="pnotes-prop-instructions"></textarea></div></div><div class="card"><div class="rhead"><b>Repeat circumstances</b><span class="rid">prop-repeats · raised 2026-08-19 · targets mg-encounter-rules</span></div><div class="note" style="margin:6px 0 8px">&#x27;It&#x27;s ok if the games repeat under specific circumstances.&#x27; Current build arms once per band (shown_tip / arm-once).</div><label class="opt"><input type="radio" name="choice-prop-repeats" value="per-band-retry"> A failed encounter may be retried with the same band</label><label class="opt"><input type="radio" name="choice-prop-repeats" value="per-generation"> Once per band per generation (re-arms after Sleep)</label><label class="opt"><input type="radio" name="choice-prop-repeats" value="per-era-settlement"> Once per settlement per era for holdings; bands stay once-only</label><label class="opt"><input type="radio" name="choice-prop-repeats" value="cooldown"> Cooldown-gated (name the cooldown in notes)</label><div class="editor show"><div class="plabel">notes for the ruling (the "specific circumstances", N for fading, etc.)</div><textarea id="pnotes-prop-repeats"></textarea></div></div>
+<div class="bench"><h2 style="margin-top:0">The bench</h2>
+
+<div class="row"><input type="text" id="ruled-by" placeholder="ruled by (sign it)"
+  value="Nicholas Rouke"></div>
+<div class="row"><input type="text" id="ruling-note"
+  placeholder="one-line note for this ruling (optional)"
+  value=""></div>
+<div class="row"><button onclick="generate()">Generate Director's ruling ▸</button></div>
+<div id="out"></div>
+</div></div>
+<script>window.__REGISTRY__={"_meta": {"title": "uhta canon rules registry", "version": 1, "statuses": ["UPHELD", "AMENDED", "REPEALED"], "note": "Single source the pipelines' Evaluators read their law from. A rule is UPHELD (default, enforced as written), AMENDED (Director-edited text/params enforced instead, baseline kept for history), or REPEALED (not enforced; the skip is logged). There is deliberately no IGNORED/WAIVED status \u2014 ruled off the bench by the Director, 2026-08-19: silent bypasses make run logs untrustworthy. Rulings live in canon/CANON-RULING.json, written by the Bible page; the pipelines never edit this file."}, "rules": [{"id": "mg-encounter-rules", "group": "minigame", "title": "Encounter law \u2014 wordless, diegetic, pole-asymmetric", "kind": "prose", "source": "GDD v0.9.9 \u00a72 (Encounters)", "text": "GDD \u00a72, Encounters: when you meet a group directly the simulation pauses and you play a short, wordless, diegetic exchange \u2014 'no interface, no text, only your body and theirs'. 'This is the only time you act on individuals rather than a population', and 'the two poles never play the same game': Hope plays patience, depth, few (converts arrive devout); Fear plays speed, force, many (converts are shallow). A design that needs a HUD, a label, or a word has failed; a design whose Hope and Fear versions are the same game reskinned has failed.", "enforced_by": "Designer/Judge/Refiner prompts ({{RULES}}); judge classes NOT-DIEGETIC and POLE-SYMMETRY cite it", "repealable": false, "why_not_repealable": "The Judge cannot judge against no law. Amend the text instead."}, {"id": "mg-allowed-inputs", "group": "minigame", "title": "Buildable inputs \u2014 the slice's input vocabulary", "kind": "params", "source": "the build (uhta-slice.html); checks.py C3 BUILDABLE-INPUT", "params": {"allowed_inputs": ["wasd-move", "mouse-move", "left-click", "right-click", "space", "e-key"]}, "enforced_by": "checks.py C3 \u2014 controls \u2286 this list, else deterministic fail", "repealable": false, "why_not_repealable": "A fact of the build, not a preference. Amend the list when the build grows an input."}, {"id": "mg-outcome-effects", "group": "minigame", "title": "Real stakes \u2014 the sim's outcome vocabulary", "kind": "params", "source": "GDD \u00a72.2 systems; checks.py C4 REAL-STAKES", "params": {"outcome_effects": ["convert_devout", "convert_shallow", "burnout", "drift_apathy", "stamina_gain", "stamina_loss", "resistance_drop", "story_spreads", "no_effect"]}, "enforced_by": "checks.py C4 \u2014 effects \u2286 this list, else deterministic fail", "repealable": false, "why_not_repealable": "Stakes must pay in currencies the sim has. Amend the list when the sim grows one."}, {"id": "mg-c5-wordless", "group": "minigame", "title": "C5 WORDLESS \u2014 no interface vocabulary in player-facing fields", "kind": "check", "source": "GDD \u00a72: 'no interface, no text, only your body and theirs'", "params": {"banned_tokens": ["hud", "menu", "text", "label", "labels", "button", "buttons", "prompt", "tooltip", "dialog", "dialogue", "caption", "subtitle", "tutorial", "score display", "scoreboard", "counter", "meter bar", "progress bar", "words", "written", "font", "icon", "arrow indicator", "cursor"]}, "enforced_by": "checks.py C5 (deterministic) + the Judge's NOT-DIEGETIC class", "repealable": true, "note": "The pending HUD amendment targets this rule. Repealing it lets designs name HUD/text; the encounter-law prose (mg-encounter-rules) should be amended in the same ruling so the Judge's law agrees."}, {"id": "mg-c6-short", "group": "minigame", "title": "C6 SHORT \u2014 field length caps", "kind": "check", "source": "GDD \u00a72: 'a short, wordless, diegetic exchange'", "params": {"max_field_words": 130, "max_name_chars": 48}, "enforced_by": "checks.py C6 (deterministic)", "repealable": true}, {"id": "ger-register", "group": "ger", "title": "Narration register \u2014 the \u00a72.5 law", "kind": "prose", "source": "GDD \u00a72.5 + \u00a72.3 (banded display)", "text": "Short, declarative, second person. Names the verb and states its consequence. Instrumentation, not lore \u2014 GDD \u00a72.5: 'short declarative lines, no mythology'. No interface language: this is a wordless game's one narrated cycle, not a tutorial overlay \u2014 the narrator names what the being DOES, never which key the player presses. No numbers (\u00a72.3, banded display).", "enforced_by": "Generator/Evaluator/Refiner prompts ({{REGISTER}}); Instructor reuses it", "repealable": false, "why_not_repealable": "The narration pipeline's whole law. Amend, don't delete."}, {"id": "ger-length-caps", "group": "ger", "title": "R3 length caps for narration lines", "kind": "check", "source": "'short' made mechanical (ger/checks.py header)", "params": {"max_chars": 120, "max_words": 24}, "enforced_by": "ger/checks.py run_register_checks (deterministic)", "repealable": true}, {"id": "ger-no-ui-language", "group": "ger", "title": "R2 NO-UI-LANGUAGE \u2014 narration never names keys", "kind": "check", "source": "GDD \u00a72.5 corollary; the guide() baseline-audit catch", "params": {"banned_tokens": ["press", "click", "clicked", "left-click", "right-click", "key", "keys", "keyboard", "button", "buttons", "mouse", "cursor", "scroll", "wasd", "spacebar", "hotkey", "hud", "menu", "drag", "hover", "tap", "interface", "tutorial"]}, "enforced_by": "ger/checks.py run_register_checks R2 (also gates Instructor lines)", "repealable": true, "note": "Instructor lines run through this same gate. If the instruction-text amendment passes, prefer scoping via amendment over repeal so narration lines stay wordless."}], "proposals": [{"id": "prop-hud", "title": "Encounter-scoped HUD", "raised": "2026-08-19", "targets": ["mg-c5-wordless", "mg-encounter-rules"], "context": "Six playtests: fully wordless was undiscoverable and illegible until presentation passes approached HUD-ness in diegetic clothing (the ember ring IS a target indicator).", "options": [{"key": "encounter-scoped", "label": "HUD allowed, encounter-scoped only \u2014 overlay while the world is paused; overworld stays HUD-free (C5 becomes HUD-SCOPE, NOT-DIEGETIC becomes NOT-SCOPED)"}, {"key": "persistent", "label": "HUD may persist into the overworld view"}, {"key": "uphold", "label": "No HUD \u2014 uphold the wordless rule as written"}]}, {"id": "prop-instructions", "title": "Instruction text in encounters", "raised": "2026-08-19", "targets": ["mg-c5-wordless", "ger-no-ui-language"], "context": "'And text instructions I think.' The Instructor agent already writes one register-gated line; this rules on how much text, and when.", "options": [{"key": "always", "label": "Instructions always shown while the encounter is active"}, {"key": "fading", "label": "First N plays, then fading \u2014 training wheels that come off"}, {"key": "sleep0-window", "label": "Only during the sleep-0 narrated window, matching verb teaching"}]}, {"id": "prop-repeats", "title": "Repeat circumstances", "raised": "2026-08-19", "targets": ["mg-encounter-rules"], "context": "'It's ok if the games repeat under specific circumstances.' Current build arms once per band (shown_tip / arm-once).", "options": [{"key": "per-band-retry", "label": "A failed encounter may be retried with the same band"}, {"key": "per-generation", "label": "Once per band per generation (re-arms after Sleep)"}, {"key": "per-era-settlement", "label": "Once per settlement per era for holdings; bands stay once-only"}, {"key": "cooldown", "label": "Cooldown-gated (name the cooldown in notes)"}]}]};window.__RULING__=null;</script><script>
+const REG = window.__REGISTRY__, RULING = window.__RULING__ || {};
+const state = {rules:{}, proposals:{}};
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+
+function setStatus(rid, st){
+  state.rules[rid] = state.rules[rid] || {}; state.rules[rid].status = st;
+  const ed = document.querySelector('#ed-'+rid);
+  if (ed) ed.classList.toggle('show', st==='AMENDED');
+  const badge = document.querySelector('#badge-'+rid);
+  badge.textContent = st; badge.className = 'badge '+st;
+}
+
+function collect(){
+  const ruling = {ruled_by: document.querySelector('#ruled-by').value.trim(),
+                  ruled_at: new Date().toISOString().slice(0,19),
+                  note: document.querySelector('#ruling-note').value.trim(),
+                  rules:{}, proposals:{}};
+  for (const r of REG.rules){
+    const st = (state.rules[r.id]||{}).status || 'UPHELD';
+    if (st === 'UPHELD') continue;
+    const entry = {status: st};
+    const reason = document.querySelector('#reason-'+r.id);
+    if (reason && reason.value.trim()) entry.reason = reason.value.trim();
+    if (st === 'AMENDED'){
+      const ta = document.querySelector('#text-'+r.id);
+      if (ta && ta.value.trim() && ta.value.trim() !== (r.text||'').trim())
+        entry.text = ta.value.trim();
+      if (r.params){
+        const params = {};
+        for (const k of Object.keys(r.params)){
+          const el = document.querySelector('#p-'+r.id+'-'+k);
+          if (!el) continue;
+          if (Array.isArray(r.params[k])){
+            const v = el.value.split('\n').map(s=>s.trim()).filter(Boolean);
+            if (JSON.stringify(v)!==JSON.stringify(r.params[k])) params[k]=v;
+          } else {
+            const v = parseInt(el.value,10);
+            if (!isNaN(v) && v!==r.params[k]) params[k]=v;
+          }
+        }
+        if (Object.keys(params).length) entry.params = params;
+      }
+      if (!entry.text && !entry.params){
+        alert('Rule '+r.id+' is marked AMENDED but nothing was changed — '+
+              'either edit it or set it back to UPHELD.');
+        return null;
+      }
+    }
+    ruling.rules[r.id] = entry;
+  }
+  for (const p of REG.proposals||[]){
+    const sel = document.querySelector('input[name=choice-'+p.id+']:checked');
+    const notes = document.querySelector('#pnotes-'+p.id).value.trim();
+    if (sel || notes)
+      ruling.proposals[p.id] = {choice: sel ? sel.value : null, notes: notes};
+  }
+  if (!ruling.ruled_by){ alert('Sign the ruling — "ruled by" is empty.'); return null; }
+  return ruling;
+}
+
+function rulingMd(ruling){
+  const rules = Object.fromEntries(REG.rules.map(r=>[r.id,r]));
+  const props = Object.fromEntries((REG.proposals||[]).map(p=>[p.id,p]));
+  let md = "# Director's canon ruling\n\nRuled by: "+ruling.ruled_by+
+           "\nRuled at: "+ruling.ruled_at+"\n\n";
+  if (ruling.note) md += "> "+ruling.note+"\n\n";
+  for (const [rid,e] of Object.entries(ruling.rules)){
+    md += "## "+rid+" — "+(rules[rid]?rules[rid].title:'')+": **"+e.status+"**\n\n";
+    if (e.text) md += 'Amended text: "'+e.text+'"\n\n';
+    if (e.params) md += "Amended params: `"+JSON.stringify(e.params)+"`\n\n";
+    if (e.reason) md += "Reason: "+e.reason+"\n\n";
+  }
+  for (const [pid,e] of Object.entries(ruling.proposals)){
+    md += "## Proposal — "+(props[pid]?props[pid].title:pid)+": chose **"+
+          (e.choice||'(none)')+"**\n\n";
+    if (e.notes) md += e.notes+"\n\n";
+  }
+  return md;
+}
+
+async function generate(){
+  const ruling = collect(); if (!ruling) return;
+  const jsonText = JSON.stringify(ruling, null, 2)+"\n";
+  const md = rulingMd(ruling);
+  const out = document.querySelector('#out'); out.classList.add('show');
+  const dl = (name, text) => '<a download="'+name+'" href="data:text/plain;charset=utf-8,'+
+    encodeURIComponent(text)+'">download '+name+'</a>';
+  let saved = '';
+  try{
+    const r = await fetch('/save_canon', {method:'POST',
+      headers:{'Content-Type':'application/json'}, body: jsonText});
+    saved = r.ok ? '<span style="color:var(--green)">'+esc(await r.text())+'</span>'
+                 : '<span style="color:var(--ember)">'+esc(await r.text())+'</span>';
+  }catch(e){
+    saved = '<span class="note">not served by the console — use the downloads, '+
+            'then drop both files into <code>canon/</code>.</span>';
+  }
+  out.innerHTML = '<p>'+dl('CANON-RULING.json', jsonText)+' · '+
+    dl('CANON-RULING.md', md)+'</p><p>'+saved+'</p>'+
+    '<p class="note">The next run of either pipeline reads this ruling and '+
+    'writes what law was in force into its CANON-IN-FORCE.md. Commit '+
+    'canon/CANON-RULING.* — the ruling is evidence.</p>'+
+    '<pre>'+esc(md)+'</pre>';
+  out.scrollIntoView({behavior:'smooth'});
+}
+
+// prefill from the existing ruling
+for (const [rid,e] of Object.entries(RULING.rules||{})) setStatus(rid, e.status);
+</script></body></html>

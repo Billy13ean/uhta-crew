@@ -25,6 +25,7 @@ COPY crew/       ./crew/
 COPY content/    ./content/
 COPY ger/        ./ger/
 COPY minigame/   ./minigame/
+COPY canon/      ./canon/
 COPY prompts/    ./prompts/
 COPY blackboard/ ./blackboard/
 COPY tests/      ./tests/

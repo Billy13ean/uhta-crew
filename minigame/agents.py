@@ -34,13 +34,24 @@ def _template(prompts_dir: Path, name: str) -> str:
 
 
 def _common(template: str, spec, selection) -> str:
+    # The law the three roles argue under comes through the canon bench:
+    # an AMENDED encounter rule reaches every prompt from here, and the
+    # same effective text the Judge cites is what the run's
+    # CANON-IN-FORCE.md records.
+    from crew.canon import get_canon
+    canon = get_canon()
     return (template
             .replace("{{SLOT_ID}}", spec.id)
             .replace("{{SLOT_LABEL}}", spec.label)
             .replace("{{BRIEF}}", spec.brief)
-            .replace("{{RULES}}", ENCOUNTER_RULES)
-            .replace("{{ALLOWED_INPUTS}}", json.dumps(ALLOWED_INPUTS))
-            .replace("{{OUTCOME_EFFECTS}}", json.dumps(OUTCOME_EFFECTS))
+            .replace("{{RULES}}", canon.text("mg-encounter-rules",
+                                             ENCOUNTER_RULES))
+            .replace("{{ALLOWED_INPUTS}}", json.dumps(
+                canon.param("mg-allowed-inputs", "allowed_inputs",
+                            ALLOWED_INPUTS)))
+            .replace("{{OUTCOME_EFFECTS}}", json.dumps(
+                canon.param("mg-outcome-effects", "outcome_effects",
+                            OUTCOME_EFFECTS)))
             .replace("{{RETRIEVED_CHUNKS}}", render_chunks(selection)))
 
 

@@ -52,6 +52,22 @@ _UI_RE = re.compile(
 )
 _WASD_SPACED_RE = re.compile(r"\bw\s+a\s+s\s+d\b", re.IGNORECASE)
 
+# Canon: the constants above are the authored BASELINE (asserted equal to
+# canon/rules.json in --selftest); at run time the checks read EFFECTIVE
+# values through the canon bench (crew/canon.py), so an AMENDED cap or a
+# REPEALED R2 takes effect without an edit here — and a repeal is logged in
+# the run's CANON-IN-FORCE.md, never silent.
+_TOKEN_RE_CACHE: dict[tuple, "re.Pattern"] = {}
+
+
+def _token_re(tokens: list[str]) -> "re.Pattern":
+    key = tuple(tokens)
+    if key not in _TOKEN_RE_CACHE:
+        _TOKEN_RE_CACHE[key] = re.compile(
+            r"\b(" + "|".join(re.escape(t) for t in key) + r")\b",
+            re.IGNORECASE)
+    return _TOKEN_RE_CACHE[key]
+
 
 @dataclass
 class Finding:
@@ -75,12 +91,16 @@ def _words(line: str) -> list[str]:
     return [w for w in re.split(r"\s+", line.strip()) if w]
 
 
-def run_register_checks(line: str, verb: str | None = None) -> list[Finding]:
+def run_register_checks(line: str, verb: str | None = None,
+                        canon=None) -> list[Finding]:
     """Every deterministic register check, each traceable to the rule text.
 
     `verb=None` runs only the verb-independent checks — used by the baseline
     audit on guide() strings, which are not per-verb lines.
     """
+    if canon is None:
+        from crew.canon import get_canon
+        canon = get_canon()
     line = strip_html(line)
     findings: list[Finding] = []
 
@@ -92,19 +112,26 @@ def run_register_checks(line: str, verb: str | None = None) -> list[Finding]:
                 f"the line never names its verb '{verb}' — GDD §2.5: 'a "
                 f"narrator names each verb the first time you use it'"))
 
-    ui = _UI_RE.search(line) or _WASD_SPACED_RE.search(line)
-    if ui:
-        findings.append(Finding(
-            "deterministic", "R2 NO-UI-LANGUAGE",
-            f"interface vocabulary {ui.group(0)!r} — the register is the "
-            f"narrator naming what the being does, not which key is pressed"))
+    if canon.enforced("ger-no-ui-language"):
+        tokens = canon.param("ger-no-ui-language", "banned_tokens",
+                             BANNED_UI_TOKENS)
+        ui = _token_re(tokens).search(line) or _WASD_SPACED_RE.search(line)
+        if ui:
+            findings.append(Finding(
+                "deterministic", "R2 NO-UI-LANGUAGE",
+                f"interface vocabulary {ui.group(0)!r} — the register is the "
+                f"narrator naming what the being does, not which key is "
+                f"pressed"))
 
-    if len(line) > MAX_CHARS or len(_words(line)) > MAX_WORDS:
-        findings.append(Finding(
-            "deterministic", "R3 SHORT",
-            f"{len(line)} chars / {len(_words(line))} words exceeds the gate "
-            f"({MAX_CHARS} chars / {MAX_WORDS} words) — §2.5: 'short "
-            f"declarative lines'"))
+    if canon.enforced("ger-length-caps"):
+        max_chars = canon.param("ger-length-caps", "max_chars", MAX_CHARS)
+        max_words = canon.param("ger-length-caps", "max_words", MAX_WORDS)
+        if len(line) > max_chars or len(_words(line)) > max_words:
+            findings.append(Finding(
+                "deterministic", "R3 SHORT",
+                f"{len(line)} chars / {len(_words(line))} words exceeds the "
+                f"gate ({max_chars} chars / {max_words} words) — §2.5: "
+                f"'short declarative lines'"))
 
     if "?" in line or "!" in line:
         findings.append(Finding(

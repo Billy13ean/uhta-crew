@@ -9,6 +9,10 @@ One page per concern:
                  minigame) in selftest, mock, or live mode, with a run id and
                  extra args; watch running jobs and their log tails live
     /runs        every run directory, newest first, with its artifacts
+    /bible       the canon bible — every rule the Evaluators enforce, as
+                 cards the Director rules on (uphold / amend / repeal, no
+                 ignore); saving writes canon/CANON-RULING.json + .md and
+                 the next run obeys it
     /view?p=...  read any artifact — markdown as text, HTML (the mini-game
                  DASHBOARD included) rendered in place
     ruling box   save a DIRECTOR-SELECTION.md into a run folder, and launch
@@ -200,6 +204,7 @@ def page(title: str, body: str) -> bytes:
             f"<title>{html.escape(title)}</title><style>{CSS}</style></head>"
             f"<body><header><h1><b>uhta</b> · crew console</h1>"
             f"<a href='/'>launch</a><a href='/runs'>runs & artifacts</a>"
+            f"<a href='/bible'>canon bible</a>"
             f"</header>{body}</body></html>").encode("utf-8")
 
 
@@ -281,6 +286,18 @@ class Handler(BaseHTTPRequestHandler):
                 states = [job_state(j) for j in _jobs]
             return self._send(200, json.dumps(states).encode(),
                               "application/json")
+        if url.path == "/bible":
+            # regenerate from the CURRENT registry + ruling every time —
+            # the console is long-running; the canon must never be stale
+            from crew.bible import render_bible
+            from crew.canon import Canon, CanonError
+            try:
+                return self._send(200,
+                                  render_bible(Canon.load()).encode("utf-8"))
+            except CanonError as exc:
+                return self._send(500, page("canon error",
+                    f"<div class='wrap'><h3>canon error</h3>"
+                    f"<pre>{html.escape(str(exc))}</pre></div>"))
         if url.path == "/view":
             rel = urllib.parse.parse_qs(url.query).get("p", [""])[0]
             p = safe_out_path(rel)
@@ -312,6 +329,43 @@ class Handler(BaseHTTPRequestHandler):
             job = start_job(pipeline, mode, rid, extra)
             return self._send(200, json.dumps({"started": job["id"]}).encode(),
                               "application/json")
+        if self.path == "/save_canon":
+            # A canon ruling from the Bible page. Validated against the
+            # registry BEFORE it touches disk; the prior ruling (if any) is
+            # preserved in the new file's history array — rulings replace,
+            # they never erase.
+            from crew.canon import render_ruling_md, validate_ruling
+            rules_path = ROOT / "canon" / "rules.json"
+            if not rules_path.exists():
+                return self._send(500, b"canon/rules.json missing")
+            registry = json.loads(rules_path.read_text(encoding="utf-8"))
+            ruling = {k: v for k, v in data.items() if k != "history"}
+            ruling_path = ROOT / "canon" / "CANON-RULING.json"
+            history = []
+            if ruling_path.exists():
+                try:
+                    prior = json.loads(ruling_path.read_text(encoding="utf-8"))
+                    history = (prior.pop("history", None) or []) + [prior]
+                except json.JSONDecodeError:
+                    pass
+            if history:
+                ruling["history"] = history[-20:]
+            errors = validate_ruling(registry, ruling)
+            if errors:
+                return self._send(400, ("REJECTED — " + "; ".join(errors))
+                                  .encode("utf-8"))
+            ruling_path.write_text(
+                json.dumps(ruling, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8")
+            (ROOT / "canon" / "CANON-RULING.md").write_text(
+                render_ruling_md(registry, ruling), encoding="utf-8")
+            n = len([r for r in (ruling.get("rules") or {})])
+            p = len([r for r in (ruling.get("proposals") or {})])
+            return self._send(200, (
+                f"saved canon/CANON-RULING.json + .md ({n} rule ruling(s), "
+                f"{p} proposal choice(s)"
+                + (f", {len(history)} prior preserved in history" if history
+                   else "") + ") — the next run obeys it").encode("utf-8"))
         if self.path == "/save_ruling":
             rid = re.sub(r"[^A-Za-z0-9._-]", "", str(data.get("run", "")))
             run_dir = OUT / rid
@@ -327,10 +381,20 @@ def main() -> int:
     port = 8765
     if "--port" in sys.argv:
         port = int(sys.argv[sys.argv.index("--port") + 1])
-    srv = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    in_container = Path("/.dockerenv").exists()
+    # native: localhost only (a cockpit, not a service). In docker the
+    # container boundary provides the isolation and 127.0.0.1 would be
+    # unreachable from the host browser — bind wide INSIDE the container
+    # and let `-p 8765:8765` decide what the host exposes.
+    host = "0.0.0.0" if in_container else "127.0.0.1"
+    if "--host" in sys.argv:
+        host = sys.argv[sys.argv.index("--host") + 1]
+    srv = ThreadingHTTPServer((host, port), Handler)
     url = f"http://127.0.0.1:{port}"
-    print(f"uhta crew console · {url}   (Ctrl+C to stop)")
-    if "--no-open" not in sys.argv:
+    print(f"uhta crew console · {url}   (bound {host}, Ctrl+C to stop)")
+    if in_container:
+        print("  (in docker — open the URL above in your host browser)")
+    elif "--no-open" not in sys.argv:
         try:
             webbrowser.open(url)
         except Exception:  # noqa: BLE001

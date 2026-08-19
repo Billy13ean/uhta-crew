@@ -1,0 +1,258 @@
+{
+  "_meta": {
+    "title": "uhta canon rules registry",
+    "version": 1,
+    "statuses": [
+      "UPHELD",
+      "AMENDED",
+      "REPEALED"
+    ],
+    "note": "Single source the pipelines' Evaluators read their law from. A rule is UPHELD (default, enforced as written), AMENDED (Director-edited text/params enforced instead, baseline kept for history), or REPEALED (not enforced; the skip is logged). There is deliberately no IGNORED/WAIVED status — ruled off the bench by the Director, 2026-08-19: silent bypasses make run logs untrustworthy. Rulings live in canon/CANON-RULING.json, written by the Bible page; the pipelines never edit this file."
+  },
+  "rules": [
+    {
+      "id": "mg-encounter-rules",
+      "group": "minigame",
+      "title": "Encounter law — wordless, diegetic, pole-asymmetric",
+      "kind": "prose",
+      "source": "GDD v0.9.9 §2 (Encounters)",
+      "text": "GDD §2, Encounters: when you meet a group directly the simulation pauses and you play a short, wordless, diegetic exchange — 'no interface, no text, only your body and theirs'. 'This is the only time you act on individuals rather than a population', and 'the two poles never play the same game': Hope plays patience, depth, few (converts arrive devout); Fear plays speed, force, many (converts are shallow). A design that needs a HUD, a label, or a word has failed; a design whose Hope and Fear versions are the same game reskinned has failed.",
+      "enforced_by": "Designer/Judge/Refiner prompts ({{RULES}}); judge classes NOT-DIEGETIC and POLE-SYMMETRY cite it",
+      "repealable": false,
+      "why_not_repealable": "The Judge cannot judge against no law. Amend the text instead."
+    },
+    {
+      "id": "mg-allowed-inputs",
+      "group": "minigame",
+      "title": "Buildable inputs — the slice's input vocabulary",
+      "kind": "params",
+      "source": "the build (uhta-slice.html); checks.py C3 BUILDABLE-INPUT",
+      "params": {
+        "allowed_inputs": [
+          "wasd-move",
+          "mouse-move",
+          "left-click",
+          "right-click",
+          "space",
+          "e-key"
+        ]
+      },
+      "enforced_by": "checks.py C3 — controls ⊆ this list, else deterministic fail",
+      "repealable": false,
+      "why_not_repealable": "A fact of the build, not a preference. Amend the list when the build grows an input."
+    },
+    {
+      "id": "mg-outcome-effects",
+      "group": "minigame",
+      "title": "Real stakes — the sim's outcome vocabulary",
+      "kind": "params",
+      "source": "GDD §2.2 systems; checks.py C4 REAL-STAKES",
+      "params": {
+        "outcome_effects": [
+          "convert_devout",
+          "convert_shallow",
+          "burnout",
+          "drift_apathy",
+          "stamina_gain",
+          "stamina_loss",
+          "resistance_drop",
+          "story_spreads",
+          "no_effect"
+        ]
+      },
+      "enforced_by": "checks.py C4 — effects ⊆ this list, else deterministic fail",
+      "repealable": false,
+      "why_not_repealable": "Stakes must pay in currencies the sim has. Amend the list when the sim grows one."
+    },
+    {
+      "id": "mg-c5-wordless",
+      "group": "minigame",
+      "title": "C5 WORDLESS — no interface vocabulary in player-facing fields",
+      "kind": "check",
+      "source": "GDD §2: 'no interface, no text, only your body and theirs'",
+      "params": {
+        "banned_tokens": [
+          "hud",
+          "menu",
+          "text",
+          "label",
+          "labels",
+          "button",
+          "buttons",
+          "prompt",
+          "tooltip",
+          "dialog",
+          "dialogue",
+          "caption",
+          "subtitle",
+          "tutorial",
+          "score display",
+          "scoreboard",
+          "counter",
+          "meter bar",
+          "progress bar",
+          "words",
+          "written",
+          "font",
+          "icon",
+          "arrow indicator",
+          "cursor"
+        ]
+      },
+      "enforced_by": "checks.py C5 (deterministic) + the Judge's NOT-DIEGETIC class",
+      "repealable": true,
+      "note": "The pending HUD amendment targets this rule. Repealing it lets designs name HUD/text; the encounter-law prose (mg-encounter-rules) should be amended in the same ruling so the Judge's law agrees."
+    },
+    {
+      "id": "mg-c6-short",
+      "group": "minigame",
+      "title": "C6 SHORT — field length caps",
+      "kind": "check",
+      "source": "GDD §2: 'a short, wordless, diegetic exchange'",
+      "params": {
+        "max_field_words": 130,
+        "max_name_chars": 48
+      },
+      "enforced_by": "checks.py C6 (deterministic)",
+      "repealable": true
+    },
+    {
+      "id": "ger-register",
+      "group": "ger",
+      "title": "Narration register — the §2.5 law",
+      "kind": "prose",
+      "source": "GDD §2.5 + §2.3 (banded display)",
+      "text": "Short, declarative, second person. Names the verb and states its consequence. Instrumentation, not lore — GDD §2.5: 'short declarative lines, no mythology'. No interface language: this is a wordless game's one narrated cycle, not a tutorial overlay — the narrator names what the being DOES, never which key the player presses. No numbers (§2.3, banded display).",
+      "enforced_by": "Generator/Evaluator/Refiner prompts ({{REGISTER}}); Instructor reuses it",
+      "repealable": false,
+      "why_not_repealable": "The narration pipeline's whole law. Amend, don't delete."
+    },
+    {
+      "id": "ger-length-caps",
+      "group": "ger",
+      "title": "R3 length caps for narration lines",
+      "kind": "check",
+      "source": "'short' made mechanical (ger/checks.py header)",
+      "params": {
+        "max_chars": 120,
+        "max_words": 24
+      },
+      "enforced_by": "ger/checks.py run_register_checks (deterministic)",
+      "repealable": true
+    },
+    {
+      "id": "ger-no-ui-language",
+      "group": "ger",
+      "title": "R2 NO-UI-LANGUAGE — narration never names keys",
+      "kind": "check",
+      "source": "GDD §2.5 corollary; the guide() baseline-audit catch",
+      "params": {
+        "banned_tokens": [
+          "press",
+          "click",
+          "clicked",
+          "left-click",
+          "right-click",
+          "key",
+          "keys",
+          "keyboard",
+          "button",
+          "buttons",
+          "mouse",
+          "cursor",
+          "scroll",
+          "wasd",
+          "spacebar",
+          "hotkey",
+          "hud",
+          "menu",
+          "drag",
+          "hover",
+          "tap",
+          "interface",
+          "tutorial"
+        ]
+      },
+      "enforced_by": "ger/checks.py run_register_checks R2 (also gates Instructor lines)",
+      "repealable": true,
+      "note": "Instructor lines run through this same gate. If the instruction-text amendment passes, prefer scoping via amendment over repeal so narration lines stay wordless."
+    }
+  ],
+  "proposals": [
+    {
+      "id": "prop-hud",
+      "title": "Encounter-scoped HUD",
+      "raised": "2026-08-19",
+      "targets": [
+        "mg-c5-wordless",
+        "mg-encounter-rules"
+      ],
+      "context": "Six playtests: fully wordless was undiscoverable and illegible until presentation passes approached HUD-ness in diegetic clothing (the ember ring IS a target indicator).",
+      "options": [
+        {
+          "key": "encounter-scoped",
+          "label": "HUD allowed, encounter-scoped only — overlay while the world is paused; overworld stays HUD-free (C5 becomes HUD-SCOPE, NOT-DIEGETIC becomes NOT-SCOPED)"
+        },
+        {
+          "key": "persistent",
+          "label": "HUD may persist into the overworld view"
+        },
+        {
+          "key": "uphold",
+          "label": "No HUD — uphold the wordless rule as written"
+        }
+      ]
+    },
+    {
+      "id": "prop-instructions",
+      "title": "Instruction text in encounters",
+      "raised": "2026-08-19",
+      "targets": [
+        "mg-c5-wordless",
+        "ger-no-ui-language"
+      ],
+      "context": "'And text instructions I think.' The Instructor agent already writes one register-gated line; this rules on how much text, and when.",
+      "options": [
+        {
+          "key": "always",
+          "label": "Instructions always shown while the encounter is active"
+        },
+        {
+          "key": "fading",
+          "label": "First N plays, then fading — training wheels that come off"
+        },
+        {
+          "key": "sleep0-window",
+          "label": "Only during the sleep-0 narrated window, matching verb teaching"
+        }
+      ]
+    },
+    {
+      "id": "prop-repeats",
+      "title": "Repeat circumstances",
+      "raised": "2026-08-19",
+      "targets": [
+        "mg-encounter-rules"
+      ],
+      "context": "'It's ok if the games repeat under specific circumstances.' Current build arms once per band (shown_tip / arm-once).",
+      "options": [
+        {
+          "key": "per-band-retry",
+          "label": "A failed encounter may be retried with the same band"
+        },
+        {
+          "key": "per-generation",
+          "label": "Once per band per generation (re-arms after Sleep)"
+        },
+        {
+          "key": "per-era-settlement",
+          "label": "Once per settlement per era for holdings; bands stay once-only"
+        },
+        {
+          "key": "cooldown",
+          "label": "Cooldown-gated (name the cooldown in notes)"
+        }
+      ]
+    }
+  ]
+}

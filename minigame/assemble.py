@@ -97,7 +97,9 @@ def write_propose(p) -> None:
             cards.append({"id": o.verb, "name": o.verb, "status": "ESCALATED",
                           "premise": "Escalated by the circuit breaker — see "
                                      "MG-ESCALATED.md for the evidence."})
-    p.bb.write(DASHBOARD_NAME, render_dashboard(p.run_id, cards), "assemble")
+    p.bb.write(DASHBOARD_NAME,
+               render_dashboard(p.run_id, cards, p.canon.summary()),
+               "assemble")
 
     # ---- machine-readable gate artifact the build stage reads ----
     p.bb.write("CANDIDATES.json", json.dumps({

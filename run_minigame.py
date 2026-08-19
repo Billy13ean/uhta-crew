@@ -96,7 +96,7 @@ def selftest() -> int:
             failures.append(name)
 
     # ---- 1. corpus: the per-doc policy ----
-    print("\n[1/7] Corpus — per-doc policy (same number, opposite meanings)")
+    print("\n[1/8] Corpus — per-doc policy (same number, opposite meanings)")
     for name, rel in CORPUS_FILES.items():
         check(f"seeded corpus file present: {name}", bb.bb_path(rel).exists())
     docs = {n: bb.read_bb(r, "selftest") for n, r in CORPUS_FILES.items()}
@@ -127,7 +127,7 @@ def selftest() -> int:
           all(d.reason.strip() for d in dropped), f"{len(dropped)} exclusions")
 
     # ---- 2. retrieval per slot ----
-    print("\n[2/7] Retrieval — three queries per slot, unioned")
+    print("\n[2/8] Retrieval — three queries per slot, unioned")
     r = Retriever(kept)
     thin = [s.id for s in SLOT_SPECS
             if len(r.select_multi(s.queries).selected) < 2]
@@ -144,7 +144,7 @@ def selftest() -> int:
     check("an off-topic control retrieves NOTHING", not off.selected)
 
     # ---- 3. the deterministic design gate ----
-    print("\n[3/7] The design gate — every check fires, and only when it should")
+    print("\n[3/8] The design gate — every check fires, and only when it should")
     check("a well-formed design passes the gate",
           not run_design_checks(dict(GOOD)))
     cases = [
@@ -165,7 +165,7 @@ def selftest() -> int:
                                  "no text, no HUD — restraint is the test"}))
 
     # ---- 4. judge and refiner guards ----
-    print("\n[4/7] Judge and Refiner guards — cite it, never repair it, "
+    print("\n[4/8] Judge and Refiner guards — cite it, never repair it, "
           "never no-op")
     spec = spec_for("first-contact-hope")
     sel = r.select_multi(spec.queries)
@@ -223,13 +223,13 @@ def selftest() -> int:
               "empty corpus cut" in str(exc))
 
     # ---- 5. breaker (shared machinery, reused from ger/) ----
-    print("\n[5/7] Circuit breaker — ger.breaker, reused as shared machinery")
+    print("\n[5/8] Circuit breaker — ger.breaker, reused as shared machinery")
     br = CircuitBreaker(max_rounds=2, escalation_limit=3)
     check("2 refinements allowed, a 3rd is not",
           br.allow_refinement(1) and not br.allow_refinement(2))
 
     # ---- 6. build v2: instructor + presenter gates ----
-    print("\n[6/7] Build v2 — the Writer's and Aesthetic Director's seats")
+    print("\n[6/8] Build v2 — the Writer's and Aesthetic Director's seats")
     fx_instr = json.loads((ROOT / "tests" / "fixtures" / "minigame" /
                            "instructor.json").read_text(encoding="utf-8"))
     good_line = run_instructor(
@@ -265,7 +265,7 @@ def selftest() -> int:
               {**fx_pres, "entry_transition": "the encounter just begins"})))
 
     # ---- 7. anchors + the patch contract, against the REAL build ----
-    print("\n[7/7] Build contract — anchors and the fixture patch vs the "
+    print("\n[7/8] Build contract — anchors and the fixture patch vs the "
           "real slice")
     html = bb.read_bb(BUILD_REL, "selftest")
     anchors = extract_anchors(html)
@@ -322,6 +322,70 @@ def selftest() -> int:
         check("build without a completed propose run HALTS",
               "CANDIDATES.json" in str(exc))
 
+    # ---- 8. the canon bench and the Bible ----
+    print("\n[8/8] The canon bench — registry drift, rulings, and the Bible "
+          "page")
+    from crew.canon import Canon, CanonError, validate_ruling
+    from crew.bible import render_bible
+    from minigame.spec import ALLOWED_INPUTS, ENCOUNTER_RULES, OUTCOME_EFFECTS
+    from minigame.checks import (BANNED_UI_TOKENS as _MG_TOKENS,
+                                 MAX_FIELD_WORDS, MAX_NAME_CHARS)
+    import json as _json
+    _registry = _json.loads((ROOT / "canon" / "rules.json")
+                            .read_text(encoding="utf-8"))
+    _c0 = Canon(_registry)
+    check("registry baseline matches the spec (encounter law + both "
+          "vocabularies)",
+          _c0.text("mg-encounter-rules") == ENCOUNTER_RULES
+          and _c0.param("mg-allowed-inputs", "allowed_inputs") == ALLOWED_INPUTS
+          and _c0.param("mg-outcome-effects", "outcome_effects")
+          == OUTCOME_EFFECTS)
+    check("registry baseline matches the gate (C5 tokens, C6 caps)",
+          _c0.param("mg-c5-wordless", "banned_tokens") == _MG_TOKENS
+          and _c0.param("mg-c6-short", "max_field_words") == MAX_FIELD_WORDS
+          and _c0.param("mg-c6-short", "max_name_chars") == MAX_NAME_CHARS)
+    _hud = {**GOOD, "signals": "a text label marks who is safe"}
+    _repeal = Canon(_registry, {"rules": {"mg-c5-wordless": {
+        "status": "REPEALED", "reason": "the HUD amendment"}}})
+    check("a REPEALED C5 is skipped (the HUD design passes C5, and only C5 "
+          "changed)",
+          not any(f.check == "C5 WORDLESS"
+                  for f in run_design_checks(dict(_hud), canon=_repeal))
+          and any(f.check == "C5 WORDLESS"
+                  for f in run_design_checks(dict(_hud), canon=_c0)))
+    check("the repeal is LOUD — CANON-IN-FORCE names the skip",
+          "REPEALED — not enforced this run" in _repeal.render_in_force())
+    _grown = Canon(_registry, {"rules": {"mg-allowed-inputs": {
+        "status": "AMENDED",
+        "params": {"allowed_inputs": ALLOWED_INPUTS + ["q-key"]}}}})
+    check("an AMENDED input vocabulary is enforced (q-key design passes C3)",
+          not any(f.check.startswith("C3")
+                  for f in run_design_checks({**GOOD, "controls": ["q-key"]},
+                                             canon=_grown))
+          and any(f.check.startswith("C3")
+                  for f in run_design_checks({**GOOD, "controls": ["q-key"]},
+                                             canon=_c0)))
+    check("the input vocabulary cannot be repealed (a fact of the build)",
+          validate_ruling(_registry, {"rules": {"mg-allowed-inputs": {
+              "status": "REPEALED"}}}) != [])
+    check("status WAIVED is rejected (no ignore, by the Director's own "
+          "ruling)",
+          any("off the bench" in e for e in validate_ruling(
+              _registry, {"rules": {"mg-c5-wordless": {
+                  "status": "WAIVED"}}})))
+    _page = render_bible(_c0)
+    check("the Bible renders every rule and every pending proposal",
+          all(f'card-{r["id"]}' in _page for r in _registry["rules"])
+          and all(p["id"] in _page for p in _registry["proposals"]),
+          f"{len(_registry['rules'])} rules, "
+          f"{len(_registry['proposals'])} proposals")
+    check("the Bible offers no ignore button",
+          'value="WAIVED"' not in _page and 'value="IGNORED"' not in _page
+          and "no ignore" in " ".join(_page.split()))
+    _page_r = render_bible(_repeal)
+    check("a ruled Bible shows the repeal as status, loudly",
+          'badge REPEALED" id="badge-mg-c5-wordless">REPEALED' in _page_r)
+
     total = len(failures)
     print("\n" + BANNER)
     if failures:
@@ -332,7 +396,9 @@ def selftest() -> int:
     print("the per-doc corpus policy, per-slot retrieval, the design gate,")
     print("every judge/refiner halt guard, the shared breaker, and the patch")
     print("contract exercised against the real build with a real fixture")
-    print("patch. No API key, no API calls, no model.")
+    print("patch, plus the canon bench and the Bible (registry drift,")
+    print("amend/repeal enforcement, the no-ignore contract). No API key,")
+    print("no API calls, no model.")
     print(BANNER)
     return 0
 
