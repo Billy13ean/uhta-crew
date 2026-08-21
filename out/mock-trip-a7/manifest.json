@@ -1,0 +1,20 @@
+{
+  "pipeline": "style (A7)",
+  "status": "BREAKER_TRIPPED",
+  "mock": true,
+  "styleguide_sha": "3aa6e841181ea22d",
+  "items": {
+    "era-nomad": "ACCEPTED",
+    "era-village": "ACCEPTED",
+    "era-victorian": "ESCALATED"
+  },
+  "artifacts": [
+    "BEFORE-AFTER.md",
+    "ESCALATED.md",
+    "FAILED.md",
+    "RUN-LOG.md",
+    "STYLE-LOG.md",
+    "candidates.md",
+    "manifest.json"
+  ]
+}

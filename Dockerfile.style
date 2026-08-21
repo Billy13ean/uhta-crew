@@ -1,0 +1,43 @@
+# uhta Style Guide pipeline (Assignment 7).
+#
+# A SEPARATE image, same reasoning as Dockerfile.builder and Dockerfile.ger:
+# the A3/A5/A6 images are part of tagged submissions and nothing here should be
+# able to break them.
+#
+# This is the smallest of the five images. style/ imports nothing from crew/,
+# content/, builder/ or ger/ — it needs only itself, the three prompt files,
+# and the anthropic package for the live mode. No node: the style checks are
+# pure-Python regex and word lists over the Generator's text, never an
+# execution of the build. The visual guide (style/make_visual_guide.py) is
+# deliberately NOT built here — it reads the sprites your local art scripts
+# render today, and the runbook's Phase 3b keeps that on your machine so a
+# page built from stale container art can never be committed by accident.
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY style/      ./style/
+COPY prompts/    ./prompts/
+COPY run_style.py ./
+COPY Rouke-uhta-A7-README.md ./
+
+# out/ is a mount point in docker-compose; create it so a bare `docker run`
+# without a volume still works.
+RUN mkdir -p /app/out
+
+# Build-time proof, same discipline as the other images: the scored-evaluator
+# parser (binary verdicts rejected), the deterministic gate capping SCORE at 6,
+# the STYLEGUIDE.md hash check against spec.py, all three sabotage repairs and
+# the breaker must pass IN THIS IMAGE or the build fails rather than the first
+# run. 38 assertions, no key, no calls.
+RUN python3 run_style.py --selftest
+
+ENTRYPOINT ["python3", "run_style.py"]
+CMD ["--selftest"]

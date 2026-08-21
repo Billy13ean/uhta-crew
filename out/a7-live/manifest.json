@@ -1,0 +1,20 @@
+{
+  "pipeline": "style (A7)",
+  "status": "COMPLETED",
+  "mock": false,
+  "styleguide_sha": "8814ff2b509d51de",
+  "items": {
+    "era-nomad": "ACCEPTED",
+    "era-village": "ACCEPTED",
+    "era-victorian": "ACCEPTED",
+    "demo-tone": "ACCEPTED",
+    "demo-vocab": "ACCEPTED",
+    "demo-format": "ACCEPTED"
+  },
+  "artifacts": [
+    "BEFORE-AFTER.md",
+    "RUN-LOG.md",
+    "STYLE-LOG.md",
+    "candidates.md"
+  ]
+}

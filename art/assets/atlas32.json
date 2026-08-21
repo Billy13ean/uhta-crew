@@ -1,0 +1,158 @@
+{
+ "hd_wanderer_grey": {
+  "x": 1,
+  "y": 1,
+  "w": 32,
+  "h": 32
+ },
+ "hd_wanderer_hope_tent": {
+  "x": 35,
+  "y": 1,
+  "w": 32,
+  "h": 32
+ },
+ "hd_wanderer_hope_dev": {
+  "x": 69,
+  "y": 1,
+  "w": 32,
+  "h": 32
+ },
+ "hd_wanderer_fear_tent": {
+  "x": 103,
+  "y": 1,
+  "w": 32,
+  "h": 32
+ },
+ "hd_wanderer_fear_dev": {
+  "x": 137,
+  "y": 1,
+  "w": 32,
+  "h": 32
+ },
+ "hd_villager_grey": {
+  "x": 171,
+  "y": 1,
+  "w": 32,
+  "h": 32
+ },
+ "hd_villager_hope_tent": {
+  "x": 1,
+  "y": 35,
+  "w": 32,
+  "h": 32
+ },
+ "hd_villager_hope_dev": {
+  "x": 35,
+  "y": 35,
+  "w": 32,
+  "h": 32
+ },
+ "hd_villager_fear_tent": {
+  "x": 69,
+  "y": 35,
+  "w": 32,
+  "h": 32
+ },
+ "hd_villager_fear_dev": {
+  "x": 103,
+  "y": 35,
+  "w": 32,
+  "h": 32
+ },
+ "hd_townsfolk_grey": {
+  "x": 137,
+  "y": 35,
+  "w": 32,
+  "h": 32
+ },
+ "hd_townsfolk_hope_tent": {
+  "x": 171,
+  "y": 35,
+  "w": 32,
+  "h": 32
+ },
+ "hd_townsfolk_hope_dev": {
+  "x": 1,
+  "y": 69,
+  "w": 32,
+  "h": 32
+ },
+ "hd_townsfolk_fear_tent": {
+  "x": 35,
+  "y": 69,
+  "w": 32,
+  "h": 32
+ },
+ "hd_townsfolk_fear_dev": {
+  "x": 69,
+  "y": 69,
+  "w": 32,
+  "h": 32
+ },
+ "hd_zealot_hope": {
+  "x": 103,
+  "y": 69,
+  "w": 32,
+  "h": 32
+ },
+ "hd_zealot_fear": {
+  "x": 137,
+  "y": 69,
+  "w": 32,
+  "h": 32
+ },
+ "hd_loner": {
+  "x": 171,
+  "y": 69,
+  "w": 32,
+  "h": 32
+ },
+ "hd_burnout": {
+  "x": 1,
+  "y": 103,
+  "w": 32,
+  "h": 32
+ },
+ "hd_avatar_body": {
+  "x": 35,
+  "y": 103,
+  "w": 32,
+  "h": 32
+ },
+ "hd_avatar_veins_fear": {
+  "x": 69,
+  "y": 103,
+  "w": 32,
+  "h": 32
+ },
+ "hd_avatar_vines_hope": {
+  "x": 103,
+  "y": 103,
+  "w": 32,
+  "h": 32
+ },
+ "hd_settlement_hope_v2": {
+  "x": 137,
+  "y": 103,
+  "w": 32,
+  "h": 32
+ },
+ "hd_settlement_fear_v2": {
+  "x": 171,
+  "y": 103,
+  "w": 32,
+  "h": 32
+ },
+ "hd_settlement_hope_v3": {
+  "x": 1,
+  "y": 137,
+  "w": 32,
+  "h": 32
+ },
+ "hd_settlement_fear_v3": {
+  "x": 35,
+  "y": 137,
+  "w": 32,
+  "h": 32
+ }
+}

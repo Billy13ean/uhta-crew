@@ -78,3 +78,23 @@ services:
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       CREW_MODEL: ${CREW_MODEL:-claude-sonnet-4-5}
     command: ["--selftest"]
+
+  # Assignment 7. Its own image (Dockerfile.style), smallest of the five:
+  # style/ imports nothing from crew/, content/, builder/ or ger/, and nothing
+  # imports style/. No node. The image build gates on `run_style.py --selftest`
+  # (38 assertions). The visual guide is NOT rendered in the container — see
+  # the runbook's Phase 3b; it must come from your current local art.
+  #   docker compose run --rm style --mock-llm --run-id mock-demo-a7
+  #   docker compose run --rm style --mock-llm --run-id mock-trip-a7 --escalation-limit 1
+  #   docker compose run --rm style --run-id a7-live
+  style:
+    build:
+      context: .
+      dockerfile: Dockerfile.style
+    image: uhta-style:latest
+    volumes:
+      - ./out:/app/out
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CREW_MODEL: ${CREW_MODEL:-claude-sonnet-4-5}
+    command: ["--selftest"]

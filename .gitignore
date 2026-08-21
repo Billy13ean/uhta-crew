@@ -12,3 +12,8 @@ diagrams/*.png
 
 # bridge artifact: the device bridge cannot delete, so stale files land here
 _to_delete/
+
+# style/inspiration: private mood board of other people's work — never committed.
+style/inspiration/*
+!style/inspiration/README.md
+!style/inspiration/CREDITS.txt

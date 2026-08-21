@@ -1,0 +1,3 @@
+# filename-prefix: credit text | url
+# Images here are LOCAL ONLY (gitignored). Credit every source.
+o-empire: O EMPIRE! WARD OFF THY ROT (c) AwkwardSilenceGames / Dean Moynihan, Steam store screenshots | https://store.steampowered.com/app/4331110/O_EMPIRE_WARD_OFF_THY_ROT/
