@@ -179,7 +179,8 @@ class Session:
                 f.write("*style gate: first draft rejected, retry passed.*\n\n")
             f.write("<details><summary>ledger diff</summary>\n\n" + "\n".join(f"- `{d}`" for d in rec["diff"]) + "\n\n</details>\n\n")
             if rec["epilogue"]:
-                f.write(f"## Epilogue — {rec['ending']}\n\n{rec['epilogue']}\n\n")
+                label = {"zealot": "stopped moving", "dawn": "the fourth dawn"}.get(rec["ending"], rec["ending"])
+                f.write(f"## Epilogue — {label}\n\n{rec['epilogue']}\n\n")
 
     def state(self) -> dict:
         return {"id": self.id, "header": self.header(), "ledger": world.ledger_view(self.L),

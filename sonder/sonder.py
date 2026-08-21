@@ -6,6 +6,7 @@
   python sonder.py --cli                 play in this terminal instead of the browser
   python sonder.py --script scripts/loyal.txt [--seed 7]
                                          replay a scripted playthrough, log it to sessions/
+  python sonder.py --batch 6 [--mock]    run six scripted playthroughs (scripts\*.txt × fresh seeds), then --compile
   python sonder.py --compile [--include-mock]
                                          fold every finished playthrough in sessions/ into bank/sonder-bank.{json,js}
   python sonder.py --selftest            rules + gate + mock engine assertions, no key
@@ -19,6 +20,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -319,14 +321,16 @@ def main():
     ap.add_argument("--model", default=None)
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("--compile", action="store_true", help="build bank/sonder-bank.json + .js from sessions/")
+    ap.add_argument("--batch", type=int, default=0, help="run N scripted playthroughs back to back (cycling scripts/*.txt, fresh seeds), then compile")
     ap.add_argument("--include-mock", action="store_true", help="--compile: also bank mock-DM stories (templated tellings)")
+    ap.add_argument("--include-legacy", action="store_true", help="--compile: also bank pre-ruling stories that have no closing question")
     a = ap.parse_args()
 
     if a.selftest:
         sys.exit(selftest())
     if a.compile:
         from engine import bank
-        b = bank.compile(ROOT / "sessions", ROOT / "bank", include_mock=a.include_mock)
+        b = bank.compile(ROOT / "sessions", ROOT / "bank", include_mock=a.include_mock, include_legacy=a.include_legacy)
         print(f"bank: {b['count']} stories ({b['clean_count']} with a gate-clean telling); skipped {len(b['skipped'])}")
         for k, v in b["index"]["by_flame"].items():
             print(f"  flame {k}: {len(v)}")
@@ -342,6 +346,23 @@ def main():
     except agent.DMError as e:
         print(f"FAILED: {e}")
         sys.exit(1)
+    if a.batch:
+        import glob, random as _r
+        scripts = sorted(glob.glob(str(ROOT / "scripts" / "*.txt")))
+        base = a.seed if a.seed is not None else int(time.time()) % 100000
+        for i in range(a.batch):
+            sc = scripts[i % len(scripts)]
+            seed = base + i * 7919
+            lines = [l.strip() for l in Path(sc).read_text(encoding="utf-8").splitlines() if l.strip() and not l.startswith("#")]
+            print(f"\n=== batch {i+1}/{a.batch}: {Path(sc).name}, seed {seed} ===")
+            try:
+                cli(dm, None, seed, lines, None)
+            except Exception as e:  # one bad run must not sink the batch
+                print(f"run failed: {type(e).__name__}: {e}")
+        from engine import bank
+        b = bank.compile(ROOT / "sessions", ROOT / "bank", include_mock=a.mock)
+        print(f"\nbank: {b['count']} stories ({b['clean_count']} gate-clean); by flame {dict((k, len(v)) for k, v in b['index']['by_flame'].items())}; by era {dict((k, len(v)) for k, v in b['index']['by_era'].items())}")
+        return
     if a.script or a.cli:
         script = None
         if a.script:

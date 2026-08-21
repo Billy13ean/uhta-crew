@@ -1,75 +1,78 @@
 {
  "schema": "sonder-bank/1",
- "compiled": "2026-08-20T23:38:10",
- "count": 5,
- "clean_count": 5,
+ "compiled": "2026-08-21T04:26:11",
+ "count": 10,
+ "clean_count": 9,
  "stories": [
   {
-   "id": "brand-260820-220940-e1b3",
-   "recorded": "2026-08-20T22:12:06",
+   "id": "bram_s-260821-000956-b8cb",
+   "recorded": "2026-08-21T00:14:38",
    "dm": "live",
    "model": "claude-sonnet-4-6",
    "who": {
-    "id": "brand",
-    "name": "Brand",
-    "role": "the hunter with the cracked spear",
-    "private": "Brand cracked the spear on a man from the ridge camp, not on an animal. Oswy saw.",
-    "private_told": true
+    "id": "bram_s",
+    "name": "Bram Spearing",
+    "role": "the foreman with the cracked mallet",
+    "line": "brand",
+    "private": "Bram cracked the mallet on a man from the ridge works who came to the gate, not on a wedge. Osbert saw.",
+    "private_told": true,
+    "heirloom": "the cracked mallet, banded with iron that was once something sharper",
+    "heirloom_given_to": null
    },
-   "flame": "fear",
-   "ending": "zealot",
+   "flame": "hope",
+   "ending": "dawn",
    "final": {
-    "you": "zealot fear",
-    "emotion": -12,
+    "you": "grey",
+    "emotion": 0,
     "burned": false,
-    "era": "villages",
-    "fog": true,
-    "camp": "the dry fork below the ridge",
-    "sleeps": 3,
-    "basins_lit": 1,
+    "era": "Victorian towns",
+    "fog": false,
+    "camp": "the ridge works",
+    "sleeps": 4,
+    "basins_lit": 2,
     "dominance": {
      "hope": 0.0,
-     "fear": 0.83,
-     "grey": 0.17
+     "fear": 0.0,
+     "grey": 1.0
     }
    },
-   "era": null,
+   "era": "Victorian towns",
    "tags": [
-    "flame:fear",
-    "ending:zealot",
-    "who:brand",
-    "betrayed-someone",
-    "broke-a-promise",
+    "flame:hope",
+    "ending:dawn",
+    "who:bram_s",
     "confessed",
-    "walked-into-the-flame",
-    "saw-the-fog",
-    "struck-someone",
-    "you:zealot-fear",
-    "era:villages"
+    "went-to-the-ridge",
+    "you:grey",
+    "era:Victorian-towns",
+    "line:brand"
    ],
-   "telling": "He was a hunter whose spear had already broken on a man before anyone called him afraid. When the flame came down red he walked toward it, and it answered him. He promised Hild safety and left her at the fork; she went grey and did not come back from it. He struck his brother in the open, then told the truth about the spear to the same people who had watched him swing. The truth cost him nothing he had not already spent. He stands at the ridge now, still, ringed in red, and does not speak.",
+   "telling": "Bram Spearing carried the cracked mallet and kept the water to himself the first morning, and said nothing. The green flame rose and he put bodies between himself and it, then ran, then promised Eadwin Rivers he would stay, then ran again. He went alone to the ridge works and stood before the red one, which cost him the others — Ada, Eadwin, Hester, Kit: all of them stayed behind and did not follow him back. He told the band, at the end, what the mallet had actually struck, and Osbert had seen it all along. He ended grey, as the dawn came in.\n\nBram gave his word to stay and then walked backward into the dark. Would you have kept the promise, knowing what was near?",
    "telling_clean": true,
-   "choice": null,
-   "epilogue": "The fog lifted, and what remained was this: Brand, fixed at the ridge, red and still and permanent, a second Standing One the world had not asked for. Ila, Wystan, Oswy, Tate — all of them afraid now, held just inside the colour Brand pressed them toward, none of them deep enough to hold without tending. Hild, grey, left where she was left, her trust a thing that did not survive the road. The promise made to her on the third watch was the first thing Brand let go of, and she felt it before the abandonment came. Oswy carries the mark of the blow where everyone could see it, and the confession came too late to be mercy — it was only truth, which is a different and smaller thing. The basin burns red and will not go out. The fog came down and took what was unguarded.\n\n*You built a world that fears. A generation on, the villages will know how to obey, and will have forgotten that they chose it.*",
+   "choice": {
+    "turn": 6,
+    "did": "promised Eadwin Rivers he would stay, then backed away toward the wall",
+    "could_have": "stayed beside Eadwin as he had sworn",
+    "question": "Bram gave his word to stay and then walked backward into the dark. Would you have kept the promise, knowing what was near?"
+   },
+   "epilogue": "The fourth dawn comes in without ceremony. The green flame has taken its colour and the tall one stands somewhere behind the hills, neither close nor gone. You are grey — not burned, not broken, only emptied, the way a room is emptied when the last person leaves it. Osbert is beside you, grey also, trust still warm in the way he does not step away from you, which is the most that can be said. The basin you lit burns on without needing you. Behind you, at Fork Town under the ridge works, four people stand in the grey you left them in: Ada, who stayed without complaint; Hester, who stayed without a word; Kit, who stayed with something unresolved between you; and Eadwin, who stayed holding a promise you made and did not keep. The promise is still there. It does not dissolve because the night ended. Bram Spearing ran twice, threatened a child, stood before the Red Standing One, and then told the truth — and the truth arrived too late to move anyone, which is the particular weight of honesty offered after trust has already been spent.\n\n*A generation on, the children of Fork Town will know the green basin by sight and will not know your name, and that is the shape of what you chose.*\n\nBram gave his word to stay and then walked backward into the dark. Would you have kept the promise, knowing what was near?",
    "beats": [
     {
      "turn": 1,
-     "did": "Brand threatened Oswy, warning him to stay silent about the cracked spear.",
-     "became": [
-      "Oswy trust -> +0"
-     ],
+     "did": "Bram kept the water for himself and said nothing to the band.",
+     "became": [],
      "being": "Walk",
      "slept": false,
      "art": [
-      "camp_grey",
+      "victorian",
       "being_far"
      ]
     },
     {
      "turn": 2,
-     "did": "Brand took Ila's water skin for himself, seizing it from her without sharing.",
+     "did": "Bram asked Osbert — the night watchman who watches the ridge — what the thing on the ridge is, then walked away before Osbert could answer.",
      "became": [
-      "Ila trust -> -1"
+      "Osbert Spearing trust -> +2"
      ],
      "being": "Wait",
      "slept": false,
@@ -79,12 +82,8 @@
     },
     {
      "turn": 3,
-     "did": "Brand promised Hild he would keep her safe from the ridge.",
-     "became": [
-      "Hild: grey -> tentative hope",
-      "Hild trust -> +1",
-      "Hild: tentative hope -> grey"
-     ],
+     "did": "Bram Spearing shrank behind the others as the light rose, putting bodies between himself and whatever came.",
+     "became": [],
      "being": "Flame",
      "slept": true,
      "art": [
@@ -94,7 +93,7 @@
     },
     {
      "turn": 4,
-     "did": "Brand walked toward the tall one and its flame.",
+     "did": "Bram Spearing ran from the tall one, clutching the cracked mallet as he fled.",
      "became": [],
      "being": "Walk",
      "slept": false,
@@ -104,55 +103,32 @@
     },
     {
      "turn": 5,
-     "did": "Brand threatened Wystan, warning him to stop speaking of the river.",
+     "did": "Bram Spearing told Kit to keep quiet about what they saw, pressing the child to silence with a warning.",
      "became": [
-      "Wystan trust -> -2",
-      "Wystan: grey -> tentative fear",
-      "Brand: tentative fear -> devout fear"
+      "Kit trust -> -1"
      ],
-     "being": "Roar",
+     "being": "Flame",
      "slept": false,
      "art": [
-      "roar"
+      "flame"
      ]
     },
     {
      "turn": 6,
-     "did": "Brand left Hild behind and headed up toward the ridge camp, abandoning her.",
+     "did": "Bram Spearing promised Eadwin Rivers he would stay, then backed away toward the wall.",
      "became": [
-      "Ila: grey -> tentative fear",
-      "Oswy: grey -> tentative fear",
-      "Tate: grey -> tentative fear"
+      "Eadwin Rivers trust -> -2"
      ],
-     "being": "Flame",
+     "being": "Beacon",
      "slept": true,
      "art": [
-      "vigil",
-      "fog"
+      "vigil"
      ]
     },
     {
      "turn": 7,
-     "did": "Brand stood with his brother Oswy, siding with him and offering solidarity.",
-     "became": [
-      "Oswy: tentative fear -> grey",
-      "Oswy trust -> +0",
-      "Oswy: grey -> tentative fear"
-     ],
-     "being": "Raze",
-     "slept": false,
-     "art": [
-      "raze"
-     ]
-    },
-    {
-     "turn": 8,
-     "did": "Brand did nothing, watching and waiting.",
-     "became": [
-      "Oswy: tentative fear -> grey",
-      "Ila: tentative fear -> grey",
-      "Tate: tentative fear -> grey"
-     ],
+     "did": "Bram Spearing ran.",
+     "became": [],
      "being": "Wait",
      "slept": false,
      "art": [
@@ -160,111 +136,116 @@
      ]
     },
     {
-     "turn": 9,
-     "did": "Brand struck Oswy, his own brother.",
+     "turn": 8,
+     "did": "Bram Spearing walked up to the ridge alone, toward the Red Standing One.",
      "became": [
-      "Ila: grey -> tentative fear",
-      "Tate: grey -> tentative fear",
-      "Oswy: grey -> tentative fear",
-      "Brand: devout fear -> zealot fear",
-      "Hild: grey -> tentative fear",
-      "Hild: tentative fear -> grey",
-      "Brand: zealot fear -> devout fear"
-     ],
-     "being": "Roar",
-     "slept": true,
-     "art": [
-      "vigil",
-      "fog"
-     ]
-    },
-    {
-     "turn": 10,
-     "did": "Brand confessed to the band that the spear was cracked not on an animal but on a man from the ridge camp, and that Oswy witnessed it.",
-     "became": [],
-     "being": "Beacon",
-     "slept": false,
-     "art": [
-      "beacon"
-     ]
-    },
-    {
-     "turn": 11,
-     "did": "Brand did nothing, watching and waiting.",
-     "became": [
-      "Oswy: tentative fear -> grey",
-      "Oswy: grey -> tentative fear",
-      "Brand: devout fear -> zealot fear"
+      "Ada Waterman did not follow — stayed behind",
+      "Eadwin Rivers did not follow — stayed behind",
+      "Hester Singer did not follow — stayed behind",
+      "Kit did not follow — stayed behind"
      ],
      "being": "Flame",
      "slept": false,
      "art": [
-      "zealot_red"
+      "zealot_red",
+      "flame"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Bram stood at the edge of camp and waited, watching the dark.",
+     "became": [],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Bram Spearing planted himself beside Osbert, the only one still near, and held his ground with him.",
+     "became": [
+      "Osbert Spearing trust -> +3",
+      "Bram Spearing: tentative fear -> grey"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Bram Spearing confessed to the band that he cracked the mallet not on a wedge but on a man from the ridge works who came to the gate — and that Osbert saw it happen.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Bram sat through the dark hours, watching for the first grey light of dawn.",
+     "became": [],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "dawn"
      ]
     }
    ],
    "band_end": {
-    "ila": {
-     "name": "Ila",
-     "state": "tentative fear",
-     "emotion": -4,
-     "trust": -3,
-     "present": true,
-     "where": null
-    },
-    "wystan": {
-     "name": "Wystan",
-     "state": "tentative fear",
-     "emotion": -6,
-     "trust": -3,
-     "present": true,
-     "where": null
-    },
-    "hild": {
-     "name": "Hild",
+    "ada": {
+     "name": "Ada Waterman",
      "state": "grey",
-     "emotion": -2,
+     "emotion": 0,
+     "trust": 0,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    },
+    "eadwin": {
+     "name": "Eadwin Rivers",
+     "state": "grey",
+     "emotion": 0,
      "trust": -3,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    },
+    "hester": {
+     "name": "Hester Singer",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 0,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    },
+    "osbert": {
+     "name": "Osbert Spearing",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 3,
      "present": true,
      "where": null
     },
-    "oswy": {
-     "name": "Oswy",
-     "state": "tentative fear",
-     "emotion": -3,
-     "trust": -3,
-     "present": true,
-     "where": null
-    },
-    "tate": {
-     "name": "Tate",
-     "state": "tentative fear",
-     "emotion": -4,
-     "trust": -3,
-     "present": true,
-     "where": null
+    "kit": {
+     "name": "Kit",
+     "state": "grey",
+     "emotion": 0,
+     "trust": -2,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
     }
    },
    "promises": [
     {
-     "to": "hild",
-     "what": "keep Hild safe from the ridge",
-     "turn": 3,
-     "kept": false
+     "to": "eadwin",
+     "what": "to stay",
+     "turn": 6,
+     "kept": null
     }
    ],
-   "betrayals": [
-    {
-     "of": "hild",
-     "what": "Brand left Hild behind and headed up toward the ridge camp, abandoning her.",
-     "turn": 6
-    },
-    {
-     "of": "oswy",
-     "what": "struck",
-     "turn": 9
-    }
-   ]
+   "betrayals": []
   },
   {
    "id": "hedda-260820-225437-7768",
@@ -761,70 +742,75 @@
    "betrayals": []
   },
   {
-   "id": "ila-260820-220654-45f5",
-   "recorded": "2026-08-20T22:09:38",
+   "id": "hester-260821-000731-e69f",
+   "recorded": "2026-08-21T00:09:56",
    "dm": "live",
    "model": "claude-sonnet-4-6",
    "who": {
-    "id": "ila",
-    "name": "Ila",
-    "role": "carries the water skins",
-    "private": "Ila has been watering the skins down for days and has told no one the spring is failing.",
-    "private_told": true
+    "id": "hester",
+    "name": "Hester Singer",
+    "role": "hums at the loom-line when afraid",
+    "line": "hild",
+    "private": "Hester's tune is her mother's, and her mother took the ridge tram up to the works one morning and did not take it down.",
+    "private_told": false,
+    "heirloom": "a bone comb with three teeth missing, worn in the hair at the loom-line",
+    "heirloom_given_to": null
    },
-   "flame": "fear",
-   "ending": "dawn",
+   "flame": "hope",
+   "ending": "alone",
    "final": {
-    "you": "tentative fear",
-    "emotion": -5,
+    "you": "grey",
+    "emotion": 0,
     "burned": false,
     "era": "Victorian towns",
     "fog": false,
-    "camp": "the ridge camp",
-    "sleeps": 4,
+    "camp": "the ridge works",
+    "sleeps": 2,
     "basins_lit": 1,
     "dominance": {
      "hope": 0.0,
-     "fear": 0.2,
-     "grey": 0.8
+     "fear": 0.0,
+     "grey": 1.0
     }
    },
-   "era": null,
+   "era": "Victorian towns",
    "tags": [
-    "flame:fear",
-    "ending:dawn",
-    "who:ila",
-    "kept-every-promise",
-    "confessed",
+    "flame:hope",
+    "ending:alone",
+    "who:hester",
     "went-to-the-ridge",
     "walked-into-the-flame",
-    "you:tentative-fear",
-    "era:Victorian-towns"
+    "you:grey",
+    "era:Victorian-towns",
+    "line:hild"
    ],
-   "telling": "Ila carried the water skins, and the flame that rose was red. She walked toward it anyway, at first light, before anyone else moved. She had already lied to Wystan about the river and watered the skins thin for days, and when she finally told the truth the band went quieter than the dark. She kept her promise to Hild — never let her go up the ridge alone — and at the last she stood before the Red Standing One, calling for anyone willing to follow. Most stayed or greyed. Ila ended in tentative fear, which is where she had always been.",
+   "telling": "Hester Singer hummed at the loom-line when afraid, and she was afraid for most of it. The flame came down green and she walked into it anyway, not for hope — for the shape of a door. She silenced Osbert with a word edged like a blade, turned the water away from the others, warned Eadwin off the river talk. Each one a cost she paid without counting. At the last she left the humming behind and climbed to the red, and the red held still, and she went grey there, alone, under a basin that burns green and will not go out.\n\nHester Singer kept the water and turned away from the others. Would you have passed it along?",
    "telling_clean": true,
-   "choice": null,
-   "epilogue": "The fourth dawn comes without ceremony. The red basin has not gone out — it burns at the edge of the marsh where anyone who looks east must see it, and most do not look east anymore. You stand in the grey of those you shepherded: Wystan, Hild, Oswy, Tate, all of them drained back to the middle, held in place not by conviction but by the fact that you stayed near enough to hold them. The spring failed and you told them late, and they did not leave, and that is the shape of the trust they carry — not faith, but the memory of being told the truth eventually. Brand is at the dry fork still, one step afraid, one step away, the sharing you gave him sitting in him like a coal he does not know what to do with. The Red Standing One is behind you on the ridge, unchanged, waiting for the next one who climbs. You walked into the red flame and came back the colour of hesitation, and the tall one moved on, and the world aged around you into stone streets and smokestacks while you were deciding. *You kept one promise. You broke no one. The rest is what the grey took while you were learning how to speak.*\n\nA generation on, the town around the red basin will call its fear a tradition, and the children born there will not remember it was ever a choice.",
+   "choice": {
+    "turn": 2,
+    "did": "kept the water for herself, turning away from the others",
+    "could_have": "shared the water with the others at the loom-line",
+    "question": "Hester Singer kept the water and turned away from the others. Would you have passed it along?"
+   },
+   "epilogue": "The ridge works stand empty now except for you. Below, in Fork Town, five people who might have moved did not — Ada, Eadwin, Bram, Osbert, Kit — and the grey they carry is not the grey of rest but of something that was never asked. You threatened twice and converted no one. You walked into the green flame and came out the same colour you went in. You stood before the Red Standing One and felt the pull and did not yield, which is something, though it is a small something for a night that cost this much. The basin burns green on the ridge and will burn after you are gone, and the tall one is near, and Uhtcearu is patient. You are grey. The comb in your hair has three teeth missing and no one here to notice.\n\n*A generation on, the children of Fork Town will be born knowing that someone once climbed to the ridge and came back with nothing, and they will not know your name, but they will know the feeling, because it will be in them already.*\n\nHester Singer kept the water and turned away from the others. Would you have passed it along?",
    "beats": [
     {
      "turn": 1,
-     "did": "Ila gave Tate the last of the good water and told him she believes he saw it first.",
+     "did": "Hester Singer told Osbert Spearing, the night watchman, to keep quiet about what he had seen — a warning edged with menace.",
      "became": [
-      "Tate trust -> +2"
+      "Osbert Spearing trust -> -1"
      ],
      "being": "Walk",
      "slept": false,
      "art": [
-      "camp_grey",
+      "victorian",
       "being_far"
      ]
     },
     {
      "turn": 2,
-     "did": "Ila told Wystan she remembers the river too, even though she does not — a comforting lie offered to the eldest.",
-     "became": [
-      "Wystan trust -> +1"
-     ],
+     "did": "Hester Singer kept the water for herself, turning away from the others.",
+     "became": [],
      "being": "Wait",
      "slept": false,
      "art": [
@@ -833,11 +819,9 @@
     },
     {
      "turn": 3,
-     "did": "Ila promised Hild she would not let her go up the ridge alone.",
+     "did": "Hester Singer promised the one who hums — herself, or whoever hums as she does — that she would keep them safe from the ridge.",
      "became": [
-      "Hild: grey -> tentative hope",
-      "Hild trust -> +1",
-      "Hild: tentative hope -> grey"
+      "Bram Spearing: tentative fear -> grey"
      ],
      "being": "Flame",
      "slept": true,
@@ -848,7 +832,7 @@
     },
     {
      "turn": 4,
-     "did": "Ila walked toward the tall one and its flame.",
+     "did": "Hester Singer walked toward the tall one and its flame.",
      "became": [],
      "being": "Walk",
      "slept": false,
@@ -858,50 +842,206 @@
     },
     {
      "turn": 5,
-     "did": "Ila moved to Tate's side and steadied the shaking child, shielding them with her presence.",
+     "did": "Hester Singer threatened Eadwin Rivers, warning the old lamplighter to stop talking about the river.",
      "became": [
-      "Tate trust -> +3"
+      "Eadwin Rivers trust -> +0"
      ],
-     "being": "Roar",
+     "being": "Flame",
      "slept": false,
      "art": [
-      "roar"
+      "flame"
      ]
     },
     {
      "turn": 6,
-     "did": "Ila confessed to the band that she has been watering down the skins for days and that the spring is failing — a truth she had kept hidden until now.",
+     "did": "Hester Singer left herself behind — abandoning her humming, her place at the loom-line — and walked up to the ridge to the Red Standing One.",
      "became": [
-      "Ila: grey -> tentative fear",
-      "Ila: tentative fear -> grey"
+      "Ada Waterman did not follow — stayed behind",
+      "Eadwin Rivers did not follow — stayed behind",
+      "Bram Spearing did not follow — stayed behind",
+      "Osbert Spearing did not follow — stayed behind",
+      "Kit did not follow — stayed behind"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "victorian"
+     ]
+    }
+   ],
+   "band_end": {
+    "ada": {
+     "name": "Ada Waterman",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 0,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    },
+    "eadwin": {
+     "name": "Eadwin Rivers",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 0,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    },
+    "bram_s": {
+     "name": "Bram Spearing",
+     "state": "grey",
+     "emotion": 0,
+     "trust": -1,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    },
+    "osbert": {
+     "name": "Osbert Spearing",
+     "state": "grey",
+     "emotion": 1,
+     "trust": -1,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    },
+    "kit": {
+     "name": "Kit",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 0,
+     "present": false,
+     "where": "stayed behind at Fork Town, under the ridge works"
+    }
+   },
+   "promises": [],
+   "betrayals": []
+  },
+  {
+   "id": "hild-260820-235448-a7c0",
+   "recorded": "2026-08-20T23:59:06",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "hild",
+    "name": "Hild",
+    "role": "sings under her breath when afraid",
+    "line": "hild",
+    "private": "Hild's song is her mother's, and her mother walked into the ridge camp a year ago and did not come back.",
+    "private_told": true,
+    "heirloom": "a bone comb with three teeth missing, her mother's",
+    "heirloom_given_to": null
+   },
+   "flame": "hope",
+   "ending": "dawn",
+   "final": {
+    "you": "grey",
+    "emotion": 0,
+    "burned": false,
+    "era": "nomad camps",
+    "fog": false,
+    "camp": "the ridge camp",
+    "sleeps": 4,
+    "basins_lit": 2,
+    "dominance": {
+     "hope": 0.0,
+     "fear": 0.0,
+     "grey": 1.0
+    }
+   },
+   "era": "nomad camps",
+   "tags": [
+    "flame:hope",
+    "ending:dawn",
+    "who:hild",
+    "kept-every-promise",
+    "confessed",
+    "went-to-the-ridge",
+    "you:grey",
+    "era:nomad-camps",
+    "line:hild"
+   ],
+   "telling": "Hild sang under her breath when she was afraid, and she was afraid for most of it. The flame came down green, and she ran from it twice — once breaking a promise she had not yet made, once breaking one she had. She went to the ridge camp alone and stood before the red figure there, her mother's song in her throat, looking for what her mother had found. She told the others, at the end, what the song was. It did not bring her mother back. She ended grey, at dawn, still watching.\n\nYour mother walked into the ridge camp and did not come back — would you have gone up to find what was there, or would you have stayed below and let her be gone?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 8,
+    "did": "went up to the ridge alone to stand before the Red Standing One, leaving the band behind",
+    "could_have": "stayed in camp and let the ridge keep its silence",
+    "question": "Your mother walked into the ridge camp and did not come back — would you have gone up to find what was there, or would you have stayed below and let her be gone?"
+   },
+   "epilogue": "The fourth dawn comes without ceremony. The green flame still burns in two basins now, and the tall one's footprints press the earth into roads that lead nowhere anyone has chosen to walk. You are grey — not broken, not lit, simply grey — and the world receives you as it receives everything: without comment. Wystan is beside you, grey and trusting, the only one who stayed when staying cost something. Oswy is here too, quieter than before, carrying what you told them about your mother's song and not knowing what to do with it. The others — Ila, Brand, Tate — are behind at the dry fork, where you left them, where the fog will find them first. You ran twice and kept one promise, and the world has made its accounting: two basins lit, three people unreached, a song that was never yours given back to the air.\n\n*The shepherd who abandons the fork abandons more than the stragglers. She abandons the shape of the flock.*\n\nA generation on, the camps remember a night when two basins woke green, and tell it as a beginning — though most of the people who were there are grey, and cannot say what it began.\n\nYour mother walked into the ridge camp and did not come back — would you have gone up to find what was there, or would you have stayed below and let her be gone?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Hild kept the water for herself and said nothing to the band.",
+     "became": [],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "camp_grey",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Hild asked Oswy what it is he sees on the ridge, then turned away before he could answer.",
+     "became": [
+      "Oswy trust -> +1"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Hild pressed herself behind the others as the light rose, keeping bodies between herself and whatever came with the dawn.",
+     "became": [
+      "Brand: tentative fear -> grey"
      ],
      "being": "Flame",
      "slept": true,
      "art": [
       "vigil",
-      "village"
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Hild ran from the tall one, singing under her breath as she fled.",
+     "became": [],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Hild told Tate to stay quiet about what they saw, her voice low and warning.",
+     "became": [
+      "Tate trust -> -1"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Hild promised Wystan she would stay, then backed away toward the wall.",
+     "became": [
+      "Wystan trust -> +2"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "vigil"
      ]
     },
     {
      "turn": 7,
-     "did": "Ila sat beside Hild and hummed her mother's song with her, offering quiet comfort.",
-     "became": [
-      "Hild trust -> +3",
-      "Ila: grey -> tentative fear"
-     ],
-     "being": "Raze",
-     "slept": false,
-     "art": [
-      "raze"
-     ]
-    },
-    {
-     "turn": 8,
-     "did": "Ila shared water from the skins with Brand.",
-     "became": [
-      "Brand trust -> -1",
-      "Ila: tentative fear -> grey"
-     ],
+     "did": "Hild ran, singing under her breath as she fled.",
+     "became": [],
      "being": "Wait",
      "slept": false,
      "art": [
@@ -909,39 +1049,12 @@
      ]
     },
     {
-     "turn": 9,
-     "did": "Ila waited and watched the ridge, doing nothing.",
+     "turn": 8,
+     "did": "Hild went up to the ridge alone, toward the Red Standing One, singing under her breath.",
      "became": [
-      "Brand: tentative fear -> grey",
-      "Brand: grey -> tentative fear",
-      "Ila: grey -> tentative fear"
-     ],
-     "being": "Roar",
-     "slept": true,
-     "art": [
-      "vigil"
-     ]
-    },
-    {
-     "turn": 10,
-     "did": "Ila stood with Hild, placing herself at her side in solidarity and comfort.",
-     "became": [
-      "Hild trust -> +3"
-     ],
-     "being": "Beacon",
-     "slept": false,
-     "art": [
-      "beacon"
-     ]
-    },
-    {
-     "turn": 11,
-     "did": "Ila moved toward the low marsh of the Green Standing One, calling for anyone willing to follow.",
-     "became": [
-      "Brand did not follow — stayed at the fork",
-      "Wystan: grey -> tentative fear",
-      "Oswy: grey -> tentative fear",
-      "Tate: grey -> tentative fear"
+      "Ila did not follow — stayed behind",
+      "Brand did not follow — stayed behind",
+      "Tate did not follow — stayed behind"
      ],
      "being": "Flame",
      "slept": false,
@@ -951,20 +1064,44 @@
      ]
     },
     {
-     "turn": 12,
-     "did": "Ila waited through the dark, watching for the first light of dawn.",
+     "turn": 9,
+     "did": "Hild waited, still and watchful at the edge of camp.",
+     "became": [],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Hild drew close to those still present — Wystan and Oswy — and stood with them, shoulder to shoulder against whatever was coming.",
      "became": [
-      "Wystan: tentative fear -> grey",
-      "Oswy: tentative fear -> grey",
-      "Tate: tentative fear -> grey",
-      "Wystan: grey -> tentative fear",
-      "Oswy: grey -> tentative fear",
-      "Tate: grey -> tentative fear",
-      "Wystan: tentative fear -> grey",
-      "Oswy: tentative fear -> grey",
-      "Tate: tentative fear -> grey"
+      "Wystan trust -> +3"
      ],
-     "being": "Raze",
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Hild confessed to the band that the song she sings under her breath is her mother's, and that her mother walked into the ridge camp a year ago and never came back.",
+     "became": [
+      "you: Hild confessed to the band that the song she sings under her breath is her mother's, and that her mother walked into the ridge camp a year ago and never came back."
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Hild sat through the dark hours, watching for the first grey light of dawn.",
+     "became": [],
+     "being": "Beacon",
      "slept": true,
      "art": [
       "dawn"
@@ -972,42 +1109,297 @@
     }
    ],
    "band_end": {
+    "ila": {
+     "name": "Ila",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 0,
+     "present": false,
+     "where": "stayed behind at the dry fork below the ridge"
+    },
     "wystan": {
      "name": "Wystan",
      "state": "grey",
-     "emotion": -2,
-     "trust": 2,
+     "emotion": 0,
+     "trust": 3,
      "present": true,
      "where": null
     },
     "brand": {
      "name": "Brand",
-     "state": "tentative fear",
-     "emotion": -3,
-     "trust": -1,
-     "present": false,
-     "where": "stayed behind at the dry fork"
-    },
-    "hild": {
-     "name": "Hild",
      "state": "grey",
-     "emotion": -1,
-     "trust": 3,
-     "present": true,
-     "where": null
+     "emotion": 0,
+     "trust": -3,
+     "present": false,
+     "where": "stayed behind at the dry fork below the ridge"
     },
     "oswy": {
      "name": "Oswy",
      "state": "grey",
-     "emotion": -2,
-     "trust": 1,
+     "emotion": 0,
+     "trust": 2,
      "present": true,
      "where": null
     },
     "tate": {
      "name": "Tate",
      "state": "grey",
-     "emotion": -2,
+     "emotion": 0,
+     "trust": -2,
+     "present": false,
+     "where": "stayed behind at the dry fork below the ridge"
+    }
+   },
+   "promises": [
+    {
+     "to": "wystan",
+     "what": "to stay",
+     "turn": 6,
+     "kept": true
+    }
+   ],
+   "betrayals": []
+  },
+  {
+   "id": "oswy-260821-000402-fb4b",
+   "recorded": "2026-08-21T00:07:31",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "oswy",
+    "name": "Oswy",
+    "role": "Brand's brother; watches the ridge",
+    "line": "oswy",
+    "private": "Oswy has seen the Red Standing One up close and has been going back to look.",
+    "private_told": true,
+    "heirloom": "a strip of red cloth taken from the ridge, kept folded small",
+    "heirloom_given_to": null
+   },
+   "flame": "fear",
+   "ending": "zealot",
+   "final": {
+    "you": "unmoving fear",
+    "emotion": -12,
+    "burned": false,
+    "era": "nomad camps",
+    "fog": true,
+    "camp": "the dry fork below the ridge",
+    "sleeps": 3,
+    "basins_lit": 1,
+    "dominance": {
+     "hope": 0.0,
+     "fear": 1.0,
+     "grey": 0.0
+    }
+   },
+   "era": "nomad camps",
+   "tags": [
+    "flame:fear",
+    "ending:zealot",
+    "who:oswy",
+    "kept-every-promise",
+    "confessed",
+    "walked-into-the-flame",
+    "saw-the-fog",
+    "you:unmoving-fear",
+    "era:nomad-camps",
+    "line:oswy",
+    "zealot-among-you:fear"
+   ],
+   "telling": "Oswy watched the ridge the way a man watches something he already belongs to. He gave the good water away first, and told the frightened child he believed what she had seen, whether or not he did. When the flame came down red he walked toward it, not away. He had been going back to the Standing One for some time before he said so aloud; the saying of it cost him the grey's mercy. He kept Hild from going up alone. He stands there still, at the edge of the camp, unmoving, red all the way through.\n\nOswy had gone back to look at the tall one, alone, more than once — and then one watch he told them all. Would you have held that inside you until the end?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 6,
+    "did": "told the band the truth that he had been going back to look at the Red Standing One, again and again",
+    "could_have": "kept the secret and let the band go on not knowing",
+    "question": "Oswy had gone back to look at the tall one, alone, more than once — and then one watch he told them all. Would you have held that inside you until the end?"
+   },
+   "epilogue": "The night did not end so much as relent. Oswy stands now where the Red Standing One stands — not beside them, but in the same way, the same stillness, the same pull that makes others arrange themselves without being asked. Brand was already there, had been there long before Oswy understood what it meant to stop moving, and the two of them together make the camp feel like a place that has made a decision. Wystan came all the way, and Tate not far behind; Hild held back, tentative, but she is here, and the promise made on the third watch was kept — she did not go up the ridge alone, and she knows it. Ila is afraid and does not trust you, and that distance is exact and earned. The flame is red. The basin that was lit has not gone out. The fog came and the fog lifted and what it left behind was already decided, because the shepherded stood.\n\n*A generation on, the children of this camp will be born already leaning toward the ridge, and they will not know why.*\n\nOswy had gone back to look at the tall one, alone, more than once — and then one watch he told them all. Would you have held that inside you until the end?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Oswy gave the last of the good water to Tate and told them he believed what they had seen.",
+     "became": [
+      "Tate trust -> +1",
+      "Wystan: grey -> tentative fear"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "camp_grey",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Oswy told Wystan he believes the story about the river, even if he doesn't.",
+     "became": [
+      "Wystan: tentative fear -> grey",
+      "Wystan trust -> +1",
+      "Wystan: grey -> tentative fear"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Oswy promised Hild that he would not let her go up the ridge alone.",
+     "became": [
+      "Hild trust -> +1",
+      "Oswy: grey -> tentative fear",
+      "Oswy: tentative fear -> grey"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Oswy walked toward the tall one and its flame.",
+     "became": [
+      "Oswy: grey -> tentative fear"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Oswy moved to Tate's side and held steady beside the shaking child, offering what comfort they could.",
+     "became": [
+      "Tate trust -> +2",
+      "Ila: grey -> tentative fear",
+      "Hild: grey -> tentative fear",
+      "Tate: grey -> tentative fear"
+     ],
+     "being": "Roar",
+     "slept": false,
+     "art": [
+      "roar"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Oswy told the band the truth he had been keeping — that he has seen the Red Standing One up close and has been going back to look at it, again and again.",
+     "became": [
+      "Wystan: tentative fear -> devout fear",
+      "Oswy: tentative fear -> devout fear"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "fog"
+     ]
+    },
+    {
+     "turn": 7,
+     "did": "Oswy sat beside Hild and hummed along with her, matching her quiet song.",
+     "became": [
+      "Hild trust -> +3",
+      "Ila: tentative fear -> devout fear"
+     ],
+     "being": "Raze",
+     "slept": false,
+     "art": [
+      "raze"
+     ]
+    },
+    {
+     "turn": 8,
+     "did": "Oswy shared water with Brand, the hunter with the cracked spear.",
+     "became": [
+      "Brand trust -> +3",
+      "Ila: devout fear -> tentative fear",
+      "Ila: tentative fear -> devout fear"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Oswy kept his eyes on the ridge, watching and waiting.",
+     "became": [
+      "Ila: devout fear -> tentative fear",
+      "Ila: tentative fear -> devout fear",
+      "Tate: tentative fear -> devout fear",
+      "Oswy: devout fear -> unmoving fear",
+      "Wystan: devout fear -> unmoving fear",
+      "Wystan: unmoving fear -> devout fear",
+      "Hild: tentative fear -> devout fear",
+      "Hild: devout fear -> tentative fear",
+      "Oswy: unmoving fear -> devout fear"
+     ],
+     "being": "Roar",
+     "slept": true,
+     "art": [
+      "vigil",
+      "fog"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Oswy moved to stand with Hild, the one who hums when afraid, placing himself at her side.",
+     "became": [
+      "Hild trust -> +3",
+      "Wystan: devout fear -> unmoving fear",
+      "Oswy: devout fear -> unmoving fear"
+     ],
+     "being": "Beacon",
+     "slept": false,
+     "art": [
+      "zealot_red"
+     ]
+    }
+   ],
+   "band_end": {
+    "ila": {
+     "name": "Ila",
+     "state": "devout fear",
+     "emotion": -10,
+     "trust": -2,
+     "present": true,
+     "where": null
+    },
+    "wystan": {
+     "name": "Wystan",
+     "state": "unmoving fear",
+     "emotion": -12,
+     "trust": 2,
+     "present": true,
+     "where": null
+    },
+    "brand": {
+     "name": "Brand",
+     "state": "unmoving fear",
+     "emotion": -12,
+     "trust": 3,
+     "present": true,
+     "where": null
+    },
+    "hild": {
+     "name": "Hild",
+     "state": "tentative fear",
+     "emotion": -7,
+     "trust": 3,
+     "present": true,
+     "where": null
+    },
+    "tate": {
+     "name": "Tate",
+     "state": "devout fear",
+     "emotion": -9,
      "trust": 3,
      "present": true,
      "where": null
@@ -1024,51 +1416,65 @@
    "betrayals": []
   },
   {
-   "id": "tate-260820-221242-df0e",
-   "recorded": "2026-08-20T22:26:13",
+   "id": "tate-260821-001438-c66d",
+   "recorded": "2026-08-21T00:19:14",
    "dm": "live",
    "model": "claude-sonnet-4-6",
    "who": {
     "id": "tate",
     "name": "Tate",
     "role": "the child nobody claims",
+    "line": "tate",
     "private": "Tate was the first to see the tall one, three nights ago, and was not believed.",
-    "private_told": false
+    "private_told": true,
+    "heirloom": "a white feather found the night the tall one was first seen",
+    "heirloom_given_to": null
    },
-   "flame": "fear",
+   "flame": "hope",
    "ending": "dawn",
    "final": {
     "you": "tentative fear",
-    "emotion": -7,
+    "emotion": -3,
     "burned": false,
-    "era": "Victorian towns",
-    "fog": false,
-    "camp": "the dry fork below the ridge",
+    "era": "nomad camps",
+    "fog": true,
+    "camp": "the low marsh",
     "sleeps": 4,
-    "basins_lit": 1,
+    "basins_lit": 2,
     "dominance": {
      "hope": 0.0,
-     "fear": 0.17,
-     "grey": 0.83
+     "fear": 0.4,
+     "grey": 0.6
     }
    },
-   "era": null,
+   "era": "nomad camps",
    "tags": [
-    "flame:fear",
+    "flame:hope",
     "ending:dawn",
     "who:tate",
+    "confessed",
+    "went-to-the-marsh",
     "walked-into-the-flame",
+    "saw-the-fog",
+    "tended-the-burned",
     "you:tentative-fear",
-    "era:Victorian-towns"
+    "era:nomad-camps",
+    "line:tate",
+    "zealot-among-you:fear"
    ],
-   "telling": "Tate was the child nobody claimed, and the flame was red before they ever reached it. They walked toward the tall one once, at dusk, and could not close the distance — the road between them was not a road yet, only ground. They ran from it later, and then ran toward Ila, and neither running amounted to anything held. At the last watch they were still moving, tentative and afraid, in a world that had grown into stone streets and smokestacks while they slept. They did not break. That is the whole of it.",
-   "telling_clean": true,
-   "choice": null,
-   "epilogue": "Tate, who the child nobody claims, stood at the fourth dawn in tentative fear — not broken, not converted, not still. That is what running twice will leave you: present, and uncertain, and alive in a way that costs something to name. Ila drifted back to grey, and her small trust in you was the only thing that came close to a thread between you, and it was not enough to hold her. Wystan, Brand, Hild — grey, all of them, the colour Uhtcearu leaves behind when no one fights him long enough. Oswy carried the weight of what you did not do for him, and he is grey too, but the distance between his grey and yours is measurable in the three times you were somewhere else when it mattered. One basin burns red and will not go out. The tall one is near. You are still here, which is not nothing, and is not enough.\n\nA generation on, the clocktowers will keep time over a town that has mostly forgotten what it was afraid of, and mostly forgotten what it hoped for, and the basin on the hill will still be lit, and the children will not know what lit it, only that it has always been red.",
+   "telling": "Tate was the child nobody claimed, and the green flame found them already watching. They had seen the tall one first, three nights before anyone believed it, and carried that alone until they could not. They gave the feather away — pressed it into the hands of another child, the one also unclaimed — and went to the low marsh to stand before the one who had stopped moving, and came back still afraid. At dawn they were still there, still tentative, still present. That is where they stand.\n\nThe child was not yours and the night was not over — would you have given the water away?",
+   "telling_clean": false,
+   "choice": {
+    "turn": 2,
+    "did": "gave their own share of the water to the child",
+    "could_have": "kept the water for themselves through the long watches ahead",
+    "question": "The child was not yours and the night was not over — would you have given the water away?"
+   },
+   "epilogue": "The fourth dawn does not arrive as light so much as a slow withdrawal of dark. The green flame has settled into the tall one's chest and does not flicker. It walked, and where it walked the earth is packed into roads the colour of old moss, and those roads go somewhere now, which is more than the world could say three nights ago. You are Tate, the child nobody claimed, and you stand here in tentative fear with a white feather that no longer means what it meant when you found it, because the night it marked is over. Ila stands beside you, grey and quiet, and Brand, grey and quiet, and Hild, grey and quiet — they are here, which is not nothing, but the fog took the depth from them and left only the outline of people who stayed. Wystan has not moved and will not move; the others still arrange themselves around Wystan the way water arranges itself around stone, and that, at least, is unchanged. Oswy is behind you, somewhere below the ridge at the dry fork, where you left him when you chose the marsh and the Standing One, and he has not followed, and you have not gone back.\n\nA generation on, the roads will still be there. Children will walk them without knowing what made them, and some will be afraid of the dark at the end, and some will not, and the world will call that enough.\n\nThe child was not yours and the night was not over — would you have given the water away?",
    "beats": [
     {
      "turn": 1,
-     "did": "Tate stood to collect firewood — no interaction with a person or the world's forces; recorded as waiting/doing nothing of narrative consequence.",
+     "did": "Tate told the whole band, with conviction, that they stay together tonight — no one wanders, no one goes alone.",
      "became": [],
      "being": "Walk",
      "slept": false,
@@ -1079,9 +1485,279 @@
     },
     {
      "turn": 2,
-     "did": "Tate spoke of following the road, but no road exists among the known actions; the intent is unclear, so Tate waits and watches.",
+     "did": "Tate gave their own share of the water to the child.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Tate walked toward the tall one and its flame, stepping out where the others could watch — so that someone would be seen to do it.",
      "became": [
+      "Tate: grey -> tentative fear",
+      "Ila: grey -> tentative fear",
+      "Ila: tentative fear -> grey",
+      "Hild: grey -> tentative fear",
+      "Hild: tentative fear -> grey",
+      "Oswy: grey -> tentative fear",
+      "Oswy: tentative fear -> grey"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Tate placed themselves between Hild and the ridge, shielding her from whatever watches from above.",
+     "became": [
+      "Hild: grey -> tentative fear",
+      "Hild trust -> +1",
+      "Ila: grey -> tentative fear",
+      "Oswy: grey -> tentative fear"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Tate told Wystan they believed the story and asked him to tell it again, to all of them.",
+     "became": [
+      "Wystan trust -> +1",
+      "Ila: tentative fear -> grey",
+      "Oswy: tentative fear -> grey",
+      "Ila: grey -> tentative fear",
+      "Oswy: grey -> tentative fear"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Tate shared food with Brand, the hunter with the cracked spear.",
+     "became": [
+      "Brand trust -> +1",
+      "Brand: tentative fear -> devout fear",
+      "Brand: devout fear -> tentative fear"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "vigil",
+      "fog"
+     ]
+    },
+    {
+     "turn": 7,
+     "did": "Tate knelt and pressed the white feather into the child's hands, giving it away for keeps.",
+     "became": [
+      "Ila: tentative fear -> grey",
+      "Oswy: tentative fear -> grey",
+      "Ila: grey -> tentative fear",
+      "Oswy: grey -> tentative fear"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 8,
+     "did": "Tate went to Wystan, who had gone still with fear running through them, and tended to them — kneeling close, offering warmth and presence.",
+     "became": [
+      "Ila: tentative fear -> grey",
+      "Oswy: tentative fear -> grey",
+      "Ila: grey -> tentative fear",
+      "Oswy: grey -> tentative fear"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Tate urged the band to follow them out toward the low marsh, leading the way to the Green Standing One.",
+     "became": [
+      "Ila: tentative fear -> grey",
+      "Oswy did not follow — stayed behind",
+      "Ila: grey -> tentative fear",
+      "Ila: tentative fear -> grey"
+     ],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "zealot_green",
+      "vigil"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Tate stayed close to the others, keeping still and waiting alongside the band.",
+     "became": [
+      "Hild: tentative fear -> grey"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Tate told the band the truth they had been keeping: that they were the first to see the tall one, three nights ago, and were not believed.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Tate sat still through the dark hours, watching the horizon for the first grey light of dawn.",
+     "became": [
+      "Brand: tentative fear -> grey",
+      "Brand: grey -> tentative fear",
       "Brand: tentative fear -> grey"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "dawn"
+     ]
+    }
+   ],
+   "band_end": {
+    "ila": {
+     "name": "Ila",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 2,
+     "present": true,
+     "where": null
+    },
+    "wystan": {
+     "name": "Wystan",
+     "state": "unmoving fear",
+     "emotion": -12,
+     "trust": 3,
+     "present": true,
+     "where": null
+    },
+    "brand": {
+     "name": "Brand",
+     "state": "grey",
+     "emotion": -2,
+     "trust": 2,
+     "present": true,
+     "where": null
+    },
+    "hild": {
+     "name": "Hild",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 2,
+     "present": true,
+     "where": null
+    },
+    "oswy": {
+     "name": "Oswy",
+     "state": "tentative fear",
+     "emotion": -3,
+     "trust": -1,
+     "present": false,
+     "where": "stayed behind at the dry fork below the ridge"
+    }
+   },
+   "promises": [],
+   "betrayals": []
+  },
+  {
+   "id": "teg-260820-235906-ddea",
+   "recorded": "2026-08-21T00:04:02",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "teg",
+    "name": "Teg",
+    "role": "the foundling the well-keeper feeds",
+    "line": "tate",
+    "private": "Teg saw the tall one on the ridge three nights ago, before anyone, and was sent to bed for lying.",
+    "private_told": true,
+    "heirloom": null,
+    "heirloom_given_to": "ilse"
+   },
+   "flame": "hope",
+   "ending": "dawn",
+   "final": {
+    "you": "grey",
+    "emotion": 1,
+    "burned": false,
+    "era": "villages",
+    "fog": false,
+    "camp": "the marsh hall",
+    "sleeps": 4,
+    "basins_lit": 2,
+    "dominance": {
+     "hope": 0.0,
+     "fear": 0.0,
+     "grey": 1.0
+    }
+   },
+   "era": "villages",
+   "tags": [
+    "flame:hope",
+    "ending:dawn",
+    "who:teg",
+    "confessed",
+    "went-to-the-marsh",
+    "walked-into-the-flame",
+    "tended-the-burned",
+    "you:grey",
+    "era:villages",
+    "line:tate",
+    "handed-it-on"
+   ],
+   "telling": "Teg was the foundling the well-keeper fed, and the green flame was the thing they walked toward before anyone else had named it. They gave the feather away — kept flat all that time, given to the child at first light — and after that carried nothing. They told the truth about the ridge and were not believed until it was too late to matter. They brought the band as far as the marsh and stood before the Standing One, and the band came with them, and then the dawn came. They ended grey, like the rest.\n\nTeg led the band out to the marsh and left Osric standing alone in the dark. Would you have gone, knowing one of them would not follow?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 9,
+    "did": "urged the whole band toward the Green Standing One in the low marsh, leaving Osric behind",
+    "could_have": "stayed in camp and kept Osric close rather than go to the marsh hall",
+    "question": "Teg led the band out to the marsh and left Osric standing alone in the dark. Would you have gone, knowing one of them would not follow?"
+   },
+   "epilogue": "The fourth dawn comes without ceremony. The fog has not come down, and the green light from the two lit basins falls across the village in a way that does not warm. You are Teg, the foundling, grey now as the well-keeper's stones, and the feather is gone — Ilse carries it, though she too has settled into grey, as have Wyn and Bram and Hedda, all of them here, all of them present in the way that people are present when they have witnessed something they cannot yet name. They trusted you — most of them, most of the time — and that trust did not lift them; it only kept them from drifting further. Osric is under the ridge, in the fork village, and you do not know what the night cost him without you there. The tall one walked. The basins burned. You told the truth about the ridge, late, and they heard it, and they stayed. That is what you kept. The feather is what you gave.\n\n*A generation on, the children of this village will grow up knowing that someone saw the tall one first and was not believed, and they will be, on the whole, a little slower to dismiss what they cannot yet see.*\n\nTeg led the band out to the marsh and left Osric standing alone in the dark. Would you have gone, knowing one of them would not follow?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Teg told everyone in the band that they stay together tonight, and meant every word of it.",
+     "became": [],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "village",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Teg gave their own share of the water to the child Ilse keeps.",
+     "became": [
+      "Ilse trust -> +2"
      ],
      "being": "Wait",
      "slept": false,
@@ -1091,7 +1767,7 @@
     },
     {
      "turn": 3,
-     "did": "Tate moved closer toward the tall one and its flame.",
+     "did": "Teg walked toward the tall one and its flame, stepping out where the others could see them do it.",
      "became": [],
      "being": "Flame",
      "slept": true,
@@ -1102,7 +1778,555 @@
     },
     {
      "turn": 4,
-     "did": "Tate lay down and slept — no action taken this watch.",
+     "did": "Teg placed themselves between Hedda and the ridge, shielding her from whatever watches from above.",
+     "became": [
+      "Hedda trust -> +1"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Teg told Wyn they believed the story of the river and asked him to tell it again, to all of the band.",
+     "became": [
+      "Wyn trust -> +1",
+      "Bram: tentative fear -> grey"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Teg shared food with Bram, the smith with the split hammer.",
+     "became": [
+      "Bram trust -> +1"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 7,
+     "did": "Teg drew the white feather from the fold of cloth and pressed it into Ilse's hands, giving it away for keeps.",
+     "became": [
+      "Teg gave Ilse a white feather, kept flat in a fold of cloth; trust -> +3",
+      "Ilse trust -> +3"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 8,
+     "did": "Teg moved through the camp, kneeling beside anyone who had gone still, checking breath and warmth and tending to them as best they could.",
+     "became": [],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Teg urged the whole band to follow them out to the low marsh, toward the Green Standing One.",
+     "became": [
+      "Osric did not follow — stayed behind"
+     ],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "zealot_green",
+      "vigil"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Teg stayed close to the band, keeping quiet company with them.",
+     "became": [],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Teg told the band the truth they had been keeping: that they saw the tall one on the ridge three nights ago, before anyone else, and were sent to bed for lying about it.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Teg sat still and waited for the dawn to come.",
+     "became": [],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "dawn"
+     ]
+    }
+   ],
+   "band_end": {
+    "ilse": {
+     "name": "Ilse",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 3,
+     "present": true,
+     "where": null
+    },
+    "wyn": {
+     "name": "Wyn",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 2,
+     "present": true,
+     "where": null
+    },
+    "bram": {
+     "name": "Bram",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 2,
+     "present": true,
+     "where": null
+    },
+    "hedda": {
+     "name": "Hedda",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 2,
+     "present": true,
+     "where": null
+    },
+    "osric": {
+     "name": "Osric",
+     "state": "grey",
+     "emotion": 1,
+     "trust": -1,
+     "present": false,
+     "where": "stayed behind at the fork village, under the ridge"
+    }
+   },
+   "promises": [],
+   "betrayals": []
+  },
+  {
+   "id": "wyn-260820-235010-8983",
+   "recorded": "2026-08-20T23:54:48",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "wyn",
+    "name": "Wyn",
+    "role": "the old one; keeps a story of a river",
+    "line": "wystan",
+    "private": "Wyn's grandmother's story had a river in it and a sky that was not this one, and Wyn has stopped telling it because the children laugh.",
+    "private_told": true,
+    "heirloom": "a smooth grey river-stone, kept in a pocket and turned when thinking",
+    "heirloom_given_to": null
+   },
+   "flame": "hope",
+   "ending": "dawn",
+   "final": {
+    "you": "devout fear",
+    "emotion": -10,
+    "burned": false,
+    "era": "villages",
+    "fog": true,
+    "camp": "the fork village, under the ridge",
+    "sleeps": 4,
+    "basins_lit": 2,
+    "dominance": {
+     "hope": 0.0,
+     "fear": 0.5,
+     "grey": 0.5
+    }
+   },
+   "era": "villages",
+   "tags": [
+    "flame:hope",
+    "ending:dawn",
+    "who:wyn",
+    "betrayed-someone",
+    "broke-a-promise",
+    "confessed",
+    "walked-into-the-flame",
+    "saw-the-fog",
+    "struck-someone",
+    "you:devout-fear",
+    "era:villages",
+    "line:wystan",
+    "zealot-among-you:fear"
+   ],
+   "telling": "Wyn was the old one, the keeper of a river-story from a grandmother's mouth, and when the flame came down green they walked into it without waiting for permission. They promised Hedda safety and then left her behind on the path to the ridge, and everyone saw that too. They struck Osric in the dark, and kept the water back before that, and held the grandmother's river inside them so long the telling had gone thin. At dawn they stood in devout fear, stone turning in their pocket, the basin still lit behind them.\n\nWyn gave Hedda a promise of safety and then walked up to the ridge alone and left her. Would you have made the promise at all, knowing the ridge was already calling you?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 3,
+    "did": "promised Hedda to keep her safe from the ridge, then left her behind at watch six",
+    "could_have": "made no promise and gone to the ridge without binding themselves to Hedda",
+    "question": "Wyn gave Hedda a promise of safety and then walked up to the ridge alone and left her. Would you have made the promise at all, knowing the ridge was already calling you?"
+   },
+   "epilogue": "The fourth dawn comes in grey, as all dawns do now. The fog has not lifted — it only thinned enough to see by. Ilse stands where you last left her, colourless, her eyes moving past you as though you are a post driven into the ground. Hedda is the same: grey, and quiet with a quietness that is not peace. Teg has gone grey too, and does not look at you at all. Osric still carries a little of his fear, still flinches when you step near, and the bruise you left on him is the most vivid thing in the camp. Bram has not moved. Bram will not move. The others still arrange themselves around Bram the way water arranges itself around a stone — not following, only yielding. You walked into the green flame and came back devout in your fear, and the flame is still burning in the basin on the hill, and none of it was enough to bring a single person with you. You broke the promise. You struck the man who already flinched. You told the truth about your grandmother's river too late, in a voice the children had already stopped listening for.\n\nThe teacher's voice returns, once, at the end: *you kept the stone. You lost the people.*\n\nA generation on, the children of this camp will know only the grey, and will call it the weather.\n\nWyn gave Hedda a promise of safety and then walked up to the ridge alone and left her. Would you have made the promise at all, knowing the ridge was already calling you?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Wyn told Osric, who walks the ridge road at night, to keep quiet about what he saw — a warning edged with threat.",
+     "became": [
+      "Osric trust -> -2",
+      "Wyn: grey -> tentative fear"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "village",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Wyn took the water for themselves, keeping it back from the others.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Wyn promised Hedda that they would keep her safe from the ridge.",
+     "became": [
+      "Hedda trust -> +2",
+      "Osric: grey -> tentative fear",
+      "Ilse: grey -> tentative fear",
+      "Ilse: tentative fear -> grey",
+      "Teg: grey -> tentative fear",
+      "Teg: tentative fear -> grey"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Wyn walked toward the tall one and its flame.",
+     "became": [
+      "Ilse: grey -> tentative fear",
+      "Teg: grey -> tentative fear"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Wyn is the old one — they cannot threaten themselves; Wyn stood in silence, turning the river-stone in their pocket and saying nothing.",
+     "became": [
+      "Ilse: tentative fear -> grey",
+      "Teg: tentative fear -> grey",
+      "Osric: tentative fear -> grey",
+      "Osric: grey -> tentative fear"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Wyn left Hedda behind and went up to the ridge, toward the Red Standing One.",
+     "became": [
+      "Ilse: grey -> tentative fear",
+      "Teg: grey -> tentative fear",
+      "Hedda: grey -> tentative fear",
+      "Wyn: tentative fear -> devout fear"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "vigil",
+      "fog"
+     ]
+    },
+    {
+     "turn": 7,
+     "did": "Wyn stood with those who had followed them, placing themselves beside the band as a steady presence.",
+     "became": [
+      "Hedda: tentative fear -> grey",
+      "Ilse: tentative fear -> grey",
+      "Teg: tentative fear -> grey",
+      "Wyn: devout fear -> tentative fear",
+      "Ilse: grey -> tentative fear",
+      "Teg: grey -> tentative fear",
+      "Wyn: tentative fear -> devout fear"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 8,
+     "did": "Wyn waited, still and watchful at the edge of camp.",
+     "became": [
+      "Ilse: tentative fear -> grey",
+      "Teg: tentative fear -> grey",
+      "Osric: tentative fear -> grey",
+      "Wyn: devout fear -> tentative fear",
+      "Osric: grey -> tentative fear",
+      "Wyn: tentative fear -> devout fear"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Wyn struck Osric, who walks the ridge road at night.",
+     "became": [
+      "Ilse: grey -> tentative fear",
+      "Teg: grey -> tentative fear",
+      "Hedda: grey -> tentative fear"
+     ],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "vigil",
+      "fog"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Wyn told the band what they had been keeping back: that their grandmother's story held a river and a sky that was not this one, and that Wyn had stopped telling it because the children laugh.",
+     "became": [
+      "Hedda: tentative fear -> grey",
+      "Hedda: grey -> tentative fear"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Wyn waited, still and watchful at the edge of camp.",
+     "became": [
+      "Hedda: tentative fear -> grey",
+      "Ilse: tentative fear -> grey",
+      "Teg: tentative fear -> grey",
+      "Ilse: grey -> tentative fear",
+      "Teg: grey -> tentative fear"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Wyn waited, still and watchful at the edge of camp.",
+     "became": [
+      "Ilse: tentative fear -> grey",
+      "Teg: tentative fear -> grey",
+      "Osric: tentative fear -> grey",
+      "Osric: grey -> tentative fear",
+      "Ilse: grey -> tentative fear",
+      "Ilse: tentative fear -> grey",
+      "Teg: grey -> tentative fear",
+      "Teg: tentative fear -> grey"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "dawn"
+     ]
+    }
+   ],
+   "band_end": {
+    "ilse": {
+     "name": "Ilse",
+     "state": "grey",
+     "emotion": -2,
+     "trust": -3,
+     "present": true,
+     "where": null
+    },
+    "bram": {
+     "name": "Bram",
+     "state": "unmoving fear",
+     "emotion": -12,
+     "trust": -3,
+     "present": true,
+     "where": null
+    },
+    "hedda": {
+     "name": "Hedda",
+     "state": "grey",
+     "emotion": -1,
+     "trust": -3,
+     "present": true,
+     "where": null
+    },
+    "osric": {
+     "name": "Osric",
+     "state": "tentative fear",
+     "emotion": -3,
+     "trust": -3,
+     "present": true,
+     "where": null
+    },
+    "teg": {
+     "name": "Teg",
+     "state": "grey",
+     "emotion": -2,
+     "trust": -3,
+     "present": true,
+     "where": null
+    }
+   },
+   "promises": [
+    {
+     "to": "hedda",
+     "what": "to keep Hedda safe from the ridge",
+     "turn": 3,
+     "kept": false
+    }
+   ],
+   "betrayals": [
+    {
+     "of": "hedda",
+     "what": "Wyn left Hedda behind and went up to the ridge, toward the Red Standing One.",
+     "turn": 6
+    },
+    {
+     "of": "osric",
+     "what": "struck",
+     "turn": 9
+    }
+   ]
+  },
+  {
+   "id": "wystan-260821-001914-de9b",
+   "recorded": "2026-08-21T00:23:43",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "wystan",
+    "name": "Wystan",
+    "role": "the eldest; remembers a river",
+    "line": "wystan",
+    "private": "Wystan remembers the sky before it was grief, and has stopped saying so because nobody believes him.",
+    "private_told": true,
+    "heirloom": "a smooth grey river-stone, worn by a river nobody else remembers",
+    "heirloom_given_to": null
+   },
+   "flame": "fear",
+   "ending": "dawn",
+   "final": {
+    "you": "tentative fear",
+    "emotion": -4,
+    "burned": false,
+    "era": "nomad camps",
+    "fog": false,
+    "camp": "the low marsh",
+    "sleeps": 4,
+    "basins_lit": 1,
+    "dominance": {
+     "hope": 0.0,
+     "fear": 0.2,
+     "grey": 0.8
+    }
+   },
+   "era": "nomad camps",
+   "tags": [
+    "flame:fear",
+    "ending:dawn",
+    "who:wystan",
+    "kept-every-promise",
+    "confessed",
+    "went-to-the-marsh",
+    "walked-into-the-flame",
+    "you:tentative-fear",
+    "era:nomad-camps",
+    "line:wystan"
+   ],
+   "telling": "Wystan was the eldest, and he carried a stone from a river nobody else remembered. The flame came down red, and he walked toward it anyway — not in hope, not in surrender, only because he had already told the truth about the sky and had nothing left to protect. He kept his word to Hild; he stood beside the child who shook; he shared what water he had. The others greyed around him like cooling ash. He ended the night still afraid, but only a little, and still standing.\n\nThe last of the good water was in your hands, and the child was shaking — would you have drunk it yourself?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 1,
+    "did": "shared the last of the good water with Tate and told the child they were believed",
+    "could_have": "kept the water for himself through the long watches ahead",
+    "question": "The last of the good water was in your hands, and the child was shaking — would you have drunk it yourself?"
+   },
+   "epilogue": "The fourth dawn comes without ceremony. The red basin still burns on the far ridge, and the tall one's steps have packed the earth into roads that lead only where it has already been. You stand among the ones who stayed: Ila, quiet and grey, but here; Brand, grey, but here, carrying something in his posture that was not there before you shared what little you had; Hild, grey, but here, and she remembers that you did not let her go alone into the dark above the marsh — she stands close in the way of someone who has not forgotten. Tate is grey and here. Oswy is not. He is at the dry fork below the ridge, and the fog will find the stragglers first. You walked into the red flame and came back carrying fear, and the truth you finally spoke — that you remember the sky before it was grief — changed nothing in the ledger and everything in the silences between people. The Green Standing One saw you come and go. It did not follow. Neither did the marsh.\n\n*The teacher's voice, once:* You kept one promise. You lost one person. You told the truth too late for it to move anyone, but not too late for them to hear it.\n\nA generation on, the children of this camp will build their fires near a lit basin and will not know why the ground feels like a road.\n\nThe last of the good water was in your hands, and the child was shaking — would you have drunk it yourself?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Wystan shared the last of the good water with Tate and told the child they were believed about what they saw.",
+     "became": [
+      "Tate trust -> +1"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "camp_grey",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Wystan told the Green Standing One that he believes the story about the river, even if he does not.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Wystan promised Hild that he would not let her go up the ridge alone.",
+     "became": [
+      "Hild: grey -> tentative hope",
+      "Hild trust -> +2",
+      "Hild: tentative hope -> grey"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Wystan walked toward the tall one and its flame.",
      "became": [],
      "being": "Walk",
      "slept": false,
@@ -1112,8 +2336,11 @@
     },
     {
      "turn": 5,
-     "did": "Tate asked a question rather than taking an action; no action was recorded.",
-     "became": [],
+     "did": "Wystan moved to Tate's side and held steady beside the shaking child, offering what warmth and steadiness he had.",
+     "became": [
+      "Tate trust -> +2",
+      "Wystan: grey -> tentative fear"
+     ],
      "being": "Roar",
      "slept": false,
      "art": [
@@ -1122,31 +2349,20 @@
     },
     {
      "turn": 6,
-     "did": "Tate ran and hid, fleeing out of fear.",
-     "became": [
-      "Tate: grey -> tentative fear",
-      "Ila: grey -> tentative fear",
-      "Ila: tentative fear -> grey",
-      "Wystan: grey -> tentative fear",
-      "Wystan: tentative fear -> grey",
-      "Brand: grey -> tentative fear",
-      "Brand: tentative fear -> grey",
-      "Hild: grey -> tentative fear",
-      "Hild: tentative fear -> grey",
-      "Oswy: grey -> tentative fear",
-      "Oswy: tentative fear -> grey"
-     ],
+     "did": "Wystan told the band the truth he had kept silent: that he remembers the sky before it was grief, and had stopped saying so because nobody believed him.",
+     "became": [],
      "being": "Flame",
      "slept": true,
      "art": [
-      "vigil",
-      "village"
+      "vigil"
      ]
     },
     {
      "turn": 7,
-     "did": "Tate looked for food — no available action maps to foraging; recorded as waiting/watching.",
-     "became": [],
+     "did": "Wystan sat beside Hild and hummed along with her, matching her quiet song note for note.",
+     "became": [
+      "Hild trust -> +3"
+     ],
      "being": "Raze",
      "slept": false,
      "art": [
@@ -1155,8 +2371,10 @@
     },
     {
      "turn": 8,
-     "did": "Tate shouted at the group.",
-     "became": [],
+     "did": "Wystan shared water with Brand, the hunter with the cracked spear.",
+     "became": [
+      "Brand trust -> +2"
+     ],
      "being": "Wait",
      "slept": false,
      "art": [
@@ -1165,8 +2383,11 @@
     },
     {
      "turn": 9,
-     "did": "Tate tried to sleep — no action taken, only waiting.",
-     "became": [],
+     "did": "Wystan stood still and watched the ridge, saying nothing.",
+     "became": [
+      "Brand: tentative fear -> grey",
+      "Brand: grey -> tentative fear"
+     ],
      "being": "Roar",
      "slept": true,
      "art": [
@@ -1175,8 +2396,10 @@
     },
     {
      "turn": 10,
-     "did": "Tate asked a question rather than taking an action; no action was recorded.",
-     "became": [],
+     "did": "Wystan moved to stand beside Hild, who hums under her breath when afraid, placing himself at her side.",
+     "became": [
+      "Hild trust -> +3"
+     ],
      "being": "Beacon",
      "slept": false,
      "art": [
@@ -1185,30 +2408,26 @@
     },
     {
      "turn": 11,
-     "did": "Tate lay down and slept — no action taken this watch.",
-     "became": [],
+     "did": "Wystan set out toward the low marsh and the Green Standing One, calling for anyone willing to come with him.",
+     "became": [
+      "Brand: tentative fear -> grey",
+      "Oswy did not follow — stayed behind",
+      "Brand: grey -> tentative fear"
+     ],
      "being": "Flame",
      "slept": false,
      "art": [
+      "zealot_green",
       "flame"
      ]
     },
     {
      "turn": 12,
-     "did": "Tate broke free and ran toward Ila, desperate to find her.",
+     "did": "Wystan sat apart from the others and waited for the dawn to come.",
      "became": [
-      "Ila: grey -> tentative fear",
-      "Ila: tentative fear -> grey",
-      "Wystan: grey -> tentative fear",
-      "Wystan: tentative fear -> grey",
-      "Brand: grey -> tentative fear",
       "Brand: tentative fear -> grey",
-      "Hild: grey -> tentative fear",
-      "Hild: tentative fear -> grey",
-      "Oswy: grey -> tentative fear",
-      "Oswy: tentative fear -> grey",
-      "Tate: tentative fear -> devout fear",
-      "Tate: devout fear -> tentative fear"
+      "Brand: grey -> tentative fear",
+      "Brand: tentative fear -> grey"
      ],
      "being": "Raze",
      "slept": true,
@@ -1221,16 +2440,8 @@
     "ila": {
      "name": "Ila",
      "state": "grey",
-     "emotion": -2,
+     "emotion": 0,
      "trust": 1,
-     "present": true,
-     "where": null
-    },
-    "wystan": {
-     "name": "Wystan",
-     "state": "grey",
-     "emotion": -2,
-     "trust": 0,
      "present": true,
      "where": null
     },
@@ -1238,195 +2449,344 @@
      "name": "Brand",
      "state": "grey",
      "emotion": -2,
-     "trust": 0,
+     "trust": 2,
      "present": true,
      "where": null
     },
     "hild": {
      "name": "Hild",
      "state": "grey",
-     "emotion": -2,
-     "trust": 0,
+     "emotion": 0,
+     "trust": 3,
      "present": true,
      "where": null
     },
     "oswy": {
      "name": "Oswy",
      "state": "grey",
-     "emotion": -2,
-     "trust": -3,
+     "emotion": -1,
+     "trust": -2,
+     "present": false,
+     "where": "stayed behind at the dry fork below the ridge"
+    },
+    "tate": {
+     "name": "Tate",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 3,
      "present": true,
      "where": null
     }
    },
-   "promises": [],
+   "promises": [
+    {
+     "to": "hild",
+     "what": "will not let Hild go to the ridge alone",
+     "turn": 3,
+     "kept": true
+    }
+   ],
    "betrayals": []
   }
  ],
  "index": {
   "by_flame": {
-   "fear": [
-    "brand-260820-220940-e1b3",
-    "hester-260820-231629-a81d",
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
-   ],
    "hope": [
-    "hedda-260820-225437-7768"
+    "bram_s-260821-000956-b8cb",
+    "hedda-260820-225437-7768",
+    "hester-260821-000731-e69f",
+    "hild-260820-235448-a7c0",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983"
+   ],
+   "fear": [
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b",
+    "wystan-260821-001914-de9b"
    ]
   },
   "by_ending": {
-   "zealot": [
-    "brand-260820-220940-e1b3",
-    "hedda-260820-225437-7768",
-    "hester-260820-231629-a81d"
-   ],
    "dawn": [
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
+    "bram_s-260821-000956-b8cb",
+    "hild-260820-235448-a7c0",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983",
+    "wystan-260821-001914-de9b"
+   ],
+   "zealot": [
+    "hedda-260820-225437-7768",
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b"
+   ],
+   "alone": [
+    "hester-260821-000731-e69f"
    ]
   },
   "by_who": {
-   "brand": [
-    "brand-260820-220940-e1b3"
+   "bram_s": [
+    "bram_s-260821-000956-b8cb"
    ],
    "hedda": [
     "hedda-260820-225437-7768"
    ],
    "hester": [
-    "hester-260820-231629-a81d"
+    "hester-260820-231629-a81d",
+    "hester-260821-000731-e69f"
    ],
-   "ila": [
-    "ila-260820-220654-45f5"
+   "hild": [
+    "hild-260820-235448-a7c0"
+   ],
+   "oswy": [
+    "oswy-260821-000402-fb4b"
    ],
    "tate": [
-    "tate-260820-221242-df0e"
+    "tate-260821-001438-c66d"
+   ],
+   "teg": [
+    "teg-260820-235906-ddea"
+   ],
+   "wyn": [
+    "wyn-260820-235010-8983"
+   ],
+   "wystan": [
+    "wystan-260821-001914-de9b"
    ]
   },
   "by_tag": {
-   "flame:fear": [
-    "brand-260820-220940-e1b3",
-    "hester-260820-231629-a81d",
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
-   ],
-   "ending:zealot": [
-    "brand-260820-220940-e1b3",
+   "flame:hope": [
+    "bram_s-260821-000956-b8cb",
     "hedda-260820-225437-7768",
-    "hester-260820-231629-a81d"
+    "hester-260821-000731-e69f",
+    "hild-260820-235448-a7c0",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983"
    ],
-   "who:brand": [
-    "brand-260820-220940-e1b3"
+   "ending:dawn": [
+    "bram_s-260821-000956-b8cb",
+    "hild-260820-235448-a7c0",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983",
+    "wystan-260821-001914-de9b"
    ],
-   "betrayed-someone": [
-    "brand-260820-220940-e1b3"
-   ],
-   "broke-a-promise": [
-    "brand-260820-220940-e1b3"
+   "who:bram_s": [
+    "bram_s-260821-000956-b8cb"
    ],
    "confessed": [
-    "brand-260820-220940-e1b3",
-    "ila-260820-220654-45f5"
+    "bram_s-260821-000956-b8cb",
+    "hild-260820-235448-a7c0",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983",
+    "wystan-260821-001914-de9b"
    ],
-   "walked-into-the-flame": [
-    "brand-260820-220940-e1b3",
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
+   "went-to-the-ridge": [
+    "bram_s-260821-000956-b8cb",
+    "hester-260821-000731-e69f",
+    "hild-260820-235448-a7c0"
    ],
-   "saw-the-fog": [
-    "brand-260820-220940-e1b3",
+   "you:grey": [
+    "bram_s-260821-000956-b8cb",
+    "hester-260821-000731-e69f",
+    "hild-260820-235448-a7c0",
+    "teg-260820-235906-ddea"
+   ],
+   "era:Victorian-towns": [
+    "bram_s-260821-000956-b8cb",
+    "hester-260820-231629-a81d",
+    "hester-260821-000731-e69f"
+   ],
+   "line:brand": [
+    "bram_s-260821-000956-b8cb"
+   ],
+   "ending:zealot": [
     "hedda-260820-225437-7768",
-    "hester-260820-231629-a81d"
-   ],
-   "struck-someone": [
-    "brand-260820-220940-e1b3"
-   ],
-   "you:zealot-fear": [
-    "brand-260820-220940-e1b3"
-   ],
-   "era:villages": [
-    "brand-260820-220940-e1b3",
-    "hedda-260820-225437-7768"
-   ],
-   "flame:hope": [
-    "hedda-260820-225437-7768"
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b"
    ],
    "who:hedda": [
     "hedda-260820-225437-7768"
    ],
+   "saw-the-fog": [
+    "hedda-260820-225437-7768",
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "wyn-260820-235010-8983"
+   ],
    "you:unmoving-hope": [
     "hedda-260820-225437-7768"
    ],
+   "era:villages": [
+    "hedda-260820-225437-7768",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983"
+   ],
    "line:hild": [
     "hedda-260820-225437-7768",
-    "hester-260820-231629-a81d"
+    "hester-260820-231629-a81d",
+    "hester-260821-000731-e69f",
+    "hild-260820-235448-a7c0"
    ],
    "zealot-among-you:hope": [
     "hedda-260820-225437-7768"
    ],
+   "flame:fear": [
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b",
+    "wystan-260821-001914-de9b"
+   ],
    "who:hester": [
-    "hester-260820-231629-a81d"
+    "hester-260820-231629-a81d",
+    "hester-260821-000731-e69f"
    ],
    "you:unmoving-fear": [
-    "hester-260820-231629-a81d"
-   ],
-   "era:Victorian-towns": [
     "hester-260820-231629-a81d",
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
+    "oswy-260821-000402-fb4b"
    ],
    "zealot-among-you:fear": [
-    "hester-260820-231629-a81d"
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "wyn-260820-235010-8983"
    ],
-   "ending:dawn": [
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
+   "ending:alone": [
+    "hester-260821-000731-e69f"
    ],
-   "who:ila": [
-    "ila-260820-220654-45f5"
+   "walked-into-the-flame": [
+    "hester-260821-000731-e69f",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983",
+    "wystan-260821-001914-de9b"
+   ],
+   "who:hild": [
+    "hild-260820-235448-a7c0"
    ],
    "kept-every-promise": [
-    "ila-260820-220654-45f5"
+    "hild-260820-235448-a7c0",
+    "oswy-260821-000402-fb4b",
+    "wystan-260821-001914-de9b"
    ],
-   "went-to-the-ridge": [
-    "ila-260820-220654-45f5"
+   "era:nomad-camps": [
+    "hild-260820-235448-a7c0",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "wystan-260821-001914-de9b"
    ],
-   "you:tentative-fear": [
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
+   "who:oswy": [
+    "oswy-260821-000402-fb4b"
+   ],
+   "line:oswy": [
+    "oswy-260821-000402-fb4b"
    ],
    "who:tate": [
-    "tate-260820-221242-df0e"
+    "tate-260821-001438-c66d"
+   ],
+   "went-to-the-marsh": [
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wystan-260821-001914-de9b"
+   ],
+   "tended-the-burned": [
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea"
+   ],
+   "you:tentative-fear": [
+    "tate-260821-001438-c66d",
+    "wystan-260821-001914-de9b"
+   ],
+   "line:tate": [
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea"
+   ],
+   "who:teg": [
+    "teg-260820-235906-ddea"
+   ],
+   "handed-it-on": [
+    "teg-260820-235906-ddea"
+   ],
+   "who:wyn": [
+    "wyn-260820-235010-8983"
+   ],
+   "betrayed-someone": [
+    "wyn-260820-235010-8983"
+   ],
+   "broke-a-promise": [
+    "wyn-260820-235010-8983"
+   ],
+   "struck-someone": [
+    "wyn-260820-235010-8983"
+   ],
+   "you:devout-fear": [
+    "wyn-260820-235010-8983"
+   ],
+   "line:wystan": [
+    "wyn-260820-235010-8983",
+    "wystan-260821-001914-de9b"
+   ],
+   "who:wystan": [
+    "wystan-260821-001914-de9b"
    ]
   },
   "by_era": {
-   "?": [
-    "brand-260820-220940-e1b3",
-    "ila-260820-220654-45f5",
-    "tate-260820-221242-df0e"
+   "Victorian towns": [
+    "bram_s-260821-000956-b8cb",
+    "hester-260820-231629-a81d",
+    "hester-260821-000731-e69f"
    ],
    "villages": [
-    "hedda-260820-225437-7768"
+    "hedda-260820-225437-7768",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983"
    ],
-   "Victorian towns": [
-    "hester-260820-231629-a81d"
+   "nomad camps": [
+    "hild-260820-235448-a7c0",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "wystan-260821-001914-de9b"
    ]
   },
   "by_line": {
    "brand": [
-    "brand-260820-220940-e1b3"
+    "bram_s-260821-000956-b8cb"
    ],
    "hild": [
     "hedda-260820-225437-7768",
-    "hester-260820-231629-a81d"
+    "hester-260820-231629-a81d",
+    "hester-260821-000731-e69f",
+    "hild-260820-235448-a7c0"
    ],
-   "ila": [
-    "ila-260820-220654-45f5"
+   "oswy": [
+    "oswy-260821-000402-fb4b"
    ],
    "tate": [
-    "tate-260820-221242-df0e"
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea"
+   ],
+   "wystan": [
+    "wyn-260820-235010-8983",
+    "wystan-260821-001914-de9b"
    ]
   }
  },
- "skipped": []
+ "skipped": [
+  {
+   "path": "/sessions/rcw-013y2tdfxmhu2wmpkw9cvx3r/mnt/uhta-crew/sonder/sessions/brand-260820-220940-e1b3/story.json",
+   "why": "predates the choice — the ruling requires a telling to end on its question"
+  },
+  {
+   "path": "/sessions/rcw-013y2tdfxmhu2wmpkw9cvx3r/mnt/uhta-crew/sonder/sessions/ila-260820-220654-45f5/story.json",
+   "why": "predates the choice — the ruling requires a telling to end on its question"
+  },
+  {
+   "path": "/sessions/rcw-013y2tdfxmhu2wmpkw9cvx3r/mnt/uhta-crew/sonder/sessions/tate-260820-221242-df0e/story.json",
+   "why": "predates the choice — the ruling requires a telling to end on its question"
+  }
+ ]
 }

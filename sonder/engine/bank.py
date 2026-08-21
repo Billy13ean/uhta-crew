@@ -121,7 +121,7 @@ def story_record(session, last: dict) -> dict:
     }
 
 
-def compile(sessions_dir: Path, out_dir: Path, include_mock: bool = False) -> dict:
+def compile(sessions_dir: Path, out_dir: Path, include_mock: bool = False, include_legacy: bool = False) -> dict:
     stories, skipped = [], []
     for p in sorted(sessions_dir.glob("*/story.json")):
         try:
@@ -135,6 +135,8 @@ def compile(sessions_dir: Path, out_dir: Path, include_mock: bool = False) -> di
             skipped.append({"path": str(p), "why": "mock DM — templated telling, excluded by default"}); continue
         if not s.get("telling"):
             skipped.append({"path": str(p), "why": "no telling"}); continue
+        if not (s.get("choice") or {}).get("question") and not include_legacy:
+            skipped.append({"path": str(p), "why": "predates the choice — the ruling requires a telling to end on its question"}); continue
         stories.append({
             "id": s["session"], "recorded": s["recorded"], "dm": s["dm"]["backend"], "model": s["dm"].get("model", ""),
             "who": s["perspective"], "flame": s["flame"], "ending": s["ending"], "final": s["final"],
