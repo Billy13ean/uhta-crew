@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sonder</title>
+<style>
+  /* palette: build/uhta-slice.html COL table, via art/make_sprites.py */
+  :root{
+    --void:#050507; --bg:#0c0c10; --memory:#101016; --lit:#16161d; --road:#2f2a22;
+    --hope:#63c76b; --hope-dim:#2f5a34; --z-hope:#9dffb0; --hope-xl:#d6ffdd;
+    --fear:#d45b57; --fear-dim:#5c2f2e; --z-fear:#ff8a86; --fear-xl:#ffc7c4;
+    --grey:#6a6a72; --grey-d:#3a3a40; --grey-l:#9a9aa2; --player:#f2f2f5; --gold:#d9c98a; --gold-d:#8a7c4e;
+    --mono: ui-monospace, "Cascadia Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--void);color:var(--grey-l);font-family:var(--mono);font-size:14px;line-height:1.5}
+  body{display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:1fr;height:100vh;overflow:hidden}
+  body.ledger-open{grid-template-columns:1fr minmax(300px,38%)}
+  header{grid-column:1/-1;display:flex;gap:1.2em;align-items:baseline;padding:.55em 1.2em;background:var(--bg);border-bottom:1px solid var(--lit);color:var(--grey);font-size:12px;letter-spacing:.04em;flex-wrap:wrap}
+  header b{color:var(--player);font-weight:600;letter-spacing:.18em}
+  header .act{color:var(--gold)}
+  header .you.hope{color:var(--hope)} header .you.fear{color:var(--fear)} header .you.grey{color:var(--grey-l)}
+  header .tint.hope{color:var(--hope)} header .tint.fear{color:var(--fear)} header .tint.drift{color:var(--player)}
+  header .fog{color:var(--grey-l);background:var(--grey-d);padding:0 .5em;border-radius:2px}
+  header .right{margin-left:auto;display:flex;gap:1em}
+  header button{background:none;border:1px solid var(--grey-d);color:var(--grey-l);font:inherit;padding:.1em .7em;cursor:pointer;border-radius:2px}
+  header button:hover{border-color:var(--grey-l);color:var(--player)}
+  #term{overflow-y:auto;padding:1.2em 1.4em 2em;scroll-behavior:smooth;background:radial-gradient(ellipse at 50% -10%,var(--memory) 0%,var(--void) 60%)}
+  #term::-webkit-scrollbar{width:8px} #term::-webkit-scrollbar-thumb{background:var(--grey-d)}
+  .block{max-width:78ch;margin:0 auto 1.4em}
+  pre.art{margin:.2em 0 .9em;font-size:12.5px;line-height:1.18;color:var(--grey-d);overflow-x:auto;white-space:pre;text-shadow:0 0 12px rgba(0,0,0,.6)}
+  .w{color:var(--player)} .g{color:var(--grey)} .d{color:var(--grey-d)} .h{color:var(--hope)} .f{color:var(--fear)} .o{color:var(--gold)}
+  .b-drift{color:var(--player)} .b-hope{color:var(--z-hope);text-shadow:0 0 10px var(--hope-dim)} .b-fear{color:var(--z-fear);text-shadow:0 0 10px var(--fear-dim)}
+  .you-line{color:var(--gold);margin:.2em 0 .8em}
+  .you-line::before{content:"› ";color:var(--gold-d)}
+  .prose{color:var(--grey-l);white-space:pre-wrap;max-width:72ch}
+  .prose.opening{color:var(--player)}
+  .prose .cursor{display:inline-block;width:.6em;background:var(--grey-l);animation:blink 1s steps(2) infinite;vertical-align:-.15em;height:1em}
+  @keyframes blink{to{visibility:hidden}}
+  .stamp{color:var(--grey-d);font-size:11.5px;margin:.6em 0 0;letter-spacing:.04em}
+  .stamp .act{color:var(--gold-d)}
+  .rules{color:var(--grey);font-size:12px;margin:.5em 0 0;border-left:2px solid var(--grey-d);padding-left:.8em;white-space:pre-wrap;display:none}
+  body.show-rules .rules{display:block}
+  .rules .sleep{color:var(--player)} .rules .broke{color:var(--fear)} .rules .dawn{color:var(--gold)}
+  .findings{color:var(--fear);font-size:12px;margin-top:.4em}
+  .choice{color:var(--gold);font-size:16px;margin:1em 0 .4em;padding:.8em 1em;border-left:3px solid var(--gold-d);white-space:pre-wrap;max-width:64ch}
+  .epilogue{color:var(--player);border-top:1px solid var(--grey-d);margin-top:1em;padding-top:1em;white-space:pre-wrap;max-width:72ch}
+  .sys{color:var(--grey);font-size:12.5px;white-space:pre-wrap}
+  .telling{margin-top:1.2em;padding:1em 1.2em;border:1px solid var(--grey-d);background:var(--bg);max-width:64ch}
+  .telling .k{color:var(--gold-d);font-size:11px;letter-spacing:.12em;margin-bottom:.6em}
+  .telling .tp{color:var(--player);white-space:pre-wrap;font-style:italic}
+  .err{color:var(--fear)}
+  .menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(22ch,1fr));gap:.5em;margin:.8em 0}
+  .menu button{background:var(--bg);border:1px solid var(--grey-d);color:var(--grey-l);font:inherit;text-align:left;padding:.6em .8em;cursor:pointer;border-radius:2px;line-height:1.3}
+  .menu button b{display:block;color:var(--player);font-weight:600}
+  .menu button:hover{border-color:var(--gold-d);color:var(--player)}
+  .menu button.roll{border-style:dashed}
+  form{grid-column:1;display:flex;align-items:center;gap:.7em;padding:.7em 1.4em;background:var(--bg);border-top:1px solid var(--lit)}
+  form .p{color:var(--gold)}
+  form input{flex:1;background:none;border:none;outline:none;color:var(--player);font:inherit;font-size:15px;caret-color:var(--gold)}
+  form input::placeholder{color:var(--grey-d)}
+  form .hint{color:var(--grey-d);font-size:11.5px}
+  form.busy input{color:var(--grey)}
+  aside{grid-row:2/4;grid-column:2;display:none;flex-direction:column;background:var(--bg);border-left:1px solid var(--lit);overflow:hidden}
+  body.ledger-open aside{display:flex}
+  aside h3{margin:0;padding:.6em 1em;font-size:11.5px;letter-spacing:.14em;color:var(--grey);border-bottom:1px solid var(--lit);font-weight:600;display:flex;gap:1em}
+  aside h3 span{cursor:pointer} aside h3 span.on{color:var(--player)}
+  aside .pane{flex:1;overflow:auto;padding:.8em 1em;font-size:12px;white-space:pre-wrap;color:var(--grey-l)}
+  aside .pane .add{color:var(--hope)} aside .pane .chg{color:var(--gold)} aside .pane .k{color:var(--grey)}
+  aside .pane .fact{padding:.15em 0;border-bottom:1px dotted var(--lit)}
+  .bar{display:inline-block;height:.6em;vertical-align:middle;border-radius:1px}
+  @media (prefers-reduced-motion: reduce){ .prose .cursor{animation:none} }
+  @media (max-width:720px){ body.ledger-open{grid-template-columns:1fr} aside{display:none!important} pre.art{font-size:9.5px} }
+</style>
+</head>
+<body>
+<header>
+  <b>SONDER</b>
+  <span class="act" id="h-act">—</span>
+  <span id="h-watch"></span>
+  <span id="h-sleeps"></span>
+  <span id="h-era"></span>
+  <span id="h-tint"></span>
+  <span class="fog" id="h-fog" hidden>fog</span>
+  <span id="h-you"></span>
+  <span class="right">
+    <button id="b-rules" title="show what the rules did each watch">rules</button>
+    <button id="b-ledger" title="the facts ledger (JSON) and the diff">ledger</button>
+    <button id="b-restart">be dealt again</button>
+  </span>
+</header>
+
+<div id="term"></div>
+
+<form id="f" autocomplete="off">
+  <span class="p">›</span>
+  <input id="in" placeholder="what do you do?" disabled>
+  <span class="hint" id="hint">/help</span>
+</form>
+
+<aside id="ledger">
+  <h3><span class="on" data-pane="diff">DIFF</span><span data-pane="facts">FACTS</span><span data-pane="json">LEDGER.JSON</span></h3>
+  <div class="pane" id="pane"></div>
+</aside>
+
+
+<script id="title-art">
+const TITLE_ART = __TITLE_ART__;
+</script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const term = $('#term'), input = $('#in'), form = $('#f');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let session = null, tint = 'drift', busy = false, lastRec = null, pane = 'diff', hist = [], hi = 0, ended = false;
+
+  // ---- rendering helpers ---------------------------------------------------
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  function artHtml(src){
+    // {w}{g}{d}{h}{f}{o}{b}{/} -> spans; {b} takes the being's current colour
+    let out = esc(src.replace(/^\n/, ''));
+    out = out.replace(/\{([wgdhfo])\}/g, '<span class="$1">').replace(/\{b\}/g, `<span class="b-${tint}">`).replace(/\{\/\}/g, '</span>');
+    return out;
+  }
+  function block(){ const d = document.createElement('div'); d.className = 'block'; term.appendChild(d); return d; }
+  function scroll(){ term.scrollTop = term.scrollHeight; }
+  function sys(msg, cls=''){ const b = block(); b.innerHTML = `<div class="sys ${cls}">${esc(msg)}</div>`; scroll(); return b; }
+
+  function typeInto(el, text, speed=9){
+    return new Promise(res => {
+      if (reduced || text.length > 1400) { el.textContent = text; return res(); }
+      let i = 0; const cur = document.createElement('span'); cur.className = 'cursor';
+      el.textContent = ''; el.appendChild(cur);
+      let skipped = false;
+      const skip = () => { skipped = true; };
+      term.addEventListener('click', skip, {once:true});
+      const tick = () => {
+        if (skipped) { el.textContent = text; term.removeEventListener('click', skip); return res(); }
+        const step = text[i] === '\n' ? 1 : (1 + (Math.random() < .2 ? 1 : 0));
+        cur.before(document.createTextNode(text.slice(i, i+step))); i += step;
+        if (i % 40 === 0) scroll();
+        if (i < text.length) setTimeout(tick, text[i-1] === '.' ? speed*9 : speed);
+        else { cur.remove(); scroll(); term.removeEventListener('click', skip); res(); }
+      };
+      tick();
+    });
+  }
+
+  function header(h){
+    if (!h) return;
+    $('#h-act').textContent = `ACT ${['','I','II','III'][h.act]} — ${h.act_title}`;
+    $('#h-watch').textContent = h.ended ? 'the story has ended' : h.watch;
+    $('#h-sleeps').textContent = h.sleeps ? `${h.sleeps} sleep${h.sleeps>1?'s':''}` : 'before the first dawn';
+    $('#h-era').textContent = h.era;
+    tint = h.tint;
+    const t = $('#h-tint'); t.className = `tint ${tint}`; t.textContent = tint === 'drift' ? 'the flame is white' : `the flame is ${tint === 'hope' ? 'green' : 'red'}`;
+    $('#h-fog').hidden = !h.fog;
+    const y = $('#h-you'); y.className = `you ${h.you.includes('hope')?'hope':h.you.includes('fear')?'fear':'grey'}`; y.textContent = `${h.name}: ${h.you}`;
+  }
+
+  function ruleLine(x){
+    let c = '';
+    if (x.startsWith('SLEEP')) c = 'sleep'; else if (x.includes('BROKE')) c = 'broke';
+    else if (x.includes('FIRST DAWN') || x.includes('GRIEF FRONT') || x.startsWith('era:')) c = 'dawn';
+    return `<span class="${c}">${esc(x)}</span>`;
+  }
+
+  async function showTurn(rec){
+    lastRec = rec; header(rec.header);
+    const b = block();
+    for (const a of rec.art_text) { const p = document.createElement('pre'); p.className = 'art'; p.innerHTML = artHtml(a); b.appendChild(p); }
+    const stamp = document.createElement('div'); stamp.className = 'stamp';
+    stamp.innerHTML = `<span class="act">${esc(rec.header.act_title)}</span> · ${esc(rec.header.watch)} · ${rec.header.sleeps ? rec.header.sleeps + ' sleep' + (rec.header.sleeps>1?'s':'') : 'before the first dawn'} · ${esc(rec.header.era)}`;
+    b.appendChild(stamp);
+    const prose = document.createElement('div'); prose.className = 'prose'; b.appendChild(prose);
+    scroll();
+    await typeInto(prose, rec.text);
+    const rules = document.createElement('div'); rules.className = 'rules';
+    rules.innerHTML = rec.log.map(ruleLine).join('\n'); b.appendChild(rules);
+    if (rec.style_findings && rec.style_findings.length){
+      const f = document.createElement('div'); f.className = 'findings';
+      f.textContent = 'style gate — shipped with findings: ' + rec.style_findings.map(x => `${x.rule} ${x.detail}`).join('; ');
+      b.appendChild(f);
+    }
+    if (rec.epilogue){
+      const e = document.createElement('div'); e.className = 'epilogue'; b.appendChild(e); scroll();
+      const q = rec.choice && rec.choice.question ? rec.choice.question : '';
+      const body = q && rec.epilogue.endsWith(q) ? rec.epilogue.slice(0, -q.length).trimEnd() : rec.epilogue;
+      await typeInto(e, body, 12);
+      if (q){ const c = document.createElement('div'); c.className = 'choice'; b.appendChild(c); scroll(); await typeInto(c, q, 16); }
+      if (rec.telling){
+        const t = document.createElement('div'); t.className = 'telling'; b.appendChild(t);
+        t.innerHTML = `<div class="k">THE TELLING — how ${esc(rec.header.name)}'s story will be told to the next one who passes through</div>`;
+        const tp = document.createElement('div'); tp.className = 'tp'; t.appendChild(tp); scroll();
+        const tq = rec.choice && rec.choice.question ? rec.choice.question : '';
+        await typeInto(tp, tq && rec.telling.trim().endsWith(tq) ? rec.telling.trim().slice(0, -tq.length).trimEnd() : rec.telling, 10);
+        if (rec.telling_findings && rec.telling_findings.length){ const f = document.createElement('div'); f.className='findings'; f.textContent = 'telling gate: ' + rec.telling_findings.map(x => `${x.rule} ${x.detail}`).join('; '); t.appendChild(f); }
+      }
+      ended = true; header(rec.header);
+      const endWord = {burned: 'burned', zealot: 'stopped moving', alone: 'alone', dawn: 'the fourth dawn'}[rec.ending] || rec.ending;
+      sys(`\nThe story of ${rec.header.name} ended: ${endWord}. It is banked in sessions/ as story.json — run sonder.py --compile to fold it into the game's story bank. /restart to be someone else, /transcript to read this one back.`);
+    }
+    renderPane(); scroll();
+  }
+
+  // ---- ledger drawer -------------------------------------------------------
+  function renderPane(){
+    const el = $('#pane'); if (!lastRec && pane !== 'json') { el.textContent = 'nothing has happened yet.'; }
+    if (pane === 'diff'){
+      if (!lastRec) return;
+      el.innerHTML = `<div class="k">turn ${lastRec.turn} — ${lastRec.diff.length} change${lastRec.diff.length===1?'':'s'}</div>` +
+        lastRec.diff.map(d => `<div class="${d.includes(' += ')?'add':'chg'}">${esc(d)}</div>`).join('');
+    } else if (pane === 'facts'){
+      const L = (lastRec||window.__opening).ledger;
+      el.innerHTML = L.facts.map(f => `<div class="fact">${esc(f)}</div>`).join('') +
+        `<div class="k" style="margin-top:1em">promises ${L.promises.length} · betrayals ${L.betrayals.length} · loyalties ${L.loyalties.length}</div>`;
+    } else {
+      const L = (lastRec||window.__opening).ledger;
+      el.innerHTML = bandBars(L) + `<div class="k">ledger.json</div>` + esc(JSON.stringify(L, null, 2));
+    }
+  }
+  function bandBars(L){
+    const row = (name, e, burned, col, trust, present) => {
+      const w = Math.abs(e) / 12 * 100; const c = burned ? 'var(--grey-d)' : e >= 3 ? 'var(--hope)' : e <= -3 ? 'var(--fear)' : 'var(--grey)';
+      return `<div><span class="k">${esc(name.padEnd(7))}</span> <span class="bar" style="width:${w/2}%;background:${c}"></span> ${burned?'burned':e} ${trust!==undefined?`· trust ${trust>0?'+':''}${trust}`:''} ${present===false?'· gone':''}</div>`;
+    };
+    let s = `<div style="margin-bottom:1em">` + row(L.player.name, L.player.emotion, L.player.burned);
+    for (const n of Object.values(L.band)) s += row(n.name, n.emotion, n.burned, null, n.trust, n.present);
+    return s + '</div>';
+  }
+  document.querySelectorAll('aside h3 span').forEach(s => s.onclick = () => { pane = s.dataset.pane; document.querySelectorAll('aside h3 span').forEach(x => x.classList.toggle('on', x === s)); renderPane(); });
+  $('#b-ledger').onclick = () => { document.body.classList.toggle('ledger-open'); renderPane(); };
+  $('#b-rules').onclick = () => document.body.classList.toggle('show-rules');
+  $('#b-restart').onclick = () => start();
+
+  // ---- the game ------------------------------------------------------------
+  async function api(path, body){
+    const r = await fetch(path, body ? {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)} : {});
+    const j = await r.json().catch(() => ({error: `bad response (${r.status})`}));
+    if (!r.ok) throw new Error(j.error || r.statusText);
+    return j;
+  }
+
+  async function start(){
+    session = null; ended = false; lastRec = null; term.innerHTML = ''; input.disabled = true; input.onkeydown = histKeys;
+    const info = await api('/api/info').catch(e => ({error: e.message}));
+    const b = block();
+    const title = document.createElement('pre'); title.className = 'art'; b.appendChild(title);
+    const intro = document.createElement('div'); intro.className = 'prose opening'; b.appendChild(intro);
+    if (info.error) { intro.innerHTML = `<span class="err">${esc(info.error)}</span>`; return; }
+    title.innerHTML = artHtml(window.__title || '');
+    await typeInto(intro, `The sky is grief. Below a ridge, people sit at a fire that went out, and on the ridge something tall has woken with a white light in its chest.\n\nEach time you play, the dark decides when it is — the camps, the villages, or the towns — and who you are. You do not choose. You might be dealt the same person twice, or never again.`, 7);
+    const m = document.createElement('div'); m.className = 'menu'; b.appendChild(m);
+    const go = document.createElement('button'); go.className = 'roll'; go.innerHTML = `<b>begin</b>let the dark decide`;
+    go.onclick = () => begin(); m.appendChild(go);
+    if (info.allow_pick){
+      const dev = document.createElement('div'); dev.className = 'stamp'; dev.textContent = 'dev-pick is on: type  era/person  e.g.  villages/hedda  then Enter';
+      b.appendChild(dev);
+      input.disabled = false; input.placeholder = 'era/person'; input.focus();
+      input.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); const [era, pid] = input.value.trim().split('/'); input.value=''; begin(pid || null, era || null); } };
+    } else {
+      input.placeholder = 'press begin, or type anything';
+      input.disabled = false; input.focus();
+      input.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); input.value=''; begin(); } };
+    }
+    const dm = document.createElement('div'); dm.className = 'stamp'; dm.textContent = `dungeon master: ${info.dm.backend} · ${info.dm.model}` + (info.dm.backend === 'mock' ? ' — NO MODEL: the prose is templated, only the rules are real' : '');
+    b.appendChild(dm); scroll();
+  }
+
+  async function begin(pid, era){
+    input.onkeydown = histKeys; input.disabled = true; busy = true; form.classList.add('busy');
+    try {
+      const o = await api('/api/new', {perspective: pid || null, era: era || null});
+      window.__opening = o; session = o.session; header(o.header);
+      term.innerHTML = '';
+      const b = block();
+      for (const a of o.art_text.slice(1)) { const p = document.createElement('pre'); p.className = 'art'; p.innerHTML = artHtml(a); b.appendChild(p); }
+      const dealt = document.createElement('div'); dealt.className = 'stamp'; dealt.innerHTML = `<span class="act">${esc(o.header.era.toUpperCase())}</span> · you have been dealt <span style="color:var(--player)">${esc(o.header.name)}</span>`; b.appendChild(dealt);
+      const prose = document.createElement('div'); prose.className = 'prose opening'; b.appendChild(prose);
+      await typeInto(prose, o.text, 8);
+      sys('\nThe light is coming. What do you do?  (/help for the few commands there are; click the text to skip the typing)');
+    } catch (e) { sys(e.message, 'err'); }
+    busy = false; form.classList.remove('busy'); input.disabled = false; input.placeholder = 'what do you do?'; input.focus();
+  }
+
+  const HELP = `you type what you do, in your own words — "share the water with Tate", "tell Wystan I believe him", "go up to the ridge camp", "leave her and run".
+the rules decide what it did; the dungeon master tells you.
+
+/ledger      open the facts ledger (diff · facts · the JSON itself)
+/rules       show what the rules did after each watch
+/facts       print the durable facts the story may not contradict
+/transcript  open this playthrough's transcript (markdown)
+/restart     be dealt again
+click the prose to skip the typing · ↑↓ recall what you typed`;
+
+  async function submit(text){
+    if (text.startsWith('/')){
+      const c = text.slice(1).toLowerCase();
+      if (c === 'help') return sys(HELP);
+      if (c === 'ledger' || c === 'l') { document.body.classList.add('ledger-open'); return renderPane(); }
+      if (c === 'rules') return document.body.classList.toggle('show-rules');
+      if (c === 'facts' || c === 'f') { const L = (lastRec||window.__opening).ledger; return sys(L.facts.join('\n')); }
+      if (c === 'transcript') return window.open(`/api/transcript?session=${session}`, '_blank');
+      if (c === 'restart' || c === 'quit') return start();
+      return sys(`no such command. /help`);
+    }
+    if (!session) return;
+    if (ended) return sys('The story has ended. /restart to be someone else.');
+    const you = block(); you.innerHTML = `<div class="you-line">${esc(text)}</div>`; scroll();
+    busy = true; form.classList.add('busy'); input.disabled = true;
+    const wait = sys('. . .'); let dots = 0; const iv = setInterval(() => { dots = (dots+1)%4; wait.firstChild.textContent = '. . . .'.slice(0, dots*2+1) || '.'; }, 400);
+    try {
+      const rec = await api('/api/turn', {session, text});
+      clearInterval(iv); wait.remove();
+      if (rec.kind === 'ended') { ended = true; sys(rec.text); }
+      else await showTurn(rec);
+    } catch (e) { clearInterval(iv); wait.remove(); sys(`the dungeon master stumbled: ${e.message}  — say it again, or differently.`, 'err'); }
+    busy = false; form.classList.remove('busy'); input.disabled = false; input.focus();
+  }
+
+  function histKeys(e){
+    if (e.key === 'ArrowUp' && hist.length) { hi = Math.max(0, hi-1); input.value = hist[hi]; e.preventDefault(); }
+    else if (e.key === 'ArrowDown') { hi = Math.min(hist.length, hi+1); input.value = hist[hi] || ''; e.preventDefault(); }
+  }
+  form.onsubmit = e => { e.preventDefault(); if (busy) return; const t = input.value.trim(); if (!t) return; input.value = ''; hist.push(t); hi = hist.length; submit(t); };
+  window.addEventListener('keydown', e => { if (document.activeElement !== input && !e.ctrlKey && !e.metaKey && e.key.length === 1) input.focus(); });
+
+  window.__title = TITLE_ART;
+  start();
+})();
+</script>
+</body>
+</html>

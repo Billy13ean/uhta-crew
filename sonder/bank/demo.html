@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>sonder engine — teller demo</title>
+<style>
+ body{background:#050507;color:#9a9aa2;font-family:ui-monospace,Consolas,monospace;font-size:14px;margin:0;min-height:100vh;display:grid;place-items:center}
+ .box{max-width:60ch;padding:2em;line-height:1.6}
+ h1{color:#f2f2f5;font-weight:600;letter-spacing:.2em;font-size:14px;margin:0 0 1em}
+ button{background:#0c0c10;border:1px solid #3a3a40;color:#9a9aa2;font:inherit;padding:.6em 1em;cursor:pointer;margin:.3em .3em .3em 0}
+ button.fear{border-color:#d45b57;color:#ffc7c4} button.hope{border-color:#63c76b;color:#d6ffdd}
+ pre{color:#6a6a72;font-size:12px;white-space:pre-wrap}
+ .note{color:#6a6a72;font-size:12px;border-left:2px solid #3a3a40;padding-left:1em;margin-top:1.5em}
+</style></head>
+<body><div class="box">
+<h1>SONDER ENGINE — TELLER DEMO</h1>
+<p>This is what the slice would do at a conversion: ask the bank for a telling that matches the player's colour, show it, move on. Click as if the flame had just turned someone.</p>
+<p><button class="fear" onclick="tell('fear')">the red flame converts someone</button>
+   <button class="hope" onclick="tell('hope')">the green flame converts someone</button>
+   <button onclick="tell('fear',['someone-broke','betrayed-someone'])">red, and only stories where someone broke or was betrayed</button></p>
+<pre id="stats"></pre>
+<div class="note">Canon: the game is wordless after the first dawn (GDD §1, ruled v0.9.2). Whether a telling may surface mid-run — as an encounter-scoped card under the 2026-08-19 presentation amendment, or only on the endscreen — is a Director ruling. This page is the mechanism, not the ruling.</div>
+</div>
+<script src="sonder-bank.js"></script>
+<script src="sonder-teller.js"></script>
+<script>
+ function stats(){ document.getElementById('stats').textContent = 'bank: ' + JSON.stringify(Sonder.stats(), null, 1); }
+ function tell(flame, anyTags){ const s = Sonder.pick({flame, anyTags}); if (!s) { alert('no story banked for that yet — play sonder, then: python sonder.py --compile'); return; } Sonder.show(s, {tint: flame, onClose: stats}); stats(); }
+ stats();
+</script>
+</body></html>

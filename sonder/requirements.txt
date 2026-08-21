@@ -1,0 +1,2 @@
+# The only third-party dependency. Neither --selftest nor --mock needs it.
+anthropic>=0.40,<1.0
