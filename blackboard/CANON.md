@@ -1,8 +1,11 @@
-# CANON.md — v17 | 2026-07-28 | gates [G1–G21 · Runs 17–22 · review-board closeout (v0.9.1/v0.9.2) · Run 23/23b SALVAGE — rules-v3.9.1-C ratified · A1-feedback closeout (v0.9.7)]
+# CANON.md — v18 | 2026-08-21 | gates [G1–G21 · Runs 17–22 · review-board closeout (v0.9.1/v0.9.2) · Run 23/23b SALVAGE — rules-v3.9.1-C ratified · A1-feedback closeout (v0.9.7) · the tellings ruled (v0.9.10)]
 
 > **Process canon lives in `CANON-process.md`** (Keeper escalation, build order, Definition of Playable, roster, RAG corpus, report-discipline defect). This file is the always-on digest, capped at **900 words** (`prompts/keeper.md` Mode A); the split is what brought it back under.
 
 **Open, promoted to top of queue:** the loop has never been tested by anyone but the Director. Thirteen ruleset generations verified, zero external playtests, 0 of 6 Playability criteria tested.
+
+## Delta from v17 — the tellings (v0.9.10, ruled 2026-08-21)
+**One text after the dawn.** `CONTRADICTS-LOCKED` against §1 Tone, raised by the A8 Sonder engine; **ruled AMEND** (`canon/CANON-RULING.json`, rule `sonder-telling-surface`): a banked *telling* — third person, gated, ending on a question — may be shown **at a conversion** as a paused card over the held world, colour-matched, once per conversion with ≥1 Sleep between, never in the sleep-0 cycle, never on the overworld or HUD. The pillar stands everywhere else. Three 2026-08-19 presentation proposals (HUD / instructions / repeats) remain **open**. Hook in the slice: next commit.
 
 ## Delta from v15
 

@@ -176,6 +176,17 @@
       "enforced_by": "ger/checks.py run_register_checks R2 (also gates Instructor lines)",
       "repealable": true,
       "note": "Instructor lines run through this same gate. If the instruction-text amendment passes, prefer scoping via amendment over repeal so narration lines stay wordless."
+    },
+    {
+      "id": "sonder-telling-surface",
+      "group": "sonder",
+      "title": "Tellings — where a Sonder story may surface in the wordless game",
+      "kind": "prose",
+      "source": "GDD v0.9.9 §1 Tone (wordless after the first dawn; ruled v0.9.2) + sonder/README §6",
+      "text": "Baseline (the pillar as written): after the first dawn the game shows no text. A Sonder telling — the third-person retelling of a person's experience of the being, banked by the Sonder engine — has NO mid-run surface; candidates are banked only, for the endscreen epilogue or a Director ruling.",
+      "enforced_by": "the slice: the Sonder hook (bank/sonder-teller.js) may be wired only under an AMENDED status of this rule; the telling text itself is gated at bank time (sonder/engine/style_gate.py: F1–F3, V1–V3, Z1, F4 for Register B)",
+      "repealable": true,
+      "note": "Added 2026-08-21 when the Sonder engine landed. Amending it is the Director's sanction for the telling to appear in play; repealing it would mean tellings are unconstrained, which the pillar does not allow — prefer AMEND with scope."
     }
   ],
   "proposals": [
@@ -251,6 +262,29 @@
         {
           "key": "cooldown",
           "label": "Cooldown-gated (name the cooldown in notes)"
+        }
+      ]
+    },
+    {
+      "id": "prop-sonder-telling",
+      "title": "Sonder telling surface",
+      "raised": "2026-08-21",
+      "targets": [
+        "sonder-telling-surface"
+      ],
+      "context": "The Sonder engine banks one telling per finished playthrough — who the person was, what the flame was to them, what they did and what it cost, ending on a question. The Director asked for the game to tell a player of a fear run what a person who lived through the red flame felt, at the moment of a conversion.",
+      "options": [
+        {
+          "key": "at-conversion",
+          "label": "One telling, at a conversion (an NPC entering devout under the player's colour), as a paused card over the world, colour-matched, cooldown-gated; the overworld otherwise stays wordless"
+        },
+        {
+          "key": "endscreen-only",
+          "label": "Tellings surface only on the endscreen epilogue"
+        },
+        {
+          "key": "uphold",
+          "label": "No surface — bank only"
         }
       ]
     }
