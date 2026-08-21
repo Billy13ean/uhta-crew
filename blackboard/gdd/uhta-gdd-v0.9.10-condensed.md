@@ -147,3 +147,33 @@ The Orchestrator is the addition that needs justifying, and headcount is not the
 **Resolved.** **The one text after the dawn (v0.9.10):** a `CONTRADICTS-LOCKED` flag against §1 Tone, raised when the Sonder engine landed, ruled AMEND with scope — tellings at conversions as paused cards, nothing else; ruling and this transcription land in one commit, as §5 requires. Worship grants stamina, with an action floor preserving agency. The scale widened to −12..+12 with burnout semantics. Roar's Fear-coding resolved by witness radius: out-of-radius roaring is free terrain work, witnessed roaring is a Fear act, roaring at the hope-burned is the save. The antagonist stopped being a hidden coefficient — a deferred Uhtcearu voided balance, drama and exploit-counter at once — and became the Grief Front.
 
 **Open, ordered.** (1) The loop has never been tested by a stranger; §4 turns that from an embarrassment into a gate. (2) The combined-model exploit re-attack (§4). (3) The Keeper's report discipline lapsed after run 19 — fifteen reports for twenty-three runs, and the one contradiction the crew ever caught has no committed diff. A contract is worth what the trail behind it is worth. **Dials deferred to playtest:** front render legibility, era thresholds, the wordless endscreen, a bounded counter-pole mercy, zealot-death cost, run-length envelope.
+
+## 9. Proposal — the Temple of Grief endgame (2026-08-21, pre-ruling)
+
+> **Status: PROPOSED, not canon.** Director pitch, placed here so the Keeper retrieves it. Nothing in this section changes a binding number; every number below is a hypothesis for the Mechanic Designer to vary and the harness to measure. Full concept with art beats: `blackboard/gdd/CONCEPT-temple-endgame-and-start-menu.md`. Prior design of the temple scene and the storm-on-temple tradeoff: `art/LANDMARKS.md` §4, §7.
+
+**The change in one line.** The game currently ends with a number crossing 0.8. It should end with a walk. Grief gets a home: a **Temple** spawns at a random site at genesis; a permanent **storm** sits above it, visible from anywhere; the Grief Front *issues from* the temple rather than condensing out of nowhere; when the unification hold completes the storm lifts, the player walks to the temple, enters, and Uhtcearu — a seated figure far larger than the avatar, the room that takes no colour — fades to dust. Then a painted terminal screen, pole-specific (Hope / Fear), and a painted loss screen.
+
+**Beats.** E0 genesis: temple placed, storm column rendered on the horizon even in unrevealed fog. E1 mid-game: Front fires as today but travels from the temple to its target. E2 hold complete: win **arms** (new `WIN_PENDING` state) instead of terminating; storm lifts over ~1 sleep; the loss check keeps running. E3 the walk: the world stays live; unification overlays stop at the temple steps. E4 inside: painted interior (`make_temple_scene.py`, pole-colour-bleed assertion). E5 the dust: the figure dissolves; the terminal **fires here**. E6 the world remade: Hope or Fear painting + one short card. L loss: the `grey` cave-mirror composition + one short card; the storm never lifted.
+
+**Placement constraints for the random roll.** ≥14 tiles from the cave `[24,24]`; ≥6 tiles from every beacon basin (`[[7,7],[41,7],[7,41],[41,41],[24,44]]`) and from the map edge (multi-tile footprint must fit); never inside a tribe's genesis position; drawn from the run seed so harness replays are deterministic.
+
+**Variants requested — all three, harness decides.**
+
+- **A — presentation only.** Storm and temple are render; the Front is exactly `rules-v3.9.1-C`. Zero sim change. The control arm.
+- **B — origin change.** Front spawns at the temple and crawls to `largest_dominant_pole_tribe_position`; `duration_sleeps` counts from arrival; `move_tiles_per_sleep` must rise above 1 or it never arrives on a 48×48 map — that is the tuning question. Target unchanged from Run 23b; only origin and travel change.
+- **C — apathy well.** Elevated passive decay within a radius of the temple (the `LANDMARKS` §7 hook), so the walk in E3 costs something. Interacts with the Front; needs the full arm treatment.
+
+**Two-phase terminal (all variants).** WIN: the existing hold (≥0.8, 6 ticks spanning a generation, no living opposing zealot, |S| ≥ 3) sets `win_armed`; the terminal fires on temple entry. LOSS: unchanged, always live, including during the walk — a same-tick tie still resolves to the loss. Stamina floor (~5 actions) is unchanged, so `WIN_PENDING` has nothing new to farm.
+
+**Canon this knowingly touches — for the Keeper to flag, and the Director to rule.**
+
+| | Canon line | Conflict |
+|---|---|---|
+| R1 | `spawn_at: largest_dominant_pole_tribe_position` (Run 23b: "no dead-air centroid misses, no player-steerable aim") | B and C reintroduce geography. Recommendation: keep 23b's *target*, change only *origin*; if the harness shows siege-aiming returns, fall back to A. |
+| R2 | §1 Tone: words end at the first dawn; `sonder-telling-surface` is the one amended exception | E6 and L carry a card. Proposed second named surface `terminal-card-surface`: one card after the terminal, ≤40 words, Critic- and register-gated. Or UPHOLD and the paintings carry it wordless. |
+| R3 | Win is a unification event checked every tick, terminal immediately | Becomes arm-then-fire. Red-team the gap. |
+| R4 | Temple at fixed `[24,6]` (`LANDMARKS` §8 Q1, never ruled) | Random with constraints. |
+| R5 | §3 stop rule: NICE #2–5 frozen until §4 criterion 6 has been asked | This is NICE #2 (the endscreen), enlarged. The crew run produces a proposal, not a build; the rule gates the build. |
+
+**Questions for this run.** Does a fixed origin re-enable the aiming Run 23b closed? Can the hold-to-temple walk be lost, farmed, or trivialised? Does C brick Hope runs? Median added sleeps per variant against v3.9.1? Can any variant make the Front fire in a do-nothing run?

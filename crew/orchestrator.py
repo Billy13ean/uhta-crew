@@ -34,7 +34,7 @@ from .validate import Validator
 
 DEFAULT_SEEDS = [0, 1, 2, 3, 4, 5, 6, 7]
 BASELINE = "rules-v3.9.1-C.json"
-GDD = "uhta-gdd-v0.9.7-abridged.md"
+GDD = "uhta-gdd-v0.9.10-condensed.md"
 
 DEFAULT_GOAL = (
     "Front feel (GDD §6, CANON v17 open questions). metrics-v3.9.1 §E records that "
