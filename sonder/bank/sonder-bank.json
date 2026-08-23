@@ -1,9 +1,273 @@
 {
  "schema": "sonder-bank/1",
- "compiled": "2026-08-21T04:26:11",
- "count": 10,
- "clean_count": 9,
+ "compiled": "2026-08-23T14:32:08",
+ "count": 12,
+ "clean_count": 11,
  "stories": [
+  {
+   "id": "bram-260823-135851-e75e",
+   "recorded": "2026-08-23T14:12:55",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "bram",
+    "name": "Bram",
+    "role": "the smith with the split hammer",
+    "line": "brand",
+    "private": "Bram split the hammer on a man from the ridge shrine who came down to preach, not on iron. Osric saw.",
+    "private_told": false,
+    "heirloom": null,
+    "heirloom_given_to": "ilse"
+   },
+   "flame": "hope",
+   "ending": "dawn",
+   "final": {
+    "you": "tentative fear",
+    "emotion": -7,
+    "burned": false,
+    "era": "villages",
+    "fog": true,
+    "camp": "the fork village, under the ridge",
+    "sleeps": 4,
+    "basins_lit": 2,
+    "dominance": {
+     "hope": 0.0,
+     "fear": 0.5,
+     "grey": 0.5
+    }
+   },
+   "era": "villages",
+   "tags": [
+    "flame:hope",
+    "ending:dawn",
+    "who:bram",
+    "walked-into-the-flame",
+    "saw-the-fog",
+    "you:tentative-fear",
+    "era:villages",
+    "line:brand",
+    "handed-it-on",
+    "zealot-among-you:fear"
+   ],
+   "telling": "Bram was the smith whose hammer had been broken and re-forged, and the green flame was the thing he could not stop walking toward, even when it frightened him. He went twice into it and came back both times, smaller and less certain. Before the last night he gave the hammer to Ilse — kept nothing of the trade — and then walked forward again without it. He did not come back unafraid. He came back tentative, and the fear was still in him at dawn, but it was quieter than it had been.\n\nBram gave away the thing that held his worst secret, and the one who took it did not know what she was holding. Would you have kept it?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 10,
+    "did": "gave the split hammer to Ilse for keeps",
+    "could_have": "held the hammer and kept the private truth inside it buried",
+    "question": "Bram gave away the thing that held his worst secret, and the one who took it did not know what she was holding. Would you have kept it?"
+   },
+   "epilogue": "The fourth dawn comes in without ceremony. The fog has lifted, but the light it leaves behind is thin and unconvinced. Teg stands at the edge of the camp the way Teg has always stood — deep in fear, ringed by it, the others arranged around that stillness like furniture around a cold hearth. Wyn is afraid too, but tentatively, which means Wyn is still moving, still capable of being reached. Ilse holds the split hammer — the old spearhead re-forged — and carries nothing on her face that could be called colour; she is grey, but she stayed, and the trust between you is real even if the feeling is not. Hedda is grey. Osric is grey. You walked into the green flame twice and came back both times carrying less than you hoped, and what you kept was this: a lit basin that has not gone out, and people who did not scatter.\n\nThe teacher's voice, returning once: *you did not save them. You stayed near enough that they did not go alone.*\n\nA generation on, the children of this camp will build their houses around the basin's light, and they will not know why they always face the door toward the ridge.\n\nBram gave away the thing that held his worst secret, and the one who took it did not know what she was holding. Would you have kept it?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Bram walked toward the tall one and its flame.",
+     "became": [
+      "Wyn: grey -> tentative fear"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "village",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Bram told the band he had seen the tall one and was filled with something he could not name.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Bram, afraid and needing warmth, went to light the fire.",
+     "became": [
+      "Osric: grey -> tentative fear",
+      "Osric: tentative fear -> grey",
+      "Bram: tentative fear -> devout fear",
+      "Bram: devout fear -> tentative fear"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Bram told the band he was no longer afraid and that he did not think they needed to go.",
+     "became": [
+      "Osric: grey -> tentative fear",
+      "Bram: tentative fear -> devout fear"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Bram got up and moved, going somewhere without a clear destination.",
+     "became": [
+      "Osric: tentative fear -> grey",
+      "Bram: devout fear -> tentative fear",
+      "Bram: tentative fear -> devout fear"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Bram stood still and watched the flame.",
+     "became": [
+      "Osric: grey -> tentative fear",
+      "Osric: tentative fear -> grey"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 7,
+     "did": "Bram went to Hedda and asked her to hold him.",
+     "became": [
+      "Hedda trust -> +1"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 8,
+     "did": "Bram spoke aloud to no one in particular, admitting he did not know what to do and that the tall one frightened him — his words trailing off, unfinished.",
+     "became": [],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Bram walked out toward the tall one and its flame.",
+     "became": [
+      "Osric: grey -> tentative fear",
+      "Ilse: grey -> tentative fear",
+      "Ilse: tentative fear -> grey",
+      "Hedda: grey -> tentative fear",
+      "Hedda: tentative fear -> grey"
+     ],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "vigil",
+      "fog"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Bram handed the split hammer back to Ilse, giving it to her for keeps.",
+     "became": [
+      "Bram gave Ilse the split hammer, its head an old spearhead re-forged; trust -> +2",
+      "Ilse trust -> +3",
+      "Osric: tentative fear -> grey",
+      "Osric: grey -> tentative fear"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Bram stepped forward ahead of the others, walking toward the tall one and its flame.",
+     "became": [
+      "Osric: tentative fear -> grey",
+      "Bram: devout fear -> tentative fear",
+      "Osric: grey -> tentative fear",
+      "Bram: tentative fear -> devout fear"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Bram held on, staying where he was and enduring.",
+     "became": [
+      "Osric: tentative fear -> grey",
+      "Bram: devout fear -> tentative fear",
+      "Bram: tentative fear -> devout fear",
+      "Bram: devout fear -> tentative fear"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "dawn"
+     ]
+    }
+   ],
+   "band_end": {
+    "ilse": {
+     "name": "Ilse",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 3,
+     "present": true,
+     "where": null
+    },
+    "wyn": {
+     "name": "Wyn",
+     "state": "tentative fear",
+     "emotion": -3,
+     "trust": -1,
+     "present": true,
+     "where": null
+    },
+    "hedda": {
+     "name": "Hedda",
+     "state": "grey",
+     "emotion": 0,
+     "trust": 1,
+     "present": true,
+     "where": null
+    },
+    "osric": {
+     "name": "Osric",
+     "state": "grey",
+     "emotion": -1,
+     "trust": 1,
+     "present": true,
+     "where": null
+    },
+    "teg": {
+     "name": "Teg",
+     "state": "unmoving fear",
+     "emotion": -12,
+     "trust": 0,
+     "present": true,
+     "where": null
+    }
+   },
+   "promises": [],
+   "betrayals": []
+  },
   {
    "id": "bram_s-260821-000956-b8cb",
    "recorded": "2026-08-21T00:14:38",
@@ -1158,6 +1422,236 @@
      "kept": true
     }
    ],
+   "betrayals": []
+  },
+  {
+   "id": "ilse-260823-142050-0d21",
+   "recorded": "2026-08-23T14:31:04",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "ilse",
+    "name": "Ilse",
+    "role": "keeps the well",
+    "line": "ila",
+    "private": "Ilse has been drawing the well-ration short for a month and has told no one the water is going bitter at the bottom.",
+    "private_told": false,
+    "heirloom": "the well-bucket's handle, wrapped in old leather with a red stitch",
+    "heirloom_given_to": null
+   },
+   "flame": "hope",
+   "ending": "dawn",
+   "final": {
+    "you": "grey",
+    "emotion": 1,
+    "burned": false,
+    "era": "villages",
+    "fog": false,
+    "camp": "the fork village, under the ridge",
+    "sleeps": 4,
+    "basins_lit": 2,
+    "dominance": {
+     "hope": 0.0,
+     "fear": 0.0,
+     "grey": 1.0
+    }
+   },
+   "era": "villages",
+   "tags": [
+    "flame:hope",
+    "ending:dawn",
+    "who:ilse",
+    "you:grey",
+    "era:villages",
+    "line:ila"
+   ],
+   "telling": "Ilse kept the well. When the flame came down green she did not go to it — she ran first, then came back and held the bucket like something that could hold her in return. She gave water to Teg, more than once, in the careful way of someone who has decided that one thing will be enough. It was not enough. She ended grey, as the others did, as the village did, the bucket still wrapped in its red stitch, the basins burning without her.\n\nIlse kept the bitter water secret and sent Hedda away. Would you have told her?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 3,
+    "did": "turned away from Hedda, sending her off without a word",
+    "could_have": "told Hedda the water was going bitter at the bottom",
+    "question": "Ilse kept the bitter water secret and sent Hedda away. Would you have told her?"
+   },
+   "epilogue": "The fourth dawn comes without announcement. The green flame has settled into the tall one's bones, and two basins hold their light on the ridge and at the low marsh — not warm, not cold, simply lit, the way a fact is lit. Teg stands near you, the only one who does: you shared what you had, three times across the long dark, and that sharing held. Wyn and Osric are here too, but they are elsewhere in themselves, grey and quiet, neither pulled nor pushing. Bram and Hedda are grey with something harder underneath — a turned shoulder remembered, a trust that was asked for and not given. You ran, once, at the beginning, and you turned away, once, from someone who needed a face to look at. The well-bucket's handle is still in your hand, the red stitch against your palm, and the well is still yours to keep.\n\n*One person is not nothing. But the village will feel, for a generation, the shape of what you did not do — the doors that stay half-open, the names that go unasked. The basins will burn. The grey will thin a little, where Teg walks.*\n\nIlse kept the bitter water secret and sent Hedda away. Would you have told her?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Ilse ran out into the open, away from the camp.",
+     "became": [],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "village",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Ilse gripped the well-bucket's handle tightly in both hands, holding it close.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Ilse turned away from Hedda, making clear she wants her gone.",
+     "became": [
+      "Hedda trust -> -1",
+      "Bram: tentative fear -> grey"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Ilse gave Teg water from the well-ration.",
+     "became": [
+      "Teg trust -> +2"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Ilse drank from the well.",
+     "became": [],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Ilse drew water from the well and brought it to Teg.",
+     "became": [
+      "Teg trust -> +3"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 7,
+     "did": "Ilse hugged the air — no one in particular, nothing done.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 8,
+     "did": "Ilse gave Teg the water.",
+     "became": [
+      "Teg trust -> +3"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Ilse did nothing.",
+     "became": [],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Ilse wrapped her arms around herself and stood still a moment, seeking comfort in the quiet of the camp.",
+     "became": [],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Ilse asked Bram if he was all right.",
+     "became": [
+      "Bram trust -> -1"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Ilse drank from the well water herself.",
+     "became": [],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "dawn"
+     ]
+    }
+   ],
+   "band_end": {
+    "wyn": {
+     "name": "Wyn",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 0,
+     "present": true,
+     "where": null
+    },
+    "bram": {
+     "name": "Bram",
+     "state": "grey",
+     "emotion": 1,
+     "trust": -1,
+     "present": true,
+     "where": null
+    },
+    "hedda": {
+     "name": "Hedda",
+     "state": "grey",
+     "emotion": 1,
+     "trust": -1,
+     "present": true,
+     "where": null
+    },
+    "osric": {
+     "name": "Osric",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 0,
+     "present": true,
+     "where": null
+    },
+    "teg": {
+     "name": "Teg",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 3,
+     "present": true,
+     "where": null
+    }
+   },
+   "promises": [],
    "betrayals": []
   },
   {
@@ -2492,10 +2986,12 @@
  "index": {
   "by_flame": {
    "hope": [
+    "bram-260823-135851-e75e",
     "bram_s-260821-000956-b8cb",
     "hedda-260820-225437-7768",
     "hester-260821-000731-e69f",
     "hild-260820-235448-a7c0",
+    "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
     "teg-260820-235906-ddea",
     "wyn-260820-235010-8983"
@@ -2508,8 +3004,10 @@
   },
   "by_ending": {
    "dawn": [
+    "bram-260823-135851-e75e",
     "bram_s-260821-000956-b8cb",
     "hild-260820-235448-a7c0",
+    "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
     "teg-260820-235906-ddea",
     "wyn-260820-235010-8983",
@@ -2525,6 +3023,9 @@
    ]
   },
   "by_who": {
+   "bram": [
+    "bram-260823-135851-e75e"
+   ],
    "bram_s": [
     "bram_s-260821-000956-b8cb"
    ],
@@ -2537,6 +3038,9 @@
    ],
    "hild": [
     "hild-260820-235448-a7c0"
+   ],
+   "ilse": [
+    "ilse-260823-142050-0d21"
    ],
    "oswy": [
     "oswy-260821-000402-fb4b"
@@ -2556,21 +3060,72 @@
   },
   "by_tag": {
    "flame:hope": [
+    "bram-260823-135851-e75e",
     "bram_s-260821-000956-b8cb",
     "hedda-260820-225437-7768",
     "hester-260821-000731-e69f",
     "hild-260820-235448-a7c0",
+    "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
     "teg-260820-235906-ddea",
     "wyn-260820-235010-8983"
    ],
    "ending:dawn": [
+    "bram-260823-135851-e75e",
     "bram_s-260821-000956-b8cb",
     "hild-260820-235448-a7c0",
+    "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
     "teg-260820-235906-ddea",
     "wyn-260820-235010-8983",
     "wystan-260821-001914-de9b"
+   ],
+   "who:bram": [
+    "bram-260823-135851-e75e"
+   ],
+   "walked-into-the-flame": [
+    "bram-260823-135851-e75e",
+    "hester-260821-000731-e69f",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983",
+    "wystan-260821-001914-de9b"
+   ],
+   "saw-the-fog": [
+    "bram-260823-135851-e75e",
+    "hedda-260820-225437-7768",
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "wyn-260820-235010-8983"
+   ],
+   "you:tentative-fear": [
+    "bram-260823-135851-e75e",
+    "tate-260821-001438-c66d",
+    "wystan-260821-001914-de9b"
+   ],
+   "era:villages": [
+    "bram-260823-135851-e75e",
+    "hedda-260820-225437-7768",
+    "ilse-260823-142050-0d21",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983"
+   ],
+   "line:brand": [
+    "bram-260823-135851-e75e",
+    "bram_s-260821-000956-b8cb"
+   ],
+   "handed-it-on": [
+    "bram-260823-135851-e75e",
+    "teg-260820-235906-ddea"
+   ],
+   "zealot-among-you:fear": [
+    "bram-260823-135851-e75e",
+    "hester-260820-231629-a81d",
+    "oswy-260821-000402-fb4b",
+    "tate-260821-001438-c66d",
+    "wyn-260820-235010-8983"
    ],
    "who:bram_s": [
     "bram_s-260821-000956-b8cb"
@@ -2593,15 +3148,13 @@
     "bram_s-260821-000956-b8cb",
     "hester-260821-000731-e69f",
     "hild-260820-235448-a7c0",
+    "ilse-260823-142050-0d21",
     "teg-260820-235906-ddea"
    ],
    "era:Victorian-towns": [
     "bram_s-260821-000956-b8cb",
     "hester-260820-231629-a81d",
     "hester-260821-000731-e69f"
-   ],
-   "line:brand": [
-    "bram_s-260821-000956-b8cb"
    ],
    "ending:zealot": [
     "hedda-260820-225437-7768",
@@ -2611,20 +3164,8 @@
    "who:hedda": [
     "hedda-260820-225437-7768"
    ],
-   "saw-the-fog": [
-    "hedda-260820-225437-7768",
-    "hester-260820-231629-a81d",
-    "oswy-260821-000402-fb4b",
-    "tate-260821-001438-c66d",
-    "wyn-260820-235010-8983"
-   ],
    "you:unmoving-hope": [
     "hedda-260820-225437-7768"
-   ],
-   "era:villages": [
-    "hedda-260820-225437-7768",
-    "teg-260820-235906-ddea",
-    "wyn-260820-235010-8983"
    ],
    "line:hild": [
     "hedda-260820-225437-7768",
@@ -2648,22 +3189,8 @@
     "hester-260820-231629-a81d",
     "oswy-260821-000402-fb4b"
    ],
-   "zealot-among-you:fear": [
-    "hester-260820-231629-a81d",
-    "oswy-260821-000402-fb4b",
-    "tate-260821-001438-c66d",
-    "wyn-260820-235010-8983"
-   ],
    "ending:alone": [
     "hester-260821-000731-e69f"
-   ],
-   "walked-into-the-flame": [
-    "hester-260821-000731-e69f",
-    "oswy-260821-000402-fb4b",
-    "tate-260821-001438-c66d",
-    "teg-260820-235906-ddea",
-    "wyn-260820-235010-8983",
-    "wystan-260821-001914-de9b"
    ],
    "who:hild": [
     "hild-260820-235448-a7c0"
@@ -2678,6 +3205,12 @@
     "oswy-260821-000402-fb4b",
     "tate-260821-001438-c66d",
     "wystan-260821-001914-de9b"
+   ],
+   "who:ilse": [
+    "ilse-260823-142050-0d21"
+   ],
+   "line:ila": [
+    "ilse-260823-142050-0d21"
    ],
    "who:oswy": [
     "oswy-260821-000402-fb4b"
@@ -2697,18 +3230,11 @@
     "tate-260821-001438-c66d",
     "teg-260820-235906-ddea"
    ],
-   "you:tentative-fear": [
-    "tate-260821-001438-c66d",
-    "wystan-260821-001914-de9b"
-   ],
    "line:tate": [
     "tate-260821-001438-c66d",
     "teg-260820-235906-ddea"
    ],
    "who:teg": [
-    "teg-260820-235906-ddea"
-   ],
-   "handed-it-on": [
     "teg-260820-235906-ddea"
    ],
    "who:wyn": [
@@ -2735,15 +3261,17 @@
    ]
   },
   "by_era": {
+   "villages": [
+    "bram-260823-135851-e75e",
+    "hedda-260820-225437-7768",
+    "ilse-260823-142050-0d21",
+    "teg-260820-235906-ddea",
+    "wyn-260820-235010-8983"
+   ],
    "Victorian towns": [
     "bram_s-260821-000956-b8cb",
     "hester-260820-231629-a81d",
     "hester-260821-000731-e69f"
-   ],
-   "villages": [
-    "hedda-260820-225437-7768",
-    "teg-260820-235906-ddea",
-    "wyn-260820-235010-8983"
    ],
    "nomad camps": [
     "hild-260820-235448-a7c0",
@@ -2754,6 +3282,7 @@
   },
   "by_line": {
    "brand": [
+    "bram-260823-135851-e75e",
     "bram_s-260821-000956-b8cb"
    ],
    "hild": [
@@ -2761,6 +3290,9 @@
     "hester-260820-231629-a81d",
     "hester-260821-000731-e69f",
     "hild-260820-235448-a7c0"
+   ],
+   "ila": [
+    "ilse-260823-142050-0d21"
    ],
    "oswy": [
     "oswy-260821-000402-fb4b"
@@ -2777,15 +3309,15 @@
  },
  "skipped": [
   {
-   "path": "/sessions/rcw-013y2tdfxmhu2wmpkw9cvx3r/mnt/uhta-crew/sonder/sessions/brand-260820-220940-e1b3/story.json",
+   "path": "C:\\dev\\uhta-crew\\sonder\\sessions\\brand-260820-220940-e1b3\\story.json",
    "why": "predates the choice — the ruling requires a telling to end on its question"
   },
   {
-   "path": "/sessions/rcw-013y2tdfxmhu2wmpkw9cvx3r/mnt/uhta-crew/sonder/sessions/ila-260820-220654-45f5/story.json",
+   "path": "C:\\dev\\uhta-crew\\sonder\\sessions\\ila-260820-220654-45f5\\story.json",
    "why": "predates the choice — the ruling requires a telling to end on its question"
   },
   {
-   "path": "/sessions/rcw-013y2tdfxmhu2wmpkw9cvx3r/mnt/uhta-crew/sonder/sessions/tate-260820-221242-df0e/story.json",
+   "path": "C:\\dev\\uhta-crew\\sonder\\sessions\\tate-260820-221242-df0e\\story.json",
    "why": "predates the choice — the ruling requires a telling to end on its question"
   }
  ]

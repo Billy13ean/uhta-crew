@@ -139,6 +139,21 @@ HEIRLOOMS = {
 }
 
 
+# Distinctive, era-independent words for each line's object. Shared by the
+# narrator's LOCKED-OBJECTS diagram (story.lineage_note) and the deterministic
+# heirloom gate (style_gate.heirloom_gate) — one vocabulary, two enforcers.
+# Director ruling 2026-08-23: the objects are locked to their lines; the DM
+# had been interchanging them between bloodlines in live play.
+HEIRLOOM_MARKS = {
+    "ila":    ["water skin", "water-skin", "well-bucket", "bucket", "flask", "red stitch", "re-stitched"],
+    "wystan": ["river-stone", "river stone", "grey stone"],
+    "brand":  ["spear", "hammer", "mallet"],
+    "hild":   ["bone comb", "comb"],
+    "oswy":   ["red cloth", "strip of cloth", "strip of red"],
+    "tate":   ["feather"],
+}
+
+
 def heirloom(line: str, era: str) -> str:
     return HEIRLOOMS[line][era]
 

@@ -113,6 +113,23 @@ def selftest() -> int:
     ok(Lh["player"]["heirloom"] is None and Lh["band"]["tate"]["carried"] and Lh["band"]["tate"]["heirloom_from"] == "Ila", "the object changes hands")
     ok(any("has it now" in f for f in Lh["facts"]), "the handing-on is a fact")
 
+    # L1 — the objects are LOCKED to their lines (Director, 2026-08-23)
+    Lg = world.new_ledger("ila", seed=1)
+    ok("THE OBJECTS ARE LOCKED" in story.lineage_note(Lg) and "river-stone" in story.lineage_note(Lg), "the narrator gets the locked-objects diagram")
+    wrong = "Hild turns the grey river-stone in her lap and says nothing."
+    ok(any(f["rule"] == "L1" for f in style_gate.heirloom_gate(wrong, Lg)), "L1: the river-stone in Hild's hands is flagged")
+    right = "Wystan turns the grey river-stone once and is still."
+    ok(not style_gate.heirloom_gate(right, Lg), "L1: the river-stone in Wystan's hands passes")
+    scenery = "A feather of ash drifts over the cold fire."
+    ok(not style_gate.heirloom_gate(scenery, Lg), "L1: an object with no named hands is scenery, not a claim")
+    world.advance_turn(Lg)
+    world.apply_action(Lg, {"verb": "share", "target": "tate", "tone": "hope", "gives_heirloom": True, "summary": "Ila handed Tate the skin"})
+    handed = "Tate holds the water skin with the red stitch close, not drinking."
+    ok(not style_gate.heirloom_gate(handed, Lg), "L1: a handed-on object is right in its NEW hands")
+    back = "Ila tightens her grip on the water skin."
+    ok(any(f["rule"] == "L1" for f in style_gate.heirloom_gate(back, Lg)), "L1: ...and wrong back in the old hands")
+    ok("handed on" in story.heirloom_lock(Lg), "the diagram follows the ledger when an object moves")
+
     # the two caps
     p = {"emotion": 0, "band": "grey", "pole": "grey", "burned": False, "burned_colour": None, "alive": True, "tends": 0}
     log = []

@@ -1,0 +1,25 @@
+# Dockerfile.sonder — A8 narrative engine (Sonder), in the same mold as the
+# other five pipeline images: the build gates on the selftest, so a broken
+# image cannot exist. No node — Sonder is pure Python + one dependency.
+#
+# Unlike the batch pipelines this one is a SERVER: it opens a page on :8765
+# and you play in your own browser. The container cannot open your browser,
+# so it runs --no-browser and you open http://127.0.0.1:8765 yourself.
+# sessions/ and bank/ are bind-mounted (see compose), so every playthrough
+# lands on the host where --compile and git can see it.
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY sonder/requirements.txt sonder/requirements.txt
+RUN pip install --no-cache-dir -r sonder/requirements.txt
+
+COPY sonder/ sonder/
+
+WORKDIR /app/sonder
+
+# Build-time gate: 203 assertions, no API calls. A failing selftest fails the build.
+RUN python sonder.py --selftest
+
+EXPOSE 8765
+ENTRYPOINT ["python", "sonder.py", "--no-browser"]

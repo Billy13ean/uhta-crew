@@ -25,6 +25,8 @@ from __future__ import annotations
 
 import re
 
+from . import cast as _cast
+
 MAX_WORDS = 240   # live calibration 2026-08-21: with the press the model lands 210-260; the prompt asks for 150, hard 200
 
 FORBIDDEN_NOUNS = {
@@ -108,3 +110,60 @@ def second_person(text: str) -> list[dict]:
     if m:
         f.append({"rule": "F4", "detail": f"first person in a Register B telling: '{m.group(0)}'"})
     return f
+
+
+def _first(name: str) -> str:
+    return name.split()[0].lower()
+
+
+def heirloom_gate(text: str, L: dict) -> list[dict]:
+    """L1 (Director, 2026-08-23): the objects are locked to their lines. For every
+    distinctive object word in the narration, the nearest named hands must belong
+    to that object's CURRENT holder per the ledger (ownership follows gives_heirloom).
+    Conservative on purpose: an object mentioned with no name nearby is scenery and
+    passes; only a clear wrong-hands attribution is a finding. Findings feed the
+    same one-retry loop as every other rule, with the right holder named."""
+    P = L["player"]
+    everyone = [("you", P)] + list(L["band"].items())
+    # who legitimately holds each line's object RIGHT NOW
+    holders: dict[str, set[str]] = {}
+    for line in _cast.HEIRLOOM_MARKS:
+        hs = set()
+        for pid, person in everyone:
+            own = (person.get("heirloom") or "").lower()
+            carried = " ".join(person.get("carried") or []).lower()
+            marks = _cast.HEIRLOOM_MARKS[line]
+            if any(m in own for m in marks) or any(m in carried for m in marks):
+                hs.add(_first(person["name"]))
+                if pid == "you":
+                    hs.update({"you", "your", "yours"})
+        holders[line] = hs
+    all_names = {_first(per["name"]) for _, per in everyone} | {"you", "your", "yours"}
+    low = text.lower()
+    findings: list[dict] = []
+    flagged = set()
+    for line, marks in _cast.HEIRLOOM_MARKS.items():
+        for mark in marks:
+            for m in re.finditer(re.escape(mark), low):
+                # nearest name within 90 chars either side, closest wins
+                lo, hi = max(0, m.start() - 90), min(len(low), m.end() + 90)
+                best, bestd = None, 10**9
+                for nm in all_names:
+                    for nm_m in re.finditer(r"\b" + re.escape(nm) + r"\b", low[lo:hi]):
+                        d = abs((lo + nm_m.start()) - m.start())
+                        if d < bestd:
+                            best, bestd = nm, d
+                if best is None:
+                    continue                       # scenery — no hands claimed
+                if best in holders.get(line, set()):
+                    continue                       # right hands
+                key = (line, best)
+                if key in flagged:
+                    continue
+                flagged.add(key)
+                rightful = ", ".join(sorted(h for h in holders.get(line, set()) if h not in {"you", "your", "yours"})) or "nobody (it was given away or is gone)"
+                findings.append({"rule": "L1", "detail":
+                    f"'{mark}' is {line}'s line's object and the ledger puts it in {rightful}'s hands — "
+                    f"the prose puts it nearest to '{best}'. Objects are locked to their lines; "
+                    f"re-narrate with each object in its own carrier's hands."})
+    return findings

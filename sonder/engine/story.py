@@ -299,8 +299,49 @@ def lineage_note(L: dict) -> str:
         "never in what you SAY about it: no 'like her grandmother', no 'as her line always has', no family names explained. "
         "Each also carries an OBJECT handed down their line and re-made for this age. Let it be touched, turned, set down, handed over — never explained, never called an heirloom, never given a history. "
         "A perceptive player should be able to notice it across playthroughs; an inattentive one should never be told.\n"
-        + "\n".join(lines) + zl
+        + "\n".join(lines) + zl + "\n\n" + heirloom_lock(L)
     )
+
+
+def heirloom_lock(L: dict) -> str:
+    """THE DIAGRAM (Director, 2026-08-23). One object per bloodline, locked.
+    Built from the LIVE ledger so a handed-on object moves its row's hands —
+    the table is the truth of this run, not the truth of the era."""
+    rows = []
+    for line, holder, obj in _heirloom_rows(L):
+        rows.append(f"  {line:<8}| {obj:<62}| {holder}")
+    return (
+        "THE OBJECTS ARE LOCKED — one per bloodline, never interchanged, never merged, never described in another's hands:\n\n"
+        "  line    | the object of that line, in this age                          | in whose hands NOW\n"
+        "  --------|---------------------------------------------------------------|-------------------\n"
+        + "\n".join(rows) + "\n\n"
+        "HARD RULES: an object appears ONLY in the hands the table names. Never let another person hold, touch-as-owner, "
+        "or be described with an object that is not theirs. If two objects would appear in one sentence, keep each with its own carrier. "
+        "The ONLY way an object changes hands is the ledger recording it handed on — and then the NEW hands are the only correct hands. "
+        "A habit stays with its line even when the object has moved."
+    )
+
+
+def _heirloom_rows(L: dict):
+    """(line, holder-description, object-text) for every bloodline, from the live ledger."""
+    P = L["player"]
+    everyone = [("you", P)] + [(pid, n) for pid, n in L["band"].items()]
+    rows = []
+    for line in cast.HEIRLOOMS:
+        obj = cast.heirloom(line, L["world"]["era"])
+        holders = []
+        for pid, person in everyone:
+            own = person.get("heirloom") or ""
+            carried = " ".join(person.get("carried") or [])
+            if obj == own or (person.get("line") == line and person.get("heirloom")):
+                holders.append(f"{person['name']}{' (the player — their own)' if pid == 'you' else ''}")
+            elif obj in carried or (obj and any(obj[:24] in c for c in (person.get('carried') or []))):
+                holders.append(f"{person['name']} (handed on to them; it is theirs now)")
+        if not holders:
+            giver = next((per['name'] for _, per in everyone if per.get('line') == line), line)
+            holders.append(f"nobody present — {giver} gave it away or it is gone")
+        rows.append((line, "; ".join(holders), obj))
+    return rows
 
 
 ERA_ART = {"nomad camps": "camp_grey", "villages": "village", "Victorian towns": "victorian"}

@@ -98,3 +98,18 @@ services:
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       CREW_MODEL: ${CREW_MODEL:-claude-sonnet-4-5}
     command: ["--selftest"]
+
+  # A8, the Sonder narrative engine. A server, not a batch run: start it, then
+  # open http://127.0.0.1:8765 and play. Ctrl+C stops it. Sessions and the bank
+  # are bind-mounted so playthroughs land in the repo for --compile and git.
+  sonder:
+    build:
+      context: .
+      dockerfile: Dockerfile.sonder
+    image: uhta-sonder:latest
+    env_file: .env
+    ports:
+      - "8765:8765"
+    volumes:
+      - ./sonder/sessions:/app/sonder/sessions
+      - ./sonder/bank:/app/sonder/bank

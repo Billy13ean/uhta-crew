@@ -178,10 +178,13 @@ const TITLE_ART = __TITLE_ART__;
     await typeInto(prose, rec.text);
     const rules = document.createElement('div'); rules.className = 'rules';
     rules.innerHTML = rec.log.map(ruleLine).join('\n'); b.appendChild(rules);
+    // Director, 2026-08-23: the gate reviews every draft BEFORE it posts (two
+    // passes in engine/session.py). Findings that survive both reviews live in
+    // the session log (turn-NN.json, transcript.md) — they are never printed
+    // into the story, where they broke the rhythm.
     if (rec.style_findings && rec.style_findings.length){
-      const f = document.createElement('div'); f.className = 'findings';
-      f.textContent = 'style gate — shipped with findings: ' + rec.style_findings.map(x => `${x.rule} ${x.detail}`).join('; ');
-      b.appendChild(f);
+      console.warn('style gate — shipped with findings (see the session log):',
+        rec.style_findings.map(x => `${x.rule} ${x.detail}`).join('; '));
     }
     if (rec.epilogue){
       const e = document.createElement('div'); e.className = 'epilogue'; b.appendChild(e); scroll();
@@ -195,7 +198,7 @@ const TITLE_ART = __TITLE_ART__;
         const tp = document.createElement('div'); tp.className = 'tp'; t.appendChild(tp); scroll();
         const tq = rec.choice && rec.choice.question ? rec.choice.question : '';
         await typeInto(tp, tq && rec.telling.trim().endsWith(tq) ? rec.telling.trim().slice(0, -tq.length).trimEnd() : rec.telling, 10);
-        if (rec.telling_findings && rec.telling_findings.length){ const f = document.createElement('div'); f.className='findings'; f.textContent = 'telling gate: ' + rec.telling_findings.map(x => `${x.rule} ${x.detail}`).join('; '); t.appendChild(f); }
+        if (rec.telling_findings && rec.telling_findings.length){ console.warn('telling gate (see the session log):', rec.telling_findings.map(x => `${x.rule} ${x.detail}`).join('; ')); }
       }
       ended = true; header(rec.header);
       const endWord = {burned: 'burned', zealot: 'stopped moving', alone: 'alone', dawn: 'the fourth dawn'}[rec.ending] || rec.ending;
