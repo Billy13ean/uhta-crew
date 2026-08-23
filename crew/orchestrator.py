@@ -33,7 +33,7 @@ from .llm import LLMError
 from .validate import Validator
 
 DEFAULT_SEEDS = [0, 1, 2, 3, 4, 5, 6, 7]
-BASELINE = "rules-v3.9.1-C.json"
+BASELINE = "rules-v3.10-C.json"   # schema 3.10 control (Run 24): 3.9.1 + default-off temple dials
 GDD = "uhta-gdd-v0.9.10-condensed.md"
 
 DEFAULT_GOAL = (

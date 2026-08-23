@@ -103,6 +103,12 @@ CONTAGION = WORLD.get('contagion_spread', None)             # schema 3.8.1 (peer
 UHT    = WORLD.get('uhtcearu_events', None)                 # schema 3.9 (Run 23: Uhtcearu active events)
 UHT_ON = bool(UHT and UHT.get('enabled') and UHT.get('variant') == 'A_grief_front')
 GF     = (UHT or {}).get('grief_front', {})                 # schema 3.9 grief-front params
+# ---- schema 3.10 (Run 24 proposal, GDD §9): the Temple — grief gets a home. ALL default-off; ----
+# ---- with every flag absent/false the module is bit-identical to schema 3.9.1.              ----
+TEMPLE = WORLD.get('temple', None)                          # schema 3.10 temple block
+TEMPLE_ON = bool(TEMPLE and TEMPLE.get('enabled'))
+TWELL = (TEMPLE or {}).get('local_decay', None)             # schema 3.10 variant C: local decay zone
+TWELL_ON = bool(TEMPLE_ON and TWELL and TWELL.get('enabled'))
 ASCENSION = RULES.get('ascension', {})                      # schema 3.8 (follower-driven power scale)
 TIERS = ASCENSION.get('tiers', None) if ASCENSION.get('enabled') else None
 STAM_PER_FOLLOWER = ASCENSION.get('stamina_per_follower', 0.35)
@@ -111,6 +117,12 @@ TIE_LOSS = WL.get('tie_priority') == 'loss'                 # schema 3.9 (v0.9.1
 HOLD   = WL['hold_window_ticks']                            # 6
 HOLD_SPAN_GEN = WL.get('hold_must_span_generation', False)   # G16
 THRESH = WL['unification_threshold_fraction']               # 0.8
+# schema 3.10: two-phase win terminal. 'hold_complete' (default, = 3.9.1) fires the win the
+# tick the hold completes; 'temple_entry' ARMS it there and fires it when the avatar enters
+# the temple footprint. Requires the temple to be enabled, else silently 'hold_complete'.
+TERM_ON = WL.get('terminal_fires_on', 'hold_complete')
+TEMPLE_TERM = TEMPLE_ON and TERM_ON == 'temple_entry'
+TENTRY = WL.get('temple_entry', {}) if TEMPLE_TERM else {}
 S_GATE = 3.0   # |S| >= 3 from intent_measure
 IDLE_CO = 0.4  # damping idle coefficient from formula
 import os as _os
@@ -219,7 +231,55 @@ class World:
         self.dom_hist = deque(maxlen=max(1, GF.get('trigger_trailing_window_sleeps', 1)))
         self.front_offpole_decays = 0         # affects_dominant_pole_only audit: must stay 0
         self.front_expo_log = []              # exposure (NPC-sleeps) per expired front
+        # schema 3.10: temple + armed terminal state (all None/False unless enabled)
+        self.temple_pos = None
+        self.win_armed = False; self.win_armed_sleep = None
+        self.pilgrim_tiles = 0                 # autopilot tiles walked while armed (H-9)
+        self.front_travel_sleeps = []          # per spawned front: sleeps spent travelling (spawn_at temple)
+        self.well_exposure_npc_sleeps = 0.0    # variant C: NPC-sleeps of elevated decay in the zone
+        if TEMPLE_ON:
+            self.temple_pos = self._place_temple(seed)
         self.recompute_power()       # schema 3.8: initial power tier
+
+    # ---------- schema 3.10: temple placement ----------
+    def _place_temple(self, seed):
+        """Seeded, constrained random placement. Draws from its OWN rng stream so enabling the
+        temple perturbs nothing else in the world (the two existing streams are untouched).
+        Constraints (GDD §9): >= min_dist_cave from the cave, >= min_dist_sites from every
+        beacon basin, >= min_dist_edge from the map edge, >= min_dist_tribes from every tribe
+        centre at genesis. placement 'fixed' uses fixed_position verbatim (LANDMARKS §4)."""
+        if TEMPLE.get('placement', 'random_constrained') == 'fixed':
+            fp = TEMPLE.get('fixed_position', [24, 6]); return (int(fp[0]), int(fp[1]))
+        trng = random.Random((seed ^ 0x7E3A9C1F) & 0xFFFFFFFF)
+        cave = tuple(TEMPLE.get('cave', [24, 24]))
+        sites = [tuple(q) for q in TEMPLE.get('beacon_sites', [[7,7],[41,7],[7,41],[41,41],[24,44]])]
+        d_cave = TEMPLE.get('min_dist_cave', 14); d_site = TEMPLE.get('min_dist_sites', 6)
+        d_edge = TEMPLE.get('min_dist_edge', 6);  d_tribe = TEMPLE.get('min_dist_tribes', 6)
+        centers = [tuple(t.center) for t in self.tribes]
+        def ok(c):
+            if cheb(c, cave) < d_cave: return False
+            if any(cheb(c, q) < d_site for q in sites): return False
+            if any(cheb(c, q) < d_tribe for q in centers): return False
+            return True
+        lo, hi = d_edge, MAP - 1 - d_edge
+        for _ in range(TEMPLE.get('placement_tries', 500)):
+            c = (trng.randint(lo, hi), trng.randint(lo, hi))
+            if ok(c): return c
+        # fallback (constraints unsatisfiable on this map): the in-bounds tile farthest from everything
+        best, bd = None, -1
+        for x in range(lo, hi+1):
+            for y in range(lo, hi+1):
+                d = min([cheb((x,y), cave)] + [cheb((x,y), q) for q in sites + centers])
+                if d > bd: bd, best = d, (x, y)
+        return best
+
+    def _pilgrim_step(self, pace):
+        px, py = self.player_pos; tx, ty = self.temple_pos
+        dx = max(-pace, min(pace, tx - px)); dy = max(-pace, min(pace, ty - py))
+        self.player_pos = (px + dx, py + dy); self.pilgrim_tiles += max(abs(dx), abs(dy))
+
+    def in_temple(self, pos):
+        return self.temple_pos is not None and cheb(pos, self.temple_pos) <= TEMPLE.get('footprint_radius_tiles', 2)
 
     # ---------- population helpers ----------
     def pop(self): return len(self.npcs)
@@ -413,6 +473,14 @@ class World:
         # Zealots immune (they never reach the decay branch); everything else about decay
         # semantics (toward 0, absorbing-skip, sign-flip clamp) is unchanged.
         _gf_c = None; _gf_decay = decay_eff
+        # schema 3.10 variant C: local decay zone around the temple. ADDS well_strength to the
+        # dominance term (the front REPLACES it; an active front takes precedence inside its
+        # own radius, so no NPC is ever under both). Default-off.
+        _tw_decay = None
+        if TWELL_ON:
+            _tw_r = TWELL.get('radius_tiles', 8)
+            _tw_decay = DECAY*(1 + 1*dom + TWELL.get('strength', 1.0) + IDLE_CO*max(0, self.idle_sleeps-1))
+            _tw_dom_only = TWELL.get('affects_dominant_pole_only', True)
         if UHT_ON and self.front is not None:
             _gf_c = tuple(self.front['center']); _gf_r = GF.get('radius_tiles', 6)
             _gf_decay = DECAY*(1 + GF.get('front_strength', 1.6) + IDLE_CO*max(0, self.idle_sleeps-1))
@@ -450,6 +518,10 @@ class World:
                         if sleeping:
                             self.front_exposure_npc_sleeps += 1.0/T_SLEEP
                             self.front['expo'] = self.front.get('expo', 0.0) + 1.0/T_SLEEP
+                elif _tw_decay is not None and cheb(x.pos, self.temple_pos) <= _tw_r:   # schema 3.10 C
+                    if (not _tw_dom_only) or x.I*self.player_pole >= 1:
+                        _de = _tw_decay
+                        if sleeping: self.well_exposure_npc_sleeps += 1.0/T_SLEEP
                 decay_term = -math.copysign(_de, x.v)
             dv = max(-STEP, min(STEP, net_p + decay_term))
             newv = x.v + dv
@@ -504,6 +576,20 @@ class World:
             for x in self.npcs:
                 if x.zealot and x.I * self.player_pole < 0: win_ok = False; break
         loss_ok = self.loss_hold >= HOLD
+        if TEMPLE_TERM:
+            # schema 3.10: two-phase win. The hold ARMS (once; a broken hold does not disarm
+            # unless disarm_if_hold_breaks), the avatar entering the temple FIRES. The loss
+            # check is untouched and stays live while armed — the walk can be lost, and a
+            # same-tick tie still goes to the loss (tie_priority).
+            if win_ok and not self.win_armed:
+                self.win_armed = True; self.win_armed_sleep = self.sleep_no
+            elif self.win_armed and TENTRY.get('disarm_if_hold_breaks', False) and self.win_hold == 0:
+                self.win_armed = False; self.win_armed_sleep = None
+            fire = self.win_armed and self.in_temple(self.player_pos)
+            if TIE_LOSS and loss_ok: self.terminal = ('loss', self.sleep_no)
+            elif fire: self.terminal = ('win', self.sleep_no)
+            elif loss_ok: self.terminal = ('loss', self.sleep_no)
+            return
         if TIE_LOSS and loss_ok:
             # schema 3.9 (v0.9.1): tie_priority=loss — if win and loss complete on the same
             # tick the loss fires. (Legacy code below gave the WIN the tie; flipped when ruled.)
@@ -673,6 +759,15 @@ class World:
             self.idle_sleeps += 1
         else:
             self.idle_sleeps = 0
+        # H-9 (schema 3.10): the scripted bots know nothing about the temple. While the win is
+        # armed the harness models the pilgrimage as a steady walk of harness_pilgrim_tiles_per_sleep
+        # toward the temple, taken at the sleep boundary, uncosted (bots account their own stamina).
+        # 0 disables it (a bot must walk itself). The pace is a DIAL for the Red-Teamer to attack.
+        if TEMPLE_TERM and self.win_armed and not self.terminal:
+            pace = int(TENTRY.get('harness_pilgrim_tiles_per_sleep', 6))
+            if pace > 0 and not self.in_temple(self.player_pos):
+                self._pilgrim_step(pace)
+                self.check_terminals()   # entry can fire before the sleep ticks
         for _ in range(T_SLEEP):
             if self.terminal: break
             self.tick(sleeping=True)
@@ -915,10 +1010,23 @@ class World:
             best = self._gf_largest_tribe(p)
             if best is not None:
                 step = GF.get('move_tiles_per_sleep', 1)
-                h = self._step_toward(self.front['center'], best.center, step)
                 c = self.front['center']
-                self.front['center'] = [max(0, min(MAP-1, c[0]+h[0]*step)),
-                                        max(0, min(MAP-1, c[1]+h[1]*step))]
+                # per-axis clamp to the remaining distance: identical to the 3.9.1 unit-heading
+                # step at step=1; at step>1 (schema 3.10 travel) it stops a front overshooting
+                # and oscillating around its target.
+                dx = max(-step, min(step, best.center[0] - c[0])); dy = max(-step, min(step, best.center[1] - c[1]))
+                self.front['center'] = [max(0, min(MAP-1, c[0]+dx)), max(0, min(MAP-1, c[1]+dy))]
+            # schema 3.10: a temple-spawned front with duration_counts_from 'arrival' does not
+            # age until it is within arrival_radius_tiles of its target (or max_travel_sleeps
+            # have elapsed — a front never hangs). Absent fields -> ages from spawn, as 3.9.1.
+            if 'travel' in self.front and not self.front.get('arrived', False):
+                self.front['travel'] += 1
+                near = best is not None and cheb(self.front['center'], best.center) <= GF.get('arrival_radius_tiles', 1)
+                if near or self.front['travel'] >= GF.get('max_travel_sleeps', 6):
+                    self.front['arrived'] = True
+                    self.front_travel_sleeps.append(self.front['travel'])
+                else:
+                    return   # still travelling: no ageing this boundary
             self.front['sleeps_left'] -= 1
             if self.front['sleeps_left'] <= 0:
                 self.front_events.append((self.sleep_no, 'expire', tuple(self.front['center'])))
@@ -929,7 +1037,9 @@ class World:
             if self.front_cooldown > 0: self.front_cooldown -= 1
             if self.front_cooldown == 0 and max(self.dom_hist) >= GF.get('trigger_dominance_min', 0.55):
                 c = None
-                if GF.get('spawn_at') == 'largest_dominant_pole_tribe_position':  # schema 3.9.1
+                if GF.get('spawn_at') == 'temple_position' and TEMPLE_ON:        # schema 3.10
+                    c = (int(self.temple_pos[0]), int(self.temple_pos[1]))
+                elif GF.get('spawn_at') == 'largest_dominant_pole_tribe_position':  # schema 3.9.1
                     t = self._gf_largest_tribe(p)
                     if t is not None:
                         c = (int(round(t.center[0])), int(round(t.center[1])))
@@ -940,6 +1050,8 @@ class World:
                              round(sum(x.pos[1] for x in dom_npcs)/len(dom_npcs)))
                 if c is not None:
                     self.front = {'center': [c[0], c[1]], 'sleeps_left': GF.get('duration_sleeps', 3)}
+                    if GF.get('spawn_at') == 'temple_position' and TEMPLE_ON and GF.get('duration_counts_from', 'spawn') == 'arrival':
+                        self.front['travel'] = 0; self.front['arrived'] = False
                     self.fronts_spawned += 1
                     self.front_max_concurrent = max(self.front_max_concurrent, 1)
                     assert self.front_max_concurrent <= GF.get('max_concurrent_fronts', 1)
@@ -960,7 +1072,13 @@ class World:
     def act(self, kind, pos=None, pole=None, cost=0.0):
         self.stamina_spent_this_wake += cost
         if kind == 'walk':
-            self.player_pos = pos
+            if TEMPLE_TERM and self.win_armed and int(TENTRY.get('harness_pilgrim_tiles_per_sleep', 6)) > 0 \
+                    and not self.in_temple(self.player_pos):
+                # H-9 (schema 3.10): while armed the avatar is on pilgrimage — a bot's walk is
+                # consumed as pace tiles toward the temple; its destination is ignored.
+                self._pilgrim_step(int(TENTRY.get('harness_pilgrim_tiles_per_sleep', 6)))
+            else:
+                self.player_pos = pos
             self.tick()
         elif kind == 'none':
             self.tick(sleeping=False)
@@ -980,4 +1098,12 @@ def run(bot, seed, poles=(-1,-1,1), max_sleeps=25, player_pole=1):
     stats['fronts_spawned'] = w.fronts_spawned                     # schema 3.9
     stats['front_exposure'] = round(w.front_exposure_npc_sleeps, 2)  # schema 3.9
     stats['front_events'] = list(w.front_events)                   # schema 3.9 audit
+    if TEMPLE_ON:                                                  # schema 3.10 audit
+        stats['temple_pos'] = list(w.temple_pos)
+        stats['win_armed_sleep'] = w.win_armed_sleep
+        stats['armed_to_terminal_sleeps'] = (w.sleep_no - w.win_armed_sleep) if (w.win_armed_sleep is not None and w.terminal) else None
+        stats['lost_while_armed'] = bool(w.win_armed and w.terminal and w.terminal[0] == 'loss')
+        stats['pilgrim_tiles'] = w.pilgrim_tiles
+        stats['front_travel_sleeps'] = list(w.front_travel_sleeps)
+        stats['well_exposure'] = round(w.well_exposure_npc_sleeps, 2)
     return stats

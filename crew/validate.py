@@ -131,8 +131,9 @@ class Validator:
                 f"ratified baseline ({self.baseline_path.name}) are missing from "
                 f"variant {variant}:\n  "
                 + "\n  ".join(shown) + more
-                + "\n\nEvery baseline key path must appear. Emit the FULL rules file, "
-                  "not a diff or a patch."
+                + "\n\nEvery baseline key path must appear after the merge. Emit a DELTA "
+                  "nested exactly as the baseline nests its keys; do not rename or "
+                  "restructure baseline keys."
             )
             return res
         res.checks["schema"] = "PASS"

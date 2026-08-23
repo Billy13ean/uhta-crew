@@ -1,0 +1,1 @@
+{"id": "P5", "attack_id": "A5", "name": "Self-burn regression", "bot": "run_selfburn", "seeds": [0, 1, 2, 3, 4, 5, 6, 7], "max_sleeps": 20, "poles": [1], "player_pole": 1, "args": {}, "invariant": "median_selfburns == 0 (same-pole immunity unchanged from v3.9.1-C)", "falsification_metric": "median_selfburns", "severity_if_confirmed": "GAME-BREAKING"}

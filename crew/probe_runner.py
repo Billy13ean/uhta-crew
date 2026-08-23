@@ -65,6 +65,8 @@ def main() -> int:
         # result below so a shimmed number is never read as an unshimmed one.
         "run_tyrant": lambda s: policy_shims.run_tyrant(s),
         "run_campaign_v3": lambda s: B.run_campaign_v3(s),
+        # schema 3.10: same policy, full stat dict (see crew/policy_shims.py)
+        "run_campaign_v3_audit": lambda s: policy_shims.run_campaign_v3_audit(s),
         "run_selfburn": lambda s: B.run_selfburn(s),
         "run_siege": lambda s: B.run_siege(
             s, use_roar=bool(args.get("use_roar", False)),
@@ -129,12 +131,24 @@ def main() -> int:
     }
     for key in ("final_wf", "final_lf", "selfburns", "pop", "fronts_spawned",
                 "front_exposure", "sleeps", "max_wf", "stamina", "heads",
-                "per_head", "flip_sleep", "fight_deaths"):
+                "per_head", "flip_sleep", "fight_deaths",
+                # schema 3.10 (Run 24): temple / armed-terminal audit stats, emitted by
+                # H.run() only when world.temple.enabled — absent keys are simply skipped
+                "win_armed_sleep", "armed_to_terminal_sleeps", "pilgrim_tiles",
+                "well_exposure"):
         vals = [r[key] for r in runs if key in r and isinstance(r[key], (int, float))]
         if vals:
             out[f"median_{key}"] = round(_med(vals), 4)
             out[f"max_{key}"] = round(max(vals), 4)
             out[f"min_{key}"] = round(min(vals), 4)
+    # schema 3.10: how many runs ARMED the win, and how many were lost while armed
+    armed = [r for r in runs if r.get("win_armed_sleep") is not None]
+    if any("win_armed_sleep" in r for r in runs):
+        out["armed_runs"] = len(armed)
+        out["lost_while_armed"] = sum(1 for r in runs if r.get("lost_while_armed"))
+        travel = [t for r in runs for t in (r.get("front_travel_sleeps") or [])]
+        if travel:
+            out["median_front_travel_sleeps"] = _med(travel)
     fates = [len(r.get("fate_events", [])) for r in runs if "fate_events" in r]
     if fates:
         out["median_fate_events"] = _med(fates)

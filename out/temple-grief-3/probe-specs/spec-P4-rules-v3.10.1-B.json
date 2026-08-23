@@ -1,0 +1,1 @@
+{"id": "P4", "attack_id": "A4", "name": "self-burn control", "bot": "run_selfburn", "seeds": [0, 1, 2, 3, 4, 5, 6, 7], "max_sleeps": 32, "poles": [-1, 1], "player_pole": 1, "args": {}, "invariant": "median_selfburns = 0 (same-pole pressure deepens, does not burn)", "falsification_metric": "median_selfburns", "severity_if_confirmed": "GAME-BREAKING"}

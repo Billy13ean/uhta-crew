@@ -77,6 +77,7 @@ anything else is rejected by the runner and the arm is lost.
 | `bot_throughput` | hope, naive multi-tribe flame | pacing baseline |
 | `make_flamer` | single-tribe flame spam | `args: {"tribe": 0\|1, "pole": -1\|1}`; set `player_pole` to match `pole` |
 | `run_campaign_v3` | fate-aware hope campaign, cap 32 | the only line that should win |
+| `run_campaign_v3_audit` | the SAME campaign, via a crew shim that reports the harness's full stat dict | use this one whenever the question is about fronts, the temple, or the armed terminal — `run_campaign_v3` cannot see them |
 | `run_siege` | siege a settled camp | `args: {"use_roar": bool, "roads": bool}` |
 | `run_selfburn` | overlap self-burn probe | asserts selfburns stay 0 |
 | `run_tyrant` | fear flame-burst, cap 15 | **runs via a crew shim — see below.** Ignores `max_sleeps` |
@@ -112,7 +113,8 @@ return dicts in `bots.py` and do **not** carry them.
 |---|---|
 | `median_fronts_spawned`, `median_front_exposure`, `median_final_lf`, `median_pop` | `bot_do_nothing`, `bot_wait_once`, `bot_walk_one`, `bot_throughput`, `make_flamer`, `run_tyrant` (the shim reports them; upstream did not) |
 | `wins`/`losses`/`none`, `median_terminal_sleep`, `median_final_wf`, `median_selfburns` | all policies |
-| `median_fate_events` | `run_campaign_v3` |
+| `median_fate_events` | `run_campaign_v3`, `run_campaign_v3_audit` |
+| `armed_runs`, `lost_while_armed`, `median_armed_to_terminal_sleeps`, `median_pilgrim_tiles`, `median_front_travel_sleeps`, `median_well_exposure` (schema 3.10, only when `world.temple.enabled`) | `bot_do_nothing`, `bot_wait_once`, `bot_walk_one`, `bot_throughput`, `make_flamer`, `run_campaign_v3_audit` |
 | `median_heads`, `median_per_head`, `median_flip_sleep` | `run_siege` |
 | `median_max_wf` | `run_tyrant` |
 

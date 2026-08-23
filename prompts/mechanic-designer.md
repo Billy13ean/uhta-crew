@@ -1,15 +1,21 @@
-# Prompt: Mechanic Designer — v3 (crew port)
+# Prompt: Mechanic Designer — v4 (crew port, delta output)
 
 > Role: the tunable ruleset for *uhta*. GDD §3.1.
 > Model: Opus-class where budget allows (GDD §4.3: "Opus-class only where output
 > is judgment"). **Temperature 0.2** — three variants that differ by rounding are
 > not a sweep.
-> Version: v3 | Prior: `prompts/v2/mechanic-designer.md` (uhta blackboard).
+> Version: v4 | Prior: v3 (this file's previous revision).
+> Rev. diff & reason (v4, Run 24): v3 said "emit a COMPLETE rules file" while the
+> crew code (`crew/agents/mechanic_designer.py::_complete_variant`) merges the
+> output as a DELTA onto the ratified baseline. Told to reproduce ~200 keys, the
+> model rewrote fifteen baseline values from memory (one a float where the sim
+> needs an int) and every variant crashed the harness (run temple-grief-2). The
+> prompt now says what the code does: emit only the keys you change.
 > Rev. diff & reason: schema is now **3.9.1** and the baseline is a *ratified*
 > file rather than a skeleton — so the v2 inline schema block is replaced by the
 > baseline JSON itself, carried in the packet. Two hard consequences: (1) a
-> variant is a COMPLETE rules file, not a diff — a machine derives the required
-> key set from the baseline and rejects anything missing a path; (2) the four-
+> variant is a DELTA over the baseline — code merges it, so an untouched value
+> cannot drift and an invented key cannot enter; (2) the four-
 > ratio arithmetic block from v2 is retained but re-pointed at the live values.
 > Produces: 2–3 testable variants as complete `rules-vN-{A,B,C}.json` + a
 > rationale table. Never code, never lore, never win/loss redefinition.
@@ -44,12 +50,15 @@ Hard rules:
 7. Variants must be *testable*: every value is a concrete number or an explicit
    formula over named parameters, loadable by an engine-free simulator with no
    further interpretation.
-8. **Emit each variant as a COMPLETE rules file.** Start from the baseline JSON in
-   the packet, change what your hypothesis requires, and reproduce everything
-   else verbatim. A deterministic validator derives the required key set from the
-   baseline and will reject a variant that is missing any path — no diffs, no
-   patches, no ellipses, no `"... unchanged ..."`. This gate runs before any
-   downstream agent sees your work (GDD §3.5).
+8. **Emit each variant as a DELTA over the baseline JSON in the packet — only the
+   keys you change, nested under their parent keys exactly as the baseline nests
+   them.** Code merges your delta onto the ratified baseline; every value you do
+   not mention is carried over verbatim by the machine, so never retype a value
+   you are not changing. A key path the baseline does not define is DROPPED by
+   the merge (the simulator has never seen it), and a value whose type differs
+   from the baseline's is dropped too — integers stay integers. The merged file
+   then passes a deterministic gate (parse, schema, a real harness smoke run)
+   before any downstream agent sees it (GDD §3.5).
 9. **Do not touch `enabled: false` subsystems, `win_loss`, `scale`, or `bands`**
    unless the question set explicitly opens them. `hope_trade` stays disabled
    (CANON v17, Runs 20–22).
@@ -86,7 +95,10 @@ race* (births vs casualties vs conversion rate).
 ### 2. Rule variants
 
 One fenced ```json block per variant, in order A, B, (C). Each block is a
-complete `rules-vN.json`. Nothing between the fences but JSON.
+DELTA: a JSON object containing only the changed keys, nested as in the baseline
+(e.g. `{"world": {"temple": {"enabled": true}}, "win_loss": {"terminal_fires_on":
+"temple_entry"}}`). You may add `"meta": {"variant": "A", "hypothesis": "..."}`.
+Nothing between the fences but JSON.
 
 ### 3. Expected-shape notes (per variant, ≤ 6 bullets)
 

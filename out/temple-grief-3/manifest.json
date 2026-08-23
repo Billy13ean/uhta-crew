@@ -1,0 +1,411 @@
+{
+  "run_id": "temple-grief-3",
+  "status": "COMPLETE_PENDING_DIRECTOR",
+  "mode": "live",
+  "created": "2026-08-23T02:46:54",
+  "model": "claude-sonnet-4-5",
+  "llm_backend": "live",
+  "llm_calls": 5,
+  "llm_tokens": {
+    "input": 100636,
+    "output": 23182
+  },
+  "python": "3.11.16",
+  "director_goal": "Give grief a home: the Temple endgame as specified in GDD section 9, using the schema 3.10 dials in the baseline. Produce variants A (temple + temple_entry terminal only), B (A + grief front spawn_at temple_position, duration_counts_from arrival, tune move_tiles_per_sleep), C (A + local_decay enabled, tune radius and strength).",
+  "question_set": "Does spawn_at temple_position re-enable the centroid-steering attack Run 23b closed? Can the hold-to-temple walk be lost, farmed, or trivialised, and how sensitive is it to harness_pilgrim_tiles_per_sleep? Does C make Hope runs unwinnable? Median added sleeps per variant vs the control? Can any variant make the front fire in a do-nothing run?",
+  "seed_list": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "baseline_ruleset": "rules-v3.10-C.json",
+  "gdd": "uhta-gdd-v0.9.10-condensed.md",
+  "validation_gate": {
+    "kind": "deterministic",
+    "required_key_paths_derived_from": "rules-v3.10-C.json",
+    "required_key_path_count": 227,
+    "repair_round_trips_allowed": 1
+  },
+  "prompt_versions": {
+    "keeper": "keeper v2 (crew port)",
+    "mechanic-designer": "mechanic-designer v3 (crew port)",
+    "red-teamer": "red-teamer v4 (crew port)",
+    "playtester": "playtester v3 (crew port)",
+    "orchestrator": "orchestrator v1 (crew port, no LLM)"
+  },
+  "selection": {
+    "selected_variant": "rules-v3.10.1-A.json",
+    "by": "orchestrator-standin",
+    "rule": "first variant to clear the deterministic validation gate, in the order the Designer emitted them",
+    "note": "In the real pipeline the human Director selects (GDD \u00a73.3). This is a placeholder so an unattended run has a Red-Team target; it expresses no preference between variants.",
+    "director_gate": "PENDING",
+    "candidates": [
+      "rules-v3.10.1-A.json",
+      "rules-v3.10.1-B.json",
+      "rules-v3.10.1-C.json"
+    ]
+  },
+  "director_gate": "PENDING",
+  "stages": [
+    {
+      "n": 1,
+      "stage": "keeper_b1",
+      "agent": "keeper-b1",
+      "status": "OK",
+      "seconds": 200.52,
+      "artifacts": [
+        "packet-mechanic-designer-v3.10.1.md"
+      ]
+    },
+    {
+      "n": 2,
+      "stage": "mechanic_designer",
+      "agent": "mechanic-designer",
+      "status": "OK",
+      "seconds": 136.98,
+      "artifacts": [
+        "designer-rationale.md",
+        "validation.json"
+      ]
+    },
+    {
+      "n": 3,
+      "stage": "validation_gate",
+      "agent": "(deterministic)",
+      "status": "OK",
+      "seconds": 0.0,
+      "artifacts": [
+        "validation.json",
+        "rules-v3.10.1-A.json",
+        "rules-v3.10.1-B.json",
+        "rules-v3.10.1-C.json"
+      ],
+      "detail": {
+        "required_key_paths": 227,
+        "attempts": 1,
+        "accepted": [
+          "rules-v3.10.1-A.json",
+          "rules-v3.10.1-B.json",
+          "rules-v3.10.1-C.json"
+        ],
+        "rejected": []
+      }
+    },
+    {
+      "n": 4,
+      "stage": "red_teamer",
+      "agent": "red-teamer",
+      "status": "OK",
+      "seconds": 129.46,
+      "artifacts": [
+        "attacks-v3.10.1.md",
+        "attacks.json"
+      ]
+    },
+    {
+      "n": 5,
+      "stage": "playtester",
+      "agent": "playtester",
+      "status": "OK",
+      "seconds": 114.26,
+      "artifacts": [
+        "metrics-v3.10.1.md",
+        "execution-log.json"
+      ]
+    },
+    {
+      "n": 6,
+      "stage": "keeper_b2",
+      "agent": "keeper-b2",
+      "status": "OK",
+      "seconds": 83.88,
+      "artifacts": [
+        "contradictions-temple-grief-3.md"
+      ]
+    },
+    {
+      "n": 7,
+      "stage": "director_gate",
+      "agent": "Director (human)",
+      "status": "PENDING",
+      "seconds": 0.0,
+      "artifacts": [
+        "contradictions-temple-grief-3.md"
+      ],
+      "detail": "Outside this crew. The Director fills the `## Ruling` block in the contradiction report with UPHOLD / AMEND / DEFER, and selects the variant to ratify."
+    }
+  ],
+  "artifact_sha256": {
+    "RUN-LOG.md": "10bb9720afb1bab8d01ac7dd1adb9bbc41a1ae1755c22604ee5dfe990fc0338e",
+    "attacks-v3.10.1.md": "892cda27954dc12a58066b10e42faf887a4a600ca1442882f04a064f35a9e882",
+    "attacks.json": "d65d94b3c174e1f91de516ebe607620f69cba889e0dd8f4d78fd6ff8f4a1178f",
+    "contradictions-temple-grief-3.md": "cd84a684db6ceb886c934e6d434b1591c9e2764ea1ea692445d21404439f0d1a",
+    "designer-rationale.md": "ae159f08f24093f791482b39a28df7b266ed70f8e6d6e8e17438423f1f8267c4",
+    "execution-log.json": "1f70e06b6303debb9f7758e0514dcea8cb04b0a95ed435ff4a6b63c27be2f732",
+    "metrics-v3.10.1.md": "cc31f6f648131785d3889223503ad9ec42319857729aa13215f39a6844b4d663",
+    "packet-mechanic-designer-v3.10.1.md": "462bc9e6d2186dd3b725a8cd981200b95f45025c870be1142143fd67f4260cb8",
+    "probe-specs/spec-P1-rules-v3.10-C.json": "306fe1e27c5860af2a8b92afbbf33d88eff5eef81f6af35c2604a5a0e84cc715",
+    "probe-specs/spec-P1-rules-v3.10.1-A.json": "306fe1e27c5860af2a8b92afbbf33d88eff5eef81f6af35c2604a5a0e84cc715",
+    "probe-specs/spec-P1-rules-v3.10.1-B.json": "306fe1e27c5860af2a8b92afbbf33d88eff5eef81f6af35c2604a5a0e84cc715",
+    "probe-specs/spec-P1-rules-v3.10.1-C.json": "306fe1e27c5860af2a8b92afbbf33d88eff5eef81f6af35c2604a5a0e84cc715",
+    "probe-specs/spec-P2-rules-v3.10-C.json": "021b65e086cf14949eb47db83870526a7e05f9385208549e2cbc0bdc8b2763cc",
+    "probe-specs/spec-P2-rules-v3.10.1-A.json": "021b65e086cf14949eb47db83870526a7e05f9385208549e2cbc0bdc8b2763cc",
+    "probe-specs/spec-P2-rules-v3.10.1-B.json": "021b65e086cf14949eb47db83870526a7e05f9385208549e2cbc0bdc8b2763cc",
+    "probe-specs/spec-P2-rules-v3.10.1-C.json": "021b65e086cf14949eb47db83870526a7e05f9385208549e2cbc0bdc8b2763cc",
+    "probe-specs/spec-P3-rules-v3.10-C.json": "7d682a2ffb3c17396e59568bda65a68d32ef2636fc9123ce9d05e6f6a0b12d59",
+    "probe-specs/spec-P3-rules-v3.10.1-A.json": "7d682a2ffb3c17396e59568bda65a68d32ef2636fc9123ce9d05e6f6a0b12d59",
+    "probe-specs/spec-P3-rules-v3.10.1-B.json": "7d682a2ffb3c17396e59568bda65a68d32ef2636fc9123ce9d05e6f6a0b12d59",
+    "probe-specs/spec-P3-rules-v3.10.1-C.json": "7d682a2ffb3c17396e59568bda65a68d32ef2636fc9123ce9d05e6f6a0b12d59",
+    "probe-specs/spec-P4-rules-v3.10-C.json": "c996b850e9907a10688da3cf92cd10ff58496a3b0d2a4dfe3f4ac0c520ac3da4",
+    "probe-specs/spec-P4-rules-v3.10.1-A.json": "c996b850e9907a10688da3cf92cd10ff58496a3b0d2a4dfe3f4ac0c520ac3da4",
+    "probe-specs/spec-P4-rules-v3.10.1-B.json": "c996b850e9907a10688da3cf92cd10ff58496a3b0d2a4dfe3f4ac0c520ac3da4",
+    "probe-specs/spec-P4-rules-v3.10.1-C.json": "c996b850e9907a10688da3cf92cd10ff58496a3b0d2a4dfe3f4ac0c520ac3da4",
+    "rules-v3.10.1-A.json": "94b1545af815fa8d18dc4746302adaac46aab72760ac790d47de9ce4aca6504e",
+    "rules-v3.10.1-B.json": "910e5ee897391b86eb3ca1b073f0fb5e924ce1d5c444338447389a60a46ec9af",
+    "rules-v3.10.1-C.json": "5b5bc2f9e526a3be4257712c3ef5d6d80c166bfca0687b8aba7fdd07e27be92f",
+    "validation.json": "78a6a081e1bc96c44e935d62712688e8bad0b9f6e317148f6add8fe18a9b22c0"
+  },
+  "blackboard_ledger": [
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "keeper-b1",
+      "bytes": 7498,
+      "sha256": "64481b21fffd7c6d"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "keeper-b1",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/gdd/uhta-gdd-v0.9.10-condensed.md",
+      "agent": "keeper-b1",
+      "bytes": 26989,
+      "sha256": "f224c6b66fa22058"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/rules/rules-v3.10-C.json",
+      "agent": "keeper-b1",
+      "bytes": 18962,
+      "sha256": "48438dcaf1f2f16d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/packet-mechanic-designer-v3.10.1.md",
+      "agent": "keeper-b1",
+      "bytes": 22659,
+      "sha256": "462bc9e6d2186dd3"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/packet-mechanic-designer-v3.10.1.md",
+      "agent": "mechanic-designer",
+      "bytes": 22659,
+      "sha256": "462bc9e6d2186dd3"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/rules/rules-v3.10-C.json",
+      "agent": "mechanic-designer",
+      "bytes": 18962,
+      "sha256": "48438dcaf1f2f16d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/rules-v3.10.1-A.json",
+      "agent": "mechanic-designer",
+      "bytes": 18931,
+      "sha256": "94b1545af815fa8d"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/rules-v3.10.1-B.json",
+      "agent": "mechanic-designer",
+      "bytes": 18986,
+      "sha256": "910e5ee897391b86"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/rules-v3.10.1-C.json",
+      "agent": "mechanic-designer",
+      "bytes": 19063,
+      "sha256": "5b5bc2f9e526a3be"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/designer-rationale.md",
+      "agent": "mechanic-designer",
+      "bytes": 17004,
+      "sha256": "ae159f08f24093f7"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/validation.json",
+      "agent": "validation-gate",
+      "bytes": 2588,
+      "sha256": "78a6a081e1bc96c4"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/packet-mechanic-designer-v3.10.1.md",
+      "agent": "red-teamer",
+      "bytes": 22659,
+      "sha256": "462bc9e6d2186dd3"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/rules-v3.10.1-A.json",
+      "agent": "red-teamer",
+      "bytes": 18931,
+      "sha256": "94b1545af815fa8d"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/designer-rationale.md",
+      "agent": "red-teamer",
+      "bytes": 17004,
+      "sha256": "ae159f08f24093f7"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/attacks-v3.10.1.md",
+      "agent": "red-teamer",
+      "bytes": 17650,
+      "sha256": "892cda27954dc12a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/attacks.json",
+      "agent": "red-teamer",
+      "bytes": 2468,
+      "sha256": "d65d94b3c174e1f9"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/attacks.json",
+      "agent": "playtester",
+      "bytes": 2468,
+      "sha256": "d65d94b3c174e1f9"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/attacks-v3.10.1.md",
+      "agent": "playtester",
+      "bytes": 17650,
+      "sha256": "892cda27954dc12a"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/packet-mechanic-designer-v3.10.1.md",
+      "agent": "playtester",
+      "bytes": 22659,
+      "sha256": "462bc9e6d2186dd3"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/execution-log.json",
+      "agent": "playtester",
+      "bytes": 32564,
+      "sha256": "1f70e06b6303debb"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/metrics-v3.10.1.md",
+      "agent": "playtester",
+      "bytes": 25451,
+      "sha256": "cc31f6f648131785"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON.md",
+      "agent": "keeper-b2",
+      "bytes": 7498,
+      "sha256": "64481b21fffd7c6d"
+    },
+    {
+      "op": "read",
+      "region": "blackboard",
+      "path": "blackboard/CANON-process.md",
+      "agent": "keeper-b2",
+      "bytes": 7930,
+      "sha256": "0761d0c13003db61"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/rules-v3.10.1-A.json",
+      "agent": "keeper-b2",
+      "bytes": 18931,
+      "sha256": "94b1545af815fa8d"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/metrics-v3.10.1.md",
+      "agent": "keeper-b2",
+      "bytes": 25451,
+      "sha256": "cc31f6f648131785"
+    },
+    {
+      "op": "read",
+      "region": "out",
+      "path": "out/temple-grief-3/attacks-v3.10.1.md",
+      "agent": "keeper-b2",
+      "bytes": 17650,
+      "sha256": "892cda27954dc12a"
+    },
+    {
+      "op": "write",
+      "region": "out",
+      "path": "out/temple-grief-3/contradictions-temple-grief-3.md",
+      "agent": "keeper-b2",
+      "bytes": 12304,
+      "sha256": "cd84a684db6ceb88"
+    }
+  ]
+}

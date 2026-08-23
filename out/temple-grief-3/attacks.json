@@ -1,0 +1,119 @@
+{
+  "target": "rules-v3.10-A.json",
+  "probes": [
+    {
+      "id": "P1",
+      "attack_id": "A1",
+      "name": "do-nothing softlock",
+      "bot": "bot_do_nothing",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "median_fronts_spawned = 0 (symmetric genesis never reaches 0.55 dominance); losses = 8 (apathy loss fires); median_terminal_sleep in [18, 22] (matches v3.9.1 baseline)",
+      "falsification_metric": "median_fronts_spawned",
+      "severity_if_confirmed": "GAME-BREAKING"
+    },
+    {
+      "id": "P2",
+      "attack_id": "A2",
+      "name": "campaign regression",
+      "bot": "run_campaign_v3",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        -1,
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "Fear wins 16/20 \u00b1 2, Hope wins 21/25 \u00b1 2 (matches metrics-v3.9.1 baseline)",
+      "falsification_metric": "wins",
+      "severity_if_confirmed": "GAME-BREAKING"
+    },
+    {
+      "id": "P3",
+      "attack_id": "A3",
+      "name": "Front spawn anchor",
+      "bot": "bot_throughput",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "If median_fronts_spawned > 0, then median_front_exposure > 0 (Front spawns at target, not in dead air)",
+      "falsification_metric": "median_front_exposure",
+      "severity_if_confirmed": "GAME-BREAKING"
+    },
+    {
+      "id": "P4",
+      "attack_id": "A4",
+      "name": "self-burn control",
+      "bot": "run_selfburn",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_sleeps": 32,
+      "poles": [
+        -1,
+        1
+      ],
+      "player_pole": 1,
+      "args": {},
+      "invariant": "median_selfburns = 0 (same-pole pressure deepens, does not burn)",
+      "falsification_metric": "median_selfburns",
+      "severity_if_confirmed": "GAME-BREAKING"
+    }
+  ]
+}

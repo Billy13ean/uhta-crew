@@ -1,0 +1,1740 @@
+{
+  "run_id": "temple-grief-3",
+  "baseline": "rules-v3.10-C.json",
+  "variants": [
+    "rules-v3.10.1-A.json",
+    "rules-v3.10.1-B.json",
+    "rules-v3.10.1-C.json"
+  ],
+  "seed_policy": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "total_seconds": 70.8,
+  "arms": 16,
+  "errored_arms": 0,
+  "results": [
+    {
+      "id": "P1",
+      "name": "do-nothing softlock",
+      "bot": "bot_do_nothing",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 26,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 8,
+      "none": 0,
+      "median_terminal_sleep": 24.0,
+      "terminal_sleep_range": [
+        22,
+        25
+      ],
+      "median_final_wf": 0.0223,
+      "max_final_wf": 0.1145,
+      "min_final_wf": 0.0163,
+      "median_final_lf": 0.9208,
+      "max_final_lf": 0.9528,
+      "min_final_lf": 0.8702,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 133.0,
+      "max_pop": 149,
+      "min_pop": 119,
+      "median_fronts_spawned": 0.0,
+      "max_fronts_spawned": 0,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 0.0,
+      "max_front_exposure": 0.0,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 25.0,
+      "min_sleeps": 23,
+      "per_seed_terminal": [
+        [
+          0,
+          "loss",
+          24
+        ],
+        [
+          1,
+          "loss",
+          23
+        ],
+        [
+          2,
+          "loss",
+          22
+        ],
+        [
+          3,
+          "loss",
+          24
+        ],
+        [
+          4,
+          "loss",
+          25
+        ],
+        [
+          5,
+          "loss",
+          24
+        ],
+        [
+          6,
+          "loss",
+          24
+        ],
+        [
+          7,
+          "loss",
+          22
+        ]
+      ],
+      "ruleset": "rules-v3.10-C.json",
+      "seconds": 1.45,
+      "cmd": "RULES=rules-v3.10-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P1-rules-v3.10-C.json",
+      "invariant": "median_fronts_spawned = 0 (symmetric genesis never reaches 0.55 dominance); losses = 8 (apathy loss fires); median_terminal_sleep in [18, 22] (matches v3.9.1 baseline)",
+      "attack_id": "A1"
+    },
+    {
+      "id": "P2",
+      "name": "campaign regression",
+      "bot": "run_campaign_v3",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "n": 20,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 16,
+      "losses": 1,
+      "none": 3,
+      "median_terminal_sleep": 13,
+      "terminal_sleep_range": [
+        2,
+        26
+      ],
+      "median_final_wf": 0.8121,
+      "max_final_wf": 0.8788,
+      "min_final_wf": 0.1194,
+      "median_selfburns": 0.0,
+      "max_selfburns": 2,
+      "min_selfburns": 0,
+      "median_sleeps": 15.0,
+      "min_sleeps": 3,
+      "median_stamina": 208.225,
+      "max_stamina": 584.225,
+      "min_stamina": 17.225,
+      "median_fate_events": 1.0,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          10
+        ],
+        [
+          2,
+          "win",
+          26
+        ],
+        [
+          3,
+          "win",
+          23
+        ],
+        [
+          4,
+          "win",
+          16
+        ],
+        [
+          5,
+          "win",
+          20
+        ],
+        [
+          6,
+          "win",
+          20
+        ],
+        [
+          7,
+          "win",
+          26
+        ],
+        [
+          8,
+          "loss",
+          2
+        ],
+        [
+          9,
+          "win",
+          14
+        ],
+        [
+          10,
+          "win",
+          10
+        ],
+        [
+          11,
+          "win",
+          12
+        ],
+        [
+          12,
+          "win",
+          20
+        ],
+        [
+          13,
+          "win",
+          11
+        ],
+        [
+          14,
+          "win",
+          12
+        ],
+        [
+          15,
+          "win",
+          12
+        ],
+        [
+          16,
+          null,
+          null
+        ],
+        [
+          17,
+          null,
+          null
+        ],
+        [
+          18,
+          "win",
+          13
+        ],
+        [
+          19,
+          "win",
+          10
+        ]
+      ],
+      "ruleset": "rules-v3.10-C.json",
+      "seconds": 8.3,
+      "cmd": "RULES=rules-v3.10-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P2-rules-v3.10-C.json",
+      "invariant": "Fear wins 16/20 \u00b1 2, Hope wins 21/25 \u00b1 2 (matches metrics-v3.9.1 baseline)",
+      "attack_id": "A2"
+    },
+    {
+      "id": "P3",
+      "name": "Front spawn anchor",
+      "bot": "bot_throughput",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 3,
+      "losses": 0,
+      "none": 5,
+      "median_terminal_sleep": 13,
+      "terminal_sleep_range": [
+        12,
+        26
+      ],
+      "median_final_wf": 0.686,
+      "max_final_wf": 0.952,
+      "min_final_wf": 0.328,
+      "median_final_lf": 0.0539,
+      "max_final_lf": 0.2968,
+      "min_final_lf": 0.0153,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 144.5,
+      "max_pop": 193,
+      "min_pop": 125,
+      "median_fronts_spawned": 3.0,
+      "max_fronts_spawned": 5,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 170.665,
+      "max_front_exposure": 365.67,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 32.0,
+      "min_sleeps": 13,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          13
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          "win",
+          26
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          "win",
+          12
+        ]
+      ],
+      "ruleset": "rules-v3.10-C.json",
+      "seconds": 6.18,
+      "cmd": "RULES=rules-v3.10-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P3-rules-v3.10-C.json",
+      "invariant": "If median_fronts_spawned > 0, then median_front_exposure > 0 (Front spawns at target, not in dead air)",
+      "attack_id": "A3"
+    },
+    {
+      "id": "P4",
+      "name": "self-burn control",
+      "bot": "run_selfburn",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 8,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 0,
+      "none": 8,
+      "median_terminal_sleep": null,
+      "terminal_sleep_range": null,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_sleeps": 8.0,
+      "min_sleeps": 3,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          null,
+          null
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          null,
+          null
+        ]
+      ],
+      "ruleset": "rules-v3.10-C.json",
+      "seconds": 0.74,
+      "cmd": "RULES=rules-v3.10-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P4-rules-v3.10-C.json",
+      "invariant": "median_selfburns = 0 (same-pole pressure deepens, does not burn)",
+      "attack_id": "A4"
+    },
+    {
+      "id": "P1",
+      "name": "do-nothing softlock",
+      "bot": "bot_do_nothing",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 26,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 8,
+      "none": 0,
+      "median_terminal_sleep": 24.0,
+      "terminal_sleep_range": [
+        22,
+        25
+      ],
+      "median_final_wf": 0.0223,
+      "max_final_wf": 0.1145,
+      "min_final_wf": 0.0163,
+      "median_final_lf": 0.9208,
+      "max_final_lf": 0.9528,
+      "min_final_lf": 0.8702,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 133.0,
+      "max_pop": 149,
+      "min_pop": 119,
+      "median_fronts_spawned": 0.0,
+      "max_fronts_spawned": 0,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 0.0,
+      "max_front_exposure": 0.0,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 25.0,
+      "min_sleeps": 23,
+      "per_seed_terminal": [
+        [
+          0,
+          "loss",
+          24
+        ],
+        [
+          1,
+          "loss",
+          23
+        ],
+        [
+          2,
+          "loss",
+          22
+        ],
+        [
+          3,
+          "loss",
+          24
+        ],
+        [
+          4,
+          "loss",
+          25
+        ],
+        [
+          5,
+          "loss",
+          24
+        ],
+        [
+          6,
+          "loss",
+          24
+        ],
+        [
+          7,
+          "loss",
+          22
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-A.json",
+      "seconds": 1.47,
+      "cmd": "RULES=rules-v3.10.1-A.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P1-rules-v3.10.1-A.json",
+      "invariant": "median_fronts_spawned = 0 (symmetric genesis never reaches 0.55 dominance); losses = 8 (apathy loss fires); median_terminal_sleep in [18, 22] (matches v3.9.1 baseline)",
+      "attack_id": "A1"
+    },
+    {
+      "id": "P2",
+      "name": "campaign regression",
+      "bot": "run_campaign_v3",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "n": 20,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 16,
+      "losses": 1,
+      "none": 3,
+      "median_terminal_sleep": 13,
+      "terminal_sleep_range": [
+        2,
+        26
+      ],
+      "median_final_wf": 0.8121,
+      "max_final_wf": 0.8788,
+      "min_final_wf": 0.1194,
+      "median_selfburns": 0.0,
+      "max_selfburns": 2,
+      "min_selfburns": 0,
+      "median_sleeps": 15.0,
+      "min_sleeps": 3,
+      "median_stamina": 208.225,
+      "max_stamina": 584.225,
+      "min_stamina": 17.225,
+      "median_fate_events": 1.0,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          10
+        ],
+        [
+          2,
+          "win",
+          26
+        ],
+        [
+          3,
+          "win",
+          23
+        ],
+        [
+          4,
+          "win",
+          16
+        ],
+        [
+          5,
+          "win",
+          20
+        ],
+        [
+          6,
+          "win",
+          20
+        ],
+        [
+          7,
+          "win",
+          26
+        ],
+        [
+          8,
+          "loss",
+          2
+        ],
+        [
+          9,
+          "win",
+          14
+        ],
+        [
+          10,
+          "win",
+          10
+        ],
+        [
+          11,
+          "win",
+          12
+        ],
+        [
+          12,
+          "win",
+          20
+        ],
+        [
+          13,
+          "win",
+          11
+        ],
+        [
+          14,
+          "win",
+          12
+        ],
+        [
+          15,
+          "win",
+          12
+        ],
+        [
+          16,
+          null,
+          null
+        ],
+        [
+          17,
+          null,
+          null
+        ],
+        [
+          18,
+          "win",
+          13
+        ],
+        [
+          19,
+          "win",
+          10
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-A.json",
+      "seconds": 8.34,
+      "cmd": "RULES=rules-v3.10.1-A.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P2-rules-v3.10.1-A.json",
+      "invariant": "Fear wins 16/20 \u00b1 2, Hope wins 21/25 \u00b1 2 (matches metrics-v3.9.1 baseline)",
+      "attack_id": "A2"
+    },
+    {
+      "id": "P3",
+      "name": "Front spawn anchor",
+      "bot": "bot_throughput",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 3,
+      "losses": 0,
+      "none": 5,
+      "median_terminal_sleep": 13,
+      "terminal_sleep_range": [
+        12,
+        26
+      ],
+      "median_final_wf": 0.686,
+      "max_final_wf": 0.952,
+      "min_final_wf": 0.328,
+      "median_final_lf": 0.0539,
+      "max_final_lf": 0.2968,
+      "min_final_lf": 0.0153,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 144.5,
+      "max_pop": 193,
+      "min_pop": 125,
+      "median_fronts_spawned": 3.0,
+      "max_fronts_spawned": 5,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 170.665,
+      "max_front_exposure": 365.67,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 32.0,
+      "min_sleeps": 13,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          13
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          "win",
+          26
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          "win",
+          12
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-A.json",
+      "seconds": 6.16,
+      "cmd": "RULES=rules-v3.10.1-A.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P3-rules-v3.10.1-A.json",
+      "invariant": "If median_fronts_spawned > 0, then median_front_exposure > 0 (Front spawns at target, not in dead air)",
+      "attack_id": "A3"
+    },
+    {
+      "id": "P4",
+      "name": "self-burn control",
+      "bot": "run_selfburn",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 8,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 0,
+      "none": 8,
+      "median_terminal_sleep": null,
+      "terminal_sleep_range": null,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_sleeps": 8.0,
+      "min_sleeps": 3,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          null,
+          null
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          null,
+          null
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-A.json",
+      "seconds": 0.7,
+      "cmd": "RULES=rules-v3.10.1-A.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P4-rules-v3.10.1-A.json",
+      "invariant": "median_selfburns = 0 (same-pole pressure deepens, does not burn)",
+      "attack_id": "A4"
+    },
+    {
+      "id": "P1",
+      "name": "do-nothing softlock",
+      "bot": "bot_do_nothing",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 26,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 8,
+      "none": 0,
+      "median_terminal_sleep": 24.0,
+      "terminal_sleep_range": [
+        22,
+        25
+      ],
+      "median_final_wf": 0.0223,
+      "max_final_wf": 0.1145,
+      "min_final_wf": 0.0163,
+      "median_final_lf": 0.9208,
+      "max_final_lf": 0.9528,
+      "min_final_lf": 0.8702,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 133.0,
+      "max_pop": 149,
+      "min_pop": 119,
+      "median_fronts_spawned": 0.0,
+      "max_fronts_spawned": 0,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 0.0,
+      "max_front_exposure": 0.0,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 25.0,
+      "min_sleeps": 23,
+      "per_seed_terminal": [
+        [
+          0,
+          "loss",
+          24
+        ],
+        [
+          1,
+          "loss",
+          23
+        ],
+        [
+          2,
+          "loss",
+          22
+        ],
+        [
+          3,
+          "loss",
+          24
+        ],
+        [
+          4,
+          "loss",
+          25
+        ],
+        [
+          5,
+          "loss",
+          24
+        ],
+        [
+          6,
+          "loss",
+          24
+        ],
+        [
+          7,
+          "loss",
+          22
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-B.json",
+      "seconds": 1.41,
+      "cmd": "RULES=rules-v3.10.1-B.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P1-rules-v3.10.1-B.json",
+      "invariant": "median_fronts_spawned = 0 (symmetric genesis never reaches 0.55 dominance); losses = 8 (apathy loss fires); median_terminal_sleep in [18, 22] (matches v3.9.1 baseline)",
+      "attack_id": "A1"
+    },
+    {
+      "id": "P2",
+      "name": "campaign regression",
+      "bot": "run_campaign_v3",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "n": 20,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 16,
+      "losses": 1,
+      "none": 3,
+      "median_terminal_sleep": 15,
+      "terminal_sleep_range": [
+        2,
+        29
+      ],
+      "median_final_wf": 0.8743,
+      "max_final_wf": 0.963,
+      "min_final_wf": 0.1194,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_sleeps": 17.0,
+      "min_sleeps": 3,
+      "median_stamina": 248.475,
+      "max_stamina": 614.225,
+      "min_stamina": 17.225,
+      "median_fate_events": 1.0,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          12
+        ],
+        [
+          2,
+          "win",
+          29
+        ],
+        [
+          3,
+          "win",
+          26
+        ],
+        [
+          4,
+          "win",
+          17
+        ],
+        [
+          5,
+          "win",
+          23
+        ],
+        [
+          6,
+          "win",
+          22
+        ],
+        [
+          7,
+          null,
+          null
+        ],
+        [
+          8,
+          "loss",
+          2
+        ],
+        [
+          9,
+          "win",
+          17
+        ],
+        [
+          10,
+          "win",
+          12
+        ],
+        [
+          11,
+          "win",
+          15
+        ],
+        [
+          12,
+          "win",
+          14
+        ],
+        [
+          13,
+          "win",
+          14
+        ],
+        [
+          14,
+          "win",
+          13
+        ],
+        [
+          15,
+          "win",
+          14
+        ],
+        [
+          16,
+          "win",
+          25
+        ],
+        [
+          17,
+          null,
+          null
+        ],
+        [
+          18,
+          "win",
+          15
+        ],
+        [
+          19,
+          "win",
+          12
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-B.json",
+      "seconds": 9.36,
+      "cmd": "RULES=rules-v3.10.1-B.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P2-rules-v3.10.1-B.json",
+      "invariant": "Fear wins 16/20 \u00b1 2, Hope wins 21/25 \u00b1 2 (matches metrics-v3.9.1 baseline)",
+      "attack_id": "A2"
+    },
+    {
+      "id": "P3",
+      "name": "Front spawn anchor",
+      "bot": "bot_throughput",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 3,
+      "losses": 0,
+      "none": 5,
+      "median_terminal_sleep": 15,
+      "terminal_sleep_range": [
+        14,
+        29
+      ],
+      "median_final_wf": 0.6539,
+      "max_final_wf": 0.9677,
+      "min_final_wf": 0.328,
+      "median_final_lf": 0.0508,
+      "max_final_lf": 0.3611,
+      "min_final_lf": 0.0153,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 149.0,
+      "max_pop": 193,
+      "min_pop": 124,
+      "median_fronts_spawned": 2.0,
+      "max_fronts_spawned": 4,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 78.0,
+      "max_front_exposure": 384.0,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 32.0,
+      "min_sleeps": 15,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          15
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          "win",
+          29
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          "win",
+          14
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-B.json",
+      "seconds": 6.51,
+      "cmd": "RULES=rules-v3.10.1-B.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P3-rules-v3.10.1-B.json",
+      "invariant": "If median_fronts_spawned > 0, then median_front_exposure > 0 (Front spawns at target, not in dead air)",
+      "attack_id": "A3"
+    },
+    {
+      "id": "P4",
+      "name": "self-burn control",
+      "bot": "run_selfburn",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 8,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 0,
+      "none": 8,
+      "median_terminal_sleep": null,
+      "terminal_sleep_range": null,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_sleeps": 8.0,
+      "min_sleeps": 3,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          null,
+          null
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          null,
+          null
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-B.json",
+      "seconds": 0.72,
+      "cmd": "RULES=rules-v3.10.1-B.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P4-rules-v3.10.1-B.json",
+      "invariant": "median_selfburns = 0 (same-pole pressure deepens, does not burn)",
+      "attack_id": "A4"
+    },
+    {
+      "id": "P1",
+      "name": "do-nothing softlock",
+      "bot": "bot_do_nothing",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 26,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 8,
+      "none": 0,
+      "median_terminal_sleep": 23.5,
+      "terminal_sleep_range": [
+        22,
+        25
+      ],
+      "median_final_wf": 0.0206,
+      "max_final_wf": 0.0593,
+      "min_final_wf": 0.0163,
+      "median_final_lf": 0.9208,
+      "max_final_lf": 0.9528,
+      "min_final_lf": 0.8926,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 131.0,
+      "max_pop": 149,
+      "min_pop": 110,
+      "median_fronts_spawned": 0.0,
+      "max_fronts_spawned": 0,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 0.0,
+      "max_front_exposure": 0.0,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 24.5,
+      "min_sleeps": 23,
+      "per_seed_terminal": [
+        [
+          0,
+          "loss",
+          24
+        ],
+        [
+          1,
+          "loss",
+          23
+        ],
+        [
+          2,
+          "loss",
+          22
+        ],
+        [
+          3,
+          "loss",
+          24
+        ],
+        [
+          4,
+          "loss",
+          25
+        ],
+        [
+          5,
+          "loss",
+          24
+        ],
+        [
+          6,
+          "loss",
+          23
+        ],
+        [
+          7,
+          "loss",
+          22
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-C.json",
+      "seconds": 1.43,
+      "cmd": "RULES=rules-v3.10.1-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P1-rules-v3.10.1-C.json",
+      "invariant": "median_fronts_spawned = 0 (symmetric genesis never reaches 0.55 dominance); losses = 8 (apathy loss fires); median_terminal_sleep in [18, 22] (matches v3.9.1 baseline)",
+      "attack_id": "A1"
+    },
+    {
+      "id": "P2",
+      "name": "campaign regression",
+      "bot": "run_campaign_v3",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "n": 20,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 17,
+      "losses": 0,
+      "none": 3,
+      "median_terminal_sleep": 15,
+      "terminal_sleep_range": [
+        12,
+        30
+      ],
+      "median_final_wf": 0.8837,
+      "max_final_wf": 0.963,
+      "min_final_wf": 0.4318,
+      "median_selfburns": 0.0,
+      "max_selfburns": 2,
+      "min_selfburns": 0,
+      "median_sleeps": 17.0,
+      "min_sleeps": 12,
+      "median_stamina": 248.475,
+      "max_stamina": 584.225,
+      "min_stamina": 174.225,
+      "median_fate_events": 1.0,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          12
+        ],
+        [
+          2,
+          "win",
+          29
+        ],
+        [
+          3,
+          "win",
+          26
+        ],
+        [
+          4,
+          "win",
+          17
+        ],
+        [
+          5,
+          "win",
+          23
+        ],
+        [
+          6,
+          "win",
+          12
+        ],
+        [
+          7,
+          "win",
+          30
+        ],
+        [
+          8,
+          "win",
+          16
+        ],
+        [
+          9,
+          "win",
+          17
+        ],
+        [
+          10,
+          "win",
+          12
+        ],
+        [
+          11,
+          "win",
+          15
+        ],
+        [
+          12,
+          "win",
+          21
+        ],
+        [
+          13,
+          "win",
+          14
+        ],
+        [
+          14,
+          "win",
+          13
+        ],
+        [
+          15,
+          "win",
+          14
+        ],
+        [
+          16,
+          null,
+          null
+        ],
+        [
+          17,
+          null,
+          null
+        ],
+        [
+          18,
+          "win",
+          15
+        ],
+        [
+          19,
+          "win",
+          12
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-C.json",
+      "seconds": 9.7,
+      "cmd": "RULES=rules-v3.10.1-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P2-rules-v3.10.1-C.json",
+      "invariant": "Fear wins 16/20 \u00b1 2, Hope wins 21/25 \u00b1 2 (matches metrics-v3.9.1 baseline)",
+      "attack_id": "A2"
+    },
+    {
+      "id": "P3",
+      "name": "Front spawn anchor",
+      "bot": "bot_throughput",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 32,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 3,
+      "losses": 0,
+      "none": 5,
+      "median_terminal_sleep": 14,
+      "terminal_sleep_range": [
+        14,
+        29
+      ],
+      "median_final_wf": 0.6388,
+      "max_final_wf": 0.984,
+      "min_final_wf": 0.328,
+      "median_final_lf": 0.0508,
+      "max_final_lf": 0.3681,
+      "min_final_lf": 0.016,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_pop": 149.5,
+      "max_pop": 193,
+      "min_pop": 125,
+      "median_fronts_spawned": 3.0,
+      "max_fronts_spawned": 5,
+      "min_fronts_spawned": 0,
+      "median_front_exposure": 176.665,
+      "max_front_exposure": 416.0,
+      "min_front_exposure": 0.0,
+      "median_sleeps": 32.0,
+      "min_sleeps": 15,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          "win",
+          14
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          "win",
+          29
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          "win",
+          14
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-C.json",
+      "seconds": 6.39,
+      "cmd": "RULES=rules-v3.10.1-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P3-rules-v3.10.1-C.json",
+      "invariant": "If median_fronts_spawned > 0, then median_front_exposure > 0 (Front spawns at target, not in dead air)",
+      "attack_id": "A3"
+    },
+    {
+      "id": "P4",
+      "name": "self-burn control",
+      "bot": "run_selfburn",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "n": 8,
+      "max_sleeps": 8,
+      "player_pole": 1,
+      "seed_errors": [],
+      "shim": null,
+      "wins": 0,
+      "losses": 0,
+      "none": 8,
+      "median_terminal_sleep": null,
+      "terminal_sleep_range": null,
+      "median_selfburns": 0.0,
+      "max_selfburns": 0,
+      "min_selfburns": 0,
+      "median_sleeps": 8.0,
+      "min_sleeps": 3,
+      "per_seed_terminal": [
+        [
+          0,
+          null,
+          null
+        ],
+        [
+          1,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null
+        ],
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          5,
+          null,
+          null
+        ],
+        [
+          6,
+          null,
+          null
+        ],
+        [
+          7,
+          null,
+          null
+        ]
+      ],
+      "ruleset": "rules-v3.10.1-C.json",
+      "seconds": 0.74,
+      "cmd": "RULES=rules-v3.10.1-C.json PYTHONPATH=blackboard/sim python3 crew/probe_runner.py spec-P4-rules-v3.10.1-C.json",
+      "invariant": "median_selfburns = 0 (same-pole pressure deepens, does not burn)",
+      "attack_id": "A4"
+    }
+  ]
+}
