@@ -17,3 +17,5 @@ _to_delete/
 style/inspiration/*
 !style/inspiration/README.md
 !style/inspiration/CREDITS.txt
+
+node_modules/

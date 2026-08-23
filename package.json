@@ -1,0 +1,27 @@
+{
+  "name": "uhta-crew",
+  "version": "1.0.0",
+  "description": "**uhta** (*ūhta*, m., \"the last part of the night, before dawn\") is a browser god-game about emotional contagion. You play a kaiju-scale being born as a counterpoint to Uhtcearu, the world's grieving god, and the game asks one question: *what will you make people feel, and what will that do to the world?* NPCs sit on a −12..+12 emotion scale; every Sleep runs a generation of contagion you cannot micromanage. The playable slice is `build/uhta-slice.html` in the game repo. This repo is not the game — it is the five-agent crew that produces the **data file the game boots from**.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Billy13ean/uhta-crew.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Billy13ean/uhta-crew/issues"
+  },
+  "homepage": "https://github.com/Billy13ean/uhta-crew#readme",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}

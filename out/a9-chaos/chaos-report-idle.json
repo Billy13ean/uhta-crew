@@ -1,0 +1,26 @@
+{
+ "game": "uhta — vertical slice (blackboard/build/uhta-slice.html)",
+ "agent": "chaos_probe v1 (Assignment 9)",
+ "seed": 11,
+ "when": "2026-08-23T17:11:24.115Z",
+ "invariants": [
+  "I1 no page errors",
+  "I2 avatar in bounds",
+  "I3 finite NPC state within pin",
+  "I4 population bounds",
+  "I5 stamina ledger sane",
+  "I6 terminal immutable",
+  "I7 known phases only / inert after terminal",
+  "I8 zoom bounds",
+  "I9 self-test green after chaos",
+  "I10 world never stuck"
+ ],
+ "arm": "idle",
+ "behaviors_run": [
+  "idle_march"
+ ],
+ "reached_terminal": true,
+ "selftest_after_chaos_fails": "all green",
+ "findings_count": 0,
+ "findings": []
+}

@@ -973,7 +973,7 @@ class Slice extends Phaser.Scene{
   moveStep(dx,dy){
     const np=[SIM.player_pos[0]+dx,SIM.player_pos[1]+dy];
     if(np[0]<0||np[1]<0||np[0]>=MAP||np[1]>=MAP)return;
-    if(WALK_C>this.remaining()+1e-9)return;
+    if(WALK_C>this.remaining()+1e-9){this.spentTip();return;}   // A9 F01: never die silently
     this.layRoad(SIM.player_pos,np);            // your trail becomes a road (nomads follow roads)
     SIM.act('walk',np,null,WALK_C);
     if(SIM.sleep_no===0&&!this.tut.taught_walk){this.tut.taught_walk=true;this.tut.pending_teaching='walk';}
@@ -983,8 +983,9 @@ class Slice extends Phaser.Scene{
   }
   razeCost(){let d=0;for(const x of SIM.npcs)if(!x.zealot&&!x.burn&&cheb(x.pos,SIM.player_pos)<=RAZE.witness_radius_tiles&&band(x.I)==='devout')d++;return RAZE_C(d);}
   remaining(){return wakeBudget-SIM.stamina_spent_this_wake;}
+  spentTip(){ setTip(`You are spent. <b>Sleep</b> — <b>space</b> — brings the next generation.`); this._ap5Hold=90; }   // A9 F01: exhausted budget must say so
   tryAct(kind,cost){
-    if(cost>this.remaining()+1e-9)return;
+    if(cost>this.remaining()+1e-9){this.spentTip();return;}
     if(kind==='flame'){this.revealAround(SIM.player_pos,SIM.flame_r+1); this.tut.flamed=true;} // flame clears fog (permanent), radius scales
     { const fxn=kind==='flame'?(SIM.player_pole>0?'flame_hope':'flame_fear'):kind==='roar'?'roar':null;  // cast fx
       if(fxn)this.fxq.push({n:fxn,x:SIM.player_pos[0]*CELL+CELL/2,y:SIM.player_pos[1]*CELL+CELL/2-CELL*0.75,t:55}); }

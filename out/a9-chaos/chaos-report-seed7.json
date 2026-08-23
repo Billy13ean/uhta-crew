@@ -1,0 +1,76 @@
+{
+ "game": "uhta — vertical slice (blackboard/build/uhta-slice.html)",
+ "agent": "chaos_probe v1 (Assignment 9)",
+ "seed": 7,
+ "when": "2026-08-23T17:05:40.558Z",
+ "invariants": [
+  "I1 no page errors",
+  "I2 avatar in bounds",
+  "I3 finite NPC state within pin",
+  "I4 population bounds",
+  "I5 stamina ledger sane",
+  "I6 terminal immutable",
+  "I7 known phases only / inert after terminal",
+  "I8 zoom bounds",
+  "I9 self-test green after chaos",
+  "I10 world never stuck"
+ ],
+ "arm": "all",
+ "behaviors_run": [
+  "title_mash",
+  "boundary_march",
+  "key_monkey",
+  "click_storm",
+  "wheel_abuse",
+  "roar_offmap",
+  "verb_hammer",
+  "flame_overdraft",
+  "stuck_check",
+  "stamina_exhaust",
+  "sleep_march",
+  "post_terminal_mash",
+  "resize_jitter",
+  "replay_hammer",
+  "post_chaos_selftest"
+ ],
+ "reached_terminal": true,
+ "selftest_after_chaos_fails": "all green",
+ "findings_count": 1,
+ "findings": [
+  {
+   "id": "F01",
+   "behavior": "stamina_exhaust",
+   "location": "stamina economy / input feedback",
+   "error_type": "ZERO_STAMINA_NO_FEEDBACK",
+   "evidence": "wake budget exhausted (remaining=0.32): walk, beacon, raze, flame and roar all silently no-op (tick_no held at 41) and the tip line never changes — nothing tells the player Sleep is the only remaining verb. moveStep()/tryAct() bail with a bare return",
+   "severity": "medium",
+   "game_context": {
+    "seed": 7,
+    "phase": "play",
+    "sleep_no": 3,
+    "tick_no": 41,
+    "player_pos": [
+     20,
+     21
+    ],
+    "player_pole": 1,
+    "pop": 67,
+    "terminal": null,
+    "recent_inputs": [
+     "monkey Digit1…",
+     "monkey KeyS…",
+     "monkey KeyA…",
+     "monkey KeyB…",
+     "monkey Escape…",
+     "click_storm x80",
+     "wheel_abuse x30",
+     "flame_overdraft x60 (left-click on avatar tile)",
+     "roar_offmap x6 (corners)",
+     "verb_hammer x30 (e/r/q/art toggles)",
+     "stamina_exhaust: drained to 0.32",
+     "poked all 7 verbs at zero budget"
+    ]
+   }
+  }
+ ]
+}
