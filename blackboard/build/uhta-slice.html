@@ -714,8 +714,12 @@ const TEACHING_CONSEQUENCES={walk:'nomads follow roads',flame:'conviction spread
 function teachingFor(verb,sleep_no,spoken){if(sleep_no!==0)return null;if(spoken.has(verb))return null;return TEACHING_TEXT[verb]||null;}
 const MG_INSTRUCTOR_LINE='Feed your flame with a touch, and hold it gentle — too bright breaks them, too dim loses them.';
 const MG={active:false,shown_tip:false,t:0,flame:0.5,target:0.5,target_drift_t:0,nomads:[],entry_t:0,exit_t:0,won:false,failed:false,fail_reason:'',pulse:0,afterglow:0,conv:[],band:[],cue_t:0};
-function mgInit(st,count){const s=st||MG;const _n=Math.max(3,Math.min(8,count||8));s.active=false;s.shown_tip=false;s.t=0;s.flame=0.5;s.target=0.5;s.target_drift_t=0;s.nomads=[];for(let i=0;i<_n;i++){const a=i*Math.PI*2/_n;s.nomads.push({a:a,d:180,commit:0.5,alive:true});}s.entry_t=0;s.exit_t=0;s.won=false;s.failed=false;s.fail_reason='';s.pulse=0;s.afterglow=0;s.conv=[];s.cue_t=0;return s;}
-function mgStep(s,clicked,dt){if(s.exit_t>0){s.exit_t+=dt;return s;}s.t+=dt;if(s.entry_t<90){s.entry_t+=dt;return s;}if(clicked)s.flame=Math.min(1,s.flame+0.18);s.flame=Math.max(0,s.flame-0.0005*dt);s.target_drift_t+=dt;if(s.target_drift_t>120){s.target_drift_t=0;s.target=0.45+Math.random()*0.15;}const inBand=s.flame>=s.target-0.08&&s.flame<=s.target+0.12;let allClose=true,anyAlive=false;for(const n of s.nomads){if(!n.alive)continue;anyAlive=true;if(s.flame>s.target+0.25){n.commit=Math.max(0,n.commit-0.004*dt);if(n.commit<0.2){n.alive=false;s.failed=true;s.fail_reason='bright';}}else if(s.flame<s.target-0.15){n.commit=Math.max(0,n.commit-0.001*dt);if(n.commit<0.25){n.alive=false;s.failed=true;s.fail_reason='dim';}}else if(inBand){n.commit=Math.min(1,n.commit+0.008*dt);n.d=Math.max(32,n.d-0.25*dt);}else{n.d=Math.max(32,n.d-0.08*dt);}if(n.d>32)allClose=false;}if(!anyAlive&&!s.won){s.failed=true;if(!s.fail_reason)s.fail_reason='dim';}if(allClose&&anyAlive&&!s.failed){s.won=true;s.exit_t=1;}if(s.failed&&s.exit_t===0)s.exit_t=1;return s;}
+function mgInit(st,count){const s=st||MG;s._sndW=0;s._sndF=0;const _n=Math.max(3,Math.min(8,count||8));s.active=false;s.shown_tip=false;s.t=0;s.flame=0.5;s.target=0.5;s.target_drift_t=0;s.nomads=[];for(let i=0;i<_n;i++){const a=i*Math.PI*2/_n;s.nomads.push({a:a,d:180,commit:0.5,alive:true});}s.entry_t=0;s.exit_t=0;s.won=false;s.failed=false;s.fail_reason='';s.pulse=0;s.afterglow=0;s.conv=[];s.cue_t=0;return s;}
+function mgStep(s,clicked,dt){
+  if(typeof MG!=='undefined'&&s===MG&&typeof AUDIO!=='undefined'){
+    if(s.won&&!s._sndW){s._sndW=1;AUDIO.mgWin();}
+    if(s.failed&&!s._sndF){s._sndF=1;AUDIO.mgFail();}
+  }if(s.exit_t>0){s.exit_t+=dt;return s;}s.t+=dt;if(s.entry_t<90){s.entry_t+=dt;return s;}if(clicked)s.flame=Math.min(1,s.flame+0.18);s.flame=Math.max(0,s.flame-0.0005*dt);s.target_drift_t+=dt;if(s.target_drift_t>120){s.target_drift_t=0;s.target=0.45+Math.random()*0.15;}const inBand=s.flame>=s.target-0.08&&s.flame<=s.target+0.12;let allClose=true,anyAlive=false;for(const n of s.nomads){if(!n.alive)continue;anyAlive=true;if(s.flame>s.target+0.25){n.commit=Math.max(0,n.commit-0.004*dt);if(n.commit<0.2){n.alive=false;s.failed=true;s.fail_reason='bright';}}else if(s.flame<s.target-0.15){n.commit=Math.max(0,n.commit-0.001*dt);if(n.commit<0.25){n.alive=false;s.failed=true;s.fail_reason='dim';}}else if(inBand){n.commit=Math.min(1,n.commit+0.008*dt);n.d=Math.max(32,n.d-0.25*dt);}else{n.d=Math.max(32,n.d-0.08*dt);}if(n.d>32)allClose=false;}if(!anyAlive&&!s.won){s.failed=true;if(!s.fail_reason)s.fail_reason='dim';}if(allClose&&anyAlive&&!s.failed){s.won=true;s.exit_t=1;}if(s.failed&&s.exit_t===0)s.exit_t=1;return s;}
 
 /* ===== THE CAVE — the narrated opening's first moment (GDD §3 NICE #1, A4 beat n1):
    the undetermined white flame, the stone it lights, and the two mouths. A whole
@@ -1034,6 +1038,7 @@ function newGame(pole){
   scene.cameras.main.setZoom(1.15);
   scene.revealAround(SIM.player_pos,SIGHT);
   if(typeof SONDER!=='undefined'){SONDER.queue.length=0;SONDER.cardUp=false;SONDER.last_card_sleep=-1;if(SONDER.ok())Sonder.reset();}
+  if(typeof AUDIO!=='undefined')AUDIO.chord([AUDIO.N.A1,AUDIO.N.E2],4,0.10,true,400);
 }
 
 /* ---- SONDER HOOK (canon rule sonder-telling-surface, AMENDED; re-wired 2026-08-24
@@ -1064,7 +1069,7 @@ function sonderMaybeShow(){
   const story=Sonder.pick({flame:flame,era:sonderEraName(SIM.sleep_no)})||Sonder.pick({flame:flame});
   if(!story)return;
   SONDER.cardUp=true; SONDER.last_card_sleep=SIM.sleep_no; AUDIO.card();
-  const el=Sonder.show(story,{tint:flame,onClose:()=>{SONDER.cardUp=false;}});
+  const el=Sonder.show(story,{tint:flame,onClose:()=>{SONDER.cardUp=false;AUDIO.dismiss();}});
   const anyKey=(e)=>{window.removeEventListener('keydown',anyKey,true);e.preventDefault();e.stopPropagation();if(el&&el.isConnected)el.click();};
   window.addEventListener('keydown',anyKey,true);                     // ruling: ANY input dismisses
 }
@@ -1081,8 +1086,23 @@ const AUDIO={ctx:null,master:null,muted:false,last_pedal:0,
       this.ctx=new C(); this.master=this.ctx.createGain(); this.master.gain.value=0.32;
       const lp=this.ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=1400; lp.Q.value=0.4;
       this.master.connect(lp); lp.connect(this.ctx.destination);
+      // the ambient bed: two detuned low sines breathing on a slow LFO, and a thread
+      // of lowpassed noise — the grey wind. Constant, far under everything else.
+      const bed=this.ctx.createGain(); bed.gain.value=0.030; bed.connect(this.master); this.bed=bed;
+      for(const[f,g]of[[55,1],[82.41,0.55]]){ const o=this.ctx.createOscillator(); o.type='sine';
+        o.frequency.value=f; o.detune.value=(Math.random()*8-4);
+        const og=this.ctx.createGain(); og.gain.value=g; o.connect(og); og.connect(bed); o.start(); }
+      const lfo=this.ctx.createOscillator(); lfo.frequency.value=0.05;
+      const lfoG=this.ctx.createGain(); lfoG.gain.value=0.012; lfo.connect(lfoG); lfoG.connect(bed.gain); lfo.start();
+      const nb=this.ctx.createBuffer(1,this.ctx.sampleRate*2,this.ctx.sampleRate);
+      const nd=nb.getChannelData(0); for(let i=0;i<nd.length;i++)nd[i]=Math.random()*2-1;
+      const ns=this.ctx.createBufferSource(); ns.buffer=nb; ns.loop=true;
+      const nf=this.ctx.createBiquadFilter(); nf.type='lowpass'; nf.frequency.value=230; nf.Q.value=0.5;
+      const ng=this.ctx.createGain(); ng.gain.value=0.014;
+      ns.connect(nf); nf.connect(ng); ng.connect(this.master); ns.start();
     }catch(_){}
   },
+  night(deep){ if(this.bed)try{this.bed.gain.linearRampToValueAtTime(deep?0.055:0.030,this.ctx.currentTime+1.2);}catch(_){} },
   tone(freq,dur,gain,dark){ if(this.muted||!this.ctx)return;
     try{ if(this.ctx.state==='suspended')this.ctx.resume();
       const t0=this.ctx.currentTime, g=this.ctx.createGain();
@@ -1098,13 +1118,19 @@ const AUDIO={ctx:null,master:null,muted:false,last_pedal:0,
     }catch(_){}
   },
   chord(freqs,dur,gain,dark,spread){ freqs.forEach((f,i)=>setTimeout(()=>this.tone(f,dur,gain,dark),(spread||30)*i)); },
-  N:{A1:55,C2:65.41,D2:73.42,E2:82.41,G2:98,A2:110,C3:130.8,D3:146.8,E3:164.8,G3:196,A3:220,C4:261.6,E4:329.6,G4:392},
+  N:{E1:41.2,A1:55,C2:65.41,D2:73.42,E2:82.41,G2:98,A2:110,C3:130.8,D3:146.8,E3:164.8,G3:196,A3:220,C4:261.6,D4:293.7,E4:329.6,G4:392,A4:440},
   verb(kind,pole){ const N=this.N;
-    if(kind==='flame') pole>0?this.chord([N.E3,N.A3],2.2,0.10):this.tone(N.C2,2.6,0.12,true);
-    else if(kind==='roar') this.chord([N.A1,N.C2],1.6,0.14,true,12);
-    else if(kind==='beacon_light') this.chord([N.A2,N.E3],3.2,0.10);
-    else if(kind==='raze') this.tone(N.A1,1.2,0.16,true);
+    if(kind==='flame') pole>0?this.chord([N.E4,N.A4],2.0,0.10):this.chord([N.A3,N.C4],2.2,0.11,true,26);   // higher, brighter; fear keeps the minor shadow
+    else if(kind==='roar') this.chord([N.E1,N.A1],3.8,0.17,true,45);                                        // very deep, and it lingers
+    else if(kind==='beacon_light') this.chord([N.A2,N.E3,N.A3],3.4,0.09);
+    else if(kind==='raze') this.tone(N.A1,1.4,0.16,true);
+    else if(kind==='wait') this.tone(N.D3,1.6,0.06,true);
   },
+  walk(){ this.tone(92+Math.random()*10,0.4,0.045,true); },                                                 // a footfall on stone, barely
+  level(){ this.chord([this.N.A2,this.N.D3,this.N.A3],2.4,0.08,false,120); },                               // the flock grew
+  mgWin(){ this.chord([this.N.A3,this.N.C4,this.N.E4],3,0.09,false,140); },
+  mgFail(){ this.chord([this.N.C2,this.N.A1],3.4,0.11,true,300); },
+  dismiss(){ this.tone(this.N.A2,0.8,0.05,true); },
   sleep(){ this.chord([this.N.E3,this.N.A2,this.N.A1],3.4,0.09,true,220); },
   wake(){ this.tone(this.N.A2,2.8,0.07); },
   card(){ this.tone(this.N.G4,4.5,0.07); },
@@ -1206,7 +1232,7 @@ class Slice extends Phaser.Scene{
 
   /* ---- input ---- */
   onKey(e){
-    if(e.key==='m'||e.key==='M'){AUDIO.muted=!AUDIO.muted;setTip(AUDIO.muted?'sound off — <b>M</b> to bring it back':'sound on — deep keys in a grey room · <b>M</b> mutes');this._ap5Hold=90;return;}
+    if(e.key==='m'||e.key==='M'){AUDIO.muted=!AUDIO.muted;if(AUDIO.master)AUDIO.master.gain.value=AUDIO.muted?0:0.32;setTip(AUDIO.muted?'sound off — <b>M</b> to bring it back':'sound on — deep keys in a grey room · <b>M</b> mutes');this._ap5Hold=90;return;}
     if(typeof SONDER!=='undefined'&&SONDER.cardUp)return;   // sonder card holds the world
     if(phase==='title'){ if(e.key==='h'||e.key==='ArrowRight')newGame(1); else if(e.key==='f'||e.key==='ArrowLeft')newGame(-1); return; }
     if(phase==='end'){ if(e.key===' '||e.key==='Enter'){phase='title';this.drawTitle();} return; }
@@ -1246,7 +1272,7 @@ class Slice extends Phaser.Scene{
     if(np[0]<0||np[1]<0||np[0]>=MAP||np[1]>=MAP)return;
     if(WALK_C>this.remaining()+1e-9){this.spentTip();return;}   // A9 F01: never die silently
     this.layRoad(SIM.player_pos,np);            // your trail becomes a road (nomads follow roads)
-    SIM.act('walk',np,null,WALK_C);
+    SIM.act('walk',np,null,WALK_C); AUDIO.walk();
     if(SIM.sleep_no===0&&!this.tut.taught_walk){this.tut.taught_walk=true;this.tut.pending_teaching='walk';}
     this.revealAround(SIM.player_pos,SIGHT);
     this.tut.moved=true; if(this.tut.slept)this.tut.led=true;
@@ -1293,15 +1319,15 @@ if(MG.active&&MG.entry_t>=48&&MG.exit_t===0){return;}
   }
   doSleep(){
     this.tut.slept=true; const tier0=SIM.tier;
-    transitioning=true; this.nightAlpha=0; AUDIO.sleep();
+    transitioning=true; this.nightAlpha=0; AUDIO.sleep(); AUDIO.night(true);
     if(SIM.sleep_no===0&&!this.tut.taught_sleep){this.tut.taught_sleep=true;this.tut.pending_teaching='sleep';}
     const rise=()=>{ this.nightAlpha+=0.09; this.drawWorld();
       if(this.nightAlpha<1)this.time.delayedCall(16,rise);
       else{ SIM.do_sleep(); wakeBudget=SIM.budget(); this.revealAround(SIM.player_pos,SIGHT);
-        if(SIM.tier>tier0)this.levelFlash=40;   // schema 3.8: leveled up this sleep
+        if(SIM.tier>tier0){this.levelFlash=40;AUDIO.level();}   // schema 3.8: leveled up this sleep
         const fall=()=>{ this.nightAlpha-=0.07; this.drawWorld();
           if(this.nightAlpha>0)this.time.delayedCall(16,fall);
-          else{ this.nightAlpha=0; transitioning=false; AUDIO.wake(); if(SIM.terminal)this.toEnd(); }};
+          else{ this.nightAlpha=0; transitioning=false; AUDIO.wake(); AUDIO.night(false); if(SIM.terminal)this.toEnd(); }};
         this.time.delayedCall(140,fall); }};
     rise();
   }
