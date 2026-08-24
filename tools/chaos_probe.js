@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 /* chaos_probe — Assignment 9: the adversarial QA agent's hands.
+ * Nicholas Rouke · capstone game: uhta · ELVTR Multi-Agent AI for Game Development
  *
  * Drives the uhta vertical slice (blackboard/build/uhta-slice.html) in real
  * Chromium and actively tries to BREAK it — not play it. "Broken" is defined
@@ -345,6 +346,7 @@ async function emit(page, reachedTerminal, browser, behaviors){
 
   const report = {
     game: 'uhta — vertical slice (blackboard/build/uhta-slice.html)',
+    author: 'Nicholas Rouke',
     agent: 'chaos_probe v1 (Assignment 9)',
     seed: SEED,
     when: new Date().toISOString(),

@@ -1,5 +1,7 @@
 # Assignment 9 — Adversarial QA Agent · *uhta*
 
+> Nicholas Rouke · ELVTR Multi-Agent AI for Game Development · due 27 Aug 2026
+
 **Game:** *uhta* — the vertical slice at `blackboard/build/uhta-slice.html` (Phaser, single HTML file, on-load self-test 13/13).
 **Agent:** `tools/chaos_probe.js` — a seeded chaos agent that drives the real build in headless Chromium via Playwright and actively tries to break it.
 **Reports:** `out/a9-chaos/chaos-report-seed7.json`, `-seed23.json`, `-idle.json` (headless), and `live-run.json` (headed, human-paced — the run that found F02).
