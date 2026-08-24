@@ -1,0 +1,77 @@
+{
+ "game": "uhta — vertical slice (blackboard/build/uhta-slice.html)",
+ "author": "Nicholas Rouke",
+ "agent": "chaos_probe v1 (Assignment 9)",
+ "seed": 7,
+ "when": "2026-08-24T00:59:41.625Z",
+ "invariants": [
+  "I1 no page errors",
+  "I2 avatar in bounds",
+  "I3 finite NPC state within pin",
+  "I4 population bounds",
+  "I5 stamina ledger sane",
+  "I6 terminal immutable",
+  "I7 known phases only / inert after terminal",
+  "I8 zoom bounds",
+  "I9 self-test green after chaos",
+  "I10 world never stuck"
+ ],
+ "arm": "all",
+ "behaviors_run": [
+  "title_mash",
+  "boundary_march",
+  "key_monkey",
+  "click_storm",
+  "wheel_abuse",
+  "roar_offmap",
+  "verb_hammer",
+  "flame_overdraft",
+  "stuck_check",
+  "stamina_exhaust",
+  "sleep_march",
+  "post_terminal_mash",
+  "resize_jitter",
+  "replay_hammer",
+  "post_chaos_selftest"
+ ],
+ "reached_terminal": false,
+ "selftest_after_chaos_fails": "all green",
+ "findings_count": 1,
+ "findings": [
+  {
+   "id": "F01",
+   "behavior": "sleep_march",
+   "location": "win/loss check (apathy loss)",
+   "error_type": "NO_ENDING_FOR_IDLE_RUN",
+   "evidence": "39 idle generations, no terminal. The reference harness's do-nothing baseline loses at sleep 24; the slice's ambient peer-contagion appears to keep the world aligned enough that the grey never claims 0.8 — an idle player never receives an ending",
+   "severity": "medium",
+   "game_context": {
+    "seed": 7,
+    "phase": "play",
+    "sleep_no": 43,
+    "tick_no": 161,
+    "player_pos": [
+     21,
+     23
+    ],
+    "player_pole": 1,
+    "pop": 133,
+    "terminal": null,
+    "recent_inputs": [
+     "monkey KeyS…",
+     "monkey KeyA…",
+     "monkey KeyB…",
+     "monkey Escape…",
+     "click_storm x80",
+     "wheel_abuse x30",
+     "flame_overdraft x60 (left-click on avatar tile)",
+     "roar_offmap x6 (corners)",
+     "verb_hammer x30 (e/r/q/art toggles)",
+     "stamina_exhaust: drained to 0.98",
+     "poked all 7 verbs at zero budget",
+     "sleep_march: 39 generations"
+    ]
+   }
+  }
+ ]
+}

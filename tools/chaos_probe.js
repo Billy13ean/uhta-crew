@@ -160,6 +160,14 @@ async function main(){
 
   // make sure we are in play (title click starts the run)
   if (s.phase === 'title'){ await page.mouse.click(500,400); logInput('click 500,400 (start)'); await page.waitForTimeout(700); s = await snapshot(page); }
+  // builds with the CAVE opening: walk out of the right-hand mouth before the world exists
+  for (let i=0;i<140;i++){
+    const inCave = await page.evaluate(() => { try { return CAVE.active === true; } catch(e){ return false; } });
+    if (!inCave) break;
+    await page.keyboard.press('KeyD').catch(()=>{});
+  }
+  logInput('cave exit (if present)');
+  s = await checkInvariants('cave_exit', page, errors, s);
 
   // -------- boundary_march: hold movement into each edge --------
   for (const key of ['KeyA','KeyW','KeyD','KeyS']){
@@ -279,6 +287,13 @@ async function main(){
       await page.waitForTimeout(150); waited += 150;
       const now = await snapshot(page);
       if (now.terminal || (typeof now.sleep_no==='number' && now.sleep_no > beforeSleep)) break;
+      // a sonder telling card or the encounter legitimately holds input — resolve, don't count
+      const held = await page.evaluate(() => { try {
+        if (document.querySelector('[role=dialog]')) return 'card';
+        if (typeof MG !== 'undefined' && MG.active) return 'mg';
+        return null; } catch(e){ return null; } });
+      if (held === 'card'){ await page.keyboard.press('Enter').catch(()=>{}); waited = Math.min(waited, 1800); }
+      else if (held === 'mg'){ for (let c=0;c<6;c++) await page.mouse.click(500,400).catch(()=>{}); waited = Math.min(waited, 1800); }
       // transition may still be running; keep waiting, re-press once at 2s
       if (waited === 2100) await page.keyboard.press('Space').catch(()=>{});
     }
