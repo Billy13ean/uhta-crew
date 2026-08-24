@@ -1063,11 +1063,61 @@ function sonderMaybeShow(){
   const flame=SIM.player_pole>0?'hope':'fear';
   const story=Sonder.pick({flame:flame,era:sonderEraName(SIM.sleep_no)})||Sonder.pick({flame:flame});
   if(!story)return;
-  SONDER.cardUp=true; SONDER.last_card_sleep=SIM.sleep_no;
+  SONDER.cardUp=true; SONDER.last_card_sleep=SIM.sleep_no; AUDIO.card();
   const el=Sonder.show(story,{tint:flame,onClose:()=>{SONDER.cardUp=false;}});
   const anyKey=(e)=>{window.removeEventListener('keydown',anyKey,true);e.preventDefault();e.stopPropagation();if(el&&el.isConnected)el.click();};
   window.addEventListener('keydown',anyKey,true);                     // ruling: ANY input dismisses
 }
+
+/* ---- AUDIO (procedural, 2026-08-24). Class 13: any sound beats silence — but uhta's
+   register rations it. No assets, no licenses: deep felt-piano tones synthesized in
+   Web Audio — low fundamental + slightly inharmonic partials, soft attack, long decay,
+   lowpassed. Sparse by design: verbs, nights, tellings, endings, and a distant pedal
+   tone every half-minute. M mutes. Starts quiet (class tip). Canon: final audio is CUT
+   until the loop is proven fun — this is the placeholder pass, and it says so here. ---- */
+const AUDIO={ctx:null,master:null,muted:false,last_pedal:0,
+  ensure(){ if(this.ctx||this.muted)return;
+    try{ const C=window.AudioContext||window.webkitAudioContext; if(!C)return;
+      this.ctx=new C(); this.master=this.ctx.createGain(); this.master.gain.value=0.32;
+      const lp=this.ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=1400; lp.Q.value=0.4;
+      this.master.connect(lp); lp.connect(this.ctx.destination);
+    }catch(_){}
+  },
+  tone(freq,dur,gain,dark){ if(this.muted||!this.ctx)return;
+    try{ if(this.ctx.state==='suspended')this.ctx.resume();
+      const t0=this.ctx.currentTime, g=this.ctx.createGain();
+      g.gain.setValueAtTime(0.0001,t0);
+      g.gain.exponentialRampToValueAtTime(gain,t0+0.012);            // felt hammer, not a click
+      g.gain.exponentialRampToValueAtTime(0.0001,t0+dur);
+      g.connect(this.master);
+      const partials=dark?[[1,1],[2.004,0.22],[2.997,0.06]]:[[1,1],[2.003,0.3],[3.006,0.1],[4.01,0.04]];
+      for(const[m,a]of partials){ const o=this.ctx.createOscillator(); o.type='sine';
+        o.frequency.value=freq*m; o.detune.value=(Math.random()*6-3);
+        const pg=this.ctx.createGain(); pg.gain.value=a; o.connect(pg); pg.connect(g);
+        o.start(t0); o.stop(t0+dur+0.1); }
+    }catch(_){}
+  },
+  chord(freqs,dur,gain,dark,spread){ freqs.forEach((f,i)=>setTimeout(()=>this.tone(f,dur,gain,dark),(spread||30)*i)); },
+  N:{A1:55,C2:65.41,D2:73.42,E2:82.41,G2:98,A2:110,C3:130.8,D3:146.8,E3:164.8,G3:196,A3:220,C4:261.6,E4:329.6,G4:392},
+  verb(kind,pole){ const N=this.N;
+    if(kind==='flame') pole>0?this.chord([N.E3,N.A3],2.2,0.10):this.tone(N.C2,2.6,0.12,true);
+    else if(kind==='roar') this.chord([N.A1,N.C2],1.6,0.14,true,12);
+    else if(kind==='beacon_light') this.chord([N.A2,N.E3],3.2,0.10);
+    else if(kind==='raze') this.tone(N.A1,1.2,0.16,true);
+  },
+  sleep(){ this.chord([this.N.E3,this.N.A2,this.N.A1],3.4,0.09,true,220); },
+  wake(){ this.tone(this.N.A2,2.8,0.07); },
+  card(){ this.tone(this.N.G4,4.5,0.07); },
+  ending(win){ const N=this.N; win?this.chord([N.A2,N.E3,N.A3,N.E4],5,0.10,false,260):this.chord([N.A1,N.C2],6,0.10,true,400); },
+  pedal(){ if(this.muted||!this.ctx||typeof phase==='undefined'||phase!=='play')return;
+    const now=Date.now(); if(now-this.last_pedal<25000)return;
+    if(Math.random()<0.4){ this.last_pedal=now; const pool=[this.N.A1,this.N.D2,this.N.E2];
+      this.tone(pool[(Math.random()*pool.length)|0],6,0.045,true); } }
+};
+if(typeof window!=='undefined'&&typeof window.addEventListener==='function'){
+  const arm=()=>{AUDIO.ensure(); if(AUDIO.ctx&&AUDIO.ctx.state==='suspended')AUDIO.ctx.resume();};
+  window.addEventListener('pointerdown',arm); window.addEventListener('keydown',arm);
+  setInterval(()=>AUDIO.pedal(),5000); }   // headless self-test stub has no real window — audio stays dormant there
 
 if(typeof Phaser!=='undefined'){   // headless guard: the sim battery above runs without Phaser (CDN offline OK)
 class Slice extends Phaser.Scene{
@@ -1156,6 +1206,7 @@ class Slice extends Phaser.Scene{
 
   /* ---- input ---- */
   onKey(e){
+    if(e.key==='m'||e.key==='M'){AUDIO.muted=!AUDIO.muted;setTip(AUDIO.muted?'sound off — <b>M</b> to bring it back':'sound on — deep keys in a grey room · <b>M</b> mutes');this._ap5Hold=90;return;}
     if(typeof SONDER!=='undefined'&&SONDER.cardUp)return;   // sonder card holds the world
     if(phase==='title'){ if(e.key==='h'||e.key==='ArrowRight')newGame(1); else if(e.key==='f'||e.key==='ArrowLeft')newGame(-1); return; }
     if(phase==='end'){ if(e.key===' '||e.key==='Enter'){phase='title';this.drawTitle();} return; }
@@ -1182,7 +1233,7 @@ class Slice extends Phaser.Scene{
       let si=-1; for(let i=0;i<SIM.sites.length;i++)if(!SIM.sites[i].lit&&cheb(SIM.player_pos,SIM.sites[i].pos)<=1){si=i;break;}
       if(si>=0){ if(this.remaining()>=BEACON_C){
         const s=SIM.sites[si]; SIM.light_site(si,SIM.player_pole);
-        SIM.stamina_spent_this_wake+=BEACON_C; SIM.tick([],false);
+        SIM.stamina_spent_this_wake+=BEACON_C; SIM.tick([],false); AUDIO.verb('beacon_light',SIM.player_pole);
         this.revealAround(s.pos,(RULES.world.beacon_sites||{}).reveal_radius_tiles??9);   // "reveal part of the map"
         this.fxq.push({n:SIM.player_pole>0?'flame_hope':'flame_fear',x:s.pos[0]*CELL+CELL/2,y:s.pos[1]*CELL+CELL/2-CELL*0.75,t:55});
         if(SIM.terminal)this.toEnd(); } }
@@ -1206,6 +1257,7 @@ class Slice extends Phaser.Scene{
   spentTip(){ setTip(`You are spent. <b>Sleep</b> — <b>space</b> — brings the next generation.`); this._ap5Hold=90; }   // A9 F01
   tryAct(kind,cost){
     if(cost>this.remaining()+1e-9){this.spentTip();return;}
+    AUDIO.verb(kind,SIM.player_pole);
     if(kind==='flame'){this.revealAround(SIM.player_pos,SIM.flame_r+1); this.tut.flamed=true;} // flame clears fog (permanent), radius scales
     { const fxn=kind==='flame'?(SIM.player_pole>0?'flame_hope':'flame_fear'):kind==='roar'?'roar':null;  // cast fx
       if(fxn)this.fxq.push({n:fxn,x:SIM.player_pos[0]*CELL+CELL/2,y:SIM.player_pos[1]*CELL+CELL/2-CELL*0.75,t:55}); }
@@ -1241,7 +1293,7 @@ if(MG.active&&MG.entry_t>=48&&MG.exit_t===0){return;}
   }
   doSleep(){
     this.tut.slept=true; const tier0=SIM.tier;
-    transitioning=true; this.nightAlpha=0;
+    transitioning=true; this.nightAlpha=0; AUDIO.sleep();
     if(SIM.sleep_no===0&&!this.tut.taught_sleep){this.tut.taught_sleep=true;this.tut.pending_teaching='sleep';}
     const rise=()=>{ this.nightAlpha+=0.09; this.drawWorld();
       if(this.nightAlpha<1)this.time.delayedCall(16,rise);
@@ -1249,11 +1301,11 @@ if(MG.active&&MG.entry_t>=48&&MG.exit_t===0){return;}
         if(SIM.tier>tier0)this.levelFlash=40;   // schema 3.8: leveled up this sleep
         const fall=()=>{ this.nightAlpha-=0.07; this.drawWorld();
           if(this.nightAlpha>0)this.time.delayedCall(16,fall);
-          else{ this.nightAlpha=0; transitioning=false; if(SIM.terminal)this.toEnd(); }};
+          else{ this.nightAlpha=0; transitioning=false; AUDIO.wake(); if(SIM.terminal)this.toEnd(); }};
         this.time.delayedCall(140,fall); }};
     rise();
   }
-  toEnd(){phase='end';this.drawEnd();}
+  toEnd(){phase='end';AUDIO.ending(SIM.terminal&&SIM.terminal[0]==='win');this.drawEnd();}
   update(){ if(phase==='play'&&!transitioning){this.drawWorld(); sonderMaybeShow();} }
 
   /* ---- sprite pool (art pass v1) — reused Images over the graphics layer ---- */
