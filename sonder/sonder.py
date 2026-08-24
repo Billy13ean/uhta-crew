@@ -129,6 +129,16 @@ def selftest() -> int:
     back = "Ila tightens her grip on the water skin."
     ok(any(f["rule"] == "L1" for f in style_gate.heirloom_gate(back, Lg)), "L1: ...and wrong back in the old hands")
     ok("handed on" in story.heirloom_lock(Lg), "the diagram follows the ledger when an object moves")
+    # L1 precision (2026-08-24, from the first live session's false positives)
+    Lp = world.new_ledger("hester", seed=4)   # Victorian cast: Bram SPEARING is in the band
+    surname = "Bram Spearing sets the cracked mallet across his knees and watches the road."
+    ok(not [f for f in style_gate.heirloom_gate(surname, Lp) if "spear" in f["detail"]], "L1: 'spear' does not fire inside the surname Spearing")
+    faraway = "Kit is looking at the ground between their feet. Pressed flat in their coat, the white feather does not show. When you say their name they wait."
+    ok(not style_gate.heirloom_gate(faraway, Lp), "L1: a pronoun near the object does not out-claim its named carrier in the same passage")
+    Lg2 = world.new_ledger("ila", seed=1)
+    world.advance_turn(Lg2)
+    give_prose = "Ila unslings the water skin with the red stitch and puts it in Tate's hands."
+    ok(not style_gate.heirloom_gate(give_prose, Lg2, gave_line="ila"), "L1: on the handover turn the giver's hands are still legal")
 
     # the two caps
     p = {"emotion": 0, "band": "grey", "pole": "grey", "burned": False, "burned_colour": None, "alive": True, "tends": 0}

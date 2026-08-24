@@ -116,13 +116,23 @@ def _first(name: str) -> str:
     return name.split()[0].lower()
 
 
-def heirloom_gate(text: str, L: dict) -> list[dict]:
-    """L1 (Director, 2026-08-23): the objects are locked to their lines. For every
-    distinctive object word in the narration, the nearest named hands must belong
-    to that object's CURRENT holder per the ledger (ownership follows gives_heirloom).
-    Conservative on purpose: an object mentioned with no name nearby is scenery and
-    passes; only a clear wrong-hands attribution is a finding. Findings feed the
-    same one-retry loop as every other rule, with the right holder named."""
+def heirloom_gate(text: str, L: dict, gave_line: str | None = None) -> list[dict]:
+    """L1 (Director, 2026-08-23): the objects are locked to their lines.
+
+    Precision pass 2026-08-24, after the first live session produced four false
+    positives against prose that was in fact correct:
+      * marks match on WORD BOUNDARIES ('spear' no longer fires inside the
+        surname 'Spearing');
+      * if the object's LEGITIMATE holder is named anywhere in the window, the
+        mention PASSES — a nearer pronoun or bystander name is not a claim of
+        ownership when the true carrier is right there in the sentence;
+      * the window is ±160 chars (holders are often a clause away);
+      * on the turn an object is handed on (gave_line), the GIVER's hands are
+        still legal for that object — the prose of a handover rightly shows it
+        leaving them, while the ledger already shows the receiver.
+    A finding now means: a non-holder is named near the object and its real
+    carrier is nowhere in the passage. That is the interchange the rule exists
+    to stop. Findings feed the same review-before-post loop, right holder named."""
     P = L["player"]
     everyone = [("you", P)] + list(L["band"].items())
     # who legitimately holds each line's object RIGHT NOW
@@ -137,6 +147,8 @@ def heirloom_gate(text: str, L: dict) -> list[dict]:
                 hs.add(_first(person["name"]))
                 if pid == "you":
                     hs.update({"you", "your", "yours"})
+        if gave_line == line:                      # handover turn: the giver's hands are still legal
+            hs.add(_first(P["name"])); hs.update({"you", "your", "yours"})
         holders[line] = hs
     all_names = {_first(per["name"]) for _, per in everyone} | {"you", "your", "yours"}
     low = text.lower()
@@ -144,19 +156,16 @@ def heirloom_gate(text: str, L: dict) -> list[dict]:
     flagged = set()
     for line, marks in _cast.HEIRLOOM_MARKS.items():
         for mark in marks:
-            for m in re.finditer(re.escape(mark), low):
-                # nearest name within 90 chars either side, closest wins
-                lo, hi = max(0, m.start() - 90), min(len(low), m.end() + 90)
-                best, bestd = None, 10**9
-                for nm in all_names:
-                    for nm_m in re.finditer(r"\b" + re.escape(nm) + r"\b", low[lo:hi]):
-                        d = abs((lo + nm_m.start()) - m.start())
-                        if d < bestd:
-                            best, bestd = nm, d
-                if best is None:
+            for m in re.finditer(r"\b" + re.escape(mark) + r"\b", low):
+                lo, hi = max(0, m.start() - 160), min(len(low), m.end() + 160)
+                window = low[lo:hi]
+                names_here = {nm for nm in all_names
+                              if re.search(r"\b" + re.escape(nm) + r"\b", window)}
+                if not names_here:
                     continue                       # scenery — no hands claimed
-                if best in holders.get(line, set()):
-                    continue                       # right hands
+                if names_here & holders.get(line, set()):
+                    continue                       # the true carrier is in the passage — right hands
+                best = sorted(names_here)[0]
                 key = (line, best)
                 if key in flagged:
                     continue

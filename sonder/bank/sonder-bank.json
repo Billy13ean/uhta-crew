@@ -1,8 +1,8 @@
 {
  "schema": "sonder-bank/1",
- "compiled": "2026-08-23T14:32:08",
- "count": 12,
- "clean_count": 11,
+ "compiled": "2026-08-23T20:08:34",
+ "count": 13,
+ "clean_count": 12,
  "stories": [
   {
    "id": "bram-260823-135851-e75e",
@@ -1173,6 +1173,251 @@
      "trust": 0,
      "present": false,
      "where": "stayed behind at Fork Town, under the ridge works"
+    }
+   },
+   "promises": [],
+   "betrayals": []
+  },
+  {
+   "id": "hester-260823-193608-835e",
+   "recorded": "2026-08-23T20:03:11",
+   "dm": "live",
+   "model": "claude-sonnet-4-6",
+   "who": {
+    "id": "hester",
+    "name": "Hester Singer",
+    "role": "hums at the loom-line when afraid",
+    "line": "hild",
+    "private": "Hester's tune is her mother's, and her mother took the ridge tram up to the works one morning and did not take it down.",
+    "private_told": false,
+    "heirloom": null,
+    "heirloom_given_to": "osbert"
+   },
+   "flame": "hope",
+   "ending": "dawn",
+   "final": {
+    "you": "tentative hope",
+    "emotion": 3,
+    "burned": false,
+    "era": "Victorian towns",
+    "fog": false,
+    "camp": "Fork Town, under the ridge works",
+    "sleeps": 4,
+    "basins_lit": 2,
+    "dominance": {
+     "hope": 0.17,
+     "fear": 0.0,
+     "grey": 0.83
+    }
+   },
+   "era": "Victorian towns",
+   "tags": [
+    "flame:hope",
+    "ending:dawn",
+    "who:hester",
+    "tended-the-burned",
+    "you:tentative-hope",
+    "era:Victorian-towns",
+    "line:hild",
+    "handed-it-on"
+   ],
+   "telling": "Hester Singer hummed when she was afraid, and she was afraid for most of it. The flame came down green, and she did not run from it — she gave instead: water, a comb with three teeth missing, her hands around an old man's feet in the dark. Each gift left her greyer than before, and each time the grey took her she climbed back, alone, without anyone pulling. She gave Eadwin Rivers what steadiness she could, and it did not hold, but she gave it again. She stands now at the near edge of hope — not arrived, not certain, still humming.\n\nHester held her mother's tune in her mouth all the long watches and never once let it out. Would you have told the other woman where the song came from?",
+   "telling_clean": true,
+   "choice": {
+    "turn": 11,
+    "did": "stood in silence and let the word go unsaid",
+    "could_have": "spoken the truth about her mother and the ridge tram to the one beside her",
+    "question": "Hester held her mother's tune in her mouth all the long watches and never once let it out. Would you have told the other woman where the song came from?"
+   },
+   "epilogue": "The fourth dawn comes in without ceremony. The green flame has taken its colour and the tall one has moved on, leaving two basins lit on the hills above the town — they will not go out, though no one yet knows what they are for. You are Hester Singer, and you stand in tentative hope, which is to say you are not grey, which is the most that can be said. Eadwin Rivers stands beside you, grey but trusting, the kind of grey that has been held rather than abandoned; Osbert Spearing the same, your bone comb still in his hair, three teeth missing, a thing given away that cannot be returned. Bram Spearing is grey and does not look at you. Ada Waterman is grey and does not look at anyone. Kit is grey and very still. You shared what you had, you stood when it mattered, you tended the one who was falling — and the town is still mostly grey, which is what the world does with careful hands and one short night.\n\nA generation on, two children who never met will each find a lit basin on the same morning, and wonder, separately, if someone meant it for them.\n\nHester held her mother's tune in her mouth all the long watches and never once let it out. Would you have told the other woman where the song came from?",
+   "beats": [
+    {
+     "turn": 1,
+     "did": "Hester stepped forward ahead of the others, volunteering to go first.",
+     "became": [],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "victorian",
+      "being_far"
+     ]
+    },
+    {
+     "turn": 2,
+     "did": "Hester drank some water from the camp supply.",
+     "became": [
+      "Bram Spearing: tentative fear -> grey"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_far"
+     ]
+    },
+    {
+     "turn": 3,
+     "did": "Hester Singer gave the rest of what she had to Bram Spearing.",
+     "became": [
+      "Bram Spearing trust -> +0"
+     ],
+     "being": "Flame",
+     "slept": true,
+     "art": [
+      "vigil",
+      "being_near"
+     ]
+    },
+    {
+     "turn": 4,
+     "did": "Hester Singer took the bone comb from her hair and gave it to Osbert Spearing for keeps.",
+     "became": [
+      "Hester Singer gave Osbert Spearing a bone comb with three teeth missing, worn in the hair at the loom-line; trust -> +2",
+      "Osbert Spearing trust -> +3"
+     ],
+     "being": "Walk",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 5,
+     "did": "Hester Singer gave him the water.",
+     "became": [],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 6,
+     "did": "Hester Singer held Eadwin Rivers close, steadying the old lamplighter.",
+     "became": [
+      "Eadwin Rivers trust -> +2",
+      "Eadwin Rivers: grey -> tentative hope",
+      "Eadwin Rivers: tentative hope -> grey",
+      "Hester Singer: grey -> tentative hope",
+      "Hester Singer: tentative hope -> grey"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 7,
+     "did": "Hester Singer gave him the water.",
+     "became": [],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 8,
+     "did": "Hester went searching the camp and surroundings for more water.",
+     "became": [],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 9,
+     "did": "Hester Singer knelt and washed Eadwin's feet with care.",
+     "became": [
+      "Eadwin Rivers: grey -> tentative hope",
+      "Eadwin Rivers: tentative hope -> grey",
+      "Hester Singer: grey -> tentative hope",
+      "Hester Singer: tentative hope -> grey"
+     ],
+     "being": "Walk",
+     "slept": true,
+     "art": [
+      "vigil"
+     ]
+    },
+    {
+     "turn": 10,
+     "did": "Hester Singer lay down and slept.",
+     "became": [
+      "Hester Singer: grey -> tentative hope"
+     ],
+     "being": "Flame",
+     "slept": false,
+     "art": [
+      "flame"
+     ]
+    },
+    {
+     "turn": 11,
+     "did": "Hester did nothing — stood in place, the word loose in her mouth like a stone.",
+     "became": [
+      "Hester Singer: tentative hope -> grey"
+     ],
+     "being": "Wait",
+     "slept": false,
+     "art": [
+      "being_near"
+     ]
+    },
+    {
+     "turn": 12,
+     "did": "Hester moved to stand beside her.",
+     "became": [
+      "Hester Singer: grey -> tentative hope"
+     ],
+     "being": "Beacon",
+     "slept": true,
+     "art": [
+      "dawn"
+     ]
+    }
+   ],
+   "band_end": {
+    "ada": {
+     "name": "Ada Waterman",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 0,
+     "present": true,
+     "where": null
+    },
+    "eadwin": {
+     "name": "Eadwin Rivers",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 3,
+     "present": true,
+     "where": null
+    },
+    "bram_s": {
+     "name": "Bram Spearing",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 0,
+     "present": true,
+     "where": null
+    },
+    "osbert": {
+     "name": "Osbert Spearing",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 3,
+     "present": true,
+     "where": null
+    },
+    "kit": {
+     "name": "Kit",
+     "state": "grey",
+     "emotion": 1,
+     "trust": 0,
+     "present": true,
+     "where": null
     }
    },
    "promises": [],
@@ -2990,6 +3235,7 @@
     "bram_s-260821-000956-b8cb",
     "hedda-260820-225437-7768",
     "hester-260821-000731-e69f",
+    "hester-260823-193608-835e",
     "hild-260820-235448-a7c0",
     "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
@@ -3006,6 +3252,7 @@
    "dawn": [
     "bram-260823-135851-e75e",
     "bram_s-260821-000956-b8cb",
+    "hester-260823-193608-835e",
     "hild-260820-235448-a7c0",
     "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
@@ -3034,7 +3281,8 @@
    ],
    "hester": [
     "hester-260820-231629-a81d",
-    "hester-260821-000731-e69f"
+    "hester-260821-000731-e69f",
+    "hester-260823-193608-835e"
    ],
    "hild": [
     "hild-260820-235448-a7c0"
@@ -3064,6 +3312,7 @@
     "bram_s-260821-000956-b8cb",
     "hedda-260820-225437-7768",
     "hester-260821-000731-e69f",
+    "hester-260823-193608-835e",
     "hild-260820-235448-a7c0",
     "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
@@ -3073,6 +3322,7 @@
    "ending:dawn": [
     "bram-260823-135851-e75e",
     "bram_s-260821-000956-b8cb",
+    "hester-260823-193608-835e",
     "hild-260820-235448-a7c0",
     "ilse-260823-142050-0d21",
     "tate-260821-001438-c66d",
@@ -3118,6 +3368,7 @@
    ],
    "handed-it-on": [
     "bram-260823-135851-e75e",
+    "hester-260823-193608-835e",
     "teg-260820-235906-ddea"
    ],
    "zealot-among-you:fear": [
@@ -3154,7 +3405,8 @@
    "era:Victorian-towns": [
     "bram_s-260821-000956-b8cb",
     "hester-260820-231629-a81d",
-    "hester-260821-000731-e69f"
+    "hester-260821-000731-e69f",
+    "hester-260823-193608-835e"
    ],
    "ending:zealot": [
     "hedda-260820-225437-7768",
@@ -3171,6 +3423,7 @@
     "hedda-260820-225437-7768",
     "hester-260820-231629-a81d",
     "hester-260821-000731-e69f",
+    "hester-260823-193608-835e",
     "hild-260820-235448-a7c0"
    ],
    "zealot-among-you:hope": [
@@ -3183,7 +3436,8 @@
    ],
    "who:hester": [
     "hester-260820-231629-a81d",
-    "hester-260821-000731-e69f"
+    "hester-260821-000731-e69f",
+    "hester-260823-193608-835e"
    ],
    "you:unmoving-fear": [
     "hester-260820-231629-a81d",
@@ -3191,6 +3445,14 @@
    ],
    "ending:alone": [
     "hester-260821-000731-e69f"
+   ],
+   "tended-the-burned": [
+    "hester-260823-193608-835e",
+    "tate-260821-001438-c66d",
+    "teg-260820-235906-ddea"
+   ],
+   "you:tentative-hope": [
+    "hester-260823-193608-835e"
    ],
    "who:hild": [
     "hild-260820-235448-a7c0"
@@ -3225,10 +3487,6 @@
     "tate-260821-001438-c66d",
     "teg-260820-235906-ddea",
     "wystan-260821-001914-de9b"
-   ],
-   "tended-the-burned": [
-    "tate-260821-001438-c66d",
-    "teg-260820-235906-ddea"
    ],
    "line:tate": [
     "tate-260821-001438-c66d",
@@ -3271,7 +3529,8 @@
    "Victorian towns": [
     "bram_s-260821-000956-b8cb",
     "hester-260820-231629-a81d",
-    "hester-260821-000731-e69f"
+    "hester-260821-000731-e69f",
+    "hester-260823-193608-835e"
    ],
    "nomad camps": [
     "hild-260820-235448-a7c0",
@@ -3289,6 +3548,7 @@
     "hedda-260820-225437-7768",
     "hester-260820-231629-a81d",
     "hester-260821-000731-e69f",
+    "hester-260823-193608-835e",
     "hild-260820-235448-a7c0"
    ],
    "ila": [

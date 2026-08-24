@@ -63,9 +63,9 @@ class Session:
     def _write_ledger(self):
         (self.dir / "ledger.json").write_text(world.dumps(self.L), encoding="utf-8")
 
-    def _gate(self, text: str) -> list[dict]:
+    def _gate(self, text: str, gave_line: str | None = None) -> list[dict]:
         return (style_gate.run_gate(text) + style_gate.consistency_gate(text, self.L)
-                + style_gate.heirloom_gate(text, self.L))   # L1: objects locked to lines (2026-08-23)
+                + style_gate.heirloom_gate(text, self.L, gave_line=gave_line))   # L1: objects locked to lines
 
     # -- the turn -------------------------------------------------------------
     def turn(self, player_text: str) -> dict:
@@ -99,13 +99,14 @@ class Session:
         # player sees anything, with up to TWO review passes, and the cleanest draft
         # ships. Findings go to the session log only — never into the page; a reader
         # should feel the story, and the log should carry the honesty.
+        gave_line = self.L["player"]["line"] if action.get("gives_heirloom") else None
         text = self.dm.narrate(self.L, player_text, action, logs, press=press)
-        findings = self._gate(text) + (style_gate.press_gate(text) if press else [])
+        findings = self._gate(text, gave_line) + (style_gate.press_gate(text) if press else [])
         retried = 0
         while findings and retried < 2 and self.dm.name != "mock":
             retried += 1
             text2 = self.dm.narrate(self.L, player_text, action, logs, retry=findings, press=press)
-            findings2 = self._gate(text2) + (style_gate.press_gate(text2) if press else [])
+            findings2 = self._gate(text2, gave_line) + (style_gate.press_gate(text2) if press else [])
             if len(findings2) < len(findings) or (len(findings2) == len(findings) and retried == 1):
                 text, findings = text2, findings2
 
