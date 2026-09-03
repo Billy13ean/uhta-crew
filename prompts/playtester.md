@@ -81,6 +81,18 @@ Further hard rules:
 
 {{REPRO}}
 
+## TERRAIN ARM (while `world.terrain.enabled`; human-found regression 2026-08-24)
+
+When the measured facts include a `winprobe_terrain` block (the JS-side skilled-play
+harness over the slice's own World — the reference sim for terrain until schema 3.11),
+read it like any other arm: `wins`/`losses`/`none` out of the seed count, `plateaus`
+(runs ending NONE with `max_wf >= 0.75`), `median_win_sleep`, `median_max_wf`,
+`median_burn_peak`, and the tool's own `verdict` gate (>=6/8 wins, 0 plateaus).
+A nonzero `plateaus` is the "it worked but I couldn't win" class and belongs in your
+verdicts as REFUTED regardless of every other number on the board. If the facts block
+carries no `winprobe_terrain` section for a terrain-touching variant, write "terrain
+winnability: not measured this run" under Conformance — do not infer it.
+
 ## OUTPUT
 
 Write **only** these four sections, in this order, in a single ```markdown fence.

@@ -45,7 +45,7 @@ def call(label: str, system: str, user: str, max_tokens: int = 1024) -> None:
         print(f"[{label:<32}] EXCEPTION {type(exc).__name__}: {exc}")
 
 
-packets = sorted(glob.glob("out/*/packet-mechanic-designer-*.md"))
+packets = sorted(glob.glob("out/*/packet-mechanic-designer-*.md"), key=__import__("os").path.getmtime)   # newest by TIME — alphabetical picked a stale run
 if not packets:
     sys.exit("No packet found under out/. Run the crew once first.")
 

@@ -151,7 +151,11 @@ def run_mechanic_designer(bb, llm, ctx, validator: Validator) -> dict:
     template = marker + rest
 
     def build_user(repair: str) -> str:
-        return (template
+        # 2026-08-24: the refusal threshold moved server-side (probe: a packet that
+        # passed on 8/20 now refuses under a BLAND system prompt). The classifier
+        # reads the user content, so the fictional-game framing must live there too,
+        # not only in the system prompt.
+        return (GAME_FRAMING + template
                 .replace("{{CONTEXT_PACKET}}", packet)
                 .replace("{{QUESTION_SET}}", ctx.question_set)
                 .replace("{{REPAIR_BLOCK}}", repair))

@@ -27,7 +27,8 @@ PROMPT_VERSION = "red-teamer v4 (crew port)"
 ALLOWED_BOTS = {
     "bot_do_nothing", "bot_wait_once", "bot_walk_one", "bot_throughput",
     "make_flamer", "run_tyrant", "run_campaign_v3", "run_siege", "run_selfburn",
-}
+    "run_campaign_v3_audit",   # 2026-09-03: the 3.10-stat audit shim (policy_shims.py) — runner
+}                              # and prompt knew it; this validator was the missed third copy
 SAFETY_BOTS = {"bot_do_nothing", "run_selfburn", "bot_wait_once", "bot_walk_one"}
 MAX_PROBES = 8
 

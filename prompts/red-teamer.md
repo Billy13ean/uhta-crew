@@ -123,6 +123,25 @@ board cell of `—`, and the Playtester will correctly refuse to render a verdic
 it. That is a wasted arm. If your attack is about front geometry or cadence, use
 `bot_throughput` (hope) or `make_flamer` (either pole) — not the campaign bot.
 
+## TERRAIN WINNABILITY (mandatory attack family while `world.terrain.enabled`)
+
+Human-found regression, 2026-08-24 ("it worked but I couldn't win"): under THE WILD,
+skilled play plateaued below the win threshold indefinitely — three compounding causes:
+(1) opened roads carried loners in arbitrary directions (no drain toward conviction),
+(2) colonies could not fission into the wild, so spheres never reached outlying pockets,
+(3) the win terminal starved: burn churn kept moving the 0.8 denominator, and the intent
+S-gate never accumulated in a sparse endgame where the player works far from crowds.
+
+The python harness has no terrain until schema 3.11, so this family runs on the JS-side
+Playtester harness: `bot: winprobe_terrain` (tools/winprobe_terrain.js — skilled policy,
+8 seeds, hard gate). It emits: `wins`, `losses`, `none`, `plateaus` (NONE with
+`max_wf >= 0.75` — the bug's signature), `median_win_sleep`, `median_max_wf`,
+`median_burn_peak`. Any variant that touches `world.terrain.*`, `wander.*`,
+`schism.*`, burnout, or `win_loss.*` MUST carry at least one attack row with
+`bot: winprobe_terrain` and `falsification_metric: plateaus` (falsified when > 0) or
+`wins` (falsified when < 6/8). A plateau is a **high-severity** finding: the player was
+handed a world that says yes and a terminal that says nothing.
+
 ## OUTPUT
 
 Two artifacts, in this order, each in its own fenced block.

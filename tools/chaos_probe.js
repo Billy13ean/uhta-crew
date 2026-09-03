@@ -18,6 +18,11 @@
  *   I8  camera zoom stays positive and finite under wheel abuse
  *   I9  the on-load self-test still fully passes AFTER an entire chaos run
  *   I10 the world is never stuck: real input during play advances the tick counter
+ *   I11 a won world can be SEALED: with every heart aligned and no opposing zealot,
+ *       flame-beside-the-flock + sleep-among-them must fire the win terminal within
+ *       4 generations (regression: 2026-08-24 "it worked but I couldn't win" — the
+ *       S-gate never saw enough expressed intent in a sparse terrain endgame, and
+ *       burn churn moved the 0.8 denominator)
  *
  * BEHAVIORS (the chaos loop, seeded and reproducible):
  *   title_mash        clicks/keys hammered on the title screen
@@ -278,6 +283,34 @@ async function main(){
   // -------- sleep_march: REAL generations — press space, wait out the night transition --------
   // The harness's do-nothing baseline loses at sleep 24. If the slice cannot reach a
   // terminal in 40 idle generations, the idle player has no ending — that is a finding.
+  // 2026-08-24: a fresh run opens in THE MEETING's tutorial map, and skipping it now
+  // requires the are-you-sure dialog's PHYSICAL mouse click — exercise that exact path:
+  // space raises the dialog, a key must NOT confirm it, the mouse click must.
+  {
+    const inTut = await page.evaluate(() => { try { return typeof TUTOR!=='undefined' && TUTOR.active; } catch(e){ return false; } });
+    if (inTut){
+      // earlier chaos arms may have left the dialog OPEN — normalize to closed first
+      await page.evaluate(() => { try { if (typeof tutSkipAsk==='function') tutSkipAsk(false); } catch(e){} });
+      await page.waitForTimeout(150);
+      await page.keyboard.press('Space').catch(()=>{});
+      await page.waitForTimeout(350);
+      const up1 = await page.evaluate(() => typeof TUT_SKIP_UP!=='undefined' && TUT_SKIP_UP);
+      await page.keyboard.press('Space').catch(()=>{});   // a key STAYS — must not confirm
+      await page.waitForTimeout(250);
+      const stillTut = await page.evaluate(() => TUTOR.active===true);
+      await page.keyboard.press('Space').catch(()=>{});   // re-raise, then confirm by mouse
+      await page.waitForTimeout(300);
+      const clicked = await page.evaluate(() => { const b=document.getElementById('tskgo'); if(b&&TUT_SKIP_UP){b.click();return true;} return false; });
+      logInput(`tutorial skip dialog: raised=${up1} key-stayed=${stillTut} mouse-confirmed=${clicked}`);
+      if (!up1 || !stillTut || !clicked)
+        finding('sleep_march', 'tutorial skip confirm', 'SKIP_CONFIRM_BROKEN',
+          `space mid-lesson must raise are-you-sure (raised=${up1}), a key must stay (stayed=${stillTut}), only a mouse click may confirm (clicked=${clicked})`, await snapshot(page), 'medium');
+      await page.waitForTimeout(2400);   // transition into the real world
+      // whatever happened above, the march below must test the REAL world's sleep
+      await page.evaluate(() => { try { if (typeof TUTOR!=='undefined' && TUTOR.active) tutorFinish(true); } catch(e){} });
+      await page.waitForTimeout(2400);
+    }
+  }
   let slept = 0; let stuckSleeps = 0;
   for (let g=0; g<40; g++){
     const beforeSleep = (await snapshot(page)).sleep_no;
@@ -343,11 +376,66 @@ async function main(){
   const tip = await page.evaluate(() => { try { return (document.getElementById('tip')||{}).innerText || ''; } catch(e){ return ''; } });
   const taught = await page.evaluate(() => { try { return TEACHING_TEXT && tip !== undefined ? null : null; } catch(e){ return null; } });
   const walkLine = await page.evaluate(() => { try { return TEACHING_TEXT.walk.slice(0, 18); } catch(e){ return null; } });
-  if (walkLine && !tip.includes(walkLine.slice(0,12)))
-    finding('replay_hammer', 'teaching narration (G12 surface)', 'TEACHING_SILENT_ON_REPLAY',
-      `first walk of a fresh run did not surface the walk teaching line; tip='${tip.slice(0,80)}'`, await snapshot(page), 'low');
+  if (walkLine && !tip.includes(walkLine.slice(0,12))){
+    // 2026-08-24: THE MEETING (skippable tutorial) supersedes the sleep-0 teaching lines on a
+    // fresh run — its narration on the tip surface IS the teaching. Only flag silence when
+    // neither surface spoke.
+    const meeting = await page.evaluate(() => { try { return typeof TUTOR!=='undefined' && TUTOR.active; } catch(e){ return false; } });
+    if (!meeting)
+      finding('replay_hammer', 'teaching narration (G12 surface)', 'TEACHING_SILENT_ON_REPLAY',
+        `first walk of a fresh run did not surface the walk teaching line and no tutorial was narrating; tip='${tip.slice(0,80)}'`, await snapshot(page), 'low');
+  }
   if (replayErr) finding('replay_hammer', 'newGame / reset path', 'REPLAY_ERROR', replayErr.slice(0,200), await snapshot(page), 'high');
   s = await checkInvariants('replay_hammer', page, errors, s);
+
+  // -------- win_seal (I11): a won world must be SEALABLE --------
+  // replay_hammer left us in a fresh run. Force the won-but-unsealed state (all aligned,
+  // no opposing zealot), then do exactly what the game telegraphs: flame beside the flock
+  // and sleep among them. If the terminal doesn't fire, the win is unreachable — the
+  // 2026-08-24 class (S-gate starvation / burn-churn denominator), found by a human first.
+  {
+    // 2026-08-24: a fresh run opens in THE MEETING's tutorial world (SIM is swapped).
+    // Seal the REAL world: finish the tutorial first and wait out its transition.
+    await page.evaluate(() => { try { if (typeof TUTOR!=='undefined' && TUTOR.active) tutorFinish(true); } catch(e){} });
+    await page.waitForTimeout(2200);
+    await page.evaluate(() => { try {
+      const p1 = SIM.player_pole;
+      for (const x of SIM.npcs){ if (x.zealot){ if (x.I*p1<0) x.v = 8*p1; continue; } x.burn=false; x.v=8*p1; x.ever_nonzero=true; }
+      for (const t of SIM.tribes) t.pole = p1;
+    } catch(e){ window.__sealErr = String(e); } });
+    let sealed = false, holdTrace = [], wfTrace = [];
+    for (let round=0; round<4 && !sealed; round++){
+      await page.evaluate(() => { try {
+        const c = SIM.tribes[0].center; SIM.player_pos = [c[0], c[1]];
+        SIM.act('flame', null, SIM.player_pole, 2.5);
+      } catch(e){ window.__sealErr = String(e); } });
+      const before = (await snapshot(page)).sleep_no;
+      await page.keyboard.press('Space').catch(()=>{});
+      let waited = 0;
+      while (waited < 4500){
+        await page.waitForTimeout(150); waited += 150;
+        const now = await snapshot(page);
+        if (now.terminal || (typeof now.sleep_no==='number' && now.sleep_no > before)) break;
+        if (await page.evaluate(() => !!document.querySelector('[role=dialog]')).catch(()=>false))
+          await page.keyboard.press('Enter').catch(()=>{});
+      }
+      const st = await page.evaluate(() => { try { return { terminal: SIM.terminal && SIM.terminal.slice(),
+        hold: SIM.win_hold, wf: +( (SIM.win_frac?SIM.win_frac():SIM.dominance()) ).toFixed(2) }; } catch(e){ return {err:String(e).slice(0,120)}; } });
+      holdTrace.push(st.hold); wfTrace.push(st.wf);
+      if (st.terminal && st.terminal[0] === 'win') sealed = true;
+      if (st.terminal && st.terminal[0] !== 'win'){
+        finding('win_seal', 'win/loss check', 'SEAL_BECAME_LOSS',
+          `forced-won world terminated ${JSON.stringify(st.terminal)} while sealing`, await snapshot(page), 'high');
+        break;
+      }
+    }
+    logInput(`win_seal: sealed=${sealed} hold=[${holdTrace}] wf=[${wfTrace}]`);
+    if (!sealed && !findings.some(f=>f.error_type==='SEAL_BECAME_LOSS'))
+      finding('win_seal', 'win/loss check (S-gate / win denominator)', 'WIN_UNSEALABLE',
+        `every heart aligned, no opposing zealot, flame+sleep among the flock x4 generations — win terminal never fired (win_hold trace [${holdTrace.join(',')}], win_frac trace [${wfTrace.join(',')}]). The 0.8 hold either never accumulates (intent S-gate starved in a sparse endgame) or the denominator churns (burnout). Human-found 2026-08-24; this arm keeps it found.`,
+        await snapshot(page), 'high');
+    s = await checkInvariants('win_seal', page, errors, s);
+  }
 
   await emit(page, reachedTerminal, browser, null);
 }
@@ -365,9 +453,9 @@ async function emit(page, reachedTerminal, browser, behaviors){
     agent: 'chaos_probe v1 (Assignment 9)',
     seed: SEED,
     when: new Date().toISOString(),
-    invariants: ['I1 no page errors','I2 avatar in bounds','I3 finite NPC state within pin','I4 population bounds','I5 stamina ledger sane','I6 terminal immutable','I7 known phases only / inert after terminal','I8 zoom bounds','I9 self-test green after chaos','I10 world never stuck'],
+    invariants: ['I1 no page errors','I2 avatar in bounds','I3 finite NPC state within pin','I4 population bounds','I5 stamina ledger sane','I6 terminal immutable','I7 known phases only / inert after terminal','I8 zoom bounds','I9 self-test green after chaos','I10 world never stuck','I11 a won world can be sealed'],
     arm: ARM,
-    behaviors_run: behaviors || ['title_mash','boundary_march','key_monkey','click_storm','wheel_abuse','roar_offmap','verb_hammer','flame_overdraft','stuck_check','stamina_exhaust','sleep_march','post_terminal_mash','resize_jitter','replay_hammer','post_chaos_selftest'],
+    behaviors_run: behaviors || ['title_mash','boundary_march','key_monkey','click_storm','wheel_abuse','roar_offmap','verb_hammer','flame_overdraft','stuck_check','stamina_exhaust','sleep_march','post_terminal_mash','resize_jitter','replay_hammer','win_seal','post_chaos_selftest'],
     reached_terminal: reachedTerminal,
     selftest_after_chaos_fails: (findings.some(f=>f.error_type==='SELFTEST_REGRESSION')) ? 'REGRESSED' : 'all green',
     findings_count: findings.length,

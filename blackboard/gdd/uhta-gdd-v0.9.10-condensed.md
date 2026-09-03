@@ -167,3 +167,21 @@ The Orchestrator is the addition that needs justifying, and headcount is not the
 **Known canon contact, for the Keeper.** B and C touch the Run 23b `spawn_at` salvage (origin becomes geographic again; target does not). The two-phase terminal touches "checked every tick, terminal immediately." The fixed `[24,6]` temple coordinate in `art/LANDMARKS.md` was proposed, never ruled. The §3 stop rule gates the *build* of this (NICE #2), not this proposal run.
 
 **Questions for this run.** Does a fixed origin re-enable the centroid-steering attack that Run 23b closed? Can the hold-to-temple walk be lost, farmed, or trivialised? Does variant C make Hope runs unwinnable? Median added sleeps per variant against v3.9.1? Can any variant make the Front fire in a do-nothing run?
+
+## 10. Proposal — roads gate the world (2026-08-24, DIALS-ONLY, pre-ruling)
+
+> **Status: PROPOSED, not canon. No schema change** — every parameter below already exists in `rules-v3.10-C.json` and is read by the reference simulator (schema 3.3 `world.wander`, 3.4 `road_follow`). This is the tuning-only half of a larger idea (true impassable terrain is a separate schema-3.11 harness question, deliberately NOT in this run). Director is live-tuning and external playtests are running today — turnaround matters more than breadth.
+
+**The change in one line.** The world should barely move until the player's roads reach it. NPCs are pinned near home; a road in sight is the only strong reason to travel; the player's walked trail becomes the artery system that connects the map.
+
+**The dials (all existing).** `world.wander.home_box_tiles` (9 today) — shrink it and off-road drift collapses toward home. `world.wander.road_follow.road_sight_tiles` (6 today) — how far a road reaches out and takes hold. `world.wander.step_tiles_per_sleep` (1 today) — pace. `leave_box_on_road: true` stays — roads remain the release valve, which is the entire point.
+
+**Variants requested — all three, harness decides.**
+
+- **A — pinned but breathing.** `home_box_tiles: 4`, `road_sight_tiles: 5`. The world slows; roads matter more; nothing else changes.
+- **B — hard pin.** `home_box_tiles: 1`, `road_sight_tiles: 4`. Off-road the world is nearly still. Roads are close to mandatory for any travel.
+- **C — hard pin, long reach.** `home_box_tiles: 2`, `road_sight_tiles: 8`. Still pinned, but a road pulls from further — the player's arteries recruit the countryside.
+
+**The risk this run exists to measure (the Keeper should flag it).** World formation depends on the scattered starting wanderers reaching the founding figures; `terminal_grace_until_formed` means an unformed world has no end state. If movement is reduced too far, a do-nothing run may never form and never conclude — the same no-ending class as open question BACKLOG #2, by a second route. The do-nothing baseline is a 24-sleep conclusion; watch that number per variant.
+
+**Questions for this run.** Does the world still form in a do-nothing run, and does the 24-sleep baseline conclusion survive, under each variant? Campaign completion rate and median sleeps vs control (16/20, 13–15)? Does the campaign policy's road-laying compensate in variant B, or does B depend on play the scripted policies do not model — state so plainly if it does. Does reduced drift change how the weather event affects unaccompanied believers? Which variant keeps colony formation viable (G3 class: colonies still founded)?
